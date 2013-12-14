@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.FPSLogger;
+
+import es.uca.fiboo.actores.Personaje;
 import es.uca.fiboo.screens.MainScreen;
 
 public class fibooGame extends Game {
@@ -12,6 +14,7 @@ public class fibooGame extends Game {
 		public static final String VERSION = "0.0.0.01 Pre-Alpha";
 		public static final String LOG = "fibooGame";
 		public static final boolean DEV_MODE = false;
+		public static Personaje personaje;
 		
 		private AssetManager manager;
 
@@ -26,6 +29,7 @@ public class fibooGame extends Game {
 		public void create() {
 			Gdx.app.log(fibooGame.LOG, "Creating game");
 			fpsLogger = new FPSLogger();
+			personaje = new Personaje();
 		}
 		
 		@Override
