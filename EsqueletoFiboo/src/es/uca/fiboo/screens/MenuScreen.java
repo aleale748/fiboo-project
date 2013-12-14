@@ -54,7 +54,7 @@ public class MenuScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + personalizarBoton.getClass().getSimpleName());
-						game.setScreen(new PruebaDragScreen(game));
+						game.setScreen(new PruebaComplementosScreen(game));
 				}
 		});
 		stage.addActor(personalizarBoton);
