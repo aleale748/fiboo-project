@@ -4,7 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.utils.Json;
 
 import es.uca.fiboo.actores.Personaje;
 import es.uca.fiboo.screens.MainScreen;
@@ -17,6 +19,7 @@ public class fibooGame extends Game {
 		public static Personaje personaje;
 		
 		private AssetManager manager;
+		private FileHandle file;
 
 		// Clase de ayuda de libgdx que logea los FPS cada segundo
 		private FPSLogger fpsLogger;
@@ -28,8 +31,17 @@ public class fibooGame extends Game {
 		@Override
 		public void create() {
 			Gdx.app.log(fibooGame.LOG, "Creating game");
+			file = Gdx.files.local("savedData.json");
+			
+			if(file.exists()) {
+				Json json = new Json();
+				personaje = json.fromJson(Personaje.class, file);
+			}
+			else {
+				personaje = new Personaje();
+			}
+			
 			fpsLogger = new FPSLogger();
-			personaje = new Personaje();
 		}
 		
 		@Override
@@ -41,6 +53,9 @@ public class fibooGame extends Game {
 
 		@Override
 		public void dispose() {
+			Json json = new Json();
+			file.writeString(json.prettyPrint(personaje), false);
+			
 			super.dispose();
 			
 			Gdx.app.log(fibooGame.LOG, "'Disposing' game");

@@ -1,10 +1,8 @@
 package es.uca.fiboo.actores;
 
-/**
- * Aun una versión muy básica, sólo con el avatar
- * 
- * @author Sergio
- */
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+
 public class Personaje {
 	
 	private Avatar avatar;
@@ -19,5 +17,16 @@ public class Personaje {
 	
 	public boolean contains(Complemento complemento) {
 		return avatar.cointains(complemento);
+	}
+	
+	public void drawAvatar(SpriteBatch batch) {
+		avatar.draw(batch);
+	}
+	
+	@Override
+	public String toString() {
+		String data = "";
+		data += avatar.toString();
+		return data;
 	}
 }

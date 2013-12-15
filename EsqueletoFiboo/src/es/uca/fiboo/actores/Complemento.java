@@ -1,22 +1,34 @@
 package es.uca.fiboo.actores;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class Complemento extends Image {
+/**
+ * 
+ * @version 0.1
+ * @author Sergio
+ * 
+ * @param tipo Tipo del complemento
+ * @param imagePath Ruta donde se encuentra la imagen
+ * @param imagen Textura cargada de la imagen
+ *
+ */
+public class Complemento {
 	
 	public static enum Tipo {
 		OJOS, PELO, GAFAS, DISFRAZ, CAMISA, PANTALON, MASCARA;
 	}
 	
 	private Tipo tipo;
-	private Rectangle bounds;
+	private String imagePath;
+	private transient Texture imagen;
 	
-	public Complemento(Texture imagen, Tipo tipo) {
-		super(imagen);
-		this.tipo = tipo;
-		this.bounds = new Rectangle(getX(), getY(), imagen.getWidth(), imagen.getHeight());
+	//Constructor vacío necesario para leer de Json
+	public Complemento() {}
+	
+	public Complemento(String imagePath, Tipo tipo) {
+		this.imagePath = imagePath;
+		this.imagen = new Texture(imagePath);
+		this.tipo = tipo;		
 	}
 	
 	public Tipo getTipo() {
@@ -29,14 +41,26 @@ public class Complemento extends Image {
 		return false;
 	}
 	
-	public Rectangle getBounds() {
-		return bounds;
+	public Texture getImagen() {
+		//Cuando se crea desde Json no se carga la imagen, con esto
+		//nos aseguramos de que se cargue
+		if(imagen == null) {
+			imagen = new Texture(imagePath);
+		}
+		return imagen;
 	}
-	
+
+	/**
+	 * @return the imagePath
+	 */
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
 	@Override
-	public void setPosition(float x, float y) {
-		super.setPosition(x, y);
-		bounds.setPosition(x, y);
+	public String toString() {
+		return "Complemento [tipo=" + tipo + ", imagePath=" + imagePath + "]";
 	}
 	
 }
