@@ -1,7 +1,7 @@
 package es.uca.fiboo.actores;
 
 /**
- * Aun una versión muy básica, sólo con el avatar
+ * Aun una versiï¿½n muy bï¿½sica, sï¿½lo con el avatar
  * 
  * @author Sergio
  */
@@ -20,4 +20,7 @@ public class Personaje {
 	public boolean contains(Complemento complemento) {
 		return avatar.cointains(complemento);
 	}
+/*	public void addCompl(String compl) {
+		avatar.addComplem(compl);
+	}*/
 }
