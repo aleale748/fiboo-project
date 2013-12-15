@@ -1,20 +1,24 @@
 package es.uca.fiboo.actores;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Avatar {
 
 	ArrayList<Complemento> comps;
+	TreeMap<Complemento.Tipo,String> complem;
 	
 	public Avatar() {
+		//complem= new TreeMap<Complemento.Tipo, String>();
 		comps = new ArrayList<Complemento>();
+		
 	}
 	
 	/*
 	 * Faltan algunas comprobaciones:
-	 * - Si le pone camisa o pantalón se elimina disfraz si lo hay
-	 * - Si le pone máscara se elimina el pelo y gafas si lo hay
-	 * - Si le pone disfraz se elimina camisa y pantalón
+	 * - Si le pone camisa o pantalï¿½n se elimina disfraz si lo hay
+	 * - Si le pone mï¿½scara se elimina el pelo y gafas si lo hay
+	 * - Si le pone disfraz se elimina camisa y pantalï¿½n
 	 */
 	public void addComplemento(Complemento c) {
 		int size = comps.size();
@@ -23,7 +27,7 @@ public class Avatar {
 			Complemento comp = comps.get(i);
 			if(comp.getTipo() == c.getTipo()) {
 				if(comp.getActions().size > 0) {
-					//Se elimina el action añadido al insertarlo
+					//Se elimina el action aï¿½adido al insertarlo
 					comp.removeAction(comp.getActions().first());
 				}
 				comp.remove(); //Eliminar del stage
@@ -33,10 +37,13 @@ public class Avatar {
 		}	
 		comps.add(c);
 	}
+	/*public void addComplem(Complemento.Tipo tipo, String ruta) {	
+		complem.put(tipo,ruta);
+	}*/ 
 
 	/**
 	 * Saca todos los complementos del vector,
-	 * lo que dejaría sólo al avatar base (default)
+	 * lo que dejarï¿½a sï¿½lo al avatar base (default)
 	 */
 	public void getDefault() {
 		for(Complemento c : comps) {

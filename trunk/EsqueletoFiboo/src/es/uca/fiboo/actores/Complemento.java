@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class Complemento extends Image {
 	
 	public static enum Tipo {
-		OJOS, PELO, GAFAS, DISFRAZ, CAMISA, PANTALON, MASCARA;
+		OJOS, PELO, GAFAS, DISFRAZ, CAMISA, PANTALON, MASCARA, BASE;
 	}
-	
+	private String ruta;
 	private Tipo tipo;
 	private Rectangle bounds;
 	
@@ -18,6 +18,12 @@ public class Complemento extends Image {
 		this.tipo = tipo;
 		this.bounds = new Rectangle(getX(), getY(), imagen.getWidth(), imagen.getHeight());
 	}
+	/*public Complemento(Texture imagen, Tipo tipo, String ruta) {
+		super(imagen);
+		this.ruta= ruta;
+		this.tipo = tipo;
+		this.bounds = new Rectangle(getX(), getY(), imagen.getWidth(), imagen.getHeight());
+	}*/
 	
 	public Tipo getTipo() {
 		return tipo;
@@ -38,5 +44,10 @@ public class Complemento extends Image {
 		super.setPosition(x, y);
 		bounds.setPosition(x, y);
 	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
 	
 }

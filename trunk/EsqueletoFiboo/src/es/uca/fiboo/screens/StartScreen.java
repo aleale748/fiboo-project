@@ -50,7 +50,8 @@ public class StartScreen extends AbstractScreen {
 					@Override
 					public boolean act(float delta) {
 						// La ??ltima acci??n mover?? hacia pantalla de men??
-						game.setScreen(new MenuScreen(game));
+						game.setScreen(new ChooseScreen(game));
+						//game.setScreen(new MenuScreen(game));
 						return true;
 					}
 				}));
