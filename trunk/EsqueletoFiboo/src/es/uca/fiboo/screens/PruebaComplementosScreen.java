@@ -36,8 +36,8 @@ public class PruebaComplementosScreen extends AbstractScreen {
         // Para pintar los rectangulos a modo de debug
 		shapeRenderer = new ShapeRenderer();
 		
-		// Cuerpo base (no tengo el calvo sin ropa) y rectángulos para colisiones
-		nino = new Image(new Texture("data/complementos/nino.png"));
+		// Cuerpo base (no tengo el calvo sin ropa) y rectï¿½ngulos para colisiones
+		nino = new Image(new Texture(fibooGame.personaje.getCompl(Complemento.Tipo.BASE)));
 		nino.setPosition(100f, 100f);
 		stage.addActor(nino);
 		cabeza = new Rectangle(102f, 318f, 256f, 256f);
@@ -64,7 +64,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		}
 	}
 	
-	//Forma un poco bestia de cargar todos los complementos, pero no se me ocurría otra :D
+	//Forma un poco bestia de cargar todos los complementos, pero no se me ocurrï¿½a otra :D
 	private void cargaComplementos() {
 		BotonComplemento c;
 		c = new BotonComplemento(new Texture("data/complementos/gafas1.png"),
@@ -140,7 +140,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		// Pinta los rectángulos de cabeza y cuerpo del avatar base
+		// Pinta los rectï¿½ngulos de cabeza y cuerpo del avatar base
 		shapeRenderer.begin(ShapeType.Line);
 		shapeRenderer.setColor(0, 0, 0, 0);
 		shapeRenderer.rect(cabeza.x, cabeza.y, cabeza.width, cabeza.height);

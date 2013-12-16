@@ -20,7 +20,10 @@ public class Personaje {
 	public boolean contains(Complemento complemento) {
 		return avatar.cointains(complemento);
 	}
-/*	public void addCompl(String compl) {
-		avatar.addComplem(compl);
-	}*/
+	public void addCompl(Complemento.Tipo tipo, String compl) {
+		avatar.addComplem(tipo, compl);
+	}
+	public String getCompl(Complemento.Tipo tipo) {
+		return avatar.getComplem(tipo);
+	}
 }
