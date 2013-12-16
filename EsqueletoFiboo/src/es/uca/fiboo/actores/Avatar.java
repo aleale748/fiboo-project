@@ -9,7 +9,7 @@ public class Avatar {
 	TreeMap<Complemento.Tipo,String> complem;
 	
 	public Avatar() {
-		//complem= new TreeMap<Complemento.Tipo, String>();
+		complem= new TreeMap<Complemento.Tipo, String>();
 		comps = new ArrayList<Complemento>();
 		
 	}
@@ -37,9 +37,12 @@ public class Avatar {
 		}	
 		comps.add(c);
 	}
-	/*public void addComplem(Complemento.Tipo tipo, String ruta) {	
+	public void addComplem(Complemento.Tipo tipo, String ruta) {	
 		complem.put(tipo,ruta);
-	}*/ 
+	}
+	public String getComplem(Complemento.Tipo tipo) {	
+		return complem.get(tipo);
+	}
 
 	/**
 	 * Saca todos los complementos del vector,
