@@ -3,6 +3,7 @@ package es.uca.fiboo.actores;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -13,81 +14,102 @@ import es.uca.fiboo.fibooGame;
 
 /**
  * Clase que contiene el botón en miniatura del complemento y su complemento real asignado.
+ * Además contiene un DragListener responsable de arrastrar y colocar los complementos.
  * 
- * @param complemento Complemento asignado al botón
- * @param nino Rectángulo con el que interacciona el complemento
- * @param stage Stage de la screen donde añadir los actores
+ * @version 0.5
+ * @author Sergio
+ * 
  */
 public class BotonComplemento extends Image {
 
-	private Complemento complemento;
-	private Rectangle nino;
-	private Stage stage;
+	//Necesario para añadir las imagenes y sus acciones
+	private static Stage stage;
 	
-	public BotonComplemento(Texture icon, Complemento complemento) {
-		super(icon);
+	private Complemento complemento;
+	
+	public BotonComplemento(Complemento complemento) {
+		super(new Texture(complemento.getIconPath()));
 		this.complemento = complemento;
 		addDragListener();
 	}
-	
+
 	public Complemento getComplemento() {
 		return complemento;
 	}
-	
+
 	public void setStage(Stage stage) {
-		//if(stage == null) {
-			this.stage = stage;
-			Gdx.app.log(fibooGame.LOG, "asignando stage");
-		//}
+		BotonComplemento.stage = stage;
 	}
-	
-	public void setOverlap(Rectangle nino) {
-		//if(nino == null) {
-			this.nino = nino;
-		//}
-	}
-	
+
 	private void addDragListener() {
 		this.addListener(new DragListener() {
 
-			private boolean contenido = false;
+			private Image imagen;
+			private Rectangle avatar, rImagen;
 
-			public void touchDragged(InputEvent event, float x, float y, int pointer) {
-				if(!contenido) {
-					float dx = Gdx.input.getX() - complemento.getWidth() * 0.5f;
-					float dy = Gdx.input.getY() + complemento.getHeight() * 0.5f;
-					complemento.setPosition(dx, Gdx.graphics.getHeight() - dy);
-				}
-			}
-
+			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				if(fibooGame.personaje.contains(complemento)) {
-					Gdx.app.log(fibooGame.LOG, "va ser que ya esta dentro");
-					contenido = true;
+				if(complemento.isDisponible()) {
+					
+					imagen = new Image(complemento.getImagen());
+					float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
+					float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
+	
+					imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
+					float width = imagen.getWidth();
+					float height = imagen.getHeight();
+					stage.addActor(imagen);
+	
+					rImagen = new Rectangle(imagen.getImageX(), imagen.getImageY(),	width, height);
+	
+					switch (complemento.getTipo()) {
+					case OJOS:
+					case PELO: 
+					case GAFAS: 
+					case MASCARA:
+					case BIGOTE: 
+					case ACCPELO: 
+					case BOCA: 
+						avatar = new Rectangle(102f, 318f, 256f, 256f);
+						break;
+					default:
+						avatar = new Rectangle(102f, 97f, 256f, 512f);
+						break;
+					}
 				}
-				else {
-					float dx = Gdx.input.getX() - complemento.getWidth() * 0.5f;
-					float dy = Gdx.input.getY() + complemento.getHeight() * 0.5f;
-					complemento.setPosition(dx, Gdx.graphics.getHeight() - dy);
-					contenido = false;
-					stage.addActor(complemento);
-				}
-				
 				return super.touchDown(event, x, y, pointer, button);
 			}
 
-			public void touchUp(InputEvent event, float x, float y, 	int pointer, int button) {
-				if (!contenido && complemento.getBounds().overlaps(nino)) {
-					// Gdx.app.log(MyGdxGame.LOG, "intersecting...");
-					complemento.addAction(Actions.moveTo(nino.x, nino.y, 1f));
-					fibooGame.personaje.addComplemento(complemento);
-				} else if(!contenido){
-					Gdx.app.log(fibooGame.LOG, "didn't intersect");
-					complemento.remove();
+			@Override
+			public void touchDragged(InputEvent event, float x, float y, int pointer) {
+				if(complemento.isDisponible()) {
+					float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
+					float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
+					imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
+					rImagen.setPosition(imagen.getX(), imagen.getY());
+				}
+			}
+
+			@Override
+			public void touchUp(InputEvent event, float x, float y,	int pointer, int button) {
+				if(complemento.isDisponible()) {
+					if (rImagen.overlaps(avatar)) {
+						imagen.addAction(Actions.sequence(
+								Actions.moveTo(avatar.x, avatar.y, 0.8f),
+								new Action() {
+									@Override
+									public boolean act(float delta) {
+										fibooGame.getPersonaje().addComplemento(complemento);
+										imagen.remove();
+										return true;
+									}
+								}));
+					} else {
+						imagen.remove();
+					}
 				}
 				super.touchUp(event, x, y, pointer, button);
 			}
 		});
 	}
-
 }

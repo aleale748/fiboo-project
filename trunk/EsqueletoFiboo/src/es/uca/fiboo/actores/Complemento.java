@@ -1,32 +1,47 @@
 package es.uca.fiboo.actores;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-public class Complemento extends Image {
+/**
+ * El complemento guarda la imagen de este y su disponibilidad, 
+ * 
+ * @version 0.2
+ * @author Sergio
+ *
+ */
+public class Complemento {
 	
 	public static enum Tipo {
-		OJOS, PELO, GAFAS, DISFRAZ, CAMISA, PANTALON, MASCARA, BASE;
+		PELO, ACCPELO, OJOS, BIGOTE, BOCA, GAFAS, DISFRAZ, CAMISA, PANTALON, MASCARA;
 	}
-	private String ruta;
-	private Tipo tipo;
-	private Rectangle bounds;
 	
-	public Complemento(Texture imagen, Tipo tipo) {
-		super(imagen);
+	private Tipo tipo;
+	private String imagePath;
+	private boolean disponible;
+	private transient Texture imagen;
+	
+	//Necesario para Json
+	public Complemento() {}
+	
+	public Complemento(String imagePath, Tipo tipo) {
+		this.imagePath = imagePath;
 		this.tipo = tipo;
-		this.bounds = new Rectangle(getX(), getY(), imagen.getWidth(), imagen.getHeight());
+		this.disponible = false;
 	}
-	/*public Complemento(Texture imagen, Tipo tipo, String ruta) {
-		super(imagen);
-		this.ruta= ruta;
-		this.tipo = tipo;
-		this.bounds = new Rectangle(getX(), getY(), imagen.getWidth(), imagen.getHeight());
-	}*/
 	
 	public Tipo getTipo() {
 		return tipo;
+	}
+	
+	//Provisional mientras no hay Atlas.
+	// disfraz1.png -> disfraz1Mini.png
+	public String getIconPath() {
+		String[] split = imagePath.split("[.]+");
+		String path = split[0] + "Mini.png";
+		
+		if(tipo != Tipo.OJOS && tipo != Tipo.BIGOTE && tipo != Tipo.ACCPELO && tipo != Tipo.GAFAS && tipo != Tipo.BOCA)
+			return path;
+		return imagePath;
 	}
 	
 	public boolean isTipo(Tipo tipo) {
@@ -35,19 +50,34 @@ public class Complemento extends Image {
 		return false;
 	}
 	
-	public Rectangle getBounds() {
-		return bounds;
+	//Se instancia la imagen sólo si se necesita
+	public Texture getImagen() {
+		if(imagen == null) {
+			imagen = new Texture(imagePath);
+		}
+		return imagen;
 	}
-	
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
 	@Override
-	public void setPosition(float x, float y) {
-		super.setPosition(x, y);
-		bounds.setPosition(x, y);
+	public boolean equals(Object object) {
+		if(object instanceof Complemento) {
+			if( ((Complemento)object).getImagePath().equals(imagePath) ) {
+			return true;
+			}
+		}
+		return false;
 	}
-
-	public String getRuta() {
-		return ruta;
-	}
-
 	
 }
