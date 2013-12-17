@@ -1,0 +1,110 @@
+[
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "OJOS",
+	"imagePath": "data/complementos/ojos1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "OJOS",
+	"imagePath": "data/complementos/ojos2.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "OJOS",
+	"imagePath": "data/complementos/ojos3.png",
+	"disponible": false
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "PELO",
+	"imagePath": "data/complementos/pelonina1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "PELO",
+	"imagePath": "data/complementos/pelonina2.png",
+	"disponible": false
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "PELO",
+	"imagePath": "data/complementos/pelonino1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "PELO",
+	"imagePath": "data/complementos/pelonino2.png",
+	"disponible": false
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "DISFRAZ",
+	"imagePath": "data/complementos/disfraz1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "DISFRAZ",
+	"imagePath": "data/complementos/disfraz2.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "GAFAS",
+	"imagePath": "data/complementos/gafas1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "GAFAS",
+	"imagePath": "data/complementos/gafas2.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "BIGOTE",
+	"imagePath": "data/complementos/bigote1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "BIGOTE",
+	"imagePath": "data/complementos/bigote2.png",
+	"disponible": false
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "ACCPELO",
+	"imagePath": "data/complementos/adpelo1.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "ACCPELO",
+	"imagePath": "data/complementos/adpelo2.png",
+	"disponible": false
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "BOCA",
+	"imagePath": "data/complementos/boca2.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "BOCA",
+	"imagePath": "data/complementos/boca3.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "BOCA",
+	"imagePath": "data/complementos/boca1.png",
+	"disponible": false
+}
+]
