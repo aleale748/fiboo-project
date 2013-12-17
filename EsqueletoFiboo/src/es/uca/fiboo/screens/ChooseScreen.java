@@ -13,8 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.actores.Complemento;
 
 public class ChooseScreen extends AbstractScreen {
 
@@ -35,7 +35,7 @@ public class ChooseScreen extends AbstractScreen {
 		Drawable ninoBotonDrawable = new TextureRegionDrawable(ninoBotonRegion);
 		Drawable ninaBotonDrawable = new TextureRegionDrawable(ninaBotonRegion);
 
-		// Creamos el boton, lo posicionamo y lo a??adimo al stage
+		// Creamos el boton, lo posicionamo y lo añadimo al stage
 		ninoBoton = new ImageButton(ninoBotonDrawable);
 		ninaBoton = new ImageButton(ninaBotonDrawable);
 		
@@ -50,7 +50,7 @@ public class ChooseScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on ninoBoton");
-				fibooGame.personaje.addCompl(Complemento.Tipo.BASE, "data/complementos/nino.png");
+				fibooGame.getPersonaje().getAvatar().setBase("data/complementos/nino.png");
 				ninaBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f)));
 				ninoBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f),
 				new Action() {
@@ -75,7 +75,7 @@ public class ChooseScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on ninaBoton");
-				fibooGame.personaje.addCompl(Complemento.Tipo.BASE, "data/complementos/nina.png");
+				fibooGame.getPersonaje().getAvatar().setBase("data/complementos/nina.png");
 				ninoBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f)));
 				ninaBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f),
 				new Action() {

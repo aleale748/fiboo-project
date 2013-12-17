@@ -1,11 +1,16 @@
 package es.uca.fiboo;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.utils.Json;
 
+import es.uca.fiboo.actores.Complemento;
 import es.uca.fiboo.actores.Personaje;
 import es.uca.fiboo.screens.MainScreen;
 
@@ -14,9 +19,12 @@ public class fibooGame extends Game {
 		public static final String VERSION = "0.0.0.01 Pre-Alpha";
 		public static final String LOG = "fibooGame";
 		public static final boolean DEV_MODE = false;
-		public static Personaje personaje;
+
+		private static Personaje personaje;
+		private static ArrayList<Complemento> complementos;
 		
 		private AssetManager manager;
+		private FileHandle savedData, comps;
 
 		// Clase de ayuda de libgdx que logea los FPS cada segundo
 		private FPSLogger fpsLogger;
@@ -25,11 +33,35 @@ public class fibooGame extends Game {
 			return new MainScreen(this);
 		}
 		
+		@SuppressWarnings("unchecked")
 		@Override
 		public void create() {
 			Gdx.app.log(fibooGame.LOG, "Creating game");
+			
+			//Cargamos ficheros de datos guardados
+			savedData = Gdx.files.local("savedData.json");
+			comps = Gdx.files.internal("comps.json");
+			Json json = new Json();	
+			
+			System.out.println(json.prettyPrint(complementos));
+			
+			if(savedData.exists()) {
+				personaje = json.fromJson(Personaje.class, savedData);
+				//Cargamos el TreeMap de Avatar
+				personaje.getAvatar().loadData();
+				System.out.println(personaje.toString());
+			}
+			else {
+				//Partida nueva
+				personaje = new Personaje();
+			}
+			
+			if(comps.exists()) {
+				//Todos los complementos habidos y por haber
+				complementos = json.fromJson(ArrayList.class, comps);
+			}
+			
 			fpsLogger = new FPSLogger();
-			personaje = new Personaje();
 		}
 		
 		@Override
@@ -41,6 +73,14 @@ public class fibooGame extends Game {
 
 		@Override
 		public void dispose() {
+			//Preparamos el array de avatar para guardarlo
+			personaje.getAvatar().formatToSave();
+			Json json = new Json();
+			
+			//Se guardan los datos
+			savedData.writeString(json.prettyPrint(personaje), false);
+			comps.writeString(json.prettyPrint(complementos), false);
+			
 			super.dispose();
 			
 			Gdx.app.log(fibooGame.LOG, "'Disposing' game");
@@ -78,6 +118,14 @@ public class fibooGame extends Game {
 			Gdx.app.log(fibooGame.LOG, "'Resuming' game");
 		}
 		
+		public static Personaje getPersonaje() {
+			return personaje;
+		}
+
+		public static ArrayList<Complemento> getComplementos() {
+			return complementos;
+		}
+
 		public AssetManager getManager() {
 			return manager;
 		}

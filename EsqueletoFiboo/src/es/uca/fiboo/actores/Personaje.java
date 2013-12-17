@@ -1,7 +1,9 @@
 package es.uca.fiboo.actores;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 /**
- * Aun una versi�n muy b�sica, s�lo con el avatar
+ * Aun una versión muy básica, sólo con el avatar
  * 
  * @author Sergio
  */
@@ -16,14 +18,12 @@ public class Personaje {
 	public void addComplemento(Complemento complemento) {
 		avatar.addComplemento(complemento);
 	}
+
+	public void drawAvatar(SpriteBatch batch) {
+		avatar.draw(batch);
+	}
 	
-	public boolean contains(Complemento complemento) {
-		return avatar.cointains(complemento);
-	}
-	public void addCompl(Complemento.Tipo tipo, String compl) {
-		avatar.addComplem(tipo, compl);
-	}
-	public String getCompl(Complemento.Tipo tipo) {
-		return avatar.getComplem(tipo);
+	public Avatar getAvatar() {
+		return avatar;
 	}
 }
