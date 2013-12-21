@@ -15,6 +15,8 @@ import es.uca.fiboo.actores.Personaje;
 import es.uca.fiboo.screens.MainScreen;
 
 public class fibooGame extends Game {
+	
+				//LALALALAL
 
                 public static final String VERSION = "0.0.0.01 Pre-Alpha";
                 public static final String LOG = "fibooGame";
