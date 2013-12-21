@@ -133,6 +133,12 @@ public class GameplayAlienScreen extends AbstractScreen {
 	
 	private int respawnSol;
 	
+	private OperadorActor operador;
+	
+	private NumeroXActor numeroX;
+	
+	private NumeroYActor numeroY;
+	
 	private List<AlienActor> aliens;
 	
 	private List<BulletActor> bullets;
@@ -207,9 +213,18 @@ public class GameplayAlienScreen extends AbstractScreen {
 		puntuacion.setPosition(10, stage.getHeight() - 10);
 		puntuacion.puntuacion = 0;
 		stage.addActor(puntuacion);
-		suma = new SumaActor(new BitmapFont());
-		suma.setPosition(Gdx.graphics.getWidth()/2 - 20, 20);
-		stage.addActor(suma);
+		
+		operador = new OperadorActor();
+		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, 24);
+		stage.addActor(operador);
+		
+		numeroX = new NumeroXActor();
+		numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
+		stage.addActor(numeroX);
+		
+		numeroY = new NumeroYActor();
+		numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
+		stage.addActor(numeroY);
 		
 		resuelto = true;
 		respawnSol = 0;
@@ -227,8 +242,8 @@ public class GameplayAlienScreen extends AbstractScreen {
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		stage.act();
 		if (resuelto) {
-			suma.a = (int) (Math.random() * 5) % 10;
-			suma.b = (int) (Math.random() * 5) % 10;
+			numeroX.a = (int) (Math.random() * 5) % 10;
+			numeroY.b = (int) (Math.random() * 5) % 10;
 			resuelto = false;
 		}
 		timer -= delta;
@@ -236,14 +251,14 @@ public class GameplayAlienScreen extends AbstractScreen {
 			AlienActor alien = new AlienActor((int) (Math.random() * 10) % 10);
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
-			if ((aleatorio1 - aleatorio2) < 0.1f)
-				if (aleatorio1 < 0.5f && aleatorio1 < aleatorio2) aleatorio2 += 0.4f;
+			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
+				if (aleatorio1 < 0.5f && aleatorio1 < aleatorio2) aleatorio2 += 0.3f;
 				else if (aleatorio1 < 0.5)
-					aleatorio1 += 0.4f;
+					aleatorio1 += 0.3f;
 				else if (aleatorio1 < aleatorio2)
-					aleatorio1 -= 0.4f;
+					aleatorio1 -= 0.3f;
 				else
-					aleatorio2 -= 0.4f;
+					aleatorio2 -= 0.2f;
 			alien.setPosition(stage.getWidth(), stage.getHeight() * (aleatorio1 * 0.6f + 0.1f));
 			alien.bb.x = alien.getX();
 			alien.bb.y = alien.getY();
@@ -280,7 +295,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 				aliens.get(i).remove();
 				aliens.remove(i);
 				if (escudo.getHealth() > 0.4f) {
-					if(alien.getNumero() == (suma.a + suma.b)) {
+					if(alien.getNumero() == (numeroX.a + numeroY.b)) {
 						escudo.sumHealth(-0.4f);
 						fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
 					}
@@ -313,7 +328,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 			} else {
 				for (int j = 0; j < bullets.size(); j++) {
 					if (alien.bb.overlaps(bullets.get(j).bb)) {
-						if (aliens.get(i).getNumero() == (suma.a + suma.b)) {
+						if (aliens.get(i).getNumero() == (numeroX.a + numeroY.b)) {
 							puntuacion.puntuacion++;
 							resuelto = true;
 							for (int k = 0; k < aliens.size(); k++) {
