@@ -237,13 +237,13 @@ public class GameplayAlienScreen extends AbstractScreen {
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if ((aleatorio1 - aleatorio2) < 0.1f)
-				if (aleatorio1 < 0.5f && aleatorio1 < aleatorio2) aleatorio2 += 0.2f;
+				if (aleatorio1 < 0.5f && aleatorio1 < aleatorio2) aleatorio2 += 0.4f;
 				else if (aleatorio1 < 0.5)
-					aleatorio1 += 0.2f;
+					aleatorio1 += 0.4f;
 				else if (aleatorio1 < aleatorio2)
-					aleatorio1 -= 0.2f;
+					aleatorio1 -= 0.4f;
 				else
-					aleatorio2 -= 0.2f;
+					aleatorio2 -= 0.4f;
 			alien.setPosition(stage.getWidth(), stage.getHeight() * (aleatorio1 * 0.6f + 0.1f));
 			alien.bb.x = alien.getX();
 			alien.bb.y = alien.getY();
