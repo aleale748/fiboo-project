@@ -8,7 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.naveminigame.screens.GameplayAlienScreen;
 
 public class MenuScreen extends AbstractScreen {
 
@@ -36,6 +38,19 @@ public class MenuScreen extends AbstractScreen {
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		entrenarBoton = new ImageButton(entrenarBotonDrawable);
 		entrenarBoton.setPosition(50f, 50f);
+		entrenarBoton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching down on " + entrenarBoton.getClass().getSimpleName());
+				return true;
+			}
+			
+			@Override
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching up on " + entrenarBoton.getClass().getSimpleName());
+						game.setScreen(new GameplayAlienScreen(game));
+				}
+		});
 		stage.addActor(entrenarBoton);
 		
 		retosBoton = new ImageButton(retosBotonDrawable);

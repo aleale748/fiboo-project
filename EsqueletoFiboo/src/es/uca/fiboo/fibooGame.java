@@ -6,8 +6,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Json;
 
 import es.uca.fiboo.actores.Complemento;
@@ -15,17 +17,15 @@ import es.uca.fiboo.actores.Personaje;
 import es.uca.fiboo.screens.MainScreen;
 
 public class fibooGame extends Game {
-	
-				//LALALALAL
 
                 public static final String VERSION = "0.0.0.01 Pre-Alpha";
                 public static final String LOG = "fibooGame";
                 public static final boolean DEV_MODE = false;
+                
+                public static final AssetManager MANAGER = new AssetManager();
 
                 private static Personaje personaje;
                 private static ArrayList<Complemento> complementos;
-                
-                private AssetManager manager;
                 private FileHandle savedData, comps;
 
                 // Clase de ayuda de libgdx que logea los FPS cada segundo
@@ -39,6 +39,35 @@ public class fibooGame extends Game {
                 @Override
                 public void create() {
                         Gdx.app.log(fibooGame.LOG, "Creating game");
+                        
+                        //Cargamos las imágenes en el manager
+                        MANAGER.load("naveminigame/older/cargando.png", Texture.class);
+            			MANAGER.load("naveminigame/older/gameover.png", Texture.class);
+            			MANAGER.load("naveminigame/older/title.png", Texture.class);
+            			MANAGER.load("naveminigame/older/jugar.png", Texture.class);
+            			MANAGER.load("naveminigame/older/salir.png", Texture.class);
+            			MANAGER.load("naveminigame/older/alien.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/0.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/1.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/2.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/3.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/4.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/5.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/6.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/7.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/8.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/9.gif", Texture.class);
+            			MANAGER.load("naveminigame/older/vida.png", Texture.class);
+            			MANAGER.load("naveminigame/older/bala.png", Texture.class);
+            			MANAGER.load("naveminigame/older/cohete.png", Texture.class);
+            			MANAGER.load("naveminigame/older/defensa.png", Texture.class);
+            			MANAGER.load("naveminigame/older/fondoalien.png", Texture.class);
+            			MANAGER.load("naveminigame/older/pad.png", Texture.class);
+            			MANAGER.load("naveminigame/older/hit.ogg", Sound.class);
+            			MANAGER.load("naveminigame/older/explosion.ogg", Sound.class);
+            			MANAGER.load("naveminigame/older/shoot.ogg", Sound.class);
+            			MANAGER.finishLoading();
+            			Gdx.app.log(fibooGame.LOG, "Imagenes cargadas en el manager");
                         
                         //Cargamos ficheros de datos guardados
                         savedData = Gdx.files.local("savedData.json");
@@ -85,6 +114,8 @@ public class fibooGame extends Game {
                         
                         super.dispose();
                         
+            			MANAGER.dispose();
+                        
                         Gdx.app.log(fibooGame.LOG, "'Disposing' game");
                 }
 
@@ -126,9 +157,5 @@ public class fibooGame extends Game {
 
                 public static ArrayList<Complemento> getComplementos() {
                         return complementos;
-                }
-
-                public AssetManager getManager() {
-                        return manager;
                 }
 }
