@@ -25,7 +25,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			BulletActor bullet = new BulletActor();
-			bullet.setPosition(10 + nave.getWidth(), nave.getY() + nave.getHeight() / 2);
+			bullet.setPosition(nave.getWidth() - 55, nave.getY() + (nave.getHeight() - 27));
 			stage.addActor(bullet);
 			fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class).play();
 			return true;
@@ -95,7 +95,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 				return false;
 			
 			BulletActor bullet = new BulletActor();
-			bullet.setPosition(10 + nave.getWidth(), nave.getY() + nave.getHeight() / 2);
+			bullet.setPosition(nave.getWidth() - 55, nave.getY() + (nave.getHeight() - 27));
 			bullet.bb.x = bullet.getX();
 			bullet.bb.y = bullet.getY();
 			stage.addActor(bullet);
@@ -117,11 +117,17 @@ public class GameplayAlienScreen extends AbstractScreen {
 	
 	private BarraActor vidaNave, vidaEscudo;
 	
+	private BarraVaciaActor barraNave, barraEscudo;
+	
 	private EscudoActor escudo;
 	
 	private PuntuacionActor puntuacion;
 	
 	private SumaActor suma;
+	
+	private VidaTextActor vidaText;
+	
+	private EscudoTextActor escudoText;
 	
 	private boolean resuelto;
 	
@@ -140,7 +146,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(stage);
 		
 		Gdx.app.log(fibooGame.LOG, "" + fibooGame.MANAGER.getProgress());
-		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/older/fondoalien.png", Texture.class));
+		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 
@@ -175,18 +181,34 @@ public class GameplayAlienScreen extends AbstractScreen {
 		stage.addActor(escudo);
 		
 		vidaNave = new BarraActor(nave);
-		vidaNave.setPosition(stage.getWidth() - 150, stage.getHeight() - 12);
+		vidaNave.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 10);
 		vidaEscudo = new BarraActor(escudo);
-		vidaEscudo.setPosition(stage.getWidth() - 150, stage.getHeight() - 20);
+		vidaEscudo.setPosition(Gdx.graphics.getWidth() - vidaEscudo.getWidth() - 10, Gdx.graphics.getHeight() - vidaEscudo.getHeight() - 28);
+		
+		
+		barraNave = new BarraVaciaActor();
+		barraNave.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 10);
+		barraEscudo = new BarraVaciaActor();
+		barraEscudo.setPosition(Gdx.graphics.getWidth() - vidaEscudo.getWidth() - 10, Gdx.graphics.getHeight() - vidaEscudo.getHeight() - 28);
+		
+		stage.addActor(barraNave);
+		stage.addActor(barraEscudo);
 		stage.addActor(vidaNave);
 		stage.addActor(vidaEscudo);
+		
+		vidaText = new VidaTextActor(new BitmapFont());
+		vidaText.setPosition(Gdx.graphics.getWidth() - barraNave.getWidth() - 46, Gdx.graphics.getHeight() - vidaNave.getHeight() + 5);
+		escudoText = new EscudoTextActor(new BitmapFont());
+		escudoText.setPosition(Gdx.graphics.getWidth() - barraNave.getWidth() - 76, Gdx.graphics.getHeight() - vidaNave.getHeight() - 13);
+		stage.addActor(vidaText);
+		stage.addActor(escudoText);
 		
 		puntuacion = new PuntuacionActor(new BitmapFont());
 		puntuacion.setPosition(10, stage.getHeight() - 10);
 		puntuacion.puntuacion = 0;
 		stage.addActor(puntuacion);
 		suma = new SumaActor(new BitmapFont());
-		suma.setPosition(stage.getWidth()/2 - 20, 20);
+		suma.setPosition(Gdx.graphics.getWidth()/2 - 20, 20);
 		stage.addActor(suma);
 		
 		resuelto = true;
@@ -239,8 +261,13 @@ public class GameplayAlienScreen extends AbstractScreen {
 		}
 		comprobarListas();
 		comprobarColisiones();
-		vidaNave.setPosition(stage.getWidth() - 150, stage.getHeight() - 12);
-		vidaEscudo.setPosition(stage.getWidth() - 150, stage.getHeight() - 20);
+		vidaNave.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 10);
+		barraNave.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 10);
+		vidaEscudo.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 28);
+		barraEscudo.setPosition(Gdx.graphics.getWidth() - vidaEscudo.getWidth() - 10, Gdx.graphics.getHeight() - vidaEscudo.getHeight() - 28);
+		
+		vidaText.setPosition(Gdx.graphics.getWidth() - barraNave.getWidth() - 46, Gdx.graphics.getHeight() - vidaNave.getHeight() + 5);
+		escudoText.setPosition(Gdx.graphics.getWidth() - barraNave.getWidth() - 76, Gdx.graphics.getHeight() - vidaNave.getHeight() - 13);
 		respawnSol += 1;
 		stage.draw();
 	}

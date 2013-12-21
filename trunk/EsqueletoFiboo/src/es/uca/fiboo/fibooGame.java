@@ -41,6 +41,26 @@ public class fibooGame extends Game {
                         Gdx.app.log(fibooGame.LOG, "Creating game");
                         
                         //Cargamos las imágenes en el manager
+                        MANAGER.load("naveminigame/asteroide0.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide1.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide2.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide3.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide4.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide5.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide6.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide7.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide8.png", Texture.class);
+                        MANAGER.load("naveminigame/asteroide9.png", Texture.class);
+                        MANAGER.load("naveminigame/fondonave.png", Texture.class);
+                        MANAGER.load("naveminigame/nave.png", Texture.class);
+                        MANAGER.load("naveminigame/star.png", Texture.class);
+                        MANAGER.load("naveminigame/starVacia.png", Texture.class);
+                        MANAGER.load("naveminigame/suma.png", Texture.class);
+                        MANAGER.load("naveminigame/vida.png", Texture.class);
+                        MANAGER.load("naveminigame/vidaEscudo.png", Texture.class);
+                        MANAGER.load("naveminigame/vidaVacia.png", Texture.class);
+                        MANAGER.load("naveminigame/laser.png", Texture.class);
+                        MANAGER.load("naveminigame/laserPeque.png", Texture.class);
                         MANAGER.load("naveminigame/older/cargando.png", Texture.class);
             			MANAGER.load("naveminigame/older/gameover.png", Texture.class);
             			MANAGER.load("naveminigame/older/title.png", Texture.class);
