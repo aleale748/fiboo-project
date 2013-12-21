@@ -20,7 +20,7 @@ public class NaveActor extends Actor implements HealthActor {
 	public Vector2 velocidad = new Vector2(0, 0);
 	
 	public NaveActor() {
-		nave = new TextureRegion(fibooGame.MANAGER.get("naveminigame/older/cohete.png", Texture.class), 100, 79);
+		nave = new TextureRegion(fibooGame.MANAGER.get("naveminigame/nave.png", Texture.class), 256, 135);
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		health=1;

@@ -17,14 +17,14 @@ public class AlienActor extends Actor {
 	
 	public AlienActor(int numero) {
 		this.numero = numero;
-		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/older/" + Integer.toString(numero)+".gif", Texture.class), 43, 29);
+		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero)+".png", Texture.class));
 		setSize(alien.getRegionWidth(), alien.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
 	}
 	
 	@Override
 	public void act(float delta) {
-		translate(-20 * delta, 0);
+		translate(-200 * delta, 0);
 		bb.x = getX();
 		bb.y = getY();
 		bb.width = getWidth();
