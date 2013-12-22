@@ -143,6 +143,8 @@ public class GameplayAlienScreen extends AbstractScreen {
 	
 	private List<BulletActor> bullets;
 	
+	private List<ExplosionActor> explosiones;
+	
 	@Override
 	public void show() {
 		
@@ -155,6 +157,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+		
+
+		explosiones = new ArrayList<ExplosionActor>();
 
 		nave = new NaveActor();
 		nave.bb.x = nave.getX();
@@ -297,6 +302,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, 24);
 		
 		respawnSol += 1;
+		
 		stage.draw();
 		
 	}
@@ -304,8 +310,11 @@ public class GameplayAlienScreen extends AbstractScreen {
 	private void comprobarListas() {
 		AlienActor alien;
 		for(int i = 0; i < aliens.size(); i++) {
-			if (aliens.get(i).getRight() < 0) {
+			if (aliens.get(i).getRight() < 110) {
 				alien = aliens.get(i);
+				explosiones.add(new ExplosionActor());
+				explosiones.get(explosiones.size()-1).setPosition(aliens.get(i).getX()-40, aliens.get(i).getY()-75);
+				stage.addActor(explosiones.get(explosiones.size()-1));
 				aliens.get(i).remove();
 				aliens.remove(i);
 				if (escudo.getHealth() > 0.4f) {
@@ -333,6 +342,14 @@ public class GameplayAlienScreen extends AbstractScreen {
 		for(int i = 0; i < puntuacion.size(); ++i) {
 			puntuacion.get(i).setPosition(10 + i * 46, Gdx.graphics.getHeight() - puntuacion.get(i).getHeight()/2 - 30);
 		}
+		
+		for(int i = 0; i < explosiones.size(); ++i) {
+			if (explosiones.get(i).explosionAnimation.isAnimationFinished(explosiones.get(i).stateTime)) {
+				explosiones.get(i).remove();
+				explosiones.remove(i);
+			}
+		}
+		
 	}
 	
 	private void comprobarColisiones() {
@@ -340,6 +357,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 		for (int i = 0; i < aliens.size(); i++) {
 			alien = aliens.get(i);
 			if (alien.bb.overlaps(nave.bb)) {
+				explosiones.add(new ExplosionActor());
+				explosiones.get(explosiones.size()-1).setPosition(aliens.get(i).getX()-40, aliens.get(i).getY()-75);
+				stage.addActor(explosiones.get(explosiones.size()-1));
 				aliens.get(i).remove();
 				aliens.remove(i);
 				nave.sumHealth(-0.4f);
@@ -357,6 +377,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 							stage.addActor(puntuacion.get(puntuacion.size()-1));
 							resuelto = true;
 							for (int k = 0; k < aliens.size(); k++) {
+								explosiones.add(new ExplosionActor());
+								explosiones.get(explosiones.size()-1).setPosition(aliens.get(k).getX()-40, aliens.get(k).getY()-75);
+								stage.addActor(explosiones.get(explosiones.size()-1));
 								aliens.get(k).remove();
 							}
 							aliens.clear();
@@ -366,6 +389,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 						} else {
 							nave.sumHealth(-0.2f);
 							fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
+							explosiones.add(new ExplosionActor());
+							explosiones.get(explosiones.size()-1).setPosition(aliens.get(i).getX()-40, aliens.get(i).getY()-75);
+							stage.addActor(explosiones.get(explosiones.size()-1));
 							if (nave.getHealth() <= 0) {
 								game.setScreen(new GameOverScreen(game));
 							}
