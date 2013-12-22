@@ -121,9 +121,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 	
 	private EscudoActor escudo;
 	
-	private PuntuacionActor puntuacion;
+	private List<StarActor> puntuacion;
 	
-	private SumaActor suma;
+	private List<EmptyStarActor> puntuacionVacia;
 	
 	private VidaTextActor vidaText;
 	
@@ -209,22 +209,18 @@ public class GameplayAlienScreen extends AbstractScreen {
 		stage.addActor(vidaText);
 		stage.addActor(escudoText);
 		
-		puntuacion = new PuntuacionActor(new BitmapFont());
-		puntuacion.setPosition(10, stage.getHeight() - 10);
-		puntuacion.puntuacion = 0;
-		stage.addActor(puntuacion);
+		puntuacionVacia = new ArrayList<EmptyStarActor>();
+		for (int i = 0; i < 10; ++i) {
+			puntuacionVacia.add(new EmptyStarActor());
+			puntuacionVacia.get(i).setPosition(10 + i * 46, Gdx.graphics.getHeight() - puntuacionVacia.get(i).getHeight()/2 - 30);
+			stage.addActor(puntuacionVacia.get(i));
+		}
+		
+		puntuacion = new ArrayList<StarActor>();
 		
 		operador = new OperadorActor();
 		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, 24);
 		stage.addActor(operador);
-		
-		numeroX = new NumeroXActor();
-		numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
-		stage.addActor(numeroX);
-		
-		numeroY = new NumeroYActor();
-		numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
-		stage.addActor(numeroY);
 		
 		resuelto = true;
 		respawnSol = 0;
@@ -239,16 +235,28 @@ public class GameplayAlienScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
+
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		stage.act();
+		
 		if (resuelto) {
-			numeroX.a = (int) (Math.random() * 5) % 10;
-			numeroY.b = (int) (Math.random() * 5) % 10;
+			stage.getRoot().removeActor(numeroX);
+			stage.getRoot().removeActor(numeroY);
+			
+			numeroX = new NumeroXActor((int) (Math.random() * 5) % 10);
+			numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
+			stage.addActor(numeroX);
+			
+			numeroY = new NumeroYActor((int) (Math.random() * 5) % 10);
+			numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
+			stage.addActor(numeroY);
+			
 			resuelto = false;
 		}
+		
 		timer -= delta;
 		if (timer < 0) {
-			AlienActor alien = new AlienActor((int) (Math.random() * 10) % 10);
+			AlienActor alien = new AlienActor((int) (Math.random() * 10) % 10, (float) puntuacion.size()/10);
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
@@ -259,14 +267,14 @@ public class GameplayAlienScreen extends AbstractScreen {
 					aleatorio1 -= 0.3f;
 				else
 					aleatorio2 -= 0.2f;
-			alien.setPosition(stage.getWidth(), stage.getHeight() * (aleatorio1 * 0.6f + 0.1f));
+			alien.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio1 * 0.6f + 0.1f));
 			alien.bb.x = alien.getX();
 			alien.bb.y = alien.getY();
 			stage.addActor(alien);
 			aliens.add(alien);
 			if (respawnSol % 2 == 0) {
-				AlienActor alienSol = new AlienActor(suma.a + suma.b);
-				alienSol.setPosition(stage.getWidth(), stage.getHeight() * (aleatorio2 * 0.6f + 0.1f));
+				AlienActor alienSol = new AlienActor(numeroX.a + numeroY.b, (float) puntuacion.size()/10);
+				alienSol.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
 				alienSol.bb.x = alienSol.getX();
 				alienSol.bb.y = alienSol.getY();
 				stage.addActor(alienSol);
@@ -280,16 +288,22 @@ public class GameplayAlienScreen extends AbstractScreen {
 		barraNave.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 10);
 		vidaEscudo.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth() - 10, Gdx.graphics.getHeight() - vidaNave.getHeight() - 28);
 		barraEscudo.setPosition(Gdx.graphics.getWidth() - vidaEscudo.getWidth() - 10, Gdx.graphics.getHeight() - vidaEscudo.getHeight() - 28);
-		
 		vidaText.setPosition(Gdx.graphics.getWidth() - barraNave.getWidth() - 46, Gdx.graphics.getHeight() - vidaNave.getHeight() + 5);
 		escudoText.setPosition(Gdx.graphics.getWidth() - barraNave.getWidth() - 76, Gdx.graphics.getHeight() - vidaNave.getHeight() - 13);
+		
+
+		numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
+		numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
+		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, 24);
+		
 		respawnSol += 1;
 		stage.draw();
+		
 	}
 	
 	private void comprobarListas() {
 		AlienActor alien;
-		for(int i = 0;i < aliens.size(); i++) {
+		for(int i = 0; i < aliens.size(); i++) {
 			if (aliens.get(i).getRight() < 0) {
 				alien = aliens.get(i);
 				aliens.get(i).remove();
@@ -305,11 +319,19 @@ public class GameplayAlienScreen extends AbstractScreen {
 			}
 		}
 		
-		for(int i = 0;i < bullets.size(); i++) {
+		for(int i = 0; i < bullets.size(); i++) {
 			if (bullets.get(i).getX() > stage.getWidth()) {
 				bullets.get(i).remove();
 				bullets.remove(i);
 			}
+		}
+		
+		for(int i = 0; i < puntuacionVacia.size(); ++i) {
+			puntuacionVacia.get(i).setPosition(10 + i * 46, Gdx.graphics.getHeight() - puntuacionVacia.get(i).getHeight()/2 - 30);
+		}
+		
+		for(int i = 0; i < puntuacion.size(); ++i) {
+			puntuacion.get(i).setPosition(10 + i * 46, Gdx.graphics.getHeight() - puntuacion.get(i).getHeight()/2 - 30);
 		}
 	}
 	
@@ -329,12 +351,18 @@ public class GameplayAlienScreen extends AbstractScreen {
 				for (int j = 0; j < bullets.size(); j++) {
 					if (alien.bb.overlaps(bullets.get(j).bb)) {
 						if (aliens.get(i).getNumero() == (numeroX.a + numeroY.b)) {
-							puntuacion.puntuacion++;
+							nave.puntos++;
+							puntuacion.add(new StarActor());
+							puntuacion.get(puntuacion.size()-1).setPosition(10 + (nave.puntos - 1) * 46, Gdx.graphics.getHeight() - puntuacion.get(puntuacion.size()-1).getHeight()/2 - 30);
+							stage.addActor(puntuacion.get(puntuacion.size()-1));
 							resuelto = true;
 							for (int k = 0; k < aliens.size(); k++) {
 								aliens.get(k).remove();
 							}
 							aliens.clear();
+							if (puntuacion.size() == 10) {
+								game.setScreen(new MenuScreen(game));
+							}
 						} else {
 							nave.sumHealth(-0.2f);
 							fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();

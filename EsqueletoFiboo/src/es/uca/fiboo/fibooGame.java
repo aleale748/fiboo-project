@@ -71,6 +71,12 @@ public class fibooGame extends Game {
             			MANAGER.load("naveminigame/1.png", Texture.class);
             			MANAGER.load("naveminigame/2.png", Texture.class);
             			MANAGER.load("naveminigame/3.png", Texture.class);
+            			MANAGER.load("naveminigame/4.png", Texture.class);
+            			MANAGER.load("naveminigame/5.png", Texture.class);
+            			MANAGER.load("naveminigame/6.png", Texture.class);
+            			MANAGER.load("naveminigame/7.png", Texture.class);
+            			MANAGER.load("naveminigame/8.png", Texture.class);
+            			MANAGER.load("naveminigame/9.png", Texture.class);
             			MANAGER.load("naveminigame/older/0.gif", Texture.class);
             			MANAGER.load("naveminigame/older/1.gif", Texture.class);
             			MANAGER.load("naveminigame/older/2.gif", Texture.class);

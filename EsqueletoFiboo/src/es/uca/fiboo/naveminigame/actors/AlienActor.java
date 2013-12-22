@@ -12,19 +12,21 @@ public class AlienActor extends Actor {
 
 	private TextureRegion alien;
 	private int numero;
+	private float velocidad;
 	
 	public Rectangle bb;
 	
-	public AlienActor(int numero) {
+	public AlienActor(int numero, float aumentoVelocidad) {
 		this.numero = numero;
-		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero)+".png", Texture.class));
+		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero) + ".png", Texture.class));
 		setSize(alien.getRegionWidth(), alien.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
+		this.velocidad = 200 * aumentoVelocidad + 100;
 	}
 	
 	@Override
 	public void act(float delta) {
-		translate(-200 * delta, 0);
+		translate(-velocidad * delta, 0);
 		bb.x = getX();
 		bb.y = getY();
 		bb.width = getWidth();
