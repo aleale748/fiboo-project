@@ -11,9 +11,9 @@ public class PadActor extends Actor {
 
 	private TextureRegion button;
 	
-	public PadActor(int x, int y) {
-		button = new TextureRegion(fibooGame.MANAGER.get("naveminigame/older/pad.png", Texture.class), 32 * x, 32 * y, 32, 32);
-		setSize(32, 32);
+	public PadActor() {
+		button = new TextureRegion(fibooGame.MANAGER.get("naveminigame/disparar.png", Texture.class), 119, 57);
+		setSize(button.getRegionWidth(), button.getRegionHeight());
 	}
 	
 	@Override

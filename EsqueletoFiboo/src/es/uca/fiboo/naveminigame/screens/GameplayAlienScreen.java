@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.naveminigame.actors.*;
@@ -25,14 +26,17 @@ public class GameplayAlienScreen extends AbstractScreen {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			BulletActor bullet = new BulletActor();
-			bullet.setPosition(nave.getWidth() - 55, nave.getY() + (nave.getHeight() - 27));
+			bullet.setPosition(nave.getX() + nave.getWidth() - 55, nave.getY() + (nave.getHeight() - 27));
+			bullet.bb.x = bullet.getX();
+			bullet.bb.y = bullet.getY();
 			stage.addActor(bullet);
+			bullets.add(bullet);
 			fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class).play();
 			return true;
 		}
 	}
 
-	private final class InputAndroidDownListener extends InputListener {
+	/*private final class InputAndroidDownListener extends InputListener {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
@@ -60,7 +64,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 				int pointer, int button) {
 			nave.velocidad.y = 0;
 		}
-	}
+	}*/
 
 	private final class InputDesktopListener extends InputListener {
 		@Override
@@ -167,26 +171,27 @@ public class GameplayAlienScreen extends AbstractScreen {
 		stage.addActor(nave);
 		
 		nave.setPosition(10, 10);
-		if(Gdx.app.getType() == ApplicationType.Desktop) {
 			stage.setKeyboardFocus(nave);
 			nave.addListener(new InputDesktopListener());
-		} else if(Gdx.app.getType() == ApplicationType.Android) {
-			padArriba = new PadActor(0, 0);
-			padAbajo = new PadActor(1, 0);
-			padShoot = new PadActor(0, 1);
+			padShoot = new PadActor();
+			padShoot.setPosition(Gdx.graphics.getWidth() - 170, 30);
 			
-			padArriba.setPosition(10, 50);
-			padAbajo.setPosition(10, 10);
-			padShoot.setPosition(stage.getWidth() - 50, 10);
+			nave.addListener(new DragListener() {
+				 public void touchDragged(InputEvent event, float x, float y, int pointer) {
+					 float dx = x - nave.getWidth()*0.5f;
+					 float dy = y - nave.getHeight()*0.5f;
+					 nave.setPosition(nave.getX() + dx, nave.getY() + dy);
+				 }
+				 
+				 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+					 super.touchUp(event, x, y, pointer, button);
+				 }
+
+			});
 			
-			padArriba.addListener(new InputAndroidUpListener());
-			padAbajo.addListener(new InputAndroidDownListener());
 			padShoot.addListener(new InputAndroidShootListener());
-			
-			stage.addActor(padArriba);
-			stage.addActor(padAbajo);
 			stage.addActor(padShoot);
-		}
+		//}
 		
 		escudo = new EscudoActor();
 		stage.addActor(escudo);
@@ -315,6 +320,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 				explosiones.add(new ExplosionActor());
 				explosiones.get(explosiones.size()-1).setPosition(aliens.get(i).getX()-40, aliens.get(i).getY()-75);
 				stage.addActor(explosiones.get(explosiones.size()-1));
+				fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class).play();
 				aliens.get(i).remove();
 				aliens.remove(i);
 				if (escudo.getHealth() > 0.4f) {

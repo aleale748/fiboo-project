@@ -41,6 +41,7 @@ public class fibooGame extends Game {
                         Gdx.app.log(fibooGame.LOG, "Creating game");
                         
                         //Cargamos las imágenes en el manager
+                        MANAGER.load("naveminigame/disparar.png", Texture.class);
                         MANAGER.load("naveminigame/asteroide0.png", Texture.class);
                         MANAGER.load("naveminigame/asteroide1.png", Texture.class);
                         MANAGER.load("naveminigame/asteroide2.png", Texture.class);
