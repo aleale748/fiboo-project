@@ -99,7 +99,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 				return false;
 			
 			BulletActor bullet = new BulletActor();
-			bullet.setPosition(nave.getWidth() - 55, nave.getY() + (nave.getHeight() - 27));
+			bullet.setPosition(nave.getX() + nave.getWidth() - 55, nave.getY() + (nave.getHeight() - 27));
 			bullet.bb.x = bullet.getX();
 			bullet.bb.y = bullet.getY();
 			stage.addActor(bullet);
@@ -245,7 +245,6 @@ public class GameplayAlienScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
-
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		stage.act();
 		
@@ -308,8 +307,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 		
 		respawnSol += 1;
 		
-		stage.draw();
+		padShoot.setPosition(Gdx.graphics.getWidth() - 170, 30);
 		
+		stage.draw();
 	}
 	
 	private void comprobarListas() {
@@ -377,10 +377,9 @@ public class GameplayAlienScreen extends AbstractScreen {
 				for (int j = 0; j < bullets.size(); j++) {
 					if (alien.bb.overlaps(bullets.get(j).bb)) {
 						if (aliens.get(i).getNumero() == (numeroX.a + numeroY.b)) {
-							nave.puntos++;
 							puntuacion.add(new StarActor());
-							puntuacion.get(puntuacion.size()-1).setPosition(10 + (nave.puntos - 1) * 46, Gdx.graphics.getHeight() - puntuacion.get(puntuacion.size()-1).getHeight()/2 - 30);
-							stage.addActor(puntuacion.get(puntuacion.size()-1));
+							puntuacion.get(puntuacion.size() - 1).setPosition(10 + (puntuacion.size() - 1) * 46, Gdx.graphics.getHeight() - puntuacion.get(puntuacion.size() - 1).getHeight() / 2 - 30);
+							stage.addActor(puntuacion.get(puntuacion.size() - 1));
 							resuelto = true;
 							for (int k = 0; k < aliens.size(); k++) {
 								explosiones.add(new ExplosionActor());
@@ -390,7 +389,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 							}
 							aliens.clear();
 							if (puntuacion.size() == 10) {
-								game.setScreen(new MenuScreen(game));
+								game.setScreen(new WinScreen(game));
 							}
 						} else {
 							nave.sumHealth(-0.2f);
