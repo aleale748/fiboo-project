@@ -13,9 +13,10 @@ public class NumeroXActor extends Actor {
 	
 	public int a;
 	
-	public NumeroXActor() {
+	public NumeroXActor(int a) {
 		numero = new TextureRegion(fibooGame.MANAGER.get("naveminigame/" + a + ".png", Texture.class), 60, 100);
 		setSize(numero.getRegionWidth(), numero.getRegionHeight());
+		this.a = a;
 	}
 	
 	@Override
