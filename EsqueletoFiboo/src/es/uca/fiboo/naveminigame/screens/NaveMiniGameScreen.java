@@ -235,7 +235,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				stage.addActor(numeroY);
 			}
 			else 
-				if (a > 0.5f) {
+				if (a >= 0.5f) {
 					numeroY = new NumeroYActor((int) ((Math.random() * 9) % 10));
 					numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
 					stage.addActor(numeroY);
