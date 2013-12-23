@@ -107,7 +107,8 @@ public class fibooGame extends Game {
                         
                         //Cargamos ficheros de datos guardados
                         savedData = Gdx.files.local("savedData.json");
-                        comps = Gdx.files.internal("comps.json");
+                        comps = Gdx.files.local("comps.json");
+                        FileHandle firstLoad = Gdx.files.internal("compsdefault.json");
                         Json json = new Json(); 
                         
                         System.out.println(json.prettyPrint(complementos));
@@ -126,6 +127,10 @@ public class fibooGame extends Game {
                         if(comps.exists()) {
                                 //Todos los complementos habidos y por haber
                                 complementos = json.fromJson(ArrayList.class, comps);
+                        }
+                        else {
+                        	//La primera vez lee de internal y lo guarda en local
+                        	complementos = json.fromJson(ArrayList.class, firstLoad);
                         }
                         
                         fpsLogger = new FPSLogger();
