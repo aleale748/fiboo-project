@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.naveminigame.screens.GameplayAlienScreen;
+import es.uca.fiboo.naveminigame.screens.NaveMiniGameScreen;
 
 public class MenuScreen extends AbstractScreen {
 
@@ -48,7 +48,7 @@ public class MenuScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + entrenarBoton.getClass().getSimpleName());
-						game.setScreen(new GameplayAlienScreen(game));
+						game.setScreen(new NaveMiniGameScreen(game));
 				}
 		});
 		stage.addActor(entrenarBoton);

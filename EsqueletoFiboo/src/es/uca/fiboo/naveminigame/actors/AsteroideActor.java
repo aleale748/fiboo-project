@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class AlienActor extends Actor {
+public class AsteroideActor extends Actor {
 
 	private TextureRegion alien;
 	private int numero;
@@ -16,7 +16,7 @@ public class AlienActor extends Actor {
 	
 	public Rectangle bb;
 	
-	public AlienActor(int numero, float aumentoVelocidad) {
+	public AsteroideActor(int numero, float aumentoVelocidad) {
 		this.numero = numero;
 		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero) + ".png", Texture.class));
 		setSize(alien.getRegionWidth(), alien.getRegionHeight());

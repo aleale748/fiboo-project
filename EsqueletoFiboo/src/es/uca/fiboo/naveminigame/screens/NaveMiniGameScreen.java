@@ -19,7 +19,7 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.naveminigame.actors.*;
 import es.uca.fiboo.screens.*;
 
-public class GameplayAlienScreen extends AbstractScreen {
+public class NaveMiniGameScreen extends AbstractScreen {
 
 	private final class InputAndroidShootListener extends InputListener {
 		@Override
@@ -35,36 +35,6 @@ public class GameplayAlienScreen extends AbstractScreen {
 			return true;
 		}
 	}
-
-	/*private final class InputAndroidDownListener extends InputListener {
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
-			nave.velocidad.y = -250;
-			return true;
-		}
-
-		@Override
-		public void touchUp(InputEvent event, float x, float y,
-				int pointer, int button) {
-			nave.velocidad.y = 0;
-		}
-	}
-
-	private final class InputAndroidUpListener extends InputListener {
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
-			nave.velocidad.y = 250;
-			return true;
-		}
-
-		@Override
-		public void touchUp(InputEvent event, float x, float y,
-				int pointer, int button) {
-			nave.velocidad.y = 0;
-		}
-	}*/
 
 	private final class InputDesktopListener extends InputListener {
 		@Override
@@ -110,14 +80,14 @@ public class GameplayAlienScreen extends AbstractScreen {
 		}
 	}
 	
-	public GameplayAlienScreen(fibooGame game) {
+	public NaveMiniGameScreen(fibooGame game) {
 		super(game);
 		Gdx.app.log(fibooGame.LOG, "Bien construido.");
 	}
 
 	private NaveActor nave;
 	
-	private PadActor padArriba, padAbajo, padShoot;
+	private PadActor padShoot;
 	
 	private BarraActor vidaNave, vidaEscudo;
 	
@@ -143,7 +113,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 	
 	private NumeroYActor numeroY;
 	
-	private List<AlienActor> aliens;
+	private List<AsteroideActor> aliens;
 	
 	private List<BulletActor> bullets;
 	
@@ -152,7 +122,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		
-		aliens = new ArrayList<AlienActor>();
+		aliens = new ArrayList<AsteroideActor>();
 		bullets = new ArrayList<BulletActor>();
 
 		Gdx.input.setInputProcessor(stage);
@@ -265,7 +235,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 		
 		timer -= delta;
 		if (timer < 0) {
-			AlienActor alien = new AlienActor((int) (Math.random() * 10) % 10, (float) puntuacion.size()/10);
+			AsteroideActor alien = new AsteroideActor((int) (Math.random() * 10) % 10, (float) puntuacion.size()/10);
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
@@ -281,15 +251,15 @@ public class GameplayAlienScreen extends AbstractScreen {
 			alien.bb.y = alien.getY();
 			stage.addActor(alien);
 			aliens.add(alien);
-			if (respawnSol % 2 == 0) {
-				AlienActor alienSol = new AlienActor(numeroX.a + numeroY.b, (float) puntuacion.size()/10);
-				alienSol.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
+			if (respawnSol % 1 == 0) {
+				AsteroideActor alienSol = new AsteroideActor(numeroX.a + numeroY.b, (float) puntuacion.size()/10);
+				alienSol.setPosition(Gdx.graphics.getWidth() + (int) (400 * Math.random()), Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
 				alienSol.bb.x = alienSol.getX();
 				alienSol.bb.y = alienSol.getY();
 				stage.addActor(alienSol);
 				aliens.add(alienSol);
 			}
-			timer = 1.5f + (float) Math.random();
+			timer = 5f + ((float) Math.random() * 2) - (puntuacion.size() * 4 / 10);
 		}
 		comprobarListas();
 		comprobarColisiones();
@@ -313,7 +283,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 	}
 	
 	private void comprobarListas() {
-		AlienActor alien;
+		AsteroideActor alien;
 		for(int i = 0; i < aliens.size(); i++) {
 			if (aliens.get(i).getRight() < 110) {
 				alien = aliens.get(i);
@@ -359,7 +329,7 @@ public class GameplayAlienScreen extends AbstractScreen {
 	}
 	
 	private void comprobarColisiones() {
-		AlienActor alien;
+		AsteroideActor alien;
 		for (int i = 0; i < aliens.size(); i++) {
 			alien = aliens.get(i);
 			if (alien.bb.overlaps(nave.bb)) {
