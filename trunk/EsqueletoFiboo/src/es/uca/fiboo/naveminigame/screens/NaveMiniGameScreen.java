@@ -256,21 +256,21 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			
 			if (a < 0.5f) {
 			
-				numeroX = new NumeroXActor((int) ((Math.random() * 9) % 10));
+				numeroX = new NumeroXActor((int) Math.rint(Math.random() * 9));
 				numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
 				stage.addActor(numeroX);
 				
-				numeroY = new NumeroYActor((int) (Math.random() * (9 - numeroX.a)) % 10);
+				numeroY = new NumeroYActor((int) Math.rint(Math.random() * (9 - numeroX.a)));
 				numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
 				stage.addActor(numeroY);
 			}
 			else 
 				if (a >= 0.5f) {
-					numeroY = new NumeroYActor((int) ((Math.random() * 9) % 10));
+					numeroY = new NumeroYActor((int) Math.rint(Math.random() * 9));
 					numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
 					stage.addActor(numeroY);
 					
-					numeroX = new NumeroXActor((int) (Math.random() * (9 - numeroY.b)) % 10);
+					numeroX = new NumeroXActor((int) Math.rint(Math.random() * (9 - numeroY.b)));
 					numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
 					stage.addActor(numeroX);
 				}
