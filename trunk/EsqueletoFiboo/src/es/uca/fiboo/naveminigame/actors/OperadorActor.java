@@ -12,7 +12,7 @@ public class OperadorActor extends Actor {
 	private TextureRegion operador;
 	
 	public OperadorActor() {
-		operador = new TextureRegion(fibooGame.MANAGER.get("naveminigame/suma.png", Texture.class), 65, 60);
+		operador = new TextureRegion(fibooGame.MANAGER.get("naveminigame/suma.png", Texture.class), 68, 64);
 		setSize(operador.getRegionWidth(), operador.getRegionHeight());
 	}
 	

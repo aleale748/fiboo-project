@@ -222,13 +222,28 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			stage.getRoot().removeActor(numeroX);
 			stage.getRoot().removeActor(numeroY);
 			
-			numeroX = new NumeroXActor((int) (Math.random() * 5) % 10);
-			numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
-			stage.addActor(numeroX);
+			float a = (float) Math.random();
 			
-			numeroY = new NumeroYActor((int) (Math.random() * 5) % 10);
-			numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
-			stage.addActor(numeroY);
+			if (a < 0.5f) {
+			
+				numeroX = new NumeroXActor((int) ((Math.random() * 5) % 10 + 4));
+				numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
+				stage.addActor(numeroX);
+				
+				numeroY = new NumeroYActor((int) (Math.random() * (9 - numeroX.a)) % 10);
+				numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
+				stage.addActor(numeroY);
+			}
+			else 
+				if (a > 0.5f) {
+					numeroY = new NumeroYActor((int) ((Math.random() * 5) % 10 + 4));
+					numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + 80, 10);
+					stage.addActor(numeroY);
+					
+					numeroX = new NumeroXActor((int) (Math.random() * (9 - numeroY.b)) % 10);
+					numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - 50, 10);
+					stage.addActor(numeroX);
+				}
 			
 			resuelto = false;
 		}
