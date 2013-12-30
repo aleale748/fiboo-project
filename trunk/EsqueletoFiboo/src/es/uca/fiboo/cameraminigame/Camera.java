@@ -69,7 +69,7 @@ public class Makipong implements ApplicationListener {
 		// Antes que nada, preparamos la carga de texturas.
 		// TODO: Esto podría moverse a otra parte y optimizarse más adelante.
 		
-		Texture.setEnforcePotImages(false);
+		//Texture.setEnforcePotImages(false);
 		
 		MANAGER.load("bola.png", Texture.class);
 		MANAGER.load("paleta.png", Texture.class);
