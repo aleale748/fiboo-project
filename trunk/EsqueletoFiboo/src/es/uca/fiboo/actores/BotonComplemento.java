@@ -41,75 +41,79 @@ public class BotonComplemento extends Image {
 		BotonComplemento.stage = stage;
 	}
 
+	private class DragComplemento extends DragListener {
+		private Image imagen;
+		private Rectangle avatar, rImagen;
+
+		public DragComplemento() {
+			imagen = new Image(complemento.getImagen());
+			
+			float width = imagen.getWidth();
+			float height = imagen.getHeight();
+			rImagen = new Rectangle(imagen.getImageX(), imagen.getImageY(),	width, height);
+
+			switch (complemento.getTipo()) {
+			case OJOS:
+			case PELO: 
+			case GAFAS: 
+			case MASCARA:
+			case BIGOTE: 
+			case ACCPELO: 
+			case BOCA: 
+				avatar = new Rectangle(102f, 318f, 256f, 256f);
+				break;
+			default:
+				avatar = new Rectangle(102f, 97f, 256f, 512f);
+				break;
+			}
+		}
+		
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			if(complemento.isDisponible()) {
+				
+				float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
+				float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
+
+				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
+				stage.addActor(imagen);
+			}
+			return super.touchDown(event, x, y, pointer, button);
+		}
+
+		@Override
+		public void touchDragged(InputEvent event, float x, float y, int pointer) {
+			if(complemento.isDisponible()) {
+				float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
+				float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
+				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
+				rImagen.setPosition(imagen.getX(), imagen.getY());
+			}
+		}
+
+		@Override
+		public void touchUp(InputEvent event, float x, float y,	int pointer, int button) {
+			if(complemento.isDisponible()) {
+				if (rImagen.overlaps(avatar)) {
+					imagen.addAction(Actions.sequence(
+							Actions.moveTo(avatar.x, avatar.y, 0.8f),
+							new Action() {
+								@Override
+								public boolean act(float delta) {
+									fibooGame.getPersonaje().addComplemento(complemento);
+									imagen.remove();
+									return true;
+								}
+							}));
+				} else {
+					imagen.remove();
+				}
+			}
+			super.touchUp(event, x, y, pointer, button);
+		}
+	}
+	
 	private void addDragListener() {
-		this.addListener(new DragListener() {
-
-			private Image imagen;
-			private Rectangle avatar, rImagen;
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				if(complemento.isDisponible()) {
-					
-					imagen = new Image(complemento.getImagen());
-					float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
-					float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
-	
-					imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
-					float width = imagen.getWidth();
-					float height = imagen.getHeight();
-					stage.addActor(imagen);
-	
-					rImagen = new Rectangle(imagen.getImageX(), imagen.getImageY(),	width, height);
-	
-					switch (complemento.getTipo()) {
-					case OJOS:
-					case PELO: 
-					case GAFAS: 
-					case MASCARA:
-					case BIGOTE: 
-					case ACCPELO: 
-					case BOCA: 
-						avatar = new Rectangle(102f, 318f, 256f, 256f);
-						break;
-					default:
-						avatar = new Rectangle(102f, 97f, 256f, 512f);
-						break;
-					}
-				}
-				return super.touchDown(event, x, y, pointer, button);
-			}
-
-			@Override
-			public void touchDragged(InputEvent event, float x, float y, int pointer) {
-				if(complemento.isDisponible()) {
-					float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
-					float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
-					imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
-					rImagen.setPosition(imagen.getX(), imagen.getY());
-				}
-			}
-
-			@Override
-			public void touchUp(InputEvent event, float x, float y,	int pointer, int button) {
-				if(complemento.isDisponible()) {
-					if (rImagen.overlaps(avatar)) {
-						imagen.addAction(Actions.sequence(
-								Actions.moveTo(avatar.x, avatar.y, 0.8f),
-								new Action() {
-									@Override
-									public boolean act(float delta) {
-										fibooGame.getPersonaje().addComplemento(complemento);
-										imagen.remove();
-										return true;
-									}
-								}));
-					} else {
-						imagen.remove();
-					}
-				}
-				super.touchUp(event, x, y, pointer, button);
-			}
-		});
+		this.addListener(new DragComplemento());
 	}
 }
