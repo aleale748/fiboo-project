@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class FondoActor extends Actor {
 	
-	Texture texture = new Texture(Gdx.files.internal("parque.png"));
+	Texture texture = new Texture(Gdx.files.internal("cesped.png"));
 	
 	@Override
 	public void draw(SpriteBatch batch, float alpha){
