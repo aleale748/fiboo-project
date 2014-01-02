@@ -1,58 +1,37 @@
-/*
- * Makipong, just another Pong clone
- * Copyright (C) 2013 Dani Rodríguez
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-package es.uca.fiboo.camera;
+package es.uca.fiboo.cameraminigame.screens;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class Makipong implements ApplicationListener {
-	
-	/** El gestor de recursos que usa todo el juego. */
-	public static final AssetManager MANAGER = new AssetManager();
+import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.cameraminigame.actors.*;
+import es.uca.fiboo.screens.AbstractScreen;
 
-	public static String LOG;
+public class CameraScreen extends AbstractScreen {
 	
-	/** Escenario donde agruparemos los objetos. */
+	public CameraScreen(fibooGame game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
+	/** Escenario donde agruparemos los objetoActors. */
 	private Stage stage;
 		
-	/** Palas usadas en nuestro juego. */
-	private Objeto objeto1, objeto2;
+	private ObjetoActor[] objetoActors;
 	
-	private Objeto[] Objetos;
-	
-	
-	/** Bola usada en el juego. */
-	private BolaActor objeto3;
-	
-	private ObjetosMenu[] objetosMenu;
-	public Map<Objeto,Objeto> tabla;
+	private ObjetoMenuActor[] objetoMenuActor;
+	public Map<ObjetoActor,ObjetoActor> tabla;
 
 	//public enum TipoImagen{UNO,DOS,TRES};
 	//TipoImagen tipoImagen;
@@ -62,59 +41,38 @@ public class Makipong implements ApplicationListener {
 	
 	private OrthographicCamera camera;
 	
-	private Texture fondo;
+	private int indice;
 	
-	@Override
 	public void create() {
 		// Antes que nada, preparamos la carga de texturas.
 		// TODO: Esto podría moverse a otra parte y optimizarse más adelante.
-		
-		//Texture.setEnforcePotImages(false);
-		
-		MANAGER.load("bola.png", Texture.class);
-		MANAGER.load("paleta.png", Texture.class);
-		MANAGER.load("parque.png", Texture.class);
-		MANAGER.load("0.png", Texture.class);
-		MANAGER.load("1.png", Texture.class);
-		MANAGER.load("2.png", Texture.class);
-		MANAGER.load("3.png", Texture.class);
-		MANAGER.load("4.png", Texture.class);
-		MANAGER.load("5.png", Texture.class);
-		MANAGER.load("6.png", Texture.class);
-		MANAGER.load("7.png", Texture.class);
-		MANAGER.load("8.png", Texture.class);
-		MANAGER.load("9.png", Texture.class);
-		MANAGER.load("menu0.png", Texture.class);
-		MANAGER.load("menu1.png", Texture.class);
-		MANAGER.load("menu2.png", Texture.class);
-		MANAGER.load("menu3.png", Texture.class);
-		MANAGER.load("menu4.png", Texture.class);
-		MANAGER.load("menu5.png", Texture.class);
-		MANAGER.load("menu6.png", Texture.class);
-		MANAGER.load("menu7.png", Texture.class);
-		MANAGER.load("menu8.png", Texture.class);
-		MANAGER.load("menu9.png", Texture.class);
-		MANAGER.finishLoading();
 
 		camera = new OrthographicCamera();
 		
-		Fondo fondo = new Fondo();
+		FondoActor fondoActor = new FondoActor();
 		
-		Objetos = new Objeto[N];
-		objetosMenu = new ObjetosMenu[N];
+		objetoActors = new ObjetoActor[N];
+		objetoMenuActor = new ObjetoMenuActor[N];
 		
-		tabla = new HashMap<Objeto,Objeto>();
+		tabla = new HashMap<ObjetoActor,ObjetoActor>();
 		// Construimos los elementos que vamos a usar en nuestro juego.
-		for(int ind=0;ind<N;++ind) {
+		for(indice=0; indice<N; ++indice) {
 			//tipoImagen = TipoImagen.values()[ind];
-			Objetos[ind] = new Objeto(ind);
-			Objetos[ind].addListener(new PalaUserInput(Objetos[ind],objetosMenu[ind]));
-			
-			objetosMenu[ind] = new ObjetosMenu(ind);
-			objetosMenu[ind].addListener(new PalaUserInput(Objetos[ind],objetosMenu[ind]));
+			objetoActors[indice] = new ObjetoActor(indice);
+			objetoMenuActor[indice] = new ObjetoMenuActor(indice);
+
+			objetoActors[indice].addListener(new InputListener() {
+				public boolean touchDown(InputEvent event, float x, float y, int pointer,
+						int button) {
+					//Gdx.app.log(Makipong.LOG, "Screen: x=" + x + "; y=" + y);
+					objetoActors[indice].remove();
+					objetoMenuActor[indice].remove();
+					//TODO: Mostrar pantalla de Bien Hecho!
+					return true;
+				}
+			});
 		}
-		objeto3 = new BolaActor();
-		// Posicionamos los objetos en la pantalla. La pelota se sitúa en el
+		// Posicionamos los objetoActors en la pantalla. La pelota se sitúa en el
 		// centro de toda la pantalla. Ambas paletas se centran verticalmente,
 		// una se alinea a la izquierda y la otra se alinea a la derecha
 		// separadas 30 píxeles de los bordes de la pantalla.
@@ -131,17 +89,17 @@ public class Makipong implements ApplicationListener {
 		int espaciado = -50;
 		for(int ind=0;ind<N;++ind) {
 			//float randomX = random(0f, w)
-			Objetos[ind].setPosition(MathUtils.random(0f, w), MathUtils.random(0f, h));
-			objetosMenu[ind].setPosition(0,espaciado+=50);
+			objetoActors[ind].setPosition(MathUtils.random(0f, w), MathUtils.random(0f, h));
+			objetoMenuActor[ind].setPosition(0,espaciado+=50);
 		}		
 		// Finalmente construimos el escenario y añadimos los actores.
 		
 		stage = new Stage();
 		
-		stage.addActor(fondo);
+		stage.addActor(fondoActor);
 		for(int ind=0;ind<N;++ind) {
-			stage.addActor(Objetos[ind]);
-			stage.addActor(objetosMenu[ind]);
+			stage.addActor(objetoActors[ind]);
+			stage.addActor(objetoMenuActor[ind]);
 		}		
 		
 		// El escenario es un InputProcessor. Como vamos a gestionar la entrada
@@ -157,7 +115,6 @@ public class Makipong implements ApplicationListener {
 		// TODO: Añadir código al escalar el escenario.
 	}
 
-	@Override
 	public void render() {
 		Gdx.gl.glClearColor(0x64/255.0f, 0x95/255.0f, 0xed/255.0f, 0xff/255.0f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -188,7 +145,6 @@ public class Makipong implements ApplicationListener {
 	@Override
 	public void dispose() {
 		stage.dispose();
-		MANAGER.dispose();
 	}
 
 	public void handleInput() {

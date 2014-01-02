@@ -1,8 +1,10 @@
-package es.uca.fiboo.camera;
+package es.uca.fiboo.cameraminigame.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+
+import es.uca.fiboo.fibooGame;
 
 //import es.uca.fiboo.camera.ObjetoMenuActor.TipoImagen;
 
@@ -13,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  */
 public class ObjetoActor extends Actor {
 	
-	/** Textura usada por la pala. */
 	private Texture texture;
 	enum TipoImagen {
 		UNO,DOS,TRES;
@@ -32,13 +33,12 @@ public class ObjetoActor extends Actor {
 	
 	public ObjetoActor(int tipoInt) {
 		String nombreFichero = Integer.toString(tipoInt) + ".png";
-		texture = Makipong.MANAGER.get(nombreFichero);
+		texture = fibooGame.MANAGER.get(nombreFichero);
 		setSize(texture.getWidth(), texture.getHeight());
 		
 		this.tipoInt = tipoInt;
 	}
 	
-	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		batch.draw(texture, getX(), getY());
 	}
