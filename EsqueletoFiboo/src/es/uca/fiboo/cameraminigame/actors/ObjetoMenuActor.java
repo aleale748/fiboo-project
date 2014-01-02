@@ -11,23 +11,11 @@ public class ObjetoMenuActor extends Actor {
 	
 	private Texture texture;
 	
-	enum TipoImagen {
-		UNO,DOS,TRES;
-		private int tipoInt;
-		TipoImagen() {}
-		TipoImagen(int tipoInt) {
-			this.tipoInt = tipoInt;
-		}
-		public int getTipo() {
-			return tipoInt;
-		}
-	}
-	public TipoImagen tipoImagen;
 	private int tipoInt;
 	
 	public ObjetoMenuActor(int tipoInt) {
 		String nombreFichero = "menu" + Integer.toString(tipoInt) + ".png";
-		texture = fibooGame.MANAGER.get(nombreFichero);
+		texture = fibooGame.MANAGER.get("cameraminigame/" + nombreFichero, Texture.class);
 		
 		// Ahora que tenemos la textura de la pala aprovechamos para cambiar
 		// el tamaño de este actor y hacer que coincida con el tamaño de
@@ -40,10 +28,6 @@ public class ObjetoMenuActor extends Actor {
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		batch.draw(texture, getX(), getY());
 	}
-
-	/*public TipoImagen getTipoImagen() {
-		return tipoImagen;
-	}*/
 
 	public int getTipoInt() {
 		return tipoInt;
