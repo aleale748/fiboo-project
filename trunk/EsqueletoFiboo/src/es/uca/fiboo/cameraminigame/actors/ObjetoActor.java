@@ -16,24 +16,12 @@ import es.uca.fiboo.fibooGame;
 public class ObjetoActor extends Actor {
 	
 	private Texture texture;
-	enum TipoImagen {
-		UNO,DOS,TRES;
-		private int tipoInt;
-		TipoImagen() {}
-		TipoImagen(int tipoInt) {
-			this.tipoInt = tipoInt;
-		}
-		public int getTipo() {
-			return tipoInt;
-		}
-	}
-	public TipoImagen tipoImagen;
 
 	private int tipoInt;
 	
 	public ObjetoActor(int tipoInt) {
 		String nombreFichero = Integer.toString(tipoInt) + ".png";
-		texture = fibooGame.MANAGER.get(nombreFichero);
+		texture = fibooGame.MANAGER.get("cameraminigame/" + nombreFichero, Texture.class);
 		setSize(texture.getWidth(), texture.getHeight());
 		
 		this.tipoInt = tipoInt;
@@ -42,10 +30,6 @@ public class ObjetoActor extends Actor {
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		batch.draw(texture, getX(), getY());
 	}
-
-	/*public TipoImagen getTipoImagen() {
-		return tipoImagen;
-	}*/
 	
 	public int getTipoInt() {
 		return tipoInt;
