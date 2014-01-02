@@ -38,9 +38,29 @@ public class fibooGame extends Game {
                 @SuppressWarnings("unchecked")
                 @Override
                 public void create() {
-                        Gdx.app.log(fibooGame.LOG, "Creating game");
-                        
-                        //Cargamos las imágenes en el manager
+                    //Cargamos las imï¿½genes en el manager
+                		Gdx.app.log(fibooGame.LOG, "Creating game");
+                        MANAGER.load("cameraminigame/cesped.png", Texture.class);
+                		MANAGER.load("cameraminigame/0.png", Texture.class);
+                		MANAGER.load("cameraminigame/1.png", Texture.class);
+                		MANAGER.load("cameraminigame/2.png", Texture.class);
+                		MANAGER.load("cameraminigame/3.png", Texture.class);
+                		MANAGER.load("cameraminigame/4.png", Texture.class);
+                		MANAGER.load("cameraminigame/5.png", Texture.class);
+                		MANAGER.load("cameraminigame/6.png", Texture.class);
+                		MANAGER.load("cameraminigame/7.png", Texture.class);
+                		MANAGER.load("cameraminigame/8.png", Texture.class);
+                		MANAGER.load("cameraminigame/9.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu0.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu1.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu2.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu3.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu4.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu5.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu6.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu7.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu8.png", Texture.class);
+                		MANAGER.load("cameraminigame/menu9.png", Texture.class);
                         MANAGER.load("naveminigame/older/win.png", Texture.class);
                         MANAGER.load("naveminigame/disparar.png", Texture.class);
                         MANAGER.load("naveminigame/asteroide0.png", Texture.class);
