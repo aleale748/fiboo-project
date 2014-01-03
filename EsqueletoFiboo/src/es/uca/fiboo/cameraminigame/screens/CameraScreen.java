@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL11;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -27,7 +31,7 @@ public class CameraScreen extends AbstractScreen {
 	private final static int N=10;
 	int w,h;
 	
-	//private OrthographicCamera camera;
+	private OrthographicCamera camera;
 	
 	private int indice;
 	
@@ -42,7 +46,7 @@ public class CameraScreen extends AbstractScreen {
 		// Antes que nada, preparamos la carga de texturas.
 		// TODO: Esto podría moverse a otra parte y optimizarse más adelante.
 
-		//camera = new OrthographicCamera();
+		camera = new OrthographicCamera();
 		
 		objetoActors = new ArrayList<ObjetoActor>();
 		objetoMenuActors = new ArrayList<ObjetoMenuActor>();
@@ -52,16 +56,16 @@ public class CameraScreen extends AbstractScreen {
 			objetoActors.add(new ObjetoActor(indice));
 			objetoMenuActors.add(new ObjetoMenuActor(indice));
 
-			/*objetoActors[indice].addListener(new InputListener() {
+			objetoActors.get(indice).addListener(new InputListener() {
 				public boolean touchDown(InputEvent event, float x, float y, int pointer,
 						int button) {
 					//Gdx.app.log(Makipong.LOG, "Screen: x=" + x + "; y=" + y);
-					objetoActors[indice].remove();
-					objetoMenuActor[indice].remove();
+					objetoActors.get(indice).remove();
+					objetoMenuActors.get(indice).remove();
 					//TODO: Mostrar pantalla de Bien Hecho!
 					return true;
 				}
-			});*/
+			});
 		}
 		// Posicionamos los objetoActors en la pantalla. La pelota se sitúa en el
 		// centro de toda la pantalla. Ambas paletas se centran verticalmente,
@@ -89,10 +93,10 @@ public class CameraScreen extends AbstractScreen {
 	public void render(float delta) {
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		
-		/*stage.setCamera(camera);
+		stage.setCamera(camera);
 		stage.setViewport(1024, 512, false);
 		
-		this.handleInput();*/
+		this.handleInput();
 		
 		stage.act();		// Dejamos que el escenario se actualice...
 		stage.draw();		// Y lo renderizamos todo.
@@ -114,7 +118,7 @@ public class CameraScreen extends AbstractScreen {
 	}
 
 
-	/*public void handleInput() {
+	public void handleInput() {
 		if(Gdx.input.isKeyPressed(Input.Keys.A)) {
 			if (camera.zoom < 1)
 				camera.zoom += 0.02;
@@ -139,7 +143,7 @@ public class CameraScreen extends AbstractScreen {
 			//if (camera.position.y < 1024)
 				camera.translate(0, 3, 0);
 		}
-	}*/
+	}
 
 	
 }

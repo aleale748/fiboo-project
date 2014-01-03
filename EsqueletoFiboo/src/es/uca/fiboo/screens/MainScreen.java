@@ -14,8 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.cameraminigame.screens.CameraScreen;
-import es.uca.fiboo.naveminigame.screens.NaveMiniGameScreen;
 
 public class MainScreen extends AbstractScreen {
 
