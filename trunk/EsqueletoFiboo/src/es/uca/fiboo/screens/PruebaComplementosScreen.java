@@ -2,6 +2,7 @@ package es.uca.fiboo.screens;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.actores.BotonCategoria;
@@ -40,40 +42,64 @@ public class PruebaComplementosScreen extends AbstractScreen {
         stage.addActor(table);
         table.debug();
         
+        // Ventana con los botones de categorías
+       // Window win = new Window("Personaliza", skin);
+        
         int newRow = 0;
-		for(BotonComplemento b : botones) {
-			table.add(b).width(128).height(128);
+        for(BotonCategoria b : botonesCat) {
+			table.add(b.getIcono()).width(128).height(128);
 			newRow++;
-			// 4 complementos por cada fila
-			if(newRow > 3) {
+			// 3 complementos por cada fila
+			if(newRow > 2) {
 				newRow = 0;
 				table.row();
 			}
 		}
+		
+        /*
+		for(BotonCategoria b : botonesCat) {
+			win.add(b.getIcono()).width(128).height(128);
+			newRow++;
+			// 3 complementos por cada fila
+			if(newRow > 2) {
+				newRow = 0;
+				win.row();
+			}
+		}
+		win.setPosition(Gdx.graphics.getWidth() - win.getWidth() - 100f, (Gdx.graphics.getHeight() - 512f) / 2f);
+        stage.addActor(win);
+        win.debug();
+        */
 	}
 	
 	//Carga todos los complementos habidos y por haber
 	private void cargaComplementos() {
 		
-		TreeMap<Tipo, ArrayList<Complemento>> complementosPorTipo;
-		complementosPorTipo = new TreeMap<Tipo, ArrayList<Complemento>>();
-		complementosPorTipo.put(Tipo.PELO, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.ACCPELO, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.OJOS, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.GAFAS, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.BIGOTE, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.BOCA, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.MASCARA, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.CAMISA, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.PANTALON, new ArrayList<Complemento>());
-		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<Complemento>());
+		TreeMap<Tipo, ArrayList<BotonComplemento>> complementosPorTipo;
+		complementosPorTipo = new TreeMap<Tipo, ArrayList<BotonComplemento>>();
+		
+		complementosPorTipo.put(Tipo.PELO, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.ACCPELO, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.OJOS, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.GAFAS, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.BIGOTE, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.BOCA, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.MASCARA, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.CAMISA, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.PANTALON, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<BotonComplemento>());
 		
 		for(Complemento c : fibooGame.getComplementos()) {
-			botones.add(new BotonComplemento(c));
+			//botones.add(new BotonComplemento(c));
 			
-			complementosPorTipo.get(c.getTipo()).add(c);
+			complementosPorTipo.get(c.getTipo()).add(new BotonComplemento(c));
 		}
-		botones.get(0).setStage(stage);
+		
+		for(Entry<Tipo, ArrayList<BotonComplemento>> c : complementosPorTipo.entrySet()) {
+			botonesCat.add(new BotonCategoria(this, c.getValue(), c.getKey()));
+		}
+		
+		//botones.get(0).setStage(stage);
 	}
 	
 	@Override
@@ -93,6 +119,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		//Pintar el resto de actores
 		stage.draw();
 		Table.drawDebug(stage);
+		//Window.drawDebug(stage);
 	}
 
 	public Skin getSkin() {

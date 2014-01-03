@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
+import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.actores.Complemento.Tipo;
 import es.uca.fiboo.screens.PruebaComplementosScreen;
 
@@ -22,9 +24,12 @@ public class BotonCategoria {
 	private Image icono;
 	
 
-	public BotonCategoria(PruebaComplementosScreen parent, ArrayList complementos, Tipo tipo) {
+	public BotonCategoria(PruebaComplementosScreen parent, ArrayList<BotonComplemento> complementos, Tipo tipo) {
 		this.parent = parent;
 		this.complementos = complementos;
+		if(!complementos.isEmpty()) {
+			this.complementos.get(0).setStage(parent.getStage());
+		}
 		this.tipo = tipo;
 		
 		setImagen();
@@ -62,30 +67,48 @@ public class BotonCategoria {
 	}
 
 	private void setAcciones() {
-		final Window popup = new Window("Tipo", parent.getSkin());
-		popup.setX(Gdx.graphics.getWidth() - 200f);
-		popup.setY((Gdx.graphics.getHeight() - 512f) / 2f);
-		
-		int newRow = 0;
-		for(BotonComplemento b : complementos) {
-			popup.add(b).width(128).height(128);
-			newRow++;
-			// 3 complementos por cada fila
-			if(newRow > 2) {
-				newRow = 0;
-				popup.row();
+		final Window popup = new Window(tipo.toString(), parent.getSkin());
+		//popup.setX(Gdx.graphics.getWidth() - 200f);
+		//popup.setY((Gdx.graphics.getHeight() - 512f) / 2f);
+
+		if(complementos.isEmpty()) {
+			popup.add("No tienes complementos\nde este tipo");
+		}
+		else {
+			int newRow = 0;
+			for(BotonComplemento b : complementos) {
+				popup.add(b).width(128).height(128);
+				newRow++;
+				// 2 complementos por cada fila
+				if(newRow > 1) {
+					newRow = 0;
+					popup.row().fill().expandX();
+				}
 			}
 		}
+		popup.pack();
 		
 		icono.addListener(new InputListener() {
 
 			@Override
-			public void touchUp(InputEvent event, float x, float y,
+			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Pulsando icono...");
+				//Si habia una ventana antes la quitamos
+				for(Actor c : parent.getStage().getActors()) {
+					if(c instanceof Window) {
+						c.remove();
+						break;
+					}
+				}
+				
+				popup.setX(Gdx.input.getX());
+				popup.setY(Gdx.graphics.getHeight() - Gdx.input.getY());
 				parent.getStage().addActor(popup);
-				super.touchUp(event, x, y, pointer, button);
+				
+				return super.touchDown(event, x, y, pointer, button);
 			}
-			
+		
 		});
 	}
 		
