@@ -92,7 +92,9 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		for(Complemento c : fibooGame.getComplementos()) {
 			//botones.add(new BotonComplemento(c));
 			
-			complementosPorTipo.get(c.getTipo()).add(new BotonComplemento(c));
+			if(c.isDisponible()) {
+				complementosPorTipo.get(c.getTipo()).add(new BotonComplemento(c));
+			}
 		}
 		
 		for(Entry<Tipo, ArrayList<BotonComplemento>> c : complementosPorTipo.entrySet()) {
