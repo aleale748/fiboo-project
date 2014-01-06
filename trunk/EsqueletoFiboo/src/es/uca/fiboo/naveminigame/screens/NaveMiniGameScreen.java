@@ -300,7 +300,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 
 		
-		timer -= delta;
+		timer -= delta*0.5;
 		if (timer < 0) {
 			
 
