@@ -21,7 +21,7 @@ import es.uca.fiboo.screens.*;
 
 public class NaveMiniGameScreen extends AbstractScreen {
 	
-	float widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40;
+	float widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
 
 	private final class InputAndroidShootListener extends InputListener {
 		@Override
@@ -154,6 +154,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		nave.addListener(new InputDesktopListener());
 		padShoot = new PadActor();
 		padShoot.setPosition(Gdx.graphics.getWidth() - 170, 30);
+		padShoot.setWidth(padShoot.getWidth()*2f);
+		padShoot.setHeight(padShoot.getHeight()*2f);
 			
 		nave.addListener(new DragListener() {
 			public void touchDragged(InputEvent event, float x, float y, int pointer) {
@@ -304,7 +306,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 
 			Gdx.app.log(fibooGame.LOG, "Generando asteroides");
 			
-			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 10) % 10, (float) puntuacion.size()/10);
+			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 10) % 10, (float) ((puntuacion.size())/10)*200 + (Gdx.graphics.getWidth()*0.1f));
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
@@ -318,13 +320,15 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			asteroide.setWidth(widthAsteroides);
 			asteroide.setHeight(heightAsteroides);
 			asteroide.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio1 * 0.6f + 0.1f));
+			asteroide.velocidad*= escala*1.001f;
 			asteroide.bb.x = asteroide.getX();
 			asteroide.bb.y = asteroide.getY();
 			stage.addActor(asteroide);
 			asteroides.add(asteroide);
 			if (respawnSol % 1 == 0) {
-				AsteroideActor asteroidesol = new AsteroideActor(numeroX.a + numeroY.b, (float) puntuacion.size()/10);
+				AsteroideActor asteroidesol = new AsteroideActor(numeroX.a + numeroY.b, (float) ((puntuacion.size())/10)*200 + (Gdx.graphics.getWidth()*0.1f));
 				asteroidesol.setPosition(Gdx.graphics.getWidth() + (int) (400 * Math.random()), Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
+				asteroidesol.velocidad *= escala*1.001f;
 				asteroidesol.bb.x = asteroidesol.getX();
 				asteroidesol.bb.y = asteroidesol.getY();
 				stage.addActor(asteroidesol);
@@ -359,14 +363,14 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		respawnSol += 1;
 		
-		padShoot.setPosition(Gdx.graphics.getWidth() - padShoot.getWidth()*1.2f, padShoot.getHeight()*0.4f);
+		padShoot.setPosition(Gdx.graphics.getWidth() - padShoot.getWidth()*1.05f, padShoot.getHeight()*0.15f);
 		
 
 		Gdx.app.log(fibooGame.LOG, "Reposicionamiento terminado");
 		
 		
 		Gdx.app.log(fibooGame.LOG, "Redimensionamiento de los actores");
-		float escala = ((float) (((Gdx.graphics.getWidth() / 4f) * 100f) / nave.getWidth()) / 100f);
+		escala = ((float) (((Gdx.graphics.getWidth() / 4f) * 100f) / nave.getWidth()) / 100f);
 		if (((float) Gdx.graphics.getWidth() - nave.getWidth()) < 500 && ((float) Gdx.graphics.getWidth() - nave.getWidth()) > 0) {
 			nave.setWidth(nave.getWidth() * escala);
 			nave.setHeight(nave.getHeight() * escala);
