@@ -35,7 +35,9 @@ public class ExplosionActor extends Actor {
 		stateTime += Gdx.graphics.getDeltaTime();
 		if (!explosionAnimation.isAnimationFinished(stateTime)) {
 			currentFrame = explosionAnimation.getKeyFrame(stateTime, true);
-			batch.draw(currentFrame, getX(), getY());
+			batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), 
+					getWidth(), getHeight(), getScaleX(), getScaleY(), 
+					getRotation());
 		}
 	}
 

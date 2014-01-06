@@ -21,7 +21,9 @@ public class NumeroXActor extends Actor {
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(numero, getX(), getY());
+		batch.draw(numero, getX(), getY(), getOriginX(), getOriginY(), 
+				getWidth(), getHeight(), getScaleX(), getScaleY(), 
+				getRotation());
 	}
 	
 

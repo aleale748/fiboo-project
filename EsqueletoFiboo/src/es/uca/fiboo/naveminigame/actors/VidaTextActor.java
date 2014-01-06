@@ -16,5 +16,9 @@ public class VidaTextActor extends Actor {
 	public void draw(Batch batch, float parentAlpha) {
 		font.draw(batch,  "VIDA ", getX(), getY());
 	}
+	
+	public BitmapFont getFont() {
+		return font;
+	}
 
 }

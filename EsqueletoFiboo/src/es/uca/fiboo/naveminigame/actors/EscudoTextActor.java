@@ -17,4 +17,8 @@ public class EscudoTextActor extends Actor {
 		font.draw(batch,  "ESCUDO ", getX(), getY());
 	}
 
+	public BitmapFont getFont() {
+		return font;
+	}
+	
 }
