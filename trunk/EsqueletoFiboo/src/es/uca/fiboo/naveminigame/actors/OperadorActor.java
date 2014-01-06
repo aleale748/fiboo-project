@@ -18,7 +18,9 @@ public class OperadorActor extends Actor {
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(operador, getX(), getY());
+		batch.draw(operador, getX(), getY(), getOriginX(), getOriginY(), 
+				getWidth(), getHeight(), getScaleX(), getScaleY(), 
+				getRotation());
 	}
 	
 

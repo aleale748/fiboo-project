@@ -18,7 +18,9 @@ public class PadActor extends Actor {
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(button, getX(), getY());
+		batch.draw(button, getX(), getY(), getOriginX(), getOriginY(), 
+				getWidth(), getHeight(), getScaleX(), getScaleY(), 
+				getRotation());
 	}
 
 }

@@ -18,7 +18,9 @@ public class EmptyStarActor extends Actor {
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(star, getX(), getY());
+		batch.draw(star, getX(), getY(), getOriginX(), getOriginY(), 
+				getWidth(), getHeight(), getScaleX(), getScaleY(), 
+				getRotation());
 	}
 
 }

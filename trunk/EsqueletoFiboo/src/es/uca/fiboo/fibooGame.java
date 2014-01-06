@@ -74,6 +74,8 @@ public class fibooGame extends Game {
                         MANAGER.load("naveminigame/asteroide8.png", Texture.class);
                         MANAGER.load("naveminigame/asteroide9.png", Texture.class);
                         MANAGER.load("naveminigame/fondonave.png", Texture.class);
+                        MANAGER.load("naveminigame/vidaText.png", Texture.class);
+                        MANAGER.load("naveminigame/escudoText.png", Texture.class);
                         MANAGER.load("naveminigame/nave.png", Texture.class);
                         MANAGER.load("naveminigame/star.png", Texture.class);
                         MANAGER.load("naveminigame/starVacia.png", Texture.class);
