@@ -1,0 +1,104 @@
+[
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/ojos1.png,
+	disponible: true,
+	tipo: OJOS
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/ojos2.png,
+	disponible: true,
+	tipo: OJOS
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/ojos3.png,
+	tipo: OJOS
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/pelonina1.png,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/pelonina2.png,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/pelonino1.png,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/pelonino2.png,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/disfraz1.png,
+	disponible: true,
+	tipo: DISFRAZ
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/disfraz2.png,
+	disponible: true,
+	tipo: DISFRAZ
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/gafas1.png,
+	disponible: true,
+	tipo: GAFAS
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/gafas2.png,
+	disponible: true,
+	tipo: GAFAS
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/bigote1.png,
+	disponible: true,
+	tipo: BIGOTE
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/bigote2.png,
+	tipo: BIGOTE
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/adpelo1.png,
+	disponible: true,
+	tipo: ACCPELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/adpelo2.png,
+	tipo: ACCPELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/boca2.png,
+	disponible: true,
+	tipo: BOCA
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/boca3.png,
+	disponible: true,
+	tipo: BOCA
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/boca1.png,
+	tipo: BOCA
+}
+]

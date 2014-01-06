@@ -1,0 +1,21 @@
+{
+avatar: {
+	data: [
+		{
+			imagePath: data/complementos/pelonino1.png,
+			disponible: true,
+			tipo: PELO
+		},
+		{
+			imagePath: data/complementos/bigote1.png,
+			disponible: true,
+			tipo: BIGOTE
+		},
+		{
+			imagePath: data/complementos/disfraz2.png,
+			disponible: true,
+			tipo: DISFRAZ
+		}
+	]
+}
+}
