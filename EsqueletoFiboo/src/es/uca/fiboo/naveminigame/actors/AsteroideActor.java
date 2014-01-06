@@ -12,7 +12,7 @@ public class AsteroideActor extends Actor {
 
 	private TextureRegion alien;
 	private int numero;
-	private float velocidad;
+	public float velocidad;
 	
 	public Rectangle bb;
 	
@@ -21,7 +21,7 @@ public class AsteroideActor extends Actor {
 		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero) + ".png", Texture.class));
 		setSize(alien.getRegionWidth(), alien.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
-		this.velocidad = 200 * aumentoVelocidad + 100;
+		this.velocidad = aumentoVelocidad;
 	}
 	
 	@Override
