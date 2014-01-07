@@ -38,9 +38,9 @@ public class fibooGame extends Game {
                 @SuppressWarnings("unchecked")
                 @Override
                 public void create() {
-                    //Cargamos las im�genes en el manager
+                    //Cargamos las im���genes en el manager
                 		Gdx.app.log(fibooGame.LOG, "Creating game");
-                        MANAGER.load("cameraminigame/cesped.png", Texture.class);
+                        MANAGER.load("cameraminigame/cesped2.png", Texture.class);
                 		MANAGER.load("cameraminigame/0.png", Texture.class);
                 		MANAGER.load("cameraminigame/1.png", Texture.class);
                 		MANAGER.load("cameraminigame/2.png", Texture.class);

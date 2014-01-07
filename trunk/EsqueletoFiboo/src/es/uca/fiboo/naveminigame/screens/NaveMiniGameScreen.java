@@ -9,14 +9,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.naveminigame.actors.*;
@@ -25,7 +21,7 @@ import es.uca.fiboo.screens.*;
 public class NaveMiniGameScreen extends AbstractScreen {
 	
 	float widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
-	private ImageButton atrasBoton;
+
 	private final class InputAndroidShootListener extends InputListener {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
@@ -237,28 +233,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		timer = 2 + (float) Math.random();
 		Gdx.app.log(fibooGame.LOG, "Show realizado");
-		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
-		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
-        
-		atrasBoton = new ImageButton(atrasBotonDrawable);
-		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.2f) - atrasBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/0.3f) - atrasBoton.getHeight()/2);
-		atrasBoton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + atrasBoton.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
-					stage.dispose();	
-					game.setScreen(new MenuMiniJuegosScreen(game));
-				}
-		});
-	
-		stage.addActor(atrasBoton);
 	}
 	
 	private float timer;

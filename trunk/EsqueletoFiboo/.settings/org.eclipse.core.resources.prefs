@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/es/uca/fiboo/actores/Avatar.java=UTF-8
 encoding//src/es/uca/fiboo/actores/Personaje.java=UTF-8
+encoding//src/es/uca/fiboo/fibooGame.java=UTF-8
 encoding//src/es/uca/fiboo/naveminigame/screens/NaveMiniGameScreen.java=UTF-8
 encoding//src/es/uca/fiboo/screens/AbstractScreen.java=UTF-8
 encoding//src/es/uca/fiboo/screens/ChooseScreen.java=UTF-8
