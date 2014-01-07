@@ -40,6 +40,7 @@ public class RobotGameScreen extends AbstractScreen{
 	Texture estrellaImage;
 	Texture marcianoImage;
 	Sound dropSound;
+	Sound failSound;
 	Music rainMusic;
 	OrthographicCamera camera;
 	Rectangle hucha;
@@ -70,6 +71,7 @@ public class RobotGameScreen extends AbstractScreen{
 				
 				// load the drop sound effect and the rain background "music"
 				dropSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/smw_coin.wav"));
+				failSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/failSound.mp3"));
 				rainMusic = Gdx.audio.newMusic(Gdx.files.internal("robotgame/rain.mp3"));
 				rainMusic.setLooping(true);
 		 
@@ -259,14 +261,18 @@ public class RobotGameScreen extends AbstractScreen{
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){
-				case PLANETA: planetsGathered++;break;
-				case ESTRELLA: starsGathered++;break;
-				case LUNA: moonsGathered++;break;
+				case PLANETA: planetsGathered++;
+					dropSound.play();break;
+				case ESTRELLA: starsGathered++;
+					dropSound.play();break;
+				case LUNA: moonsGathered++;
+					dropSound.play();break;
 				case MARCIANO: ufosGathered++;
-				planetsGathered=0;
-				moonsGathered=0;
-				starsGathered=0;
-				break;
+					planetsGathered=0;
+					moonsGathered=0;
+					starsGathered=0;
+					failSound.play();
+					break;
 				default:
 					break;
 				}
