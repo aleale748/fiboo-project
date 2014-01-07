@@ -47,7 +47,7 @@ public class CameraScreen extends AbstractScreen {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 
-		coordenadasMundo = new Vector2(w,h);
+		coordenadasMundo = new Vector2(4096,2048);
 		
 		camera = new OrthographicCamera(w,h);
 		//stage.setViewport(1024, 512, false);
@@ -55,8 +55,8 @@ public class CameraScreen extends AbstractScreen {
 		//camera.update();
 		numerosRestantes = N;
 		
-		Image imgFondo = new Image(fibooGame.MANAGER.get("cameraminigame/cesped.png", Texture.class));
-		imgFondo.setFillParent(true);
+		Image imgFondo = new Image(fibooGame.MANAGER.get("cameraminigame/cesped2.png", Texture.class));
+		//imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 
 		objetoActors = new ArrayList<ObjetoActor>();
