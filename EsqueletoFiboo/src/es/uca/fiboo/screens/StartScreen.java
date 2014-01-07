@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -18,23 +19,26 @@ import es.uca.fiboo.fibooGame;
 public class StartScreen extends AbstractScreen {
 
         private ImageButton playBoton;
-
+        private Image imgFondo;
         public StartScreen(fibooGame game) {
                 super(game);
                 Gdx.input.setInputProcessor(stage);
+                imgFondo = new Image(new Texture("portada/portada.png"));
+        		imgFondo.setFillParent(true);
+        		stage.addActor(imgFondo);
         }
 
         @Override
         public void show() {
                 super.show();
 
-                TextureRegion playBotonRegion = new TextureRegion(new Texture("data/playBoton.png"));
+                TextureRegion playBotonRegion = new TextureRegion(new Texture("portada/playportada.png"));
                 Drawable playBotonDrawable = new TextureRegionDrawable(playBotonRegion);
 
                 // Creamos el boton, lo posicionamo y lo a??adimo al stage
                 playBoton = new ImageButton(playBotonDrawable);
                 playBoton.setPosition(Gdx.graphics.getWidth()/2 - playBoton.getWidth()/2, 
-                                Gdx.graphics.getHeight()/2 - playBoton.getHeight()/2);
+                                Gdx.graphics.getHeight()/4 - playBoton.getHeight()/2);
                 playBoton.addListener(new InputListener() {
                         @Override
                         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -45,7 +49,8 @@ public class StartScreen extends AbstractScreen {
                         @Override
                         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                                 Gdx.app.log(fibooGame.LOG, "Touching up on playBoton");
-                                playBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f),
+                                imgFondo.addAction(sequence(delay(1.0f), fadeOut(0.75f)));
+                                playBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f),
                                 new Action() {
                                         @Override
                                         public boolean act(float delta) {

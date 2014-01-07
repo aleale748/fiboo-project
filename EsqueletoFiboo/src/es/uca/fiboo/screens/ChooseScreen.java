@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -20,10 +21,13 @@ public class ChooseScreen extends AbstractScreen {
 
 	private ImageButton ninoBoton;
 	private ImageButton ninaBoton;
-
+	private Image imgFondo;
 	public ChooseScreen(fibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
+		imgFondo = new Image(new Texture("portada/fondonave.png"));
+		imgFondo.setFillParent(true);
+		stage.addActor(imgFondo);
 	}
 
 	@Override
@@ -35,7 +39,7 @@ public class ChooseScreen extends AbstractScreen {
 		Drawable ninoBotonDrawable = new TextureRegionDrawable(ninoBotonRegion);
 		Drawable ninaBotonDrawable = new TextureRegionDrawable(ninaBotonRegion);
 
-		// Creamos el boton, lo posicionamo y lo añadimo al stage
+		// Creamos el boton, lo posicionamo y lo aï¿½adimo al stage
 		ninoBoton = new ImageButton(ninoBotonDrawable);
 		ninaBoton = new ImageButton(ninaBotonDrawable);
 		
@@ -51,8 +55,9 @@ public class ChooseScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on ninoBoton");
 				fibooGame.getPersonaje().getAvatar().setBase("data/complementos/nino.png");
-				ninaBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f)));
-				ninoBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f),
+				imgFondo.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
+				ninaBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
+				ninoBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f),
 				new Action() {
 					@Override
 					public boolean act(float delta) {
@@ -76,8 +81,9 @@ public class ChooseScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on ninaBoton");
 				fibooGame.getPersonaje().getAvatar().setBase("data/complementos/nina.png");
-				ninoBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f)));
-				ninaBoton.addAction( sequence(delay(1.75f), fadeOut(0.75f),
+				imgFondo.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
+				ninoBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
+				ninaBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f),
 				new Action() {
 					@Override
 					public boolean act(float delta) {
