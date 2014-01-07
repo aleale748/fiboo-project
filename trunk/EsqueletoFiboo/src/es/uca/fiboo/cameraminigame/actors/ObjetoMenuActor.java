@@ -18,7 +18,7 @@ public class ObjetoMenuActor extends Actor {
 		texture = fibooGame.MANAGER.get("cameraminigame/" + nombreFichero, Texture.class);
 		
 		// Ahora que tenemos la textura de la pala aprovechamos para cambiar
-		// el tamaño de este actor y hacer que coincida con el tamaño de
+		// el tama??o de este actor y hacer que coincida con el tama??o de
 		// la pala.
 		setSize(texture.getWidth(), texture.getHeight());
 		
