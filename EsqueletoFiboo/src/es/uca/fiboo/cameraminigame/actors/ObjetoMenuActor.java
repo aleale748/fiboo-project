@@ -21,7 +21,6 @@ public class ObjetoMenuActor extends Actor {
 		// el tama??o de este actor y hacer que coincida con el tama??o de
 		// la pala.
 		setSize(texture.getWidth(), texture.getHeight());
-		
 		this.tipoInt = tipoInt;
 	}
 	
