@@ -68,8 +68,8 @@ public class ChooseScreen extends AbstractScreen {
 				}));
 			}
 		});
-		float dostercios= (float)4f/3f;
-		ninaBoton.setPosition(Gdx.graphics.getWidth()/dostercios - ninaBoton.getWidth()/2, 
+		//float cuatrotercios= (float);
+		ninaBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - ninaBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/2 - ninaBoton.getHeight()/2);
 		ninaBoton.addListener(new InputListener() {
 			@Override

@@ -9,10 +9,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.naveminigame.actors.*;
@@ -21,7 +25,7 @@ import es.uca.fiboo.screens.*;
 public class NaveMiniGameScreen extends AbstractScreen {
 	
 	float widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
-
+	private ImageButton atrasBoton;
 	private final class InputAndroidShootListener extends InputListener {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
@@ -128,13 +132,13 @@ public class NaveMiniGameScreen extends AbstractScreen {
 
 		Gdx.input.setInputProcessor(stage);
 		
-		Gdx.app.log(fibooGame.LOG, "Cargando imagen de fondo y a�adiendola al escenario");
+		Gdx.app.log(fibooGame.LOG, "Cargando imagen de fondo y a���adiendola al escenario");
 		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		
 
-		Gdx.app.log(fibooGame.LOG, "Imagen de fondo a�adida");
+		Gdx.app.log(fibooGame.LOG, "Imagen de fondo a���adida");
 		
 		explosiones = new ArrayList<ExplosionActor>();
 		
@@ -147,7 +151,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		nave.setPosition(10, 10);
 		
-		Gdx.app.log(fibooGame.LOG, "A�adiendo listeners en la nave");
+		Gdx.app.log(fibooGame.LOG, "A���adiendo listeners en la nave");
 		
 		stage.setKeyboardFocus(nave);
 		nave.addListener(new InputDesktopListener());
@@ -169,13 +173,13 @@ public class NaveMiniGameScreen extends AbstractScreen {
 
 		});
 
-		Gdx.app.log(fibooGame.LOG, "Listeners en la nave a�adidos");
+		Gdx.app.log(fibooGame.LOG, "Listeners en la nave a���adidos");
 		
 
-		Gdx.app.log(fibooGame.LOG, "A�adiendo bot�n de disparo");
+		Gdx.app.log(fibooGame.LOG, "A���adiendo bot���n de disparo");
 		padShoot.addListener(new InputAndroidShootListener());
 		stage.addActor(padShoot);
-		Gdx.app.log(fibooGame.LOG, "Bot�n de disparo a�adido.");
+		Gdx.app.log(fibooGame.LOG, "Bot���n de disparo a���adido.");
 		
 
 		Gdx.app.log(fibooGame.LOG, "Generando vidas de la nave y escudo");
@@ -205,10 +209,10 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		stage.addActor(vidaNave);
 		stage.addActor(vidaEscudo);
 		
-		Gdx.app.log(fibooGame.LOG, "Vidas de la nave y escudo a�adidas");
+		Gdx.app.log(fibooGame.LOG, "Vidas de la nave y escudo a���adidas");
 		
 
-		Gdx.app.log(fibooGame.LOG, "A�adiendo sistema de puntuacion por estrellas");
+		Gdx.app.log(fibooGame.LOG, "A���adiendo sistema de puntuacion por estrellas");
 		puntuacionVacia = new ArrayList<EmptyStarActor>();
 		for (int i = 0; i < 10; ++i) {
 			puntuacionVacia.add(new EmptyStarActor());
@@ -218,21 +222,43 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		puntuacion = new ArrayList<StarActor>();
 
-		Gdx.app.log(fibooGame.LOG, "Sistema de puntuaci�n por estrellas a�adido");
+		Gdx.app.log(fibooGame.LOG, "Sistema de puntuaci���n por estrellas a���adido");
 		
 
-		Gdx.app.log(fibooGame.LOG, "A�adiendo operador de la suma");
+		Gdx.app.log(fibooGame.LOG, "A���adiendo operador de la suma");
 		operador = new OperadorActor();
 		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, 24);
 		stage.addActor(operador);
 
-		Gdx.app.log(fibooGame.LOG, "Operador de la suma a�adido");
+		Gdx.app.log(fibooGame.LOG, "Operador de la suma a���adido");
 		
 		resuelto = true;
 		respawnSol = 0;
 		
 		timer = 2 + (float) Math.random();
 		Gdx.app.log(fibooGame.LOG, "Show realizado");
+		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
+		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
+        
+		atrasBoton = new ImageButton(atrasBotonDrawable);
+		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.2f) - atrasBoton.getWidth()/2, 
+				Gdx.graphics.getHeight()/(4f/0.3f) - atrasBoton.getHeight()/2);
+		atrasBoton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching down on " + atrasBoton.getClass().getSimpleName());
+				return true;
+			}
+			
+			@Override
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
+					stage.dispose();	
+					game.setScreen(new MenuMiniJuegosScreen(game));
+				}
+		});
+	
+		stage.addActor(atrasBoton);
 	}
 	
 	private float timer;
@@ -249,12 +275,12 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		if (resuelto) {
 			
-			Gdx.app.log(fibooGame.LOG, "Generando nuevos n�meros para la suma");
+			Gdx.app.log(fibooGame.LOG, "Generando nuevos n���meros para la suma");
 			if (numeroX != null) {
 				widthPrevio = numeroX.getWidth();
 				heightPrevio = numeroX.getHeight();
 			}
-			Gdx.app.log(fibooGame.LOG, "Generando nuevos n�meros para la suma");
+			Gdx.app.log(fibooGame.LOG, "Generando nuevos n���meros para la suma");
 			stage.getRoot().removeActor(numeroX);
 			stage.getRoot().removeActor(numeroY);
 			
@@ -291,11 +317,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			
 			resuelto = false;
 
-			Gdx.app.log(fibooGame.LOG, "Generaci�n de nuevos n�meros para la suma terminada");
+			Gdx.app.log(fibooGame.LOG, "Generaci���n de nuevos n���meros para la suma terminada");
 		}
 		
 
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de suma resuelta terminada");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de suma resuelta terminada");
 		
 
 		
@@ -343,18 +369,18 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			timer = 5f + ((float) Math.random() * 2) - (puntuacion.size() * 4 / 10);
 			
 
-			Gdx.app.log(fibooGame.LOG, "Generaci�n de asteroides terminada");
+			Gdx.app.log(fibooGame.LOG, "Generaci���n de asteroides terminada");
 		}
 		
 
 		Gdx.app.log(fibooGame.LOG, "Comprobando listas de asteroides, explosiones, balas y puntuaciones");
 		comprobarListas();
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de listas terminada");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de listas terminada");
 		
 
 		Gdx.app.log(fibooGame.LOG, "Comprobando colisiones");
 		comprobarColisiones();
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de colisiones terminada");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de colisiones terminada");
 		
 
 		Gdx.app.log(fibooGame.LOG, "Reposicionamiento de los actores");
@@ -478,7 +504,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	private void comprobarListas() {
 		
 
-		Gdx.app.log(fibooGame.LOG, "Comprobando colisi�n asteroide escudo");
+		Gdx.app.log(fibooGame.LOG, "Comprobando colisi���n asteroide escudo");
 		
 		AsteroideActor asteroide;
 		for(int i = 0; i < asteroides.size(); i++) {
@@ -494,7 +520,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				asteroides.remove(i);
 				if (escudo.getHealth() > 0.4f) {
 					if(asteroide.getNumero() == (numeroX.a + numeroY.b)) {
-						Gdx.app.log(fibooGame.LOG, "Colisi�n de asteroide con escudo soluci�n producida");
+						Gdx.app.log(fibooGame.LOG, "Colisi���n de asteroide con escudo soluci���n producida");
 						escudo.sumHealth(-0.4f);
 						fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
 					}
@@ -505,9 +531,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			}
 		}
 		
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de colisi�n asteroides escudo terminada");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de colisi���n asteroides escudo terminada");
 		
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de balas al final del escenario");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de balas al final del escenario");
 		
 		for(int i = 0; i < bullets.size(); i++) {
 			if (bullets.get(i).getX() > stage.getWidth()) {
@@ -516,7 +542,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			}
 		}
 		
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de balas terminada");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de balas terminada");
 		
 		Gdx.app.log(fibooGame.LOG, "Recolocando estrellas");
 		
@@ -528,7 +554,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			puntuacion.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
 		}
 		
-		Gdx.app.log(fibooGame.LOG, "Recolocaci�n de estrellas terminada");
+		Gdx.app.log(fibooGame.LOG, "Recolocaci���n de estrellas terminada");
 		
 		Gdx.app.log(fibooGame.LOG, "Limpiando explosiones producidas");
 		
@@ -549,7 +575,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		for (int i = 0; i < asteroides.size(); i++) {
 			asteroide = asteroides.get(i);
 			if (asteroide.bb.overlaps(nave.bb)) {
-				Gdx.app.log(fibooGame.LOG, "Colisi�n nave-asteroide producida");
+				Gdx.app.log(fibooGame.LOG, "Colisi���n nave-asteroide producida");
 				explosiones.add(new ExplosionActor());
 				explosiones.get(explosiones.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
 				explosiones.get(explosiones.size()-1).setWidth(widthExplosiones);
@@ -566,9 +592,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			} else {
 				for (int j = 0; j < bullets.size(); j++) {
 					if (asteroide.bb.overlaps(bullets.get(j).bb)) {
-						Gdx.app.log(fibooGame.LOG, "Colisi�n bala-asteroide producida");
+						Gdx.app.log(fibooGame.LOG, "Colisi���n bala-asteroide producida");
 						if (asteroides.get(i).getNumero() == (numeroX.a + numeroY.b)) {
-							Gdx.app.log(fibooGame.LOG, "Asteroide soluci�n destruido");
+							Gdx.app.log(fibooGame.LOG, "Asteroide soluci���n destruido");
 							puntuacion.add(new StarActor());
 							puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
 							puntuacion.get(puntuacion.size() - 1).setWidth(widthPuntuacion);
@@ -588,7 +614,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 								game.setScreen(new WinScreen(game));
 							}
 						} else {
-							Gdx.app.log(fibooGame.LOG, "Asteroide err�neo destruido");
+							Gdx.app.log(fibooGame.LOG, "Asteroide err���neo destruido");
 							nave.sumHealth(-0.2f);
 							fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
 							explosiones.add(new ExplosionActor());
@@ -611,7 +637,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				}
 			}
 		}
-		Gdx.app.log(fibooGame.LOG, "Comprobaci�n de colisiones terminada");
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de colisiones terminada");
 	}
 	
 	@Override
