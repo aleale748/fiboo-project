@@ -58,6 +58,7 @@ public class RobotGameScreen extends AbstractScreen{
 	int rand;
 	int ultima_posicion;
 	private ImageButton atrasBoton;
+	private int numlunas, numplanetas, numestrellas;
 	public RobotGameScreen(fibooGame game){
 		super(game);
 		Gdx.input.setInputProcessor(stage);
@@ -86,7 +87,9 @@ public class RobotGameScreen extends AbstractScreen{
 								// the bottom screen edge
 				hucha.width = 64;
 				hucha.height = 64;
-		 
+				numlunas= 10; 
+				numplanetas= 10; 
+				numestrellas= 10;
 				// create the raindrops array and spawn the first raindrop
 				raindrops = new Array<DropObject>();
 				batch = new SpriteBatch();
@@ -94,6 +97,7 @@ public class RobotGameScreen extends AbstractScreen{
 				font = new BitmapFont();
 				font2 = new BitmapFont();
 				spawnRaindrop();
+				
 	}
 	private void spawnRaindrop() {
 		int rand= MathUtils.random(0, 3);
@@ -216,6 +220,7 @@ public class RobotGameScreen extends AbstractScreen{
 				}
 		});
 		stage.addActor(atrasBoton);
+		
 	}
 	
 	
@@ -228,10 +233,10 @@ public class RobotGameScreen extends AbstractScreen{
 		stage.act();
 		stage.draw();
 		batch.begin();
-		font.draw(batch, "Planets Collected: " + planetsGathered, 0,Gdx.graphics.getHeight()-10);
-		font2.draw(batch, "Stars Collected: " + starsGathered, 200,Gdx.graphics.getHeight()-10);
-		font.draw(batch, "Moons Collected: " + moonsGathered,400,Gdx.graphics.getHeight()-10);
-		font2.draw(batch, "UFO's Collected: " + ufosGathered, 600,Gdx.graphics.getHeight()-10);
+		font.draw(batch, numplanetas +" Planetas " + planetsGathered, 0,Gdx.graphics.getHeight()-10);
+		font2.draw(batch, numestrellas +" Estrellas " + starsGathered, 200,Gdx.graphics.getHeight()-10);
+		font.draw(batch, numlunas +" Lunas " + moonsGathered,400,Gdx.graphics.getHeight()-10);
+		font2.draw(batch, "UFO's: " + ufosGathered, 600,Gdx.graphics.getHeight()-10);
 		rand = MathUtils.random(0, 1);
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
@@ -261,16 +266,16 @@ public class RobotGameScreen extends AbstractScreen{
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){
-				case PLANETA: planetsGathered++;
+				case PLANETA: planetsGathered++;numplanetas--;
 					dropSound.play();break;
-				case ESTRELLA: starsGathered++;
+				case ESTRELLA: starsGathered++;numestrellas--;
 					dropSound.play();break;
-				case LUNA: moonsGathered++;
+				case LUNA: moonsGathered++;numlunas--;
 					dropSound.play();break;
 				case MARCIANO: ufosGathered++;
-					planetsGathered=0;
-					moonsGathered=0;
-					starsGathered=0;
+					planetsGathered=0;numplanetas= 10;
+					moonsGathered=0;numlunas= 10;
+					starsGathered=0;numestrellas= 10;
 					failSound.play();
 					break;
 				default:
