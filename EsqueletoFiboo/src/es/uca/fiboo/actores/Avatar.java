@@ -27,6 +27,7 @@ public class Avatar {
 	
 	public Avatar() {
 		complementos = new TreeMap<Tipo, Complemento>();
+		base = new Texture("data/complementos/base.png");
 		initializeComplementos();
 	}
 	
@@ -36,8 +37,8 @@ public class Avatar {
 		complementos.put(Tipo.ACCPELO, null);
 		complementos.put(Tipo.OJOS, null);
 		complementos.put(Tipo.GAFAS, null);
-		complementos.put(Tipo.BIGOTE, null);
 		complementos.put(Tipo.BOCA, null);
+		complementos.put(Tipo.BIGOTE, null);
 		complementos.put(Tipo.MASCARA, null);
 		complementos.put(Tipo.CAMISA, null);
 		complementos.put(Tipo.PANTALON, null);
@@ -49,8 +50,14 @@ public class Avatar {
 		complementos.put(c.getTipo(), c);
 	}
 	
+	public void removeComplemento(Tipo tipo) {
+		complementos.put(tipo, null);
+	}
+	
 	public void setBase(String imagePath) {
-		base = new Texture(imagePath);
+		Complemento peloBase = new Complemento(imagePath, Tipo.PELO);
+		peloBase.setDisponible(true);
+		addComplemento(peloBase);
 	}
 	
 	public void draw(SpriteBatch batch) {
@@ -63,9 +70,9 @@ public class Avatar {
 				case PELO: 
 				case GAFAS: 
 				case MASCARA:
+				case BOCA: 
 				case BIGOTE: 
 				case ACCPELO: 
-				case BOCA: 
 					batch.draw(c.getValue().getImagen(), 102f, 318f);
 					break;
 				default:
