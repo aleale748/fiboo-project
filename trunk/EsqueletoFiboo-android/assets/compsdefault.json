@@ -32,6 +32,12 @@
 {
 	"class": "es.uca.fiboo.actores.Complemento",
 	"tipo": "PELO",
+	"imagePath": "data/complementos/pelonina3.png",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "PELO",
 	"imagePath": "data/complementos/pelonino1.png",
 	"disponible": true
 },
@@ -40,6 +46,12 @@
 	"tipo": "PELO",
 	"imagePath": "data/complementos/pelonino2.png",
 	"disponible": false
+},
+{
+	"class": "es.uca.fiboo.actores.Complemento",
+	"tipo": "PELO",
+	"imagePath": "data/complementos/pelonino3.png",
+	"disponible": true
 },
 {
 	"class": "es.uca.fiboo.actores.Complemento",
