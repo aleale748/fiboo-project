@@ -2,7 +2,7 @@
 avatar: {
 	data: [
 		{
-			imagePath: data/complementos/pelonino1.png,
+			imagePath: data/complementos/pelonino3.png,
 			disponible: true,
 			tipo: PELO
 		},
@@ -12,9 +12,9 @@ avatar: {
 			tipo: BIGOTE
 		},
 		{
-			imagePath: data/complementos/disfraz2.png,
+			imagePath: data/complementos/boca2.png,
 			disponible: true,
-			tipo: DISFRAZ
+			tipo: BOCA
 		}
 	]
 }

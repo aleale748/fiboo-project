@@ -29,6 +29,12 @@
 },
 {
 	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/pelonina3.png,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
 	imagePath: data/complementos/pelonino1.png,
 	disponible: true,
 	tipo: PELO
@@ -36,6 +42,12 @@
 {
 	class: es.uca.fiboo.actores.Complemento,
 	imagePath: data/complementos/pelonino2.png,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.actores.Complemento,
+	imagePath: data/complementos/pelonino3.png,
+	disponible: true,
 	tipo: PELO
 },
 {
