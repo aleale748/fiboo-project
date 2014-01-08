@@ -109,9 +109,9 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		complementosPorTipo.put(Tipo.ACCPELO, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.OJOS, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.GAFAS, new ArrayList<BotonComplemento>());
-		complementosPorTipo.put(Tipo.BIGOTE, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.BOCA, new ArrayList<BotonComplemento>());
-		complementosPorTipo.put(Tipo.MASCARA, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.BIGOTE, new ArrayList<BotonComplemento>());
+		//complementosPorTipo.put(Tipo.MASCARA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.CAMISA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.PANTALON, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<BotonComplemento>());
@@ -147,7 +147,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 
 		//Pintar el resto de actores
 		stage.draw();
-		Table.drawDebug(stage);
+		//Table.drawDebug(stage);
 		//Window.drawDebug(stage);
 	}
 

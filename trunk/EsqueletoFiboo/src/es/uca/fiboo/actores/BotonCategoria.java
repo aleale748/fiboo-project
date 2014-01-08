@@ -86,6 +86,7 @@ public class BotonCategoria {
 				}
 			}
 		}
+		popup.add(new BotonComplemento(tipo)).width(128).height(128);
 		popup.pack();
 		
 		icono.addListener(new InputListener() {

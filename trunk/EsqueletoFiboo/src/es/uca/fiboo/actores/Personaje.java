@@ -2,6 +2,8 @@ package es.uca.fiboo.actores;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import es.uca.fiboo.actores.Complemento.Tipo;
+
 /**
  * Aun una versión muy básica, sólo con el avatar
  * 
@@ -25,5 +27,9 @@ public class Personaje {
 	
 	public Avatar getAvatar() {
 		return avatar;
+	}
+
+	public void removeComplemento(Tipo tipo) {
+		avatar.removeComplemento(tipo);		
 	}
 }

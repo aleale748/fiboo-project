@@ -5,12 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.actores.Complemento.Tipo;
 
 /**
  * Clase que contiene el botón en miniatura del complemento y su complemento real asignado.
@@ -27,6 +29,11 @@ public class BotonComplemento extends Image {
 	
 	private Complemento complemento;
 	
+	public BotonComplemento(Tipo tipo) {
+		super(new Texture("data/complementos/vacio.png"));
+		addQuitarComplementoListener(tipo);
+	}
+	
 	public BotonComplemento(Complemento complemento) {
 		super(new Texture(complemento.getIconPath()));
 		this.complemento = complemento;
@@ -41,6 +48,18 @@ public class BotonComplemento extends Image {
 		BotonComplemento.stage = stage;
 	}
 
+	private void addQuitarComplementoListener(final Tipo tipo) {
+		this.addListener(new InputListener() {
+			
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				fibooGame.getPersonaje().removeComplemento(tipo);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});		
+	}
+	
 	private class DragComplemento extends DragListener {
 		private Image imagen;
 		private Rectangle avatar, rImagen;
