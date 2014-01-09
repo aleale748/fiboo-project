@@ -14,6 +14,7 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.cameraminigame.screens.CameraScreen;
 import es.uca.fiboo.naveminigame.screens.NaveMiniGameScreen;
 import es.uca.fiboo.robotgame.screens.RobotGameScreen;
+import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 
@@ -103,7 +104,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + mapaBoton.getClass().getSimpleName());
-						game.setScreen(new CameraScreen(game));
+						game.setScreen(new MarcianosMiniGameScreen(game));
 				}
 		});
 		stage.addActor(mapaBoton);
