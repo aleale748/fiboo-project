@@ -1,5 +1,6 @@
 package es.uca.fiboo.robotgame.actor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,7 +21,7 @@ public class RobotActor extends Actor {
 	
 	public RobotActor() {
 		robot = new TextureRegion(new Texture("robotgame/robotfrente.png"));
-		setSize(robot.getRegionWidth(), robot.getRegionHeight());
+		setSize(Gdx.graphics.getWidth()*0.2f, Gdx.graphics.getWidth()*0.25f);
 		robotRect = new Rectangle(getX(), getY(), getWidth(),getHeight());
 	}
 	

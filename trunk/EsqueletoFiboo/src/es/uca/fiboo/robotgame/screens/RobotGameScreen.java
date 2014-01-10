@@ -78,15 +78,11 @@ public class RobotGameScreen extends AbstractScreen{
 		 
 				// create the camera and the SpriteBatch
 				camera = new OrthographicCamera();
-				camera.setToOrtho(false, 800, 480);
+				
+				camera.setToOrtho(false, Gdx.graphics.getHeight(), Gdx.graphics.getWidth());
 		 
 				// create a Rectangle to logically represent the bucket
-				hucha = new Rectangle();
-				hucha.x = 800 / 2 - 64 / 2; // center the bucket horizontally
-				hucha.y = 20; // bottom left corner of the bucket is 20 pixels above
-								// the bottom screen edge
-				hucha.width = 64;
-				hucha.height = 64;
+				
 				numlunas= 10; 
 				numplanetas= 10; 
 				numestrellas= 10;
@@ -102,10 +98,10 @@ public class RobotGameScreen extends AbstractScreen{
 	private void spawnRaindrop() {
 		int rand= MathUtils.random(0, 3);
 		DropObject raindrop = new DropObject(rand);
-		raindrop.x = MathUtils.random(0, Gdx.graphics.getWidth() - 128);
+		raindrop.x = MathUtils.random(0, Gdx.graphics.getWidth() - Gdx.graphics.getHeight()*0.1f);
 		raindrop.y = Gdx.graphics.getHeight();
-		raindrop.width = 128;
-		raindrop.height = 128;
+		raindrop.width = Gdx.graphics.getHeight()*0.1f;
+		raindrop.height = Gdx.graphics.getHeight()*0.1f;
 		raindrops.add(raindrop);
 		lastDropTime = TimeUtils.nanoTime();
 	}/*
@@ -241,13 +237,13 @@ public class RobotGameScreen extends AbstractScreen{
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
 			case PLANETA:
-				batch.draw(planetaImage, raindrop.x, raindrop.y);break;
+				batch.draw(planetaImage, raindrop.x, raindrop.y,  Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
 			case ESTRELLA:
-				batch.draw(estrellaImage, raindrop.x, raindrop.y);break;	
+				batch.draw(estrellaImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;	
 			case LUNA:
-				batch.draw(lunaImage, raindrop.x, raindrop.y);break;
+				batch.draw(lunaImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
 			case MARCIANO:
-				batch.draw(marcianoImage, raindrop.x, raindrop.y);break;
+				batch.draw(marcianoImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
 			default:
 				break;
 		}
@@ -261,8 +257,8 @@ public class RobotGameScreen extends AbstractScreen{
 		Iterator<DropObject> iter = raindrops.iterator();
 		while (iter.hasNext()) {
 			DropObject raindrop = iter.next();
-			raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
-			if (raindrop.y + 64 < 0)
+			raindrop.y -= 100 * Gdx.graphics.getDeltaTime();
+			if (raindrop.y + (Gdx.graphics.getHeight()*0.1f)/2 < 0)
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){

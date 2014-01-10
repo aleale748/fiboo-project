@@ -603,6 +603,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 					}
 				} else  {
 					Gdx.app.log(fibooGame.LOG, "Escudo debilitado. Partida terminada.");
+					dispose();
 					game.setScreen(new GameOverScreen(game));
 				}
 			}
@@ -664,6 +665,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
 				if (nave.getHealth() <= 0) {
 					Gdx.app.log(fibooGame.LOG, "Nave debilitada. Partida terminada.");
+					dispose();
 					game.setScreen(new GameOverScreen(game));
 				}
 			} else {
@@ -689,6 +691,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							}
 							asteroides.clear();
 							if (puntuacion.size() == 10) {
+								dispose();
 								game.setScreen(new WinScreen(game));
 							}
 						} else {
@@ -701,6 +704,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							explosiones.get(explosiones.size()-1).setHeight(heightExplosiones);
 							stage.addActor(explosiones.get(explosiones.size()-1));
 							if (nave.getHealth() <= 0) {
+								dispose();
 								game.setScreen(new GameOverScreen(game));
 							}
 						}
