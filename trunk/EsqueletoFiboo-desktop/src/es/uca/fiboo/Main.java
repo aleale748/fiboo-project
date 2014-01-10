@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "EsqueletoFiboo";
 		cfg.useGL20 = false;
-		cfg.width = 1280;
-		cfg.height = 800;
+		cfg.width = 1280; //480
+		cfg.height = 800; //320
 		
 		new LwjglApplication(new fibooGame(), cfg);
 	}
