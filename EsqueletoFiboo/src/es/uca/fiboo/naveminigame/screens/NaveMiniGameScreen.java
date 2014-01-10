@@ -125,12 +125,20 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	private List<ExplosionActor> explosiones;
 	
+	private List<MiniAsteroideActor> miniAsteroides;
+	
+	private List<MiniAsteroideVacioActor> miniAsteroidesVacios;
+	
+	private int numeroAsteroide;
+	
 	@Override
 	public void show() {
 
 		Gdx.app.log(fibooGame.LOG, "Comienza Minijuego de destruir asteroides");
 		asteroides = new ArrayList<AsteroideActor>();
 		bullets = new ArrayList<BulletActor>();
+		miniAsteroides = new ArrayList<MiniAsteroideActor>();
+		miniAsteroidesVacios = new ArrayList<MiniAsteroideVacioActor>();
 
 		Gdx.input.setInputProcessor(stage);
 		
@@ -154,7 +162,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		nave.setPosition(10, 10);
 		
 		Gdx.app.log(fibooGame.LOG, "A���adiendo listeners en la nave");
-		
 		stage.setKeyboardFocus(nave);
 		nave.addListener(new InputDesktopListener());
 		padShoot = new PadActor();
@@ -227,23 +234,26 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		Gdx.app.log(fibooGame.LOG, "Sistema de puntuaci���n por estrellas a���adido");
 		
 
-		Gdx.app.log(fibooGame.LOG, "A���adiendo operador de la suma");
+		/*Gdx.app.log(fibooGame.LOG, "A���adiendo operador de la suma");
 		operador = new OperadorActor();
 		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, 24);
 		stage.addActor(operador);
 
-		Gdx.app.log(fibooGame.LOG, "Operador de la suma a���adido");
+		Gdx.app.log(fibooGame.LOG, "Operador de la suma a���adido");*/
 		
 		resuelto = true;
 		respawnSol = 0;
 		
+		escala = ((float) (((Gdx.graphics.getWidth() / 4f) * 100f) / nave.getWidth()) / 100f);
+
+		
 		timer = 2 + (float) Math.random();
 		Gdx.app.log(fibooGame.LOG, "Show realizado");
-		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
+		/*TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
 		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
 		atrasBoton = new ImageButton(atrasBotonDrawable);
-		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.17f) - atrasBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/0.2f) - atrasBoton.getHeight()/2);
+		atrasBoton.setPosition(atrasBoton.getWidth()*escala*1.2f, 
+				atrasBoton.getHeight()*escala*0.7f);
 		atrasBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -257,7 +267,19 @@ public class NaveMiniGameScreen extends AbstractScreen {
 						game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 		});
-		stage.addActor(atrasBoton);
+		stage.addActor(atrasBoton);*/
+		
+		for (int i = 0; i < 9; ++i) {
+			miniAsteroides.add(new MiniAsteroideActor());
+			miniAsteroides.get(i).setWidth(miniAsteroides.get(i).getWidth()*0.5f);
+			miniAsteroides.get(i).setHeight(miniAsteroides.get(i).getHeight()*0.5f);
+			
+			miniAsteroidesVacios.add(new MiniAsteroideVacioActor());
+			miniAsteroidesVacios.get(i).setWidth(miniAsteroidesVacios.get(i).getWidth()*0.5f);
+			miniAsteroidesVacios.get(i).setHeight(miniAsteroidesVacios.get(i).getHeight()*0.5f);
+			stage.addActor(miniAsteroidesVacios.get(i));
+		}
+		
 	}
 	
 	private float timer;
@@ -270,7 +292,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		stage.act();
 		
 
-		Gdx.app.log(fibooGame.LOG, "Comprobando si la suma ha sido resuelta");
+		/*Gdx.app.log(fibooGame.LOG, "Comprobando si la suma ha sido resuelta");
 		
 		if (resuelto) {
 			
@@ -320,9 +342,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		}
 		
 
-		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de suma resuelta terminada");
-		
-
+		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de suma resuelta terminada");*/
 		
 		timer -= delta*0.5;
 		if (timer < 0) {
@@ -354,7 +374,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			stage.addActor(asteroide);
 			asteroides.add(asteroide);
 			if (respawnSol % 1 == 0) {
-				AsteroideActor asteroidesol = new AsteroideActor(numeroX.a + numeroY.b, (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.1f) + (Gdx.graphics.getWidth()*0.1f));
+				//AsteroideActor asteroidesol = new AsteroideActor(numeroX.a + numeroY.b, (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.1f) + (Gdx.graphics.getWidth()*0.1f));
+				AsteroideActor asteroidesol = new AsteroideActor(numeroAsteroide, (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.1f) + (Gdx.graphics.getWidth()*0.1f));
 				if (random > 0.5)
 					asteroidesol.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
 				else 
@@ -388,10 +409,10 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		vidaEscudo.setPosition(Gdx.graphics.getWidth() - vidaNave.getWidth()*1.07f, Gdx.graphics.getHeight() - vidaNave.getHeight()*2.75f);
 		barraEscudo.setPosition(Gdx.graphics.getWidth() - vidaEscudo.getWidth()*1.07f, Gdx.graphics.getHeight() - vidaEscudo.getHeight()*2.75f);
 	
-		numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - operador.getWidth()*0.9f, operador.getWidth()*0.3f);
+		/*numeroX.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 - operador.getWidth()*0.9f, operador.getWidth()*0.3f);
 		numeroY.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2 + operador.getWidth()*1.3f, operador.getWidth()*0.3f);
 		operador.setPosition(Gdx.graphics.getWidth()/2 - operador.getWidth()/2, operador.getWidth()*0.5f);
-		
+		*/
 		respawnSol += 1;
 		
 		padShoot.setPosition(Gdx.graphics.getWidth() - padShoot.getWidth()*1.05f, padShoot.getHeight()*0.15f);
@@ -413,14 +434,32 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			barraNave.setHeight(barraNave.getHeight() * escala);
 			barraEscudo.setWidth(barraEscudo.getWidth() * escala);
 			barraEscudo.setHeight(barraEscudo.getHeight() * escala);
-			numeroX.setWidth(numeroX.getWidth() * escala);
+			/*numeroX.setWidth(numeroX.getWidth() * escala);
 			numeroX.setHeight(numeroX.getHeight() * escala);
 			numeroY.setWidth(numeroY.getWidth() * escala);
 			numeroY.setHeight(numeroY.getHeight() * escala);
 			operador.setWidth(operador.getWidth() * escala);
-			operador.setHeight(operador.getHeight() * escala);
+			operador.setHeight(operador.getHeight() * escala);*/
 			padShoot.setWidth(padShoot.getWidth() * escala);
 			padShoot.setHeight(padShoot.getHeight() * escala);
+			atrasBoton.setWidth(atrasBoton.getWidth() * escala);
+			atrasBoton.setHeight(atrasBoton.getHeight() * escala);
+			for (int i = 0; i < 9; ++i) {
+				miniAsteroides.get(i).setWidth(miniAsteroides.get(i).getWidth()*escala);
+				miniAsteroides.get(i).setHeight(miniAsteroides.get(i).getHeight()*escala);
+				miniAsteroidesVacios.get(i).setWidth(miniAsteroidesVacios.get(i).getWidth()*escala);
+				miniAsteroidesVacios.get(i).setHeight(miniAsteroidesVacios.get(i).getHeight()*escala);
+				if (i == 0) {
+					miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * escala * 4 + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+				}
+				else {
+					if (i % 2 == 0)
+						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 + miniAsteroidesVacios.get(i).getWidth()*(i/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+					else
+						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 - miniAsteroidesVacios.get(i).getWidth()*((i+1)/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+			
+				}
+			}
 			widthBullets = widthBullets * escala;
 			heightBullets = heightBullets * escala;
 			for (int i = 0; i < bullets.size(); ++i) {
@@ -459,14 +498,30 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			barraNave.setHeight(barraNave.getHeight() * escala);
 			barraEscudo.setWidth(barraEscudo.getWidth() * escala);
 			barraEscudo.setHeight(barraEscudo.getHeight() * escala);
-			numeroX.setWidth(numeroX.getWidth() * escala);
+			/*numeroX.setWidth(numeroX.getWidth() * escala);
 			numeroX.setHeight(numeroX.getHeight() * escala);
 			numeroY.setWidth(numeroY.getWidth() * escala);
 			numeroY.setHeight(numeroY.getHeight() * escala);
 			operador.setWidth(operador.getWidth() * escala);
-			operador.setHeight(operador.getHeight() * escala);
+			operador.setHeight(operador.getHeight() * escala);*/
 			padShoot.setWidth(padShoot.getWidth() * escala);
 			padShoot.setHeight(padShoot.getHeight() * escala);
+			for (int i = 0; i < 9; ++i) {
+				miniAsteroides.get(i).setWidth(miniAsteroides.get(i).getWidth()*escala);
+				miniAsteroides.get(i).setHeight(miniAsteroides.get(i).getHeight()*escala);
+				miniAsteroidesVacios.get(i).setWidth(miniAsteroidesVacios.get(i).getWidth()*escala);
+				miniAsteroidesVacios.get(i).setHeight(miniAsteroidesVacios.get(i).getHeight()*escala);
+				if (i == 0) {
+					miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * escala * 4 + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+				}
+				else {
+					if (i % 2 == 0)
+						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 + miniAsteroidesVacios.get(i).getWidth()*(i/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+					else
+						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 - miniAsteroidesVacios.get(i).getWidth()*((i+1)/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+			
+				}
+			}
 			widthBullets = widthBullets * escala;
 			heightBullets = heightBullets * escala;
 			for (int i = 0; i < bullets.size(); ++i) {
@@ -497,6 +552,27 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		Gdx.app.log(fibooGame.LOG, "Redimensionamiento de los actores terminado");
 		
+		if (resuelto) {
+			numeroAsteroide = (int) (Math.random() * 10) % 10;
+			for (int i = 0; i < 9; ++i) {
+				miniAsteroides.get(i).remove();
+			}
+			for (int i = 0; i < numeroAsteroide; ++i) {
+				if (i == 0) {
+					miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+				}
+				else {
+					if (i % 2 == 0)
+						miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) + miniAsteroides.get(i).getWidth()*(i/2) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+					else
+						miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) - miniAsteroides.get(i).getWidth()*((i+1)/2) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+			
+				}
+				stage.addActor(miniAsteroides.get(i));
+			}
+			resuelto = false;
+		}
+		
 		stage.draw();
 	}
 	
@@ -518,7 +594,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				asteroides.get(i).remove();
 				asteroides.remove(i);
 				if (escudo.getHealth() > 0.4f) {
-					if(asteroide.getNumero() == (numeroX.a + numeroY.b)) {
+					//if(asteroide.getNumero() == (numeroX.a + numeroY.b)) {
+					if(asteroide.getNumero() == numeroAsteroide) {
 						Gdx.app.log(fibooGame.LOG, "Colisi���n de asteroide con escudo soluci���n producida");
 						escudo.sumHealth(-0.4f);
 						fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
@@ -592,7 +669,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				for (int j = 0; j < bullets.size(); j++) {
 					if (asteroide.bb.overlaps(bullets.get(j).bb)) {
 						Gdx.app.log(fibooGame.LOG, "Colisi���n bala-asteroide producida");
-						if (asteroides.get(i).getNumero() == (numeroX.a + numeroY.b)) {
+						//if (asteroides.get(i).getNumero() == (numeroX.a + numeroY.b)) {
+						if (asteroides.get(i).getNumero() == numeroAsteroide) {	
 							Gdx.app.log(fibooGame.LOG, "Asteroide soluci���n destruido");
 							puntuacion.add(new StarActor());
 							puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
