@@ -26,7 +26,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	float widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
 
-	private ImageButton atrasBoton;
+	//private ImageButton atrasBoton;
 	
 	private final class InputAndroidShootListener extends InputListener {
 		@Override
@@ -420,6 +420,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 
 		Gdx.app.log(fibooGame.LOG, "Reposicionamiento terminado");
 		
+		padShoot.toFront();
 		
 		Gdx.app.log(fibooGame.LOG, "Redimensionamiento de los actores");
 		escala = ((float) (((Gdx.graphics.getWidth() / 4f) * 100f) / nave.getWidth()) / 100f);
@@ -442,8 +443,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			operador.setHeight(operador.getHeight() * escala);*/
 			padShoot.setWidth(padShoot.getWidth() * escala);
 			padShoot.setHeight(padShoot.getHeight() * escala);
-			atrasBoton.setWidth(atrasBoton.getWidth() * escala);
-			atrasBoton.setHeight(atrasBoton.getHeight() * escala);
+			/*atrasBoton.setWidth(atrasBoton.getWidth() * escala);
+			atrasBoton.setHeight(atrasBoton.getHeight() * escala);*/
 			for (int i = 0; i < 9; ++i) {
 				miniAsteroides.get(i).setWidth(miniAsteroides.get(i).getWidth()*escala);
 				miniAsteroides.get(i).setHeight(miniAsteroides.get(i).getHeight()*escala);
