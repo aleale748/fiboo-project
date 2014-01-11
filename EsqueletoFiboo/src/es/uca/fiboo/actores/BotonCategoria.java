@@ -3,12 +3,16 @@ package es.uca.fiboo.actores;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.actores.Complemento.Tipo;
@@ -67,14 +71,14 @@ public class BotonCategoria {
 
 	private void setAcciones() {
 		final Window popup = new Window(tipo.toString(), parent.getSkin());
-		//popup.setX(Gdx.graphics.getWidth() - 200f);
-		//popup.setY((Gdx.graphics.getHeight() - 512f) / 2f);
+		TextButton exitButton = new TextButton("X", parent.getSkin());
 		
 		float winHeight = Gdx.graphics.getHeight() * 0.2f;
 		float winWidth = winHeight;
 		
+		popup.getButtonTable().add(exitButton).height(popup.getPadTop());
 		if(complementos.isEmpty()) {
-			popup.add("No tienes complementos\nde este tipo");
+			popup.add("No tienes\ncomplementos\nde este tipo");
 		}
 		else {
 			int newRow = 0;
@@ -112,6 +116,14 @@ public class BotonCategoria {
 				return super.touchDown(event, x, y, pointer, button);
 			}
 		
+		});
+		
+		exitButton.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				popup.remove();
+				super.clicked(event, x, y);
+			}
 		});
 	}
 		
