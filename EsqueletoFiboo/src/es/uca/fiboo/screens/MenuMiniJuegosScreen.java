@@ -2,7 +2,10 @@ package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -24,29 +27,25 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 	private Image imgFondo;
 	public MenuMiniJuegosScreen(fibooGame game) {
 		super(game);
-		Gdx.input.setCatchBackKey(true);
-		Gdx.input.setInputProcessor(stage);
 		imgFondo = new Image(new Texture("portada/pantallamenuentrenamiento.png"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 	}
-	
-	private final class InputBackListener extends InputListener {
-		@Override
-		public boolean keyDown(InputEvent event, int keycode) {
-			if(keycode == Keys.BACK) {
-				game.setScreen(new MenuScreen(game));
-				return true;
-			}
-			else
-				return false;
-		}
-	}
-	
+
 	@Override
 	public void show() {
 		super.show();
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK){
+						game.setScreen(new MenuScreen(game));
+				}
+				return false;
+			}
+		}, stage);
 		
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		// Cargamos imagenes de botones
 		TextureRegion naveBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/naveboton.png")));
 		Drawable naveBotonDrawable = new TextureRegionDrawable(naveBotonRegion);
@@ -82,7 +81,6 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 						game.setScreen(new NaveMiniGameScreen(game));
 				}
 		});
-		naveBoton.addListener(new InputBackListener());
 		stage.addActor(naveBoton);
 		
 		//retosBoton = new ImageButton(retosBotonDrawable);
