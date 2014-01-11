@@ -43,8 +43,13 @@ public class ChooseScreen extends AbstractScreen {
 		ninoBoton = new ImageButton(ninoBotonDrawable);
 		ninaBoton = new ImageButton(ninaBotonDrawable);
 		
-		ninoBoton.setPosition(Gdx.graphics.getWidth()/4 - ninoBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/2 - ninoBoton.getHeight()/2);
+		float imgWidth = Gdx.graphics.getWidth() * 0.3f;
+		float imgHeight = imgWidth;
+		ninoBoton.setSize(imgWidth, imgHeight);
+		ninaBoton.setSize(imgWidth, imgHeight);		
+		
+		ninoBoton.setX(Gdx.graphics.getWidth() / 4f - ninoBoton.getWidth() / 2f);
+		ninoBoton.setY(Gdx.graphics.getHeight() / 2f - ninoBoton.getHeight() / 2f);
 		ninoBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -68,9 +73,9 @@ public class ChooseScreen extends AbstractScreen {
 				}));
 			}
 		});
-		//float cuatrotercios= (float);
-		ninaBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - ninaBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/2 - ninaBoton.getHeight()/2);
+		
+		ninaBoton.setX(Gdx.graphics.getWidth() / (4f/3f) - ninaBoton.getWidth() / 2f);
+		ninaBoton.setY(Gdx.graphics.getHeight() / 2 - ninaBoton.getHeight() / 2f);
 		ninaBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
