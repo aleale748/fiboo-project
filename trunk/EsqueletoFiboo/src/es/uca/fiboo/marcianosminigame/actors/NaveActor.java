@@ -41,9 +41,9 @@ public class NaveActor extends Actor {
 	@Override
 	public void act(float delta) {
 		bb.x = getX();
-		bb.y = getY();
+		bb.y = getY() + getHeight()/4f;
 		bb.width = getWidth();
-		bb.height = getHeight();
+		bb.height = getHeight()/2f;
 	}
 	
 	@Override

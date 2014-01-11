@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
-import es.uca.fiboo.screens.MenuScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class WinScreen extends AbstractScreen {
 
@@ -20,7 +20,7 @@ public class WinScreen extends AbstractScreen {
 		batch.end();
 		
 		if(Gdx.input.isTouched()) {
-			game.setScreen(new MenuScreen(game));
+			game.setScreen(new MenuMiniJuegosScreen(game));
 		}
 	}
 	

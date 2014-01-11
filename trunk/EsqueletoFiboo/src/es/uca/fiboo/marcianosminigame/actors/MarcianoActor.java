@@ -24,7 +24,7 @@ public class MarcianoActor extends Actor {
 	public MarcianoActor() {
 		marciano = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/marciano.png", Texture.class));
 		setSize(marciano.getRegionWidth(), marciano.getRegionHeight());
-		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
+		bb = new Rectangle(getX(), getY() + getHeight()/3f, getWidth(),getHeight()/1.8f);
 		colocado = false;
 		this.addListener(new DragListenerPropio(this));
 	}
@@ -32,9 +32,9 @@ public class MarcianoActor extends Actor {
 	@Override
 	public void act(float delta) {
 		bb.x = getX();
-		bb.y = getY();
+		bb.y = getY() + getHeight()/3f;
 		bb.width = getWidth();
-		bb.height = getHeight();
+		bb.height = getHeight()/1.8f;
 		for (Action a : this.getActions()) 
 			a.act(delta);
 	}
