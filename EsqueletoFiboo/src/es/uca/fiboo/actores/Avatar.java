@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -23,11 +24,15 @@ public class Avatar {
 	private transient TreeMap<Tipo, Complemento> complementos;
 	private transient Texture base;
 	
-	private ArrayList<Complemento> data;	
+	private ArrayList<Complemento> data;
+	private float escala;
 	
 	public Avatar() {
 		complementos = new TreeMap<Tipo, Complemento>();
 		base = new Texture("data/complementos/base.png");
+		
+		escala = Gdx.graphics.getHeight() * 0.7f;
+		
 		initializeComplementos();
 	}
 	
@@ -61,7 +66,11 @@ public class Avatar {
 	}
 	
 	public void draw(SpriteBatch batch) {
-		batch.draw(base, 100f, 100f);
+		
+		float posX = 0;
+		float posY = (Gdx.graphics.getHeight() - escala) / 2f; 
+		
+		batch.draw(base, posX, posY, escala, escala);
 		
 		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
 			if(c.getValue() != null) {
@@ -73,10 +82,10 @@ public class Avatar {
 				case BOCA: 
 				case BIGOTE: 
 				case ACCPELO: 
-					batch.draw(c.getValue().getImagen(), 102f, 318f);
+					batch.draw(c.getValue().getImagen(), posX, posY, escala, escala);
 					break;
 				default:
-					batch.draw(c.getValue().getImagen(), 102f, 97f);
+					batch.draw(c.getValue().getImagen(), posX, posY, escala, escala);
 					break;
 				}
 			}

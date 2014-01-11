@@ -46,7 +46,13 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		
 		// Tabla para colocar los iconos
 		Table table = new Table(skin);
-		table.setPosition(700f, 390f);
+		
+		float cellHeight = Gdx.graphics.getHeight() * 0.2f;
+		float cellWidth = cellHeight;
+		float posTableX = Gdx.graphics.getWidth() / 2f + cellWidth * 1.5f;
+		float posTableY = Gdx.graphics.getHeight() / 2f;
+		
+		table.setPosition(posTableX, posTableY);
         stage.addActor(table);
         table.debug();
         
@@ -55,7 +61,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
         
         int newRow = 0;
         for(BotonCategoria b : botonesCat) {
-			table.add(b.getIcono()).width(128).height(128);
+			table.add(b.getIcono()).width(cellWidth).height(cellHeight);
 			newRow++;
 			// 3 complementos por cada fila
 			if(newRow > 2) {

@@ -34,14 +34,12 @@ public class Complemento {
 	}
 	
 	//Provisional mientras no hay Atlas.
-	// disfraz1.png -> disfraz1Mini.png
+	// disfraz1.png -> disfraz1Icon.png
 	public String getIconPath() {
 		String[] split = imagePath.split("[.]+");
-		String path = split[0] + "Mini.png";
+		String path = split[0] + "Icon.png";
 		
-		if(tipo != Tipo.OJOS && tipo != Tipo.BIGOTE && tipo != Tipo.ACCPELO && tipo != Tipo.GAFAS && tipo != Tipo.BOCA)
-			return path;
-		return imagePath;
+		return path;
 	}
 	
 	public boolean isTipo(Tipo tipo) {
