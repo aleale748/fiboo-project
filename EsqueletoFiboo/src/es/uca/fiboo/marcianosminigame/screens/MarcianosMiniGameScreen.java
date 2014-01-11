@@ -109,6 +109,16 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		else
 			if (respuesta == 2) {
 				respuesta = 1;
+				puntuacion.add(new StarActor());
+				puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+				puntuacion.get(puntuacion.size() - 1).setWidth(widthPuntuacion);
+				puntuacion.get(puntuacion.size() - 1).setHeight(heightPuntuacion);
+				stage.addActor(puntuacion.get(puntuacion.size() - 1));
+				
+				if (puntuacion.size() == 10) {
+					dispose();
+					game.setScreen(new WinScreen(game));
+				}
 				numeroMal.remove();
 				numeroSol.remove();
 				pregunta.remove();
@@ -257,16 +267,6 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 				resuelto = false;
 		}
 		if (resuelto) {
-			puntuacion.add(new StarActor());
-			puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
-			puntuacion.get(puntuacion.size() - 1).setWidth(widthPuntuacion);
-			puntuacion.get(puntuacion.size() - 1).setHeight(heightPuntuacion);
-			stage.addActor(puntuacion.get(puntuacion.size() - 1));
-			
-			if (puntuacion.size() == 10) {
-				dispose();
-				game.setScreen(new WinScreen(game));
-			}
 			
 			for (int i = 0; i < marcianos.size(); ++i) {
 				marciano = marcianos.get(i);
