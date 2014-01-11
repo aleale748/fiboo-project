@@ -28,6 +28,7 @@ public class BotonComplemento extends Image {
 	private static Stage stage;
 	
 	private Complemento complemento;
+	private float escala;
 	
 	public BotonComplemento(Tipo tipo) {
 		super(new Texture("data/complementos/vacio.png"));
@@ -37,6 +38,7 @@ public class BotonComplemento extends Image {
 	public BotonComplemento(Complemento complemento) {
 		super(new Texture(complemento.getIconPath()));
 		this.complemento = complemento;
+		this.escala = Gdx.graphics.getHeight() * 0.7f;
 		addDragListener();
 	}
 
@@ -66,25 +68,13 @@ public class BotonComplemento extends Image {
 
 		public DragComplemento() {
 			imagen = new Image(complemento.getImagen());
+			imagen.setSize(escala, escala);
 			
-			float width = imagen.getWidth();
-			float height = imagen.getHeight();
-			rImagen = new Rectangle(imagen.getImageX(), imagen.getImageY(),	width, height);
-
-			switch (complemento.getTipo()) {
-			case OJOS:
-			case PELO: 
-			case GAFAS: 
-			case MASCARA:
-			case BIGOTE: 
-			case ACCPELO: 
-			case BOCA: 
-				avatar = new Rectangle(102f, 318f, 256f, 256f);
-				break;
-			default:
-				avatar = new Rectangle(102f, 97f, 256f, 512f);
-				break;
-			}
+			float posAvatarX = 0;
+			float posAvatarY = (Gdx.graphics.getHeight() - escala) / 2f;
+			rImagen = new Rectangle(imagen.getImageX(), imagen.getImageY(),	escala, escala);
+			avatar = new Rectangle(posAvatarX, posAvatarY, escala, escala);
+	
 		}
 		
 		@Override
@@ -95,6 +85,7 @@ public class BotonComplemento extends Image {
 				float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
 
 				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
+				rImagen.setPosition(imagen.getX(), imagen.getY());
 				stage.addActor(imagen);
 			}
 			return super.touchDown(event, x, y, pointer, button);

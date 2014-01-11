@@ -3,7 +3,6 @@ package es.uca.fiboo.actores;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -70,14 +69,17 @@ public class BotonCategoria {
 		final Window popup = new Window(tipo.toString(), parent.getSkin());
 		//popup.setX(Gdx.graphics.getWidth() - 200f);
 		//popup.setY((Gdx.graphics.getHeight() - 512f) / 2f);
-
+		
+		float winHeight = Gdx.graphics.getHeight() * 0.2f;
+		float winWidth = winHeight;
+		
 		if(complementos.isEmpty()) {
 			popup.add("No tienes complementos\nde este tipo");
 		}
 		else {
 			int newRow = 0;
 			for(BotonComplemento b : complementos) {
-				popup.add(b).width(128).height(128);
+				popup.add(b).width(winWidth).height(winHeight);
 				newRow++;
 				// 2 complementos por cada fila
 				if(newRow > 1) {
@@ -86,7 +88,7 @@ public class BotonCategoria {
 				}
 			}
 		}
-		popup.add(new BotonComplemento(tipo)).width(128).height(128);
+		popup.add(new BotonComplemento(tipo)).width(winWidth).height(winHeight);
 		popup.pack();
 		
 		icono.addListener(new InputListener() {
