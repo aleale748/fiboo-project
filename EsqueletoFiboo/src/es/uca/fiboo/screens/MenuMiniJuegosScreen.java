@@ -22,6 +22,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 	private Image imgFondo;
 	public MenuMiniJuegosScreen(fibooGame game) {
 		super(game);
+		Gdx.input.setCatchBackKey(true);
 		Gdx.input.setInputProcessor(stage);
 		imgFondo = new Image(new Texture("portada/pantallamenuentrenamiento.png"));
 		imgFondo.setFillParent(true);
