@@ -12,21 +12,30 @@ public class NaveActor extends Actor {
 	
 	private TextureRegion nave;
 	public Rectangle bb;
-	private boolean colocado;
+	private boolean colocado, verificado;
 	
 	public NaveActor() {
 		nave = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/nave.png", Texture.class));
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
-		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
+		bb = new Rectangle(getX(), getY() + getHeight()/4f, getWidth(),getHeight()/2f);
 		colocado = false;
+		verificado = false;
 	}
 	
 	public void colocar() {
 		colocado = true;
 	}
 	
+	public void verificar() {
+		verificado = true;
+	}
+	
 	public boolean colocado() {
 		return colocado;
+	}
+	
+	public boolean verificado() {
+		return verificado;
 	}
 	
 	@Override
