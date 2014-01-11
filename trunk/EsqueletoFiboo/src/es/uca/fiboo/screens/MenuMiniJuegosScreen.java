@@ -78,7 +78,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + naveBoton.getClass().getSimpleName());
-						game.setScreen(new NaveMiniGameScreen(game));
+					dispose();	
+					game.setScreen(new NaveMiniGameScreen(game));
 				}
 		});
 		stage.addActor(naveBoton);
@@ -154,7 +155,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
-						game.setScreen(new InicioRobotGameScreen(game));
+				dispose();		
+				game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 		});
 		stage.addActor(atrasBoton);
