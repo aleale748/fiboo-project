@@ -125,6 +125,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	private List<ExplosionActor> explosiones;
 	
+	private List<ExplosionMalActor> explosionesMal;
+	
 	private List<MiniAsteroideActor> miniAsteroides;
 	
 	private List<MiniAsteroideVacioActor> miniAsteroidesVacios;
@@ -151,7 +153,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		Gdx.app.log(fibooGame.LOG, "Imagen de fondo a���adida");
 		
 		explosiones = new ArrayList<ExplosionActor>();
-		
+		explosionesMal = new ArrayList<ExplosionMalActor>();
 
 		Gdx.app.log(fibooGame.LOG, "Generando nave");
 		nave = new NaveActor();
@@ -392,6 +394,26 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			Gdx.app.log(fibooGame.LOG, "Generaci���n de asteroides terminada");
 		}
 		
+		if (resuelto) {
+			numeroAsteroide = (int) (Math.random() * 10) % 10;
+			for (int i = 0; i < miniAsteroides.size(); ++i) {
+				miniAsteroides.get(i).remove();
+			}
+			for (int i = 0; i < numeroAsteroide; ++i) {
+				if (i == 0) {
+					miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+				}
+				else {
+					if (i % 2 == 0)
+						miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) + miniAsteroides.get(i).getWidth()*(i/2) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+					else
+						miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) - miniAsteroides.get(i).getWidth()*((i+1)/2) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
+			
+				}
+				stage.addActor(miniAsteroides.get(i));
+			}
+			resuelto = false;
+		}
 
 		Gdx.app.log(fibooGame.LOG, "Comprobando listas de asteroides, explosiones, balas y puntuaciones");
 		comprobarListas();
@@ -424,7 +446,10 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		Gdx.app.log(fibooGame.LOG, "Redimensionamiento de los actores");
 		escala = ((float) (((Gdx.graphics.getWidth() / 4f) * 100f) / nave.getWidth()) / 100f);
-		if (((float) Gdx.graphics.getWidth() - nave.getWidth()) < 500 && ((float) Gdx.graphics.getWidth() - nave.getWidth()) > 0) {
+		if ((((float) Gdx.graphics.getWidth() - nave.getWidth()) < 500 && 
+				((float) Gdx.graphics.getWidth() - nave.getWidth()) > 0) || 
+				(((float) Gdx.graphics.getWidth() - nave.getWidth()) >= 500 && 
+				((float) Gdx.graphics.getWidth() - nave.getWidth()) > 0)) {
 			nave.setWidth(nave.getWidth() * escala);
 			nave.setHeight(nave.getHeight() * escala);
 			vidaNave.setWidth(vidaNave.getWidth() * escala);
@@ -450,6 +475,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				miniAsteroides.get(i).setHeight(miniAsteroides.get(i).getHeight()*escala);
 				miniAsteroidesVacios.get(i).setWidth(miniAsteroidesVacios.get(i).getWidth()*escala);
 				miniAsteroidesVacios.get(i).setHeight(miniAsteroidesVacios.get(i).getHeight()*escala);
+				miniAsteroidesVacios.get(i).toFront();
+				miniAsteroides.get(i).toFront();
 				if (i == 0) {
 					miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * escala * 4 + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
 				}
@@ -460,105 +487,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 - miniAsteroidesVacios.get(i).getWidth()*((i+1)/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
 			
 				}
-			}
-			widthBullets = widthBullets * escala;
-			heightBullets = heightBullets * escala;
-			for (int i = 0; i < bullets.size(); ++i) {
-				bullets.get(i).setWidth(widthBullets);
-				bullets.get(i).setHeight(heightBullets);
-			}
-			widthAsteroides = widthAsteroides * escala;
-			heightAsteroides = heightAsteroides * escala;
-			for (int i = 0; i < asteroides.size(); ++i) {
-				asteroides.get(i).setWidth(widthAsteroides);
-				asteroides.get(i).setHeight(heightAsteroides);
-				asteroides.get(i).setX(asteroides.get(i).getX() * escala);
-				asteroides.get(i).setY(asteroides.get(i).getY() * escala);
-			}
-			widthExplosiones = widthExplosiones * escala;
-			heightExplosiones = heightExplosiones * escala;
-			widthPuntuacion = widthPuntuacion * escala;
-			heightPuntuacion = heightPuntuacion * escala;
-			for (int i = 0; i < puntuacion.size(); ++i) {
-				puntuacion.get(i).setWidth(widthPuntuacion);
-				puntuacion.get(i).setHeight(heightPuntuacion);
-			}
-			for (int i = 0; i < puntuacionVacia.size(); ++i) {
-				puntuacionVacia.get(i).setWidth(widthPuntuacion);
-				puntuacionVacia.get(i).setHeight(heightPuntuacion);
-			}
-		}
-		else if (((float) Gdx.graphics.getWidth() - nave.getWidth()) >= 500 && ((float) Gdx.graphics.getWidth() - nave.getWidth()) > 0) {
-			nave.setWidth(nave.getWidth() * escala);
-			nave.setHeight(nave.getHeight() * escala);
-			vidaNave.setWidth(vidaNave.getWidth() * escala);
-			vidaNave.setHeight(vidaNave.getHeight() * escala);
-			vidaEscudo.setWidth(vidaEscudo.getWidth() * escala);
-			vidaEscudo.setHeight(vidaEscudo.getHeight() * escala);
-			barraNave.setWidth(barraNave.getWidth() * escala);
-			barraNave.setHeight(barraNave.getHeight() * escala);
-			barraEscudo.setWidth(barraEscudo.getWidth() * escala);
-			barraEscudo.setHeight(barraEscudo.getHeight() * escala);
-			/*numeroX.setWidth(numeroX.getWidth() * escala);
-			numeroX.setHeight(numeroX.getHeight() * escala);
-			numeroY.setWidth(numeroY.getWidth() * escala);
-			numeroY.setHeight(numeroY.getHeight() * escala);
-			operador.setWidth(operador.getWidth() * escala);
-			operador.setHeight(operador.getHeight() * escala);*/
-			padShoot.setWidth(padShoot.getWidth() * escala);
-			padShoot.setHeight(padShoot.getHeight() * escala);
-			for (int i = 0; i < 9; ++i) {
-				miniAsteroides.get(i).setWidth(miniAsteroides.get(i).getWidth()*escala);
-				miniAsteroides.get(i).setHeight(miniAsteroides.get(i).getHeight()*escala);
-				miniAsteroidesVacios.get(i).setWidth(miniAsteroidesVacios.get(i).getWidth()*escala);
-				miniAsteroidesVacios.get(i).setHeight(miniAsteroidesVacios.get(i).getHeight()*escala);
-				if (i == 0) {
-					miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * escala * 4 + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
-				}
-				else {
-					if (i % 2 == 0)
-						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 + miniAsteroidesVacios.get(i).getWidth()*(i/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
-					else
-						miniAsteroidesVacios.get(i).setPosition(miniAsteroidesVacios.get(i).getWidth() * 4 - miniAsteroidesVacios.get(i).getWidth()*((i+1)/2) + miniAsteroidesVacios.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
-			
-				}
-			}
-			widthBullets = widthBullets * escala;
-			heightBullets = heightBullets * escala;
-			for (int i = 0; i < bullets.size(); ++i) {
-				bullets.get(i).setWidth(widthBullets);
-				bullets.get(i).setHeight(heightBullets);
-			}
-			widthAsteroides = widthAsteroides * escala;
-			heightAsteroides = heightAsteroides * escala;
-			for (int i = 0; i < asteroides.size(); ++i) {
-				asteroides.get(i).setWidth(widthAsteroides);
-				asteroides.get(i).setHeight(heightAsteroides);
-				asteroides.get(i).setX(asteroides.get(i).getX() * escala);
-				asteroides.get(i).setY(asteroides.get(i).getY() * escala);
-			}
-			widthExplosiones = widthExplosiones * escala;
-			heightExplosiones = heightExplosiones * escala;
-			widthPuntuacion = widthPuntuacion * escala;
-			heightPuntuacion = heightPuntuacion * escala;
-			for (int i = 0; i < puntuacion.size(); ++i) {
-				puntuacion.get(i).setWidth(widthPuntuacion);
-				puntuacion.get(i).setHeight(heightPuntuacion);
-			}
-			for (int i = 0; i < puntuacionVacia.size(); ++i) {
-				puntuacionVacia.get(i).setWidth(widthPuntuacion);
-				puntuacionVacia.get(i).setHeight(heightPuntuacion);
-			}
-		}
-		
-		Gdx.app.log(fibooGame.LOG, "Redimensionamiento de los actores terminado");
-		
-		if (resuelto) {
-			numeroAsteroide = (int) (Math.random() * 10) % 10;
-			for (int i = 0; i < 9; ++i) {
-				miniAsteroides.get(i).remove();
-			}
-			for (int i = 0; i < numeroAsteroide; ++i) {
 				if (i == 0) {
 					miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
 				}
@@ -569,10 +497,38 @@ public class NaveMiniGameScreen extends AbstractScreen {
 						miniAsteroides.get(i).setPosition(miniAsteroides.get(i).getWidth() * (float) Math.floor(numeroAsteroide/2f) - miniAsteroides.get(i).getWidth()*((i+1)/2) + miniAsteroides.get(i).getWidth()*0.07f, Gdx.graphics.getHeight()*0.81f);
 			
 				}
-				stage.addActor(miniAsteroides.get(i));
 			}
-			resuelto = false;
+			widthBullets = widthBullets * escala;
+			heightBullets = heightBullets * escala;
+			for (int i = 0; i < bullets.size(); ++i) {
+				bullets.get(i).setWidth(widthBullets);
+				bullets.get(i).setHeight(heightBullets);
+			}
+			widthAsteroides = widthAsteroides * escala;
+			heightAsteroides = heightAsteroides * escala;
+			for (int i = 0; i < asteroides.size(); ++i) {
+				asteroides.get(i).setWidth(widthAsteroides);
+				asteroides.get(i).setHeight(heightAsteroides);
+				asteroides.get(i).setX(asteroides.get(i).getX() * escala);
+				asteroides.get(i).setY(asteroides.get(i).getY() * escala);
+			}
+			widthExplosiones = widthExplosiones * escala;
+			heightExplosiones = heightExplosiones * escala;
+			widthPuntuacion = widthPuntuacion * escala;
+			heightPuntuacion = heightPuntuacion * escala;
+			for (int i = 0; i < puntuacionVacia.size(); ++i) {
+				puntuacionVacia.get(i).setWidth(widthPuntuacion);
+				puntuacionVacia.get(i).setHeight(heightPuntuacion);
+				puntuacionVacia.get(i).toFront();
+			}
+			for (int i = 0; i < puntuacion.size(); ++i) {
+				puntuacion.get(i).setWidth(widthPuntuacion);
+				puntuacion.get(i).setHeight(heightPuntuacion);
+				puntuacion.get(i).toFront();
+			}
 		}
+		
+		Gdx.app.log(fibooGame.LOG, "Redimensionamiento de los actores terminado");
 		
 		stage.draw();
 	}
@@ -586,21 +542,28 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		for(int i = 0; i < asteroides.size(); i++) {
 			if (asteroides.get(i).getRight() < widthAsteroides*0.9f) {
 				asteroide = asteroides.get(i);
-				explosiones.add(new ExplosionActor());
-				explosiones.get(explosiones.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
-				explosiones.get(explosiones.size()-1).setWidth(widthExplosiones);
-				explosiones.get(explosiones.size()-1).setHeight(heightExplosiones);
-				stage.addActor(explosiones.get(explosiones.size()-1));
 				fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class).play();
-				asteroides.get(i).remove();
-				asteroides.remove(i);
 				if (escudo.getHealth() > 0.4f) {
 					//if(asteroide.getNumero() == (numeroX.a + numeroY.b)) {
 					if(asteroide.getNumero() == numeroAsteroide) {
 						Gdx.app.log(fibooGame.LOG, "Colisi���n de asteroide con escudo soluci���n producida");
+						explosionesMal.add(new ExplosionMalActor());
+						explosionesMal.get(explosionesMal.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
+						explosionesMal.get(explosionesMal.size()-1).setWidth(widthExplosiones);
+						explosionesMal.get(explosionesMal.size()-1).setHeight(heightExplosiones);
+						stage.addActor(explosionesMal.get(explosionesMal.size()-1));
 						escudo.sumHealth(-0.4f);
-						fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
 					}
+					else {
+						explosiones.add(new ExplosionActor());
+						explosiones.get(explosiones.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
+						explosiones.get(explosiones.size()-1).setWidth(widthExplosiones);
+						explosiones.get(explosiones.size()-1).setHeight(heightExplosiones);
+						stage.addActor(explosiones.get(explosiones.size()-1));
+					}
+					asteroides.get(i).remove();
+					asteroides.remove(i);
+					fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
 				} else  {
 					Gdx.app.log(fibooGame.LOG, "Escudo debilitado. Partida terminada.");
 					dispose();
@@ -643,6 +606,13 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			}
 		}
 		
+		for(int i = 0; i < explosionesMal.size(); ++i) {
+			if (explosionesMal.get(i).explosionAnimation.isAnimationFinished(explosionesMal.get(i).stateTime)) {
+				explosionesMal.get(i).remove();
+				explosionesMal.remove(i);
+			}
+		}
+		
 		Gdx.app.log(fibooGame.LOG, "Limpieza de explosiones terminadas");
 		
 	}
@@ -654,11 +624,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			asteroide = asteroides.get(i);
 			if (asteroide.bb.overlaps(nave.bb)) {
 				Gdx.app.log(fibooGame.LOG, "Colisi���n nave-asteroide producida");
-				explosiones.add(new ExplosionActor());
-				explosiones.get(explosiones.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
-				explosiones.get(explosiones.size()-1).setWidth(widthExplosiones);
-				explosiones.get(explosiones.size()-1).setHeight(heightExplosiones);
-				stage.addActor(explosiones.get(explosiones.size()-1));
+				explosionesMal.add(new ExplosionMalActor());
+				explosionesMal.get(explosionesMal.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
+				explosionesMal.get(explosionesMal.size()-1).setWidth(widthExplosiones);
+				explosionesMal.get(explosionesMal.size()-1).setHeight(heightExplosiones);
+				stage.addActor(explosionesMal.get(explosionesMal.size()-1));
 				asteroides.get(i).remove();
 				asteroides.remove(i);
 				nave.sumHealth(-0.4f);
@@ -698,11 +668,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							Gdx.app.log(fibooGame.LOG, "Asteroide err���neo destruido");
 							nave.sumHealth(-0.2f);
 							fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
-							explosiones.add(new ExplosionActor());
-							explosiones.get(explosiones.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
-							explosiones.get(explosiones.size()-1).setWidth(widthExplosiones);
-							explosiones.get(explosiones.size()-1).setHeight(heightExplosiones);
-							stage.addActor(explosiones.get(explosiones.size()-1));
+							explosionesMal.add(new ExplosionMalActor());
+							explosionesMal.get(explosionesMal.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
+							explosionesMal.get(explosionesMal.size()-1).setWidth(widthExplosiones);
+							explosionesMal.get(explosionesMal.size()-1).setHeight(heightExplosiones);
+							stage.addActor(explosionesMal.get(explosionesMal.size()-1));
 							if (nave.getHealth() <= 0) {
 								dispose();
 								game.setScreen(new GameOverScreen(game));
