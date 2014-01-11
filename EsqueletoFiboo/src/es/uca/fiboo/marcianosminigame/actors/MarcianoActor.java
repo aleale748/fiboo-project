@@ -43,6 +43,10 @@ public class MarcianoActor extends Actor {
 		colocado = true;
 	}
 	
+	public boolean colocado() {
+		return colocado;
+	}
+	
 	public void donde(NaveActor nave) {
 		this.nave = nave;
 	}
