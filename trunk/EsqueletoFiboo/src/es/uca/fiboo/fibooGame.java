@@ -43,7 +43,8 @@ public class fibooGame extends Game {
                         MANAGER.load("marcianosminigame/bien.png", Texture.class);
                         MANAGER.load("marcianosminigame/nave.png", Texture.class);
                         MANAGER.load("marcianosminigame/marciano.png", Texture.class);
-                        MANAGER.load("cameraminigame/cesped2.png", Texture.class);
+                        MANAGER.load("robotgame/marciano_.png", Texture.class);
+                		MANAGER.load("cameraminigame/0.png", Texture.class);
                 		MANAGER.load("cameraminigame/0.png", Texture.class);
                 		MANAGER.load("cameraminigame/1.png", Texture.class);
                 		MANAGER.load("cameraminigame/2.png", Texture.class);
