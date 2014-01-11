@@ -82,6 +82,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 						game.setScreen(new NaveMiniGameScreen(game));
 				}
 		});
+		naveBoton.addListener(new InputBackListener());
 		stage.addActor(naveBoton);
 		
 		//retosBoton = new ImageButton(retosBotonDrawable);
