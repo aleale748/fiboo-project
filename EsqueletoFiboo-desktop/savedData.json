@@ -7,14 +7,14 @@ avatar: {
 			tipo: PELO
 		},
 		{
-			imagePath: data/complementos/bigote1.png,
+			imagePath: data/complementos/ojos2.png,
 			disponible: true,
-			tipo: BIGOTE
+			tipo: OJOS
 		},
 		{
-			imagePath: data/complementos/boca2.png,
+			imagePath: data/complementos/gafas1.png,
 			disponible: true,
-			tipo: BOCA
+			tipo: GAFAS
 		}
 	]
 }

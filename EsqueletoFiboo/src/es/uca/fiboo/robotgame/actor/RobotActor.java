@@ -10,19 +10,27 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class RobotActor extends Actor {
 
-	private TextureRegion robot;
+	//private TextureRegion robot;
 	
 	
 	public Rectangle robotRect;
 	
 	public Vector2 velocidad = new Vector2(0, 0);
-	
+	private TextureRegion[] robot;
 	public int puntos;
-	
+	private float positionX;
+	private int direccion;
+	private int cont;
 	public RobotActor() {
-		robot = new TextureRegion(new Texture("robotgame/robotfrente.png"));
+		robot= new TextureRegion[3];
+		robot[0] = new TextureRegion(new Texture("robotgame/robotfrente.png"));
+		robot[1] = new TextureRegion(new Texture("robotgame/robotderecha.png"));
+		robot[2] = new TextureRegion(new Texture("robotgame/robotizquierda.png"));
+		direccion= 0;
+		cont= 0;
 		setSize(Gdx.graphics.getWidth()*0.2f, Gdx.graphics.getWidth()*0.25f);
 		robotRect = new Rectangle(getX(), getY(), getWidth(),getHeight());
+		positionX= getX();
 	}
 	
 	@Override
@@ -51,9 +59,23 @@ public class RobotActor extends Actor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(robot, getX(), getY(), getOriginX(), getOriginY(), 
+		int i= direccion();
+		
+		batch.draw(robot[i], getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
 	}
-	
+	private int direccion(){
+		if(getX()>positionX) direccion= 1; 
+		else if(getX()<positionX) direccion= 2;
+		else {
+			if (cont>20){
+			direccion= 0;
+			cont=0;
+			}
+			cont++;
+		}
+		positionX= getX();
+		return direccion;
+	}
 }

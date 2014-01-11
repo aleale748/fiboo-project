@@ -27,6 +27,7 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
+import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.robotgame.actor.DropObject;
 import es.uca.fiboo.robotgame.actor.RobotActor;
  
@@ -46,19 +47,19 @@ public class RobotGameScreen extends AbstractScreen{
 	Rectangle hucha;
 	Array<DropObject> raindrops;
 	long lastDropTime;
-	int planetsGathered;
-	int moonsGathered;
-	int starsGathered;
-	int ufosGathered;
+	int objetosGathered;
 	SpriteBatch batch;
 	BitmapFont font;
 	BitmapFont font2;
 	float timer;
 	float aleatorio1, aleatorio2;
 	int rand;
+	int objeto;
 	int ultima_posicion;
 	private ImageButton atrasBoton;
-	private int numlunas, numplanetas, numestrellas;
+	private ImageButton pantallaAyuda;
+	private int numobjetos;
+	private Numeros numeros;
 	public RobotGameScreen(fibooGame game){
 		super(game);
 		Gdx.input.setInputProcessor(stage);
@@ -83,15 +84,15 @@ public class RobotGameScreen extends AbstractScreen{
 		 
 				// create a Rectangle to logically represent the bucket
 				
-				numlunas= 10; 
-				numplanetas= 10; 
-				numestrellas= 10;
+				numobjetos= 10;
+				objeto= MathUtils.random(0, 3);
 				// create the raindrops array and spawn the first raindrop
 				raindrops = new Array<DropObject>();
 				batch = new SpriteBatch();
 				// Use LibGDX's default Arial font.
 				font = new BitmapFont();
 				font2 = new BitmapFont();
+				numeros= new Numeros();
 				spawnRaindrop();
 				
 	}
@@ -216,7 +217,6 @@ public class RobotGameScreen extends AbstractScreen{
 				}
 		});
 		stage.addActor(atrasBoton);
-		
 	}
 	
 	
@@ -228,11 +228,16 @@ public class RobotGameScreen extends AbstractScreen{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act();
 		stage.draw();
+		pause();
 		batch.begin();
-		font.draw(batch, numplanetas +" Planetas " + planetsGathered, 0,Gdx.graphics.getHeight()-10);
-		font2.draw(batch, numestrellas +" Estrellas " + starsGathered, 200,Gdx.graphics.getHeight()-10);
-		font.draw(batch, numlunas +" Lunas " + moonsGathered,400,Gdx.graphics.getHeight()-10);
-		font2.draw(batch, "UFO's: " + ufosGathered, 600,Gdx.graphics.getHeight()-10);
+		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f-numeros.rojos(numobjetos).getRegionWidth()/2,Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionHeight()/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);	
+		if(objeto==1)
+			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionWidth()/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+		if(objeto==2)
+			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionWidth()/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+		if(objeto==3)
+			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionWidth()/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f+Gdx.graphics.getWidth()*0.06f,Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionHeight()/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
 		rand = MathUtils.random(0, 1);
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
@@ -249,7 +254,9 @@ public class RobotGameScreen extends AbstractScreen{
 		}
 	
 		}
+		
 		batch.end();
+		
 		timer -= delta;
 		if (TimeUtils.nanoTime() - lastDropTime > 1500000000)
 			spawnRaindrop();
@@ -262,23 +269,29 @@ public class RobotGameScreen extends AbstractScreen{
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){
-				case PLANETA: planetsGathered++;numplanetas--;
+				case PLANETA: if(objeto == 1){objetosGathered++;numobjetos--;}
 					dropSound.play();break;
-				case ESTRELLA: starsGathered++;numestrellas--;
+				case ESTRELLA: if(objeto == 2){objetosGathered++;numobjetos--;}
 					dropSound.play();break;
-				case LUNA: moonsGathered++;numlunas--;
+				case LUNA: if(objeto == 3){objetosGathered++;numobjetos--;}
 					dropSound.play();break;
-				case MARCIANO: ufosGathered++;
-					planetsGathered=0;numplanetas= 10;
-					moonsGathered=0;numlunas= 10;
-					starsGathered=0;numestrellas= 10;
+				case MARCIANO:
+					objetosGathered=0;numobjetos= 10;
 					failSound.play();
 					break;
 				default:
 					break;
 				}
+				if(numobjetos==0){
+					game.setScreen(new WinScreen(game));
+				}
 				dropSound.play();
+				try{
 				iter.remove();
+				}
+				catch(NullPointerException e){
+					Gdx.app.log(fibooGame.LOG, "iter null");
+				}
 			}
 		}
 	}	
@@ -305,4 +318,34 @@ public class RobotGameScreen extends AbstractScreen{
 		rainMusic.dispose();
 	}
  
+	private class Numeros{
+		private static final int FRAME_COLS= 11;
+		Texture numrojos;
+		Texture numverdes;
+		TextureRegion[] numerosrojos;
+		TextureRegion[] numerosverdes;
+		//SpriteBatch spriteBatch;
+		public Numeros(){
+			numrojos= new Texture(Gdx.files.internal("robotgame/numerosrojos.png"));  
+			numverdes= new Texture(Gdx.files.internal("robotgame/numerosverdes.png"));  
+			TextureRegion[][] tmp1 = TextureRegion.split(numrojos, numrojos.getWidth() / FRAME_COLS, numrojos.getHeight());                                // #10
+			TextureRegion[][] tmp2 = TextureRegion.split(numverdes, numverdes.getWidth() / FRAME_COLS, numverdes.getHeight()); 
+			numerosrojos = new TextureRegion[FRAME_COLS];
+			numerosverdes = new TextureRegion[FRAME_COLS];
+			int index = 0;
+			for (int i = 0; i < FRAME_COLS; i++) {
+				numerosrojos[index] = tmp1[0][i];
+				numerosverdes[index++] = tmp2[0][i];
+				}
+			//spriteBatch = new SpriteBatch();                                // #12 
+		}
+		public TextureRegion rojos(int n){
+			return numerosrojos[n];
+		}
+		public TextureRegion verdes(int n){
+			return numerosverdes[n];
+		}
+		
+		
+	 }
 }
