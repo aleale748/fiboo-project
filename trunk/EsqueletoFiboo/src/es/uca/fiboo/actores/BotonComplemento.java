@@ -36,7 +36,7 @@ public class BotonComplemento extends Image {
 	}
 	
 	public BotonComplemento(Complemento complemento) {
-		super(new Texture(complemento.getIconPath()));
+		super(complemento.getIcon());
 		this.complemento = complemento;
 		this.escala = Gdx.graphics.getHeight() * 0.7f;
 		addDragListener();

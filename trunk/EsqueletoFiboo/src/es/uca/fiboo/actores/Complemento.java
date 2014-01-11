@@ -36,11 +36,13 @@ public class Complemento {
 	
 	//Provisional mientras no hay Atlas.
 	// disfraz1.png -> disfraz1Icon.png
-	public String getIconPath() {
+	public Texture getIcon() {
 		String[] split = imagePath.split("[.]+");
 		String path = split[0] + "Icon.png";
 		
-		return path;
+		Texture icono = new Texture(path);
+		icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		return icono;
 	}
 	
 	public boolean isTipo(Tipo tipo) {
