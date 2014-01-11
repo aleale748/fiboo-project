@@ -62,7 +62,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 				Gdx.app.log(fibooGame.LOG, "Buclesito.");
 				if (contadorBien == 0) {
 					stage.addActor(bien);
-					Gdx.app.log(fibooGame.LOG, "Bien añadido.");
+					Gdx.app.log(fibooGame.LOG, "Bien aï¿½adido.");
 				}
 				if (contadorBien < 8) {
 					bien.setWidth(bien.getWidth()*1.06f);
@@ -98,7 +98,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 					numeroMarcianos.remove();
 				}
 				
-				Gdx.app.log(fibooGame.LOG, "Generando número de naves y de marcianos.");
+				Gdx.app.log(fibooGame.LOG, "Generando nï¿½mero de naves y de marcianos.");
 				numNaves = (int) (Math.random() * 5) % 5 + 1;
 				numMarcianos = numNaves + (int) (Math.random() * (9 - numNaves)) % (9 - numNaves) + 1;
 				numeroMarcianosInt = numMarcianos;
@@ -110,7 +110,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 				stage.addActor(numeroNaves);
 				stage.addActor(numeroMarcianos);
 				
-				Gdx.app.log(fibooGame.LOG, "Número de naves y de marcianos generado: " + numNaves + " naves y " + numMarcianos + " marcianos.");
+				Gdx.app.log(fibooGame.LOG, "Nï¿½mero de naves y de marcianos generado: " + numNaves + " naves y " + numMarcianos + " marcianos.");
 				
 				Gdx.app.log(fibooGame.LOG, "Generando naves.");
 				if (numNaves%2 == 0) {
@@ -172,39 +172,25 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	private void comprobarOverlaps() {
 		velocidadX = Gdx.graphics.getWidth()/500f;
 		velocidadY = Gdx.graphics.getWidth()/500f;
-		for (int j = 0; j < marcianos.size(); ++j) {
-			marciano = marcianos.get(j);
-			for (int i = 0; i < naves.size(); ++i) {
-				nave = naves.get(i);
-				if (!nave.colocado() && marciano.bb.overlaps(nave.bb)) {
-					if (nave.getX() < marciano.getX())
-						velocidadX = - velocidadX;
-					if (nave.getY() < marciano.getY())
-						velocidadY = - velocidadY;
-					marciano.translate(velocidadX, velocidadY);
-					if ((Math.abs(nave.getX()/Gdx.graphics.getWidth() - marciano.getX()/Gdx.graphics.getWidth()) < 0.02) && 
-							(Math.abs(nave.getY()/Gdx.graphics.getHeight() - marciano.getY()/Gdx.graphics.getHeight()) < 0.02)) {
-						marciano.translate(0, 0);
-						marciano.setPosition(nave.getX(), nave.getY());
-						marciano.colocar();
-						nave.colocar();
-						numeroMarcianosInt--;
-						numeroMarcianos.remove();
-						numeroMarcianos = new NumeroActor(numeroMarcianosInt);
-						numeroMarcianos.setPosition(Gdx.graphics.getWidth() * 0.225f, Gdx.graphics.getHeight() * 0.8f);
-						stage.addActor(numeroMarcianos);
-						mostrarBien = true;
-					}
-					else {
-						if (Math.abs(nave.getX()/Gdx.graphics.getWidth() - marciano.getX()/Gdx.graphics.getWidth()) < 0.05)
-							marciano.translate(0, velocidadY);
-						if (Math.abs(nave.getY()/Gdx.graphics.getHeight() - marciano.getY()/Gdx.graphics.getHeight()) < 0.05)
-							marciano.translate(velocidadX, 0);
-					}
-					//marciano.setPosition(nave.getX(), nave.getY());
-				}
+
+		for (int i = 0; i < naves.size(); ++i) {
+			nave = naves.get(i);
+			if (nave.colocado() && !nave.verificado()) {
+				nave.verificar();
+				numeroMarcianosInt--;
+				numeroMarcianos.remove();
+				numeroMarcianos = new NumeroActor(numeroMarcianosInt);
+				numeroMarcianos.setPosition(Gdx.graphics.getWidth() * 0.225f, Gdx.graphics.getHeight() * 0.8f);
+				stage.addActor(numeroMarcianos);
+				mostrarBien = true;
+			}
+			for (int j = 0; j < marcianos.size(); ++j) {
+				marciano = marcianos.get(j);
+					if (nave.bb.overlaps(marciano.bb))
+							marciano.donde(nave);
 			}
 		}
+		
 		resuelto = true;
 		for (int i = 0; i < naves.size(); ++i) {
 			if (!naves.get(i).colocado())
