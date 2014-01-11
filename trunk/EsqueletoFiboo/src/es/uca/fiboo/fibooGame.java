@@ -38,6 +38,8 @@ public class fibooGame extends Game {
                 @SuppressWarnings("unchecked")
                 @Override
                 public void create() {
+
+            		Gdx.input.setCatchBackKey(true);
                     //Cargamos las im���genes en el manager
                 		Gdx.app.log(fibooGame.LOG, "Creating game");
                         MANAGER.load("marcianosminigame/bien.png", Texture.class);

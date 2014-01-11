@@ -5,6 +5,9 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -29,7 +32,6 @@ public class MainScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		
 		TextureRegion fondoRegion = new TextureRegion(new Texture("data/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
 		
@@ -46,7 +48,7 @@ public class MainScreen extends AbstractScreen {
 					@Override
 					public boolean act(float delta) {
 						// La ??ltima acci??n mover?? hacia pantalla de inicio
-						game.setScreen(new MarcianosMiniGameScreen(game));
+						game.setScreen(new StartScreen(game));
 						return true;
 					}
 		}));

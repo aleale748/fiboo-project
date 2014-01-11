@@ -6,7 +6,10 @@ import java.util.List;
 import javax.xml.bind.Marshaller.Listener;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -20,6 +23,7 @@ import es.uca.fiboo.marcianosminigame.actors.*;
 import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class MarcianosMiniGameScreen extends AbstractScreen {
 
@@ -48,7 +52,19 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		
 		Gdx.app.log(fibooGame.LOG, "Comienzo de show.");
 		
-		Gdx.input.setInputProcessor(stage);
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK){
+						dispose();
+						game.setScreen(new MenuMiniJuegosScreen(game));
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		
 		resuelto = true;
 		marcianos = new ArrayList<MarcianoActor>();
 		naves = new ArrayList<NaveActor>();

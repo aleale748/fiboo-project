@@ -1,6 +1,9 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -19,7 +22,6 @@ public class MenuScreen extends AbstractScreen {
 	private Image imgFondo;
 	public MenuScreen(fibooGame game) {
 		super(game);
-		Gdx.input.setInputProcessor(stage);
 		imgFondo = new Image(new Texture("portada/pantallamenuprincipal.png"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
@@ -28,6 +30,19 @@ public class MenuScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
+		
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK){
+						Gdx.app.exit();
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
+		
 		
 		// Cargamos imagenes de botones
 		TextureRegion entrenarBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/botonentrenamiento.png")));

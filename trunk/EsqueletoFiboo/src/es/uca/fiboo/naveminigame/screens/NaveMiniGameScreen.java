@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
@@ -135,14 +138,25 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
-
+		
 		Gdx.app.log(fibooGame.LOG, "Comienza Minijuego de destruir asteroides");
 		asteroides = new ArrayList<AsteroideActor>();
 		bullets = new ArrayList<BulletActor>();
 		miniAsteroides = new ArrayList<MiniAsteroideActor>();
 		miniAsteroidesVacios = new ArrayList<MiniAsteroideVacioActor>();
 
-		Gdx.input.setInputProcessor(stage);
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK){
+					dispose();
+					game.setScreen(new MenuMiniJuegosScreen(game));
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		Gdx.app.log(fibooGame.LOG, "Cargando imagen de fondo y a���adiendola al escenario");
 		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));

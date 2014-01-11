@@ -4,6 +4,9 @@ package es.uca.fiboo.robotgame.screens;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
@@ -23,10 +26,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
-
+import es.uca.fiboo.screens.MenuScreen;
 import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.robotgame.actor.DropObject;
 import es.uca.fiboo.robotgame.actor.RobotActor;
@@ -62,7 +66,6 @@ public class RobotGameScreen extends AbstractScreen{
 	private Numeros numeros;
 	public RobotGameScreen(fibooGame game){
 		super(game);
-		Gdx.input.setInputProcessor(stage);
 		// load the images for the droplet and the bucket, 64x64 pixels each
 				planetaImage = new Texture(Gdx.files.internal("robotgame/planeta_.png"));
 				//huchaImage = new Image(new Texture(Gdx.files.internal("hucha.png")));
@@ -170,8 +173,18 @@ public class RobotGameScreen extends AbstractScreen{
 */
 	@Override
 	public void show() {
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK){
+					dispose();
+					game.setScreen(new MenuMiniJuegosScreen(game));
+				}
+				return false;
+			}
+		}, stage);
 		
-		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		Image imgFondo = new Image(new Texture("robotgame/fondonave.png"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);

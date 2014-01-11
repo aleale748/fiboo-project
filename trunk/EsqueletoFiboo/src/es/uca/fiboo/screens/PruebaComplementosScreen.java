@@ -5,6 +5,9 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -34,7 +37,17 @@ public class PruebaComplementosScreen extends AbstractScreen {
 	
 	public PruebaComplementosScreen(final fibooGame game) {
 		super(game);
-		Gdx.input.setInputProcessor(stage);
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK){
+					game.setScreen(new MenuScreen(game));
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		// Para probar que se carga bien el skin con todos los ficheros
 		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
