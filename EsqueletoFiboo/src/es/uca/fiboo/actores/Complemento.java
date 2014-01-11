@@ -1,6 +1,7 @@
 package es.uca.fiboo.actores;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 /**
  * El complemento guarda la imagen de este y su disponibilidad, 
@@ -52,6 +53,7 @@ public class Complemento {
 	public Texture getImagen() {
 		if(imagen == null) {
 			imagen = new Texture(imagePath);
+			imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return imagen;
 	}
