@@ -15,7 +15,7 @@ import es.uca.fiboo.robotgame.screens.RobotGameScreen;
 
 public class InicioRobotGameScreen extends AbstractScreen {
 
-	private ImageButton pantallaAyuda;
+	private Image pantallaAyuda;
 	private Image imgFondo;
 	public InicioRobotGameScreen(fibooGame game) {
 		super(game);
@@ -28,12 +28,12 @@ public class InicioRobotGameScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		TextureRegion pantallaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("robotgame/pantallaayuda.png")));
+		TextureRegion pantallaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("robotgame/pantallainicio.png")));
 		Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
-		pantallaAyuda = new ImageButton(pantallaBotonDrawable);
-		pantallaAyuda.setSize(Gdx.graphics.getWidth()*0.90f, Gdx.graphics.getHeight()*0.90f);
+		pantallaAyuda = new Image(pantallaBotonDrawable);
+		pantallaAyuda.setSize(Gdx.graphics.getWidth()*0.98f,Gdx.graphics.getWidth()*0.98f);
 		pantallaAyuda.setPosition(Gdx.graphics.getWidth()/2 - pantallaAyuda.getWidth()/2, 
                 Gdx.graphics.getHeight()/2 - pantallaAyuda.getHeight()/2);
 		pantallaAyuda.addListener(new InputListener() {
