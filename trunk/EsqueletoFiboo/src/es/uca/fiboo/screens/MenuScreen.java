@@ -22,6 +22,7 @@ public class MenuScreen extends AbstractScreen {
 	private Image imgFondo;
 	public MenuScreen(fibooGame game) {
 		super(game);
+		Gdx.input.setCatchBackKey(true);
 		imgFondo = new Image(new Texture("portada/pantallamenuprincipal.png"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
