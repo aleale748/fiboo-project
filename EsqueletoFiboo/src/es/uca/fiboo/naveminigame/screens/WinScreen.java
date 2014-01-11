@@ -13,14 +13,19 @@ public class WinScreen extends AbstractScreen {
 		super(game);
 	}
 
+	private float time;
+	
 	@Override
 	public void render(float delta) {
+		time += 0.05f;
 		batch.begin();
 		batch.draw(win, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
 		
-		if(Gdx.input.isTouched()) {
-			game.setScreen(new MenuMiniJuegosScreen(game));
+		if (time > 5f) {
+			if(Gdx.input.isTouched()) {
+				game.setScreen(new MenuMiniJuegosScreen(game));
+			}
 		}
 	}
 	
@@ -28,6 +33,7 @@ public class WinScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
+		time = 0;
 		win = fibooGame.MANAGER.get("naveminigame/older/win.png", Texture.class);
 	}
 
