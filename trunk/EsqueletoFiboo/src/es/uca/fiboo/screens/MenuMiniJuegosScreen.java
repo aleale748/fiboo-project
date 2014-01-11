@@ -1,6 +1,8 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -27,6 +29,18 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		imgFondo = new Image(new Texture("portada/pantallamenuentrenamiento.png"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+	}
+	
+	private final class InputBackListener extends InputListener {
+		@Override
+		public boolean keyDown(InputEvent event, int keycode) {
+			if(keycode == Keys.BACK) {
+				game.setScreen(new MenuScreen(game));
+				return true;
+			}
+			else
+				return false;
+		}
 	}
 	
 	@Override
