@@ -42,7 +42,8 @@ public class MenuScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		
+		float imgWidth = Gdx.graphics.getWidth() * 0.3f;
+		float imgHeight = imgWidth;
 		
 		// Cargamos imagenes de botones
 		TextureRegion entrenarBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/botonentrenamiento.png")));
@@ -56,6 +57,7 @@ public class MenuScreen extends AbstractScreen {
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		entrenarBoton = new ImageButton(entrenarBotonDrawable);
+		entrenarBoton.setSize(imgWidth, imgHeight);
 		entrenarBoton.setPosition(Gdx.graphics.getWidth()/4 - entrenarBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/2 - entrenarBoton.getHeight()/2);
 		entrenarBoton.addListener(new InputListener() {
@@ -78,6 +80,7 @@ public class MenuScreen extends AbstractScreen {
 		//stage.addActor(retosBoton);
 		
 		personalizarBoton = new ImageButton(personalizarBotonDrawable);
+		personalizarBoton.setSize(imgWidth, imgHeight);
 		personalizarBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - personalizarBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/2 - personalizarBoton.getHeight()/2);
 		personalizarBoton.addListener(new InputListener() {

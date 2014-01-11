@@ -46,6 +46,9 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
+		float imgWidth = Gdx.graphics.getWidth() * 0.3f;
+		float imgHeight = imgWidth;
+	
 		// Cargamos imagenes de botones
 		TextureRegion naveBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/naveboton.png")));
 		Drawable naveBotonDrawable = new TextureRegionDrawable(naveBotonRegion);
@@ -66,6 +69,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		naveBoton = new ImageButton(naveBotonDrawable);
+		naveBoton.setSize(imgWidth, imgHeight);
 		naveBoton.setPosition(Gdx.graphics.getWidth()/4 - naveBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/4 - naveBoton.getHeight()/2);
 		naveBoton.addListener(new InputListener() {
@@ -89,6 +93,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		//stage.addActor(retosBoton);
 		
 		bolsaBoton = new ImageButton(bolsaBotonDrawable);
+		bolsaBoton.setSize(imgWidth, imgHeight);
 		bolsaBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - bolsaBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/4 - bolsaBoton.getHeight()/2);
 		bolsaBoton.addListener(new InputListener() {
@@ -107,6 +112,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		stage.addActor(bolsaBoton);
 		
 		mapaBoton = new ImageButton(mapaBotonDrawable);
+		mapaBoton.setSize(imgWidth, imgHeight);
 		mapaBoton.setPosition(Gdx.graphics.getWidth()/4 - mapaBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/(4f/3f) - mapaBoton.getHeight()/2);
 		mapaBoton.addListener(new InputListener() {
@@ -125,6 +131,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		stage.addActor(mapaBoton);
 		
 		robotBoton = new ImageButton(robotBotonDrawable);
+		robotBoton.setSize(imgWidth, imgHeight);
 		robotBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - robotBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/(4f/3f) - robotBoton.getHeight()/2);
 		robotBoton.addListener(new InputListener() {
@@ -143,6 +150,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		stage.addActor(robotBoton);
 		
 		atrasBoton = new ImageButton(atrasBotonDrawable);
+		atrasBoton.setSize(imgWidth/2, imgHeight/2);
 		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.3f) - atrasBoton.getWidth()/2, 
 				Gdx.graphics.getHeight()/(4f/0.5f) - atrasBoton.getHeight()/2);
 		atrasBoton.addListener(new InputListener() {
@@ -155,8 +163,9 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
-				dispose();		
-				game.setScreen(new MenuMiniJuegosScreen(game));
+
+						game.setScreen(new MenuScreen(game));
+
 				}
 		});
 		stage.addActor(atrasBoton);

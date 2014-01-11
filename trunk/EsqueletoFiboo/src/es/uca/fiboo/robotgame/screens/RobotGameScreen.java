@@ -60,8 +60,6 @@ public class RobotGameScreen extends AbstractScreen{
 	int rand;
 	int objeto;
 	int ultima_posicion;
-	private ImageButton atrasBoton;
-	private ImageButton pantallaAyuda;
 	private int numobjetos;
 	private Numeros numeros;
 	public RobotGameScreen(fibooGame game){
@@ -88,7 +86,7 @@ public class RobotGameScreen extends AbstractScreen{
 				// create a Rectangle to logically represent the bucket
 				
 				numobjetos= 10;
-				objeto= MathUtils.random(0, 3);
+				objeto= MathUtils.random(0, 2);
 				// create the raindrops array and spawn the first raindrop
 				raindrops = new Array<DropObject>();
 				batch = new SpriteBatch();
@@ -211,25 +209,7 @@ public class RobotGameScreen extends AbstractScreen{
 			});
 		timer = 2 + (float) Math.random();
 		Gdx.app.log(fibooGame.LOG, "Show terminado");
-		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
-		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
-		atrasBoton = new ImageButton(atrasBotonDrawable);
-		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.17f) - atrasBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/0.2f) - atrasBoton.getHeight()/2);
-		atrasBoton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + atrasBoton.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
-						game.setScreen(new MenuMiniJuegosScreen(game));
-				}
-		});
-		stage.addActor(atrasBoton);
+		
 	}
 	
 	
@@ -243,14 +223,14 @@ public class RobotGameScreen extends AbstractScreen{
 		stage.draw();
 		pause();
 		batch.begin();
-		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f-numeros.rojos(numobjetos).getRegionWidth()/2,Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionHeight()/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);	
+		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);	
+		if(objeto==0)
+			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
 		if(objeto==1)
-			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionWidth()/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
 		if(objeto==2)
-			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionWidth()/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
-		if(objeto==3)
-			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionWidth()/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
-		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f+Gdx.graphics.getWidth()*0.06f,Gdx.graphics.getHeight()*0.95f-numeros.rojos(numobjetos).getRegionHeight()/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
+			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,  Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f+Gdx.graphics.getWidth()*0.05f, Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
 		rand = MathUtils.random(0, 1);
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
@@ -282,11 +262,11 @@ public class RobotGameScreen extends AbstractScreen{
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){
-				case PLANETA: if(objeto == 1){objetosGathered++;numobjetos--;}
+				case PLANETA: if(objeto == 0){objetosGathered++;numobjetos--;}
 					dropSound.play();break;
-				case ESTRELLA: if(objeto == 2){objetosGathered++;numobjetos--;}
+				case ESTRELLA: if(objeto == 1){objetosGathered++;numobjetos--;}
 					dropSound.play();break;
-				case LUNA: if(objeto == 3){objetosGathered++;numobjetos--;}
+				case LUNA: if(objeto == 2){objetosGathered++;numobjetos--;}
 					dropSound.play();break;
 				case MARCIANO:
 					objetosGathered=0;numobjetos= 10;
