@@ -148,7 +148,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
-				if (keycode == Keys.BACK){
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}

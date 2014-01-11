@@ -1,4 +1,4 @@
-package es.uca.fiboo.naveminigame.screens;
+package es.uca.fiboo.marcianosminigame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,19 +7,19 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
-public class GameOverScreen extends AbstractScreen {
+public class WinScreen extends AbstractScreen {
 
-	public GameOverScreen(fibooGame game) {
+	public WinScreen(fibooGame game) {
 		super(game);
 	}
-	
-	private float time;
 
+	private float time;
+	
 	@Override
 	public void render(float delta) {
 		time += 0.05f;
 		batch.begin();
-		batch.draw(gameover, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		batch.draw(win, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
 		
 		if (time > 5f) {
@@ -29,12 +29,12 @@ public class GameOverScreen extends AbstractScreen {
 		}
 	}
 	
-	private Texture gameover;
+	private Texture win;
 
 	@Override
 	public void show() {
 		time = 0;
-		gameover = fibooGame.MANAGER.get("naveminigame/older/gameover.png", Texture.class);
+		win = fibooGame.MANAGER.get("naveminigame/older/win.png", Texture.class);
 	}
 
 	@Override
