@@ -29,16 +29,18 @@ public class MainScreen extends AbstractScreen {
 	public MainScreen(fibooGame game) {
 		super(game);
 	}
-
-	private boolean cargar;
 	
 	@Override
 	public void show() {
 		super.show();
-		cargar = true;
 		TextureRegion fondoRegion = new TextureRegion(new Texture("data/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
-		
+
+			fibooGame.MANAGER.loadPersonalizacionScreen();
+			fibooGame.MANAGER.loadNaveminigameScreen();
+			fibooGame.MANAGER.loadMarcianosminigameScreen();
+			fibooGame.MANAGER.loadPersonalizacionScreen();
+			fibooGame.MANAGER.loadCameraminigameScreen();
 		// Se crea el actor fondoImage y su tama??o se fija al llamar resize()
 		fondoImage = new Image(fondoDrawable, Scaling.fit);
 		fondoImage.setFillParent(true);
@@ -59,22 +61,6 @@ public class MainScreen extends AbstractScreen {
 		
 		// A??adimos el actor al stage
 		stage.addActor(fondoImage);
-	}
-	
-	@Override
-	public void render(float delta) {
-		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.act(delta);
-		stage.draw();
-		if (cargar) {
-			fibooGame.MANAGER.loadPersonalizacionScreen();
-			fibooGame.MANAGER.loadNaveminigameScreen();
-			fibooGame.MANAGER.loadMarcianosminigameScreen();
-			fibooGame.MANAGER.loadPersonalizacionScreen();
-			fibooGame.MANAGER.loadCameraminigameScreen();
-			cargar = false;
-		}
 	}
 
 }
