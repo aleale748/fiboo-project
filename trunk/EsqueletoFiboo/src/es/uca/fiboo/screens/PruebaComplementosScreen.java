@@ -1,26 +1,20 @@
 package es.uca.fiboo.screens;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.actores.BotonCategoria;
@@ -32,7 +26,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 
 	private ArrayList<BotonCategoria> botonesCat;
 	private Skin skin;
-	private ImageButton atrasBoton;
+	private Texture fondo;
 	
 	public PruebaComplementosScreen(final fibooGame game) {
 		super(game);
@@ -48,6 +42,9 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
+		
+		fondo = fibooGame.MANAGER.get("data/fondopersonalizar.png", Texture.class);
+		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		// Para probar que se carga bien el skin con todos los ficheros
 		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
@@ -96,25 +93,6 @@ public class PruebaComplementosScreen extends AbstractScreen {
         stage.addActor(win);
         win.debug();
         */
-        TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasboton.png")));
-		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
-        atrasBoton = new ImageButton(atrasBotonDrawable);
-		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.3f) - atrasBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/0.5f) - atrasBoton.getHeight()/2);
-		atrasBoton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + atrasBoton.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
-						game.setScreen(new MenuScreen(game));
-				}
-		});
-		stage.addActor(atrasBoton);
 	}
 	
 	//Carga todos los complementos habidos y por haber
@@ -160,6 +138,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 
 		//Pintar avatar
 		batch.begin();
+			batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			fibooGame.getPersonaje().drawAvatar(batch);
 		batch.end();
 
