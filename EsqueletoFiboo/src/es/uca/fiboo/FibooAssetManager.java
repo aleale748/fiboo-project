@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 public class FibooAssetManager extends AssetManager {
 	
 	public void loadPersonalizacionScreen() {
+		load("data/fondopersonalizar.png", Texture.class);
+		
 		load("data/complementos/base.png", Texture.class);
 		load("data/complementos/adpelo1.png", Texture.class);
 		load("data/complementos/adpelo1Icon.png", Texture.class);
