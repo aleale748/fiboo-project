@@ -223,7 +223,28 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 						Gdx.app.log(fibooGame.LOG, "Generando marcianos.");
 						for (int i = 0; i < numMarcianos; ++i) {
 							marcianos.add(new MarcianoActor());
-							marcianos.get(i).setPosition(Gdx.graphics.getWidth() * (float) (Math.random() * 0.45f), Gdx.graphics.getHeight() * (float) Math.random() * 0.6f);
+							if (i == 0) {
+								marcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.01f,Gdx.graphics.getHeight() * (float) Math.random() * 0.6f);
+							}
+							else
+								if (i%2 == 0f)
+									marcianos.get(i).setPosition(((float) Math.random() * 0.1f + 
+											0.7f) * (Gdx.graphics.getWidth() * 0.01f + 
+													(float) marcianos.get(i).getWidth() * i), 
+													Gdx.graphics.getHeight() * (float) Math.random() * 0.6f);
+								else
+									if (marcianos.get(i-1).getY() < Gdx.graphics.getHeight() * 0.3f)
+										marcianos.get(i).setPosition(((float) Math.random() * 0.2f + 
+												0.7f) * (Gdx.graphics.getWidth() * 0.01f + 
+														(float) marcianos.get(i).getWidth() * (i-1)), ((float) Math.random() * 0.2f + 
+																0.7f) * (
+												marcianos.get(i-1).getY() + marcianos.get(i).getHeight()));
+									else
+										marcianos.get(i).setPosition(((float) Math.random() * 0.2f + 
+												0.7f) * (Gdx.graphics.getWidth() * 0.01f + 
+														(float) marcianos.get(i).getWidth() * (i-1)), ((float) Math.random() * 0.2f + 
+																0.7f) * (
+												marcianos.get(i-1).getY() - marcianos.get(i).getHeight()));
 							stage.addActor(marcianos.get(i));
 						}
 						Gdx.app.log(fibooGame.LOG, "Marcianos generados.");
@@ -326,9 +347,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			
 			numeroMalInt = numeroMarcianosInt;
 			if (Math.random() > 0.5f)
-				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt - 2)) % (numeroMarcianosInt - 2) + 1;
+				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt - 1));
 			else
-				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (numMarcianos - numeroMarcianosInt - 1)) % (numMarcianos - numeroMarcianosInt - 1) + 1 ;
+				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (numMarcianos - numeroMarcianosInt - 1)) + 1 ;
 			numeroSolInt = numeroMarcianosInt;
 			numeroMal = new NumeroActor(numeroMalInt);
 			numeroSol = new NumeroActor(numeroSolInt);

@@ -27,7 +27,7 @@ import es.uca.fiboo.screens.*;
 
 public class NaveMiniGameScreen extends AbstractScreen {
 	
-	float widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
+	float widthPalitos = 512/1.5f, heightPalitos = 512/1.5f, widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
 
 	//private ImageButton atrasBoton;
 	
@@ -362,6 +362,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				stage.addActor(miniAsteroides.get(i));
 			}*/
 			palitos = new PalitosActor((int) (Math.random() * 9) % 9 + 1);
+			palitos.setWidth(widthPalitos);
+			palitos.setHeight(heightPalitos);
 			palitos.setPosition(Gdx.graphics.getWidth()/2f - palitos.getWidth()/2f, palitos.getHeight()/10f - palitos.getHeight()/8f);
 			stage.addActor(palitos);
 			resuelto = false;
@@ -468,6 +470,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			operador.setHeight(operador.getHeight() * escala);*/
 			padShoot.setWidth(padShoot.getWidth() * escala);
 			padShoot.setHeight(padShoot.getHeight() * escala);
+			widthPalitos = palitos.getWidth() * escala;
+			heightPalitos = palitos.getHeight() * escala;
+			palitos.setWidth(widthPalitos);
+			palitos.setHeight(heightPalitos);
+			palitos.setX(Gdx.graphics.getWidth()/2f - palitos.getWidth()/2f);
 			/*atrasBoton.setWidth(atrasBoton.getWidth() * escala);
 			atrasBoton.setHeight(atrasBoton.getHeight() * escala);*/
 			/*for (int i = 0; i < 9; ++i) {
