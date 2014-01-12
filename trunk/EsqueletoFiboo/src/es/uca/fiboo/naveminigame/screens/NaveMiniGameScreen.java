@@ -100,41 +100,23 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	}
 
 	private NaveActor nave;
-	
 	private PadActor padShoot;
-	
 	private BarraActor vidaNave, vidaEscudo;
-	
 	private BarraVaciaActor barraNave, barraEscudo;
-	
 	private EscudoActor escudo;
-	
 	private List<StarActor> puntuacion;
-	
 	private List<EmptyStarActor> puntuacionVacia;
-	
 	private boolean resuelto;
-	
 	private int respawnSol;
-	
 	private OperadorActor operador;
-	
 	private NumeroXActor numeroX;
-	
 	private NumeroYActor numeroY;
-	
 	private List<AsteroideActor> asteroides;
-	
 	private List<BulletActor> bullets;
-	
 	private List<ExplosionActor> explosiones;
-	
 	private List<ExplosionMalActor> explosionesMal;
-	
 	private List<MiniAsteroideActor> miniAsteroides;
-	
 	private List<MiniAsteroideVacioActor> miniAsteroidesVacios;
-	
 	private int numeroAsteroide;
 	
 	@Override
@@ -705,16 +687,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			}
 		}
 		Gdx.app.log(fibooGame.LOG, "Comprobaci���n de colisiones terminada");
-	}
-	
-	@Override
-	public void hide() {
-		//Gdx.input.setInputProcessor(null);
-	}
-
-	@Override
-	public void dispose() {
-		stage.dispose();
 	}
 	
 	@Override

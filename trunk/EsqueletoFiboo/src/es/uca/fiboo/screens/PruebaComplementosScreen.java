@@ -30,7 +30,6 @@ import es.uca.fiboo.actores.Complemento.Tipo;
 
 public class PruebaComplementosScreen extends AbstractScreen {
 
-	private ArrayList<BotonComplemento> botones;
 	private ArrayList<BotonCategoria> botonesCat;
 	private Skin skin;
 	private ImageButton atrasBoton;
@@ -40,7 +39,8 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
-				if (keycode == Keys.BACK){
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					dispose();
 					game.setScreen(new MenuScreen(game));
 				}
 				return false;
@@ -55,7 +55,6 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
         skin = new Skin( skinFile );
 		
-		botones = new ArrayList<BotonComplemento>();
 		botonesCat = new ArrayList<BotonCategoria>();
 		cargaComplementos();
 		
@@ -84,7 +83,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 				table.row();
 			}
 		}
-		
+        
         /*
 		for(BotonCategoria b : botonesCat) {
 			win.add(b.getIcono()).width(128).height(128);

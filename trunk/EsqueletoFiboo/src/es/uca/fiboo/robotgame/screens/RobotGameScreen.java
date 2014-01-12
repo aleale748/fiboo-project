@@ -62,6 +62,7 @@ public class RobotGameScreen extends AbstractScreen{
 	int ultima_posicion;
 	private int numobjetos;
 	private Numeros numeros;
+	
 	public RobotGameScreen(fibooGame game){
 		super(game);
 		// load the images for the droplet and the bucket, 64x64 pixels each
@@ -95,8 +96,8 @@ public class RobotGameScreen extends AbstractScreen{
 				font2 = new BitmapFont();
 				numeros= new Numeros();
 				spawnRaindrop();
-				
 	}
+	
 	private void spawnRaindrop() {
 		int rand= MathUtils.random(0, 3);
 		DropObject raindrop = new DropObject(rand);
@@ -174,7 +175,7 @@ public class RobotGameScreen extends AbstractScreen{
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
-				if (keycode == Keys.BACK){
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
@@ -193,27 +194,22 @@ public class RobotGameScreen extends AbstractScreen{
 		stage.addActor(robot);
 		
 		robot.setPosition(10, 10);
-			stage.setKeyboardFocus(robot);
-			robot.addListener(new DragListener() {
-				 public void touchDragged(InputEvent event, float x, float y, int pointer) {
-					 float dx = x - robot.getWidth()*0.5f;
-					// float dy = y - robot.getHeight()*0.5f; Para mover por toda la pantalla
-					 robot.setPosition(robot.getX() + dx, robot.getY());
-					 //robot.setPosition(robot.getX() + dx, robot.getY() + dy);
-					
-				 }
-				 
-				 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-					 super.touchUp(event, x, y, pointer, button);
-				 }
-			});
+		stage.setKeyboardFocus(robot);
+		robot.addListener(new DragListener() {
+			 public void touchDragged(InputEvent event, float x, float y, int pointer) {
+				 float dx = x - robot.getWidth()*0.5f;
+				// float dy = y - robot.getHeight()*0.5f; Para mover por toda la pantalla
+				 robot.setPosition(robot.getX() + dx, robot.getY());
+				 //robot.setPosition(robot.getX() + dx, robot.getY() + dy);
+			 }
+			 
+			 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				 super.touchUp(event, x, y, pointer, button);
+			 }
+		});
 		timer = 2 + (float) Math.random();
 		Gdx.app.log(fibooGame.LOG, "Show terminado");
-		
 	}
-	
-	
-	
 	
 	@Override
 	public void render(float delta) {
@@ -244,8 +240,7 @@ public class RobotGameScreen extends AbstractScreen{
 				batch.draw(marcianoImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
 			default:
 				break;
-		}
-	
+			}
 		}
 		
 		batch.end();
@@ -290,18 +285,6 @@ public class RobotGameScreen extends AbstractScreen{
 	}	
 
 	@Override
-	public void hide() {
-	}
- 
-	@Override
-	public void pause() {
-	}
- 
-	@Override
-	public void resume() {
-	}
- 
-	@Override
 	public void dispose() {
 		lunaImage.dispose();
 		estrellaImage.dispose();
@@ -309,6 +292,7 @@ public class RobotGameScreen extends AbstractScreen{
 		marcianoImage.dispose();
 		dropSound.dispose();
 		rainMusic.dispose();
+		super.dispose();
 	}
  
 	private class Numeros{
@@ -318,6 +302,7 @@ public class RobotGameScreen extends AbstractScreen{
 		TextureRegion[] numerosrojos;
 		TextureRegion[] numerosverdes;
 		//SpriteBatch spriteBatch;
+		
 		public Numeros(){
 			numrojos= new Texture(Gdx.files.internal("robotgame/numerosrojos.png"));  
 			numverdes= new Texture(Gdx.files.internal("robotgame/numerosverdes.png"));  
@@ -332,13 +317,14 @@ public class RobotGameScreen extends AbstractScreen{
 				}
 			//spriteBatch = new SpriteBatch();                                // #12 
 		}
+		
 		public TextureRegion rojos(int n){
 			return numerosrojos[n];
 		}
+		
 		public TextureRegion verdes(int n){
 			return numerosverdes[n];
 		}
-		
-		
 	 }
+	
 }
