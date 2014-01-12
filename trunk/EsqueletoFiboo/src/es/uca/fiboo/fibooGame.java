@@ -43,6 +43,8 @@ public class fibooGame extends Game {
                     //Cargamos las im���genes en el manager
             		/*
                 		Gdx.app.log(fibooGame.LOG, "Creating game");
+                        MANAGER.load("marcianosminigame/boton.png", Texture.class);
+                        MANAGER.load("marcianosminigame/pregunta.png", Texture.class);
                         MANAGER.load("marcianosminigame/bien.png", Texture.class);
                         MANAGER.load("marcianosminigame/nave.png", Texture.class);
                         MANAGER.load("marcianosminigame/marciano.png", Texture.class);

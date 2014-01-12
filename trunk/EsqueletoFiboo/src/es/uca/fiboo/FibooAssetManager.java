@@ -67,8 +67,17 @@ public class FibooAssetManager extends AssetManager {
 	public void loadNaveminigameScreen() {
 		load("naveminigame/older/win.png", Texture.class);
         load("naveminigame/disparar2.png", Texture.class);
-        load("naveminigame/asteroideVacio.png", Texture.class);
-        load("naveminigame/asteroide.png", Texture.class);
+        load("naveminigame/palitos1.png", Texture.class);
+        load("naveminigame/palitos2.png", Texture.class);
+        load("naveminigame/palitos3.png", Texture.class);
+        load("naveminigame/palitos4.png", Texture.class);
+        load("naveminigame/palitos5.png", Texture.class);
+        load("naveminigame/palitos6.png", Texture.class);
+        load("naveminigame/palitos7.png", Texture.class);
+        load("naveminigame/palitos8.png", Texture.class);
+        load("naveminigame/palitos9.png", Texture.class);
+        //load("naveminigame/asteroideVacio.png", Texture.class);
+        //load("naveminigame/asteroide.png", Texture.class);
         load("naveminigame/asteroide0.png", Texture.class);
         load("naveminigame/asteroide1.png", Texture.class);
         load("naveminigame/asteroide2.png", Texture.class);
