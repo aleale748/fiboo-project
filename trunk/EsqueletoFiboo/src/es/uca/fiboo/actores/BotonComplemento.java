@@ -70,11 +70,64 @@ public class BotonComplemento extends Image {
 			imagen = new Image(complemento.getImagen());
 			imagen.setSize(escala, escala);
 			
-			float posAvatarX = 0;
+			float posAvatarX = 0 + escala / 4f;
 			float posAvatarY = (Gdx.graphics.getHeight() - escala) / 2f;
-			rImagen = new Rectangle(imagen.getImageX(), imagen.getImageY(),	escala, escala);
-			avatar = new Rectangle(posAvatarX, posAvatarY, escala, escala);
-	
+			setImagenRectangle();
+			avatar = new Rectangle(posAvatarX, posAvatarY, escala / 2f, escala);
+		}
+		
+		private void setImagenRectangle() {
+			
+			float posRectX = getImageRectangeX();
+			float posRectY = getImageRectangleY();
+			float width = escala / 2f;
+			float height;
+			
+			switch(complemento.getTipo()) {
+			case DISFRAZ:
+			case CAMISA:
+			case PANTALON:
+				height = escala;
+				break;
+			default:
+				height = escala / 2f;
+			}
+			
+			rImagen = new Rectangle(posRectX, posRectY, width, height);
+		}
+		
+		private float getImageRectangleY() {
+			switch(complemento.getTipo()) {
+			case DISFRAZ:
+			case CAMISA:
+			case PANTALON:
+				return imagen.getY();
+			default:
+				return imagen.getY() + escala / 2f;
+			}
+		}
+		
+		private float getImageRectangeX() {
+			return imagen.getX() + escala / 4f;
+		}
+		
+		private float getPosicionY() {
+			float dy;
+			switch(complemento.getTipo()) {
+			case DISFRAZ:
+			case CAMISA:
+			case PANTALON:
+				dy = Gdx.input.getY() + imagen.getHeight() * 0.5f; break;
+			case BIGOTE:
+			case BOCA:
+				dy = Gdx.input.getY() + imagen.getHeight() * 0.7f; break;
+			case ACCPELO:
+				dy = Gdx.input.getY() + imagen.getHeight() * 0.9f; break;
+			default:
+				dy = Gdx.input.getY() + imagen.getHeight() * 0.8f; break;
+			}
+			
+			return dy;
 		}
 		
 		@Override
@@ -82,10 +135,10 @@ public class BotonComplemento extends Image {
 			if(complemento.isDisponible()) {
 				
 				float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
-				float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
+				float dy = getPosicionY();
 
 				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
-				rImagen.setPosition(imagen.getX(), imagen.getY());
+				rImagen.setPosition(getImageRectangeX(), getImageRectangleY());
 				stage.addActor(imagen);
 			}
 			return super.touchDown(event, x, y, pointer, button);
@@ -95,9 +148,11 @@ public class BotonComplemento extends Image {
 		public void touchDragged(InputEvent event, float x, float y, int pointer) {
 			if(complemento.isDisponible()) {
 				float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
-				float dy = Gdx.input.getY() + imagen.getHeight() * 0.5f;
+				float dy = getPosicionY();
 				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
-				rImagen.setPosition(imagen.getX(), imagen.getY());
+				rImagen.setPosition(getImageRectangeX(), getImageRectangleY());
+				Gdx.app.log(fibooGame.LOG, "rImagen X: " + rImagen.x + ", rImagen Y: " + rImagen.y);
+				Gdx.app.log(fibooGame.LOG, "Imagen X: " + imagen.getX() + ", Imagen Y: " + imagen.getY());
 			}
 		}
 
@@ -106,7 +161,7 @@ public class BotonComplemento extends Image {
 			if(complemento.isDisponible()) {
 				if (rImagen.overlaps(avatar)) {
 					imagen.addAction(Actions.sequence(
-							Actions.moveTo(avatar.x, avatar.y, 0.8f),
+							Actions.moveTo(avatar.x - escala / 4f, avatar.y, 0.8f),
 							new Action() {
 								@Override
 								public boolean act(float delta) {
