@@ -30,9 +30,12 @@ public class MainScreen extends AbstractScreen {
 		super(game);
 	}
 
+	private boolean cargar;
+	
 	@Override
 	public void show() {
 		super.show();
+		cargar = true;
 		TextureRegion fondoRegion = new TextureRegion(new Texture("data/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
 		
@@ -64,11 +67,14 @@ public class MainScreen extends AbstractScreen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act(delta);
 		stage.draw();
-		fibooGame.MANAGER.loadPersonalizacionScreen();
-		fibooGame.MANAGER.loadNaveminigameScreen();
-		fibooGame.MANAGER.loadMarcianosminigameScreen();
-		fibooGame.MANAGER.loadPersonalizacionScreen();
-		fibooGame.MANAGER.loadCameraminigameScreen();
+		if (cargar) {
+			fibooGame.MANAGER.loadPersonalizacionScreen();
+			fibooGame.MANAGER.loadNaveminigameScreen();
+			fibooGame.MANAGER.loadMarcianosminigameScreen();
+			fibooGame.MANAGER.loadPersonalizacionScreen();
+			fibooGame.MANAGER.loadCameraminigameScreen();
+			cargar = false;
+		}
 	}
 
 }
