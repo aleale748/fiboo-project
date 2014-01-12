@@ -28,12 +28,12 @@ public class InicioRobotGameScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		TextureRegion pantallaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("robotgame/pantallainicio.png")));
+		TextureRegion pantallaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("robotgame/pantallainiciorobot.png")));
 		Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		pantallaAyuda = new Image(pantallaBotonDrawable);
-		pantallaAyuda.setSize(Gdx.graphics.getWidth()*0.98f,Gdx.graphics.getWidth()*0.98f);
+		pantallaAyuda.setSize(Gdx.graphics.getWidth()*0.85f,Gdx.graphics.getWidth()*0.85f);
 		pantallaAyuda.setPosition(Gdx.graphics.getWidth()/2 - pantallaAyuda.getWidth()/2, 
                 Gdx.graphics.getHeight()/2 - pantallaAyuda.getHeight()/2);
 		pantallaAyuda.addListener(new InputListener() {
