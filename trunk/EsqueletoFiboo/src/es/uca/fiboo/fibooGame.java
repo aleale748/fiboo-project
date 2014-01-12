@@ -100,6 +100,7 @@ public class fibooGame extends Game {
             super.dispose();
             
 			MANAGER.dispose();
+			atlasComplementos.dispose();
             
             Gdx.app.log(fibooGame.LOG, "'Disposing' game");
         }
