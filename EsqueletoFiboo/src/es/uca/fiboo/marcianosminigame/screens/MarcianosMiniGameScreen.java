@@ -391,11 +391,6 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	}
 	
 	@Override
-	public void dispose() {
-		stage.dispose();
-	}
-	
-	@Override
 	public void resize(int width, int height) {
 		stage.setViewport(width, height, true);
 	}
