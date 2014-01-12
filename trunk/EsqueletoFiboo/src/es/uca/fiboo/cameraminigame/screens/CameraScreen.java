@@ -24,7 +24,7 @@ public class CameraScreen extends AbstractScreen {
 	
 	public CameraScreen(fibooGame game) {
 		super(game);
-		// TODO Auto-generated constructor stub
+		fibooGame.MANAGER.loadCameraminigameScreen();
 	}
 		
 	private List<ObjetoActor> objetoActors;

@@ -46,25 +46,25 @@ public class BotonCategoria {
 	private void setImagen() {
 		switch(tipo) {
 		case OJOS: 
-			icono = new Image(new Texture("iconos/ojos.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/ojos.png", Texture.class)); break;
 		case PELO: 
-			icono = new Image(new Texture("iconos/pelo.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/pelo.png", Texture.class)); break;
 		case ACCPELO: 
-			icono = new Image(new Texture("iconos/accpelo.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/accpelo.png", Texture.class)); break;
 		case BIGOTE: 
-			icono = new Image(new Texture("iconos/bigote.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/bigote.png", Texture.class)); break;
 		case BOCA: 
-			icono = new Image(new Texture("iconos/boca.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/boca.png", Texture.class)); break;
 		case GAFAS:
-			icono = new Image(new Texture("iconos/gafas.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/gafas.png", Texture.class)); break;
 		case DISFRAZ:
-			icono = new Image(new Texture("iconos/disfraz.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/disfraz.png", Texture.class)); break;
 		case CAMISA:
-			icono = new Image(new Texture("iconos/camisa.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/camisa.png", Texture.class)); break;
 		case PANTALON:
-			icono = new Image(new Texture("iconos/pantalon.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/pantalon.png", Texture.class)); break;
 		case MASCARA:
-			icono = new Image(new Texture("iconos/mascara.png")); break;
+			icono = new Image(fibooGame.MANAGER.get("iconos/mascara.png", Texture.class)); break;
 		}
 		
 	}

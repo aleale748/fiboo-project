@@ -22,7 +22,7 @@ public class fibooGame extends Game {
                 public static final String LOG = "fibooGame";
                 public static final boolean DEV_MODE = false;
                 
-                public static final AssetManager MANAGER = new AssetManager();
+                public static final FibooAssetManager MANAGER = new FibooAssetManager();
 
                 private static Personaje personaje;
                 private static ArrayList<Complemento> complementos;
@@ -41,6 +41,7 @@ public class fibooGame extends Game {
 
             		Gdx.input.setCatchBackKey(true);
                     //Cargamos las im���genes en el manager
+            		/*
                 		Gdx.app.log(fibooGame.LOG, "Creating game");
                         MANAGER.load("marcianosminigame/bien.png", Texture.class);
                         MANAGER.load("marcianosminigame/nave.png", Texture.class);
@@ -157,6 +158,7 @@ public class fibooGame extends Game {
             			MANAGER.load("naveminigame/older/explosion.ogg", Sound.class);
             			MANAGER.load("naveminigame/older/shoot.ogg", Sound.class);
             			MANAGER.finishLoading();
+            			*/
             			Gdx.app.log(fibooGame.LOG, "Imagenes cargadas en el manager");
                         
                         //Cargamos ficheros de datos guardados

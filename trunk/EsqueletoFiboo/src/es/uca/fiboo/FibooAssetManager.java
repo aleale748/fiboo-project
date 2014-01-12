@@ -7,12 +7,68 @@ import com.badlogic.gdx.graphics.Texture;
 public class FibooAssetManager extends AssetManager {
 	
 	public void loadPersonalizacionScreen() {
+		load("data/complementos/base.png", Texture.class);
+		load("data/complementos/adpelo1.png", Texture.class);
+		load("data/complementos/adpelo1Icon.png", Texture.class);
+		load("data/complementos/adpelo2.png", Texture.class);
+		load("data/complementos/adpelo2Icon.png", Texture.class);
+		load("data/complementos/bigote1.png", Texture.class);
+		load("data/complementos/bigote1Icon.png", Texture.class);
+		load("data/complementos/bigote2.png", Texture.class);
+		load("data/complementos/bigote2Icon.png", Texture.class);
+		load("data/complementos/boca1.png", Texture.class);
+		load("data/complementos/boca1Icon.png", Texture.class);
+		load("data/complementos/boca2.png", Texture.class);
+		load("data/complementos/boca2Icon.png", Texture.class);
+		load("data/complementos/boca3.png", Texture.class);
+		load("data/complementos/boca3Icon.png", Texture.class);
+		load("data/complementos/disfraz1.png", Texture.class);
+		load("data/complementos/disfraz1Icon.png", Texture.class);
+		load("data/complementos/disfraz2.png", Texture.class);
+		load("data/complementos/disfraz2Icon.png", Texture.class);
+		load("data/complementos/gafas1.png", Texture.class);
+		load("data/complementos/gafas1Icon.png", Texture.class);
+		load("data/complementos/gafas2.png", Texture.class);
+		load("data/complementos/gafas2Icon.png", Texture.class);
+		load("data/complementos/ojos1.png", Texture.class);
+		load("data/complementos/ojos1Icon.png", Texture.class);
+		load("data/complementos/ojos2.png", Texture.class);
+		load("data/complementos/ojos2Icon.png", Texture.class);
+		load("data/complementos/ojos3.png", Texture.class);
+		load("data/complementos/ojos3Icon.png", Texture.class);
+		load("data/complementos/pelonina1.png", Texture.class);
+		load("data/complementos/pelonina1Icon.png", Texture.class);		
+		load("data/complementos/pelonina2.png", Texture.class);
+		load("data/complementos/pelonina2Icon.png", Texture.class);	
+		load("data/complementos/pelonina3.png", Texture.class);
+		load("data/complementos/pelonina3Icon.png", Texture.class);
+		load("data/complementos/pelonino1.png", Texture.class);
+		load("data/complementos/pelonino1Icon.png", Texture.class);		
+		load("data/complementos/pelonino2.png", Texture.class);
+		load("data/complementos/pelonino2Icon.png", Texture.class);	
+		load("data/complementos/pelonino3.png", Texture.class);
+		load("data/complementos/pelonino3Icon.png", Texture.class);
+		load("data/complementos/vacio.png", Texture.class);
 		
+		load("iconos/accpelo.png", Texture.class);
+		load("iconos/bigote.png", Texture.class);
+		load("iconos/boca.png", Texture.class);
+		load("iconos/camisa.png", Texture.class);
+		load("iconos/disfraz.png", Texture.class);
+		load("iconos/gafas.png", Texture.class);
+		load("iconos/mascara.png", Texture.class);
+		load("iconos/ojos.png", Texture.class);
+		load("iconos/pantalon.png", Texture.class);
+		load("iconos/pelo.png", Texture.class);
+		load("iconos/zapatos.png", Texture.class);
+		finishLoading();
 	}
 	
 	public void loadNaveminigameScreen() {
 		load("naveminigame/older/win.png", Texture.class);
-        load("naveminigame/disparar.png", Texture.class);
+        load("naveminigame/disparar2.png", Texture.class);
+        load("naveminigame/asteroideVacio.png", Texture.class);
+        load("naveminigame/asteroide.png", Texture.class);
         load("naveminigame/asteroide0.png", Texture.class);
         load("naveminigame/asteroide1.png", Texture.class);
         load("naveminigame/asteroide2.png", Texture.class);
@@ -71,10 +127,42 @@ public class FibooAssetManager extends AssetManager {
 		load("naveminigame/explosion21.png", Texture.class);
 		load("naveminigame/explosion22.png", Texture.class);
 		load("naveminigame/explosion23.png", Texture.class);
+		load("naveminigame/explosionMal0.png", Texture.class);
+		load("naveminigame/explosionMal1.png", Texture.class);
+		load("naveminigame/explosionMal2.png", Texture.class);
+		load("naveminigame/explosionMal3.png", Texture.class);
+		load("naveminigame/explosionMal4.png", Texture.class);
+		load("naveminigame/explosionMal5.png", Texture.class);
+		load("naveminigame/explosionMal6.png", Texture.class);
+		load("naveminigame/explosionMal7.png", Texture.class);
+		load("naveminigame/explosionMal8.png", Texture.class);
+		load("naveminigame/explosionMal9.png", Texture.class);
+		load("naveminigame/explosionMal10.png", Texture.class);
+		load("naveminigame/explosionMal11.png", Texture.class);
+		load("naveminigame/explosionMal12.png", Texture.class);
+		load("naveminigame/explosionMal13.png", Texture.class);
+		load("naveminigame/explosionMal14.png", Texture.class);
+		load("naveminigame/explosionMal15.png", Texture.class);
+		load("naveminigame/explosionMal16.png", Texture.class);
+		load("naveminigame/explosionMal17.png", Texture.class);
+		load("naveminigame/explosionMal18.png", Texture.class);
+		load("naveminigame/explosionMal19.png", Texture.class);
+		load("naveminigame/explosionMal20.png", Texture.class);
+		load("naveminigame/explosionMal21.png", Texture.class);
+		load("naveminigame/explosionMal22.png", Texture.class);
+		load("naveminigame/explosionMal23.png", Texture.class);
 		load("naveminigame/older/hit.ogg", Sound.class);
 		load("naveminigame/older/explosion.ogg", Sound.class);
 		load("naveminigame/older/shoot.ogg", Sound.class);
 		finishLoading();
+	}
+	
+	public void loadMarcianosminigameScreen() {
+		load("marcianosminigame/bien.png", Texture.class);
+        load("marcianosminigame/nave.png", Texture.class);
+        load("marcianosminigame/marciano.png", Texture.class);
+        load("robotgame/marciano_.png", Texture.class);
+        finishLoading();
 	}
 	
 	public void loadCameraminigameScreen() {
