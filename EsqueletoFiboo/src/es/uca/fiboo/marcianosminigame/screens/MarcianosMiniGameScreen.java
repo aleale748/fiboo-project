@@ -320,15 +320,15 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 				for (int i = 0; i < numNaves; ++i) {
 					navesMarcianos.add(new NaveMarcianoActor());
 					if (i == 0)
-						navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + navesMarcianos.get(i).getWidth()*1.1f*0.6f);
+						navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + tamNaves*1.1f*0.6f);
 					else
 						if (i == 1)
-							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - navesMarcianos.get(i).getWidth()*1.1f*0.6f);
+							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - tamNaves*1.1f*0.6f);
 						else
 							if (i%2 == 0)
-								navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + navesMarcianos.get(i).getWidth()*1.1f*0.6f + navesMarcianos.get(i).getWidth()*1.1f*(i/2));
+								navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + tamNaves*1.1f*0.6f + tamNaves*1.1f*(i/2));
 							else
-								navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - navesMarcianos.get(i).getWidth()*1.1f*0.6f - navesMarcianos.get(i).getWidth()*1.1f*(i/2));
+								navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - tamNaves*1.1f*0.6f - tamNaves*1.1f*(i/2));
 					stage.addActor(navesMarcianos.get(i));
 				}
 			}
@@ -339,9 +339,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 						navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f);
 					else 
 						if (i % 2 == 0)
-							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - navesMarcianos.get(i).getWidth()*1.1f*(i/2));
+							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - tamNaves*1.1f*(i/2));
 						else
-							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + navesMarcianos.get(i).getWidth()*1.1f* (float) Math.ceil((float) i/2f));
+							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + tamNaves*1.1f* (float) Math.ceil((float) i/2f));
 					stage.addActor(navesMarcianos.get(i));
 				}
 			Gdx.app.log(fibooGame.LOG, "Naves-marcianos solucion generados");
