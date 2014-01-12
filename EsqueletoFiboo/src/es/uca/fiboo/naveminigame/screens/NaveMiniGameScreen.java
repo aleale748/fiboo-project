@@ -27,7 +27,7 @@ import es.uca.fiboo.screens.*;
 
 public class NaveMiniGameScreen extends AbstractScreen {
 	
-	float widthPalitos = 512/1.5f, heightPalitos = 512/1.5f, widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
+	float widthPalitos = 1024/2f, heightPalitos = 256/2f, widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, heightPuntuacion = 40, escala;
 
 	//private ImageButton atrasBoton;
 	
