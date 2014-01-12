@@ -48,7 +48,7 @@ public class MainScreen extends AbstractScreen {
 					@Override
 					public boolean act(float delta) {
 						// La ??ltima acci??n mover?? hacia pantalla de inicio
-						game.setScreen(new StartScreen(game));
+						game.setScreen(new NaveMiniGameScreen(game));
 						return true;
 					}
 		}));
