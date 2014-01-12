@@ -1,0 +1,389 @@
+
+complementos.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+adpelo1
+  rotate: false
+  xy: 1, 1417
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+adpelo1Icon
+  rotate: false
+  xy: 1, 903
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+adpelo2
+  rotate: false
+  xy: 515, 1417
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+adpelo2Icon
+  rotate: false
+  xy: 1, 389
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+base
+  rotate: false
+  xy: 515, 903
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+bigote1
+  rotate: false
+  xy: 1029, 1417
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+bigote1Icon
+  rotate: false
+  xy: 515, 389
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+bigote2
+  rotate: false
+  xy: 1029, 903
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+bigote2Icon
+  rotate: false
+  xy: 1029, 389
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+accpelo
+  rotate: false
+  xy: 1, 131
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+bigote
+  rotate: false
+  xy: 1543, 1673
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+boca
+  rotate: false
+  xy: 259, 131
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+boca2
+  rotate: false
+  xy: 1543, 1415
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+camisa
+  rotate: false
+  xy: 517, 131
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+disfraz
+  rotate: false
+  xy: 1543, 1157
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+gafas
+  rotate: false
+  xy: 775, 131
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ojos
+  rotate: false
+  xy: 1543, 899
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+pantalon
+  rotate: false
+  xy: 1033, 131
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+pelo
+  rotate: false
+  xy: 1543, 641
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+zapatos
+  rotate: false
+  xy: 1291, 131
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+vacio
+  rotate: false
+  xy: 1, 1
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+
+complementos2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+boca1
+  rotate: false
+  xy: 1, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+boca1Icon
+  rotate: false
+  xy: 1, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+boca2Icon
+  rotate: false
+  xy: 515, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+boca3
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+boca3Icon
+  rotate: false
+  xy: 515, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+disfraz1
+  rotate: false
+  xy: 1029, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+disfraz1Icon
+  rotate: false
+  xy: 515, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+disfraz2
+  rotate: false
+  xy: 1029, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+disfraz2Icon
+  rotate: false
+  xy: 1029, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+complementos3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gafas1
+  rotate: false
+  xy: 1, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+gafas1Icon
+  rotate: false
+  xy: 1, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+gafas2
+  rotate: false
+  xy: 515, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+gafas2Icon
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+ojos1
+  rotate: false
+  xy: 515, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+ojos1Icon
+  rotate: false
+  xy: 1029, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+ojos2
+  rotate: false
+  xy: 515, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+ojos2Icon
+  rotate: false
+  xy: 1029, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+ojos3
+  rotate: false
+  xy: 1029, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+complementos4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ojos3Icon
+  rotate: false
+  xy: 1, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonina1
+  rotate: false
+  xy: 1, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonina1Icon
+  rotate: false
+  xy: 515, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonina2
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonina2Icon
+  rotate: false
+  xy: 515, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonina3
+  rotate: false
+  xy: 1029, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonina3Icon
+  rotate: false
+  xy: 515, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonino1
+  rotate: false
+  xy: 1029, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonino1Icon
+  rotate: false
+  xy: 1029, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+complementos5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+pelonino2
+  rotate: false
+  xy: 1, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonino2Icon
+  rotate: false
+  xy: 1, 515
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonino3
+  rotate: false
+  xy: 515, 1029
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonino3Icon
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
