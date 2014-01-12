@@ -46,25 +46,25 @@ public class BotonCategoria {
 	private void setImagen() {
 		switch(tipo) {
 		case OJOS: 
-			icono = new Image(fibooGame.MANAGER.get("iconos/ojos.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("ojos")); break;
 		case PELO: 
-			icono = new Image(fibooGame.MANAGER.get("iconos/pelo.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("pelo")); break;
 		case ACCPELO: 
-			icono = new Image(fibooGame.MANAGER.get("iconos/accpelo.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("accpelo")); break;
 		case BIGOTE: 
-			icono = new Image(fibooGame.MANAGER.get("iconos/bigote.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("bigote")); break;
 		case BOCA: 
-			icono = new Image(fibooGame.MANAGER.get("iconos/boca.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("boca")); break;
 		case GAFAS:
-			icono = new Image(fibooGame.MANAGER.get("iconos/gafas.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("gafas")); break;
 		case DISFRAZ:
-			icono = new Image(fibooGame.MANAGER.get("iconos/disfraz.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("disfraz")); break;
 		case CAMISA:
-			icono = new Image(fibooGame.MANAGER.get("iconos/camisa.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("camisa")); break;
 		case PANTALON:
-			icono = new Image(fibooGame.MANAGER.get("iconos/pantalon.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("pantalon")); break;
 		case MASCARA:
-			icono = new Image(fibooGame.MANAGER.get("iconos/mascara.png", Texture.class)); break;
+			icono = new Image(fibooGame.atlasComplementos.findRegion("mascara")); break;
 		}
 		
 	}
