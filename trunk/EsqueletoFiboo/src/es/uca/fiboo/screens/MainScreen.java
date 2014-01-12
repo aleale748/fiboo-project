@@ -35,12 +35,6 @@ public class MainScreen extends AbstractScreen {
 		super.show();
 		TextureRegion fondoRegion = new TextureRegion(new Texture("data/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
-
-			fibooGame.MANAGER.loadPersonalizacionScreen();
-			fibooGame.MANAGER.loadNaveminigameScreen();
-			fibooGame.MANAGER.loadMarcianosminigameScreen();
-			fibooGame.MANAGER.loadPersonalizacionScreen();
-			fibooGame.MANAGER.loadCameraminigameScreen();
 		// Se crea el actor fondoImage y su tama??o se fija al llamar resize()
 		fondoImage = new Image(fondoDrawable, Scaling.fit);
 		fondoImage.setFillParent(true);

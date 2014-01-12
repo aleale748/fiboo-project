@@ -40,6 +40,13 @@ public class fibooGame extends Game {
                 public void create() {
 
             		Gdx.input.setCatchBackKey(true);
+
+
+        			fibooGame.MANAGER.loadPersonalizacionScreen();
+        			fibooGame.MANAGER.loadNaveminigameScreen();
+        			fibooGame.MANAGER.loadMarcianosminigameScreen();
+        			fibooGame.MANAGER.loadPersonalizacionScreen();
+        			fibooGame.MANAGER.loadCameraminigameScreen();
                     //Cargamos las im���genes en el manager
             		/*
                 		Gdx.app.log(fibooGame.LOG, "Creating game");
