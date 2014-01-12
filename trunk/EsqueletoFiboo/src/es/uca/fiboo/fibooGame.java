@@ -41,7 +41,6 @@ public class fibooGame extends Game {
     		Gdx.input.setCatchBackKey(true);
     		atlasComplementos = new TextureAtlas(Gdx.files.internal("data/complementos/complementos.atlas"));
 
-			fibooGame.MANAGER.loadPersonalizacionScreen();
 			fibooGame.MANAGER.loadNaveminigameScreen();
 			fibooGame.MANAGER.loadMarcianosminigameScreen();
 			fibooGame.MANAGER.loadPersonalizacionScreen();
@@ -61,7 +60,6 @@ public class fibooGame extends Game {
                     personaje = json.fromJson(Personaje.class, savedData);
                     //Cargamos el TreeMap de Avatar
                     personaje.getAvatar().loadData();
-                    System.out.println(personaje.toString());
             }
             else {
                     //Partida nueva
@@ -117,7 +115,6 @@ public class fibooGame extends Game {
             super.resize(width, height);
             Gdx.app.log(fibooGame.LOG, "'Resizing' to: " + width + " x " + height);
 
-            // show the splash screen when the game is resized for the first time
             if (getScreen() == null) {
                     setScreen(getMainScreen());
             }
