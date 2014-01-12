@@ -24,7 +24,6 @@ public class CameraScreen extends AbstractScreen {
 	
 	public CameraScreen(fibooGame game) {
 		super(game);
-		fibooGame.MANAGER.loadCameraminigameScreen();
 	}
 		
 	private List<ObjetoActor> objetoActors;

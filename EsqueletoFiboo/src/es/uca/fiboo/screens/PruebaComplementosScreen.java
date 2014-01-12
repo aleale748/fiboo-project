@@ -47,8 +47,6 @@ public class PruebaComplementosScreen extends AbstractScreen {
 			}
 		}, stage);
 		
-		fibooGame.MANAGER.loadPersonalizacionScreen();
-		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		// Para probar que se carga bien el skin con todos los ficheros
