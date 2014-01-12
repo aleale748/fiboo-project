@@ -33,7 +33,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	public MarcianosMiniGameScreen(fibooGame game) {
 		super(game);
 	}
-	private int widthPuntuacion = 42, heightPuntuacion = 40;
+	private float escala, widthPuntuacion = 42, heightPuntuacion = 40, tamNaves = 128, tamMarcianos = 128, 
+			widthPregunta = 1024, heightPregunta = 128, widthBien = 512, heightBien = 128, widthNumero = 60, heightNumero = 100,
+			widthBoton = 202, heightBoton = 205;
 	private List<MarcianoActor> marcianos;
 	private List<NaveActor> naves;
 	private List<NaveMarcianoActor> navesMarcianos;
@@ -146,8 +148,8 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 							Gdx.app.log(fibooGame.LOG, "Bien a�adido.");
 						}
 						if (contadorBien < 8) {
-							bien.setWidth(bien.getWidth()*1.06f);
-							bien.setHeight(bien.getHeight()*1.06f);
+							bien.setWidth(widthBien*1.06f);
+							bien.setHeight(heightBien*1.06f);
 						}
 		
 						
@@ -182,6 +184,8 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 						numeroMarcianos = new NumeroActor(numeroMarcianosInt);
 						numeroNaves.setPosition(Gdx.graphics.getWidth() * 0.9f, Gdx.graphics.getHeight() * 0.4f);
 						numeroMarcianos.setPosition(Gdx.graphics.getWidth() * 0.225f, Gdx.graphics.getHeight() * 0.8f);
+						numeroNaves.setWidth(widthNumero);
+						numeroNaves.setHeight(heightNumero);
 						
 						stage.addActor(numeroNaves);
 						//stage.addActor(numeroMarcianos);
@@ -229,21 +233,21 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 								if (i%2 == 0f)
 									marcianos.get(i).setPosition(((float) Math.random() * 0.1f + 
 											0.7f) * (Gdx.graphics.getWidth() * 0.01f + 
-													(float) marcianos.get(i).getWidth() * i), 
+													(float) tamMarcianos * i), 
 													Gdx.graphics.getHeight() * (float) Math.random() * 0.6f);
 								else
 									if (marcianos.get(i-1).getY() < Gdx.graphics.getHeight() * 0.3f)
 										marcianos.get(i).setPosition(((float) Math.random() * 0.2f + 
 												0.7f) * (Gdx.graphics.getWidth() * 0.01f + 
-														(float) marcianos.get(i).getWidth() * (i-1)), ((float) Math.random() * 0.2f + 
+														(float) tamMarcianos * (i-1)), ((float) Math.random() * 0.2f + 
 																0.7f) * (
-												marcianos.get(i-1).getY() + marcianos.get(i).getHeight()));
+												marcianos.get(i-1).getY() + tamMarcianos));
 									else
 										marcianos.get(i).setPosition(((float) Math.random() * 0.2f + 
 												0.7f) * (Gdx.graphics.getWidth() * 0.01f + 
-														(float) marcianos.get(i).getWidth() * (i-1)), ((float) Math.random() * 0.2f + 
+														(float) tamMarcianos * (i-1)), ((float) Math.random() * 0.2f + 
 																0.7f) * (
-												marcianos.get(i-1).getY() - marcianos.get(i).getHeight()));
+												marcianos.get(i-1).getY() - tamMarcianos));
 							stage.addActor(marcianos.get(i));
 						}
 						Gdx.app.log(fibooGame.LOG, "Marcianos generados.");
@@ -259,12 +263,12 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 				}
 				}
 				}
+				redimensionar();
 				stage.draw();
-		
 	}
 	
 	private void comprobarOverlaps() {
-
+		Gdx.app.log(fibooGame.LOG, "Comprobando choque nave-marciano");
 		for (int i = 0; i < naves.size(); ++i) {
 			nave = naves.get(i);
 			if (nave.colocado() && !nave.verificado()) {
@@ -281,14 +285,21 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 							marciano.donde(nave);
 			}
 		}
+
+		Gdx.app.log(fibooGame.LOG, "Comprobacion choque nave-marciano terminada.");
 		
+
+		Gdx.app.log(fibooGame.LOG, "Comprobando si estan todas las naves cubiertas");
 		resuelto = true;
 		for (int i = 0; i < naves.size(); ++i) {
 			if (!naves.get(i).colocado())
 				resuelto = false;
 		}
+
+		Gdx.app.log(fibooGame.LOG, "Comprobacion terminada");
 		if (resuelto) {
-			
+
+			Gdx.app.log(fibooGame.LOG, "Todas las naves cubiertas");
 			for (int i = 0; i < marcianos.size(); ++i) {
 				marciano = marcianos.get(i);
 				if (marciano.colocado()) {
@@ -301,7 +312,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 					nave.remove();
 				}
 			}
-			
+			Gdx.app.log(fibooGame.LOG, "Naves-marcianos de la solucion eliminados");
 			if (numNaves%2 == 0) {
 				for (int i = 0; i < numNaves; ++i) {
 					navesMarcianos.add(new NaveMarcianoActor());
@@ -330,13 +341,15 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 							navesMarcianos.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + navesMarcianos.get(i).getWidth()*1.1f* (float) Math.ceil((float) i/2f));
 					stage.addActor(navesMarcianos.get(i));
 				}
-
+			Gdx.app.log(fibooGame.LOG, "Naves-marcianos solucion generados");
 			numeroNaves.remove();
 			mostrarBien = true;
 			movimiento = true;
 			
 			pregunta = new PreguntaActor();
-			pregunta.setPosition(Gdx.graphics.getWidth()/2f - pregunta.getWidth()/2f, Gdx.graphics.getHeight() * 2.5f / 4f);
+			pregunta.setPosition(Gdx.graphics.getWidth()/2f - widthPregunta/2f, Gdx.graphics.getHeight() * 2.5f / 4f);
+			pregunta.setWidth(widthPregunta);
+			pregunta.setHeight(heightPregunta);
 			stage.addActor(pregunta);
 			
 			boton1 = new BotonActor();
@@ -352,17 +365,25 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			numeroSolInt = numeroMarcianosInt;
 			numeroMal = new NumeroActor(numeroMalInt);
 			numeroSol = new NumeroActor(numeroSolInt);
+			numeroMal.setWidth(widthNumero);
+			numeroMal.setHeight(heightNumero);
+			numeroSol.setWidth(widthNumero);
+			numeroSol.setHeight(heightNumero);
+			boton1.setWidth(widthBoton);
+			boton1.setHeight(heightBoton);
+			boton2.setWidth(widthBoton);
+			boton2.setHeight(heightBoton);
 			if (Math.random() > 0.5f) {
-				numeroMal.setPosition(Gdx.graphics.getWidth() * 3f/ 8f, Gdx.graphics.getHeight()/2.2f);
-				boton2.setPosition(Gdx.graphics.getWidth() * 2.66f / 8f, Gdx.graphics.getHeight()/2.4f);
-				numeroSol.setPosition(Gdx.graphics.getWidth() * 5f / 8f, Gdx.graphics.getHeight()/2.2f);
-				boton1.setPosition(Gdx.graphics.getWidth() * 4.66f/ 8f, Gdx.graphics.getHeight()/2.4f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*0.92f, Gdx.graphics.getHeight()/2.2f);
+				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.1f, Gdx.graphics.getHeight()/2.2f);
+				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
 			}
 			else {
-				numeroSol.setPosition(Gdx.graphics.getWidth() * 3f / 8f, Gdx.graphics.getHeight()/2.2f);
-				boton1.setPosition(Gdx.graphics.getWidth() * 2.66f/ 8f, Gdx.graphics.getHeight()/2.4f);
-				numeroMal.setPosition(Gdx.graphics.getWidth() * 5f / 8f, Gdx.graphics.getHeight()/2.2f);
-				boton2.setPosition(Gdx.graphics.getWidth() * 4.66f / 8f, Gdx.graphics.getHeight()/2.4f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*0.92f, Gdx.graphics.getHeight()/2.2f);
+				boton1.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.1f, Gdx.graphics.getHeight()/2.2f);
+				boton2.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
 			}
 			
 			stage.addActor(numeroMal);
@@ -408,6 +429,84 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		}
 		
 
+	}
+	
+	private void redimensionar() {
+
+		Gdx.app.log(fibooGame.LOG, "Redimensiomiento empezado.");
+		escala = ((float) ((Gdx.graphics.getHeight() / 6f) / naves.get(0).getHeight()));
+		tamMarcianos *= escala;
+		for (int i = 0; i < marcianos.size(); ++i) {
+			marciano = marcianos.get(i);
+			marciano.setWidth(tamMarcianos);
+			marciano.setHeight(tamMarcianos);
+		}
+		tamNaves *= escala;
+		for (int i = 0; i < naves.size(); ++i) {
+			nave = naves.get(i);
+			nave.setWidth(tamNaves);
+			nave.setHeight(tamNaves);
+		}
+		for (int i = 0; i < navesMarcianos.size(); ++i) {
+			navesMarcianos.get(i).setWidth(tamNaves);
+			navesMarcianos.get(i).setHeight(tamNaves);
+		}
+		widthPuntuacion = widthPuntuacion * escala;
+		heightPuntuacion = heightPuntuacion * escala;
+		for (int i = 0; i < puntuacionVacia.size(); ++i) {
+			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + (i) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			puntuacionVacia.get(i).setWidth(widthPuntuacion);
+			puntuacionVacia.get(i).setHeight(heightPuntuacion);
+			puntuacionVacia.get(i).toFront();
+		}
+		for (int i = 0; i < puntuacion.size(); ++i) {
+			puntuacion.get(i).setPosition(widthPuntuacion*0.2f + (i) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			puntuacion.get(i).setWidth(widthPuntuacion);
+			puntuacion.get(i).setHeight(heightPuntuacion);
+			puntuacion.get(i).toFront();
+		}
+		widthPregunta *= escala;
+		heightPregunta *= escala;
+		widthBien *= escala;
+		heightBien *= escala;
+		
+		if (naves.size() != 0 && naves.size()%2 == 0) {
+			for (int i = 0; i < naves.size(); ++i) {
+				if (i == 0)
+					naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + naves.get(i).getWidth()*1.1f*0.6f);
+				else
+					if (i == 1)
+						naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - naves.get(i).getWidth()*1.1f*0.6f);
+					else
+						if (i%2 == 0)
+							naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + naves.get(i).getWidth()*1.1f*0.6f + naves.get(i).getWidth()*1.1f*(i/2));
+						else
+							naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - naves.get(i).getWidth()*1.1f*0.6f - naves.get(i).getWidth()*1.1f*(i/2));
+			}
+		}
+		else
+			for (int i = 0; i < naves.size(); ++i) {
+				if (i == 0) 
+					naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f);
+				else 
+					if (i % 2 == 0)
+						naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f - naves.get(i).getWidth()*1.1f*(i/2));
+					else
+						naves.get(i).setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.4f + naves.get(i).getWidth()*1.1f* (float) Math.ceil((float) i/2f));
+			}
+		
+		widthNumero *= escala;
+		heightNumero *= escala;
+		widthBoton *= escala;
+		heightBoton *= escala;
+		
+		if (resuelto == false) {
+			numeroNaves.setWidth(widthNumero);
+			numeroNaves.setHeight(heightNumero);
+			numeroNaves.setPosition(Gdx.graphics.getWidth() * 0.9f, Gdx.graphics.getHeight() * 0.4f);
+		}
+		
+		Gdx.app.log(fibooGame.LOG, "Redimensiomiento terminado.");
 	}
 	
 	@Override
