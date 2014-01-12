@@ -326,9 +326,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			
 			numeroMalInt = numeroMarcianosInt;
 			if (Math.random() > 0.5f)
-				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt - 1));
+				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt - 2)) % (numeroMarcianosInt - 2) + 1;
 			else
-				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (numMarcianos - numeroMarcianosInt - 1)) + 1 ;
+				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (numMarcianos - numeroMarcianosInt - 1)) % (numMarcianos - numeroMarcianosInt - 1) + 1 ;
 			numeroSolInt = numeroMarcianosInt;
 			numeroMal = new NumeroActor(numeroMalInt);
 			numeroSol = new NumeroActor(numeroSolInt);
