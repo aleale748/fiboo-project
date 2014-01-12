@@ -158,6 +158,23 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadMarcianosminigameScreen() {
+		load("naveminigame/older/win.png", Texture.class);
+		load("naveminigame/older/gameover.png", Texture.class);
+		load("naveminigame/0.png", Texture.class);
+		load("naveminigame/1.png", Texture.class);
+		load("naveminigame/2.png", Texture.class);
+		load("naveminigame/3.png", Texture.class);
+		load("naveminigame/4.png", Texture.class);
+		load("naveminigame/5.png", Texture.class);
+		load("naveminigame/6.png", Texture.class);
+		load("naveminigame/7.png", Texture.class);
+		load("naveminigame/8.png", Texture.class);
+		load("naveminigame/9.png", Texture.class);
+        load("naveminigame/star.png", Texture.class);
+        load("naveminigame/starVacia.png", Texture.class);
+        load("naveminigame/fondonave.png", Texture.class);
+		load("marcianosminigame/boton.png", Texture.class);
+		load("marcianosminigame/pregunta.png", Texture.class);
 		load("marcianosminigame/bien.png", Texture.class);
         load("marcianosminigame/nave.png", Texture.class);
         load("marcianosminigame/marciano.png", Texture.class);
