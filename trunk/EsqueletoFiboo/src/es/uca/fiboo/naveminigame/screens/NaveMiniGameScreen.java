@@ -95,7 +95,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	public NaveMiniGameScreen(fibooGame game) {
 		super(game);
-		fibooGame.MANAGER.loadNaveminigameScreen();
 		Gdx.app.log(fibooGame.LOG, "Bien construido.");
 	}
 
