@@ -56,6 +56,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
+
+		escala = ((float) ((Gdx.graphics.getHeight() / 6f) / tamNaves));
+		tamMarcianos *= escala;
 		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
@@ -435,7 +438,6 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 
 		Gdx.app.log(fibooGame.LOG, "Redimensiomiento empezado.");
 		escala = ((float) ((Gdx.graphics.getHeight() / 6f) / naves.get(0).getHeight()));
-		tamMarcianos *= escala;
 		for (int i = 0; i < marcianos.size(); ++i) {
 			marciano = marcianos.get(i);
 			marciano.setWidth(tamMarcianos);
