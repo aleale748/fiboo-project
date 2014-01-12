@@ -75,8 +75,9 @@ public class BotonCategoria {
 		
 		float winHeight = Gdx.graphics.getHeight() * 0.2f;
 		float winWidth = winHeight;
+		popup.padTop(Gdx.graphics.getHeight() * 0.07f);
+		popup.getButtonTable().add(exitButton).height(popup.getPadTop()).width(popup.getPadTop());
 		
-		popup.getButtonTable().add(exitButton).height(popup.getPadTop());
 		if(complementos.isEmpty()) {
 			popup.add("No tienes\ncomplementos\nde este tipo");
 		}
