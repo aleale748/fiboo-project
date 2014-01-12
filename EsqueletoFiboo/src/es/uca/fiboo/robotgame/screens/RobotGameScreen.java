@@ -44,9 +44,10 @@ public class RobotGameScreen extends AbstractScreen{
 	Texture lunaImage;
 	Texture estrellaImage;
 	Texture marcianoImage;
-	Sound dropSound;
-	Sound failSound;
-	Music rainMusic;
+	Sound bienSound;
+	Sound malSound;
+	Sound reguSound;
+	//Music rainMusic;
 	OrthographicCamera camera;
 	Rectangle hucha;
 	Array<DropObject> raindrops;
@@ -74,10 +75,11 @@ public class RobotGameScreen extends AbstractScreen{
 				//stage.addActor(huchaImage);
 				
 				// load the drop sound effect and the rain background "music"
-				dropSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/smw_coin.wav"));
-				failSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/failSound.mp3"));
-				rainMusic = Gdx.audio.newMusic(Gdx.files.internal("robotgame/rain.mp3"));
-				rainMusic.setLooping(true);
+				bienSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/bien.mp3"));
+				malSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/mal.mp3"));
+				reguSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/regu.mp3"));
+				//rainMusic = Gdx.audio.newMusic(Gdx.files.internal("robotgame/rain.mp3"));
+				//rainMusic.setLooping(true);
 		 
 				// create the camera and the SpriteBatch
 				camera = new OrthographicCamera();
@@ -219,14 +221,14 @@ public class RobotGameScreen extends AbstractScreen{
 		stage.draw();
 		pause();
 		batch.begin();
-		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);	
+		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.09f, Gdx.graphics.getWidth()*0.09f);	
 		if(objeto==0)
-			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getWidth()*0.07f);
 		if(objeto==1)
-			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
+			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getWidth()*0.07f);
 		if(objeto==2)
-			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,  Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.06f, Gdx.graphics.getWidth()*0.06f);
-		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f+Gdx.graphics.getWidth()*0.05f, Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
+			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,  Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getWidth()*0.07f);
+		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f+Gdx.graphics.getWidth()*0.05f, Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.09f, Gdx.graphics.getWidth()*0.09f);
 		rand = MathUtils.random(0, 1);
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
@@ -257,15 +259,15 @@ public class RobotGameScreen extends AbstractScreen{
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){
-				case PLANETA: if(objeto == 0){objetosGathered++;numobjetos--;}
-					dropSound.play();break;
-				case ESTRELLA: if(objeto == 1){objetosGathered++;numobjetos--;}
-					dropSound.play();break;
-				case LUNA: if(objeto == 2){objetosGathered++;numobjetos--;}
-					dropSound.play();break;
+				case PLANETA: if(objeto == 0){objetosGathered++;numobjetos--;bienSound.play();break;}
+				else {reguSound.play();break;}
+				case ESTRELLA: if(objeto == 1){objetosGathered++;numobjetos--;bienSound.play();break;}
+					else {reguSound.play();break;}
+				case LUNA: if(objeto == 2){objetosGathered++;numobjetos--;bienSound.play();break;}
+					else {reguSound.play();break;}
 				case MARCIANO:
-					objetosGathered=0;numobjetos= 10;
-					failSound.play();
+					if(numobjetos<10){objetosGathered--;numobjetos++;}
+					malSound.play();
 					break;
 				default:
 					break;
@@ -273,7 +275,6 @@ public class RobotGameScreen extends AbstractScreen{
 				if(numobjetos==0){
 					game.setScreen(new WinScreen(game));
 				}
-				dropSound.play();
 				try{
 				iter.remove();
 				}
@@ -290,8 +291,9 @@ public class RobotGameScreen extends AbstractScreen{
 		estrellaImage.dispose();
 		planetaImage.dispose();
 		marcianoImage.dispose();
-		dropSound.dispose();
-		rainMusic.dispose();
+		bienSound.dispose();
+		malSound.dispose();
+		reguSound.dispose();
 		super.dispose();
 	}
  
