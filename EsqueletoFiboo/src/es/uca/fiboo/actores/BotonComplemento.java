@@ -31,7 +31,7 @@ public class BotonComplemento extends Image {
 	private float escala;
 	
 	public BotonComplemento(Tipo tipo) {
-		super(fibooGame.MANAGER.get("data/complementos/vacio.png", Texture.class));
+		super(fibooGame.atlasComplementos.findRegion("vacio"));
 		addQuitarComplementoListener(tipo);
 	}
 	

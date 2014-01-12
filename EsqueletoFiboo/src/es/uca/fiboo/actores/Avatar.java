@@ -5,9 +5,10 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.actores.Complemento.Tipo;
 
 /**
@@ -22,14 +23,14 @@ public class Avatar {
 
 	//Con transient se consigue que no se guarde ni lea en Json
 	private transient TreeMap<Tipo, Complemento> complementos;
-	private transient Texture base;
+	private transient TextureRegion base;
 	
 	private ArrayList<Complemento> data;
 	private float escala;
 	
 	public Avatar() {
 		complementos = new TreeMap<Tipo, Complemento>();
-		base = new Texture("data/complementos/base.png");
+		base = fibooGame.atlasComplementos.findRegion("base");
 		
 		escala = Gdx.graphics.getHeight() * 0.7f;
 		

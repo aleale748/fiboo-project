@@ -59,7 +59,7 @@ public class ChooseScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on ninoBoton");
-				fibooGame.getPersonaje().getAvatar().setBase("data/complementos/pelonino3.png");
+				fibooGame.getPersonaje().getAvatar().setBase("pelonino3");
 				imgFondo.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
 				ninaBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
 				ninoBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f),
@@ -85,7 +85,7 @@ public class ChooseScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on ninaBoton");
-				fibooGame.getPersonaje().getAvatar().setBase("data/complementos/pelonina3.png");
+				fibooGame.getPersonaje().getAvatar().setBase("pelonina3");
 				imgFondo.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
 				ninoBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f)));
 				ninaBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f),

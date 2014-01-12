@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Json;
 
 import es.uca.fiboo.actores.Complemento;
@@ -23,6 +21,7 @@ public class fibooGame extends Game {
                 public static final boolean DEV_MODE = false;
                 
                 public static final FibooAssetManager MANAGER = new FibooAssetManager();
+                public static TextureAtlas atlasComplementos;
 
                 private static Personaje personaje;
                 private static ArrayList<Complemento> complementos;
@@ -40,7 +39,7 @@ public class fibooGame extends Game {
                 public void create() {
 
             		Gdx.input.setCatchBackKey(true);
-
+            		atlasComplementos = new TextureAtlas(Gdx.files.internal("data/complementos/complementos.atlas"));
 
         			fibooGame.MANAGER.loadPersonalizacionScreen();
         			fibooGame.MANAGER.loadNaveminigameScreen();

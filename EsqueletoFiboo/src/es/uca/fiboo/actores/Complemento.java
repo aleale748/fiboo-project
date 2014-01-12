@@ -1,7 +1,9 @@
 package es.uca.fiboo.actores;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import es.uca.fiboo.fibooGame;
 
@@ -21,7 +23,7 @@ public class Complemento {
 	private Tipo tipo;
 	private String imagePath;
 	private boolean disponible;
-	private transient Texture imagen;
+	private transient TextureRegion imagen;
 	
 	//Necesario para Json
 	public Complemento() {}
@@ -38,12 +40,12 @@ public class Complemento {
 	
 	//Provisional mientras no hay Atlas.
 	// disfraz1.png -> disfraz1Icon.png
-	public Texture getIcon() {
-		String[] split = imagePath.split("[.]+");
-		String path = split[0] + "Icon.png";
+	public TextureRegion getIcon() {
+		//String[] split = imagePath.split("[.]+");
+		//String path = split[0] + "Icon";
 		
-		Texture icono = fibooGame.MANAGER.get(path, Texture.class);
-		icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		TextureRegion icono = fibooGame.atlasComplementos.findRegion(imagePath + "Icon");
+		//icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		return icono;
 	}
 	
@@ -54,10 +56,11 @@ public class Complemento {
 	}
 	
 	//Se instancia la imagen sólo si se necesita
-	public Texture getImagen() {
+	public TextureRegion getImagen() {
 		if(imagen == null) {
-			imagen = fibooGame.MANAGER.get(imagePath, Texture.class);
-			imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			Gdx.app.log(fibooGame.LOG, "Cargando " + imagePath);
+			imagen = fibooGame.atlasComplementos.findRegion(imagePath);
+			//imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return imagen;
 	}
