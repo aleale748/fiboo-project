@@ -32,6 +32,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 
 	public MarcianosMiniGameScreen(fibooGame game) {
 		super(game);
+		fibooGame.MANAGER.loadMarcianosminigameScreen();
 	}
 	private int widthPuntuacion = 42, heightPuntuacion = 40;
 	private List<MarcianoActor> marcianos;

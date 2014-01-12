@@ -3,6 +3,8 @@ package es.uca.fiboo.actores;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
+import es.uca.fiboo.fibooGame;
+
 /**
  * El complemento guarda la imagen de este y su disponibilidad, 
  * 
@@ -40,7 +42,7 @@ public class Complemento {
 		String[] split = imagePath.split("[.]+");
 		String path = split[0] + "Icon.png";
 		
-		Texture icono = new Texture(path);
+		Texture icono = fibooGame.MANAGER.get(path, Texture.class);
 		icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		return icono;
 	}
@@ -54,7 +56,7 @@ public class Complemento {
 	//Se instancia la imagen sólo si se necesita
 	public Texture getImagen() {
 		if(imagen == null) {
-			imagen = new Texture(imagePath);
+			imagen = fibooGame.MANAGER.get(imagePath, Texture.class);
 			imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return imagen;
