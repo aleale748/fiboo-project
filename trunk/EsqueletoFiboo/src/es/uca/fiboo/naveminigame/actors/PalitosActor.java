@@ -14,7 +14,7 @@ public class PalitosActor extends Actor {
 	
 	public PalitosActor(int num) {
 		palitos = new TextureRegion(fibooGame.MANAGER.get("naveminigame/palitos" + num + ".png", Texture.class));
-		setSize(palitos.getRegionWidth(), palitos.getRegionHeight());
+		setSize(palitos.getRegionWidth()/1.5f, palitos.getRegionHeight()/1.5f);
 		this.num = num;
 	}
 	

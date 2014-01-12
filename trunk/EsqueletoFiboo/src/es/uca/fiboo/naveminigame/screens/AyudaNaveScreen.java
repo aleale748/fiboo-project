@@ -11,7 +11,6 @@ public class AyudaNaveScreen extends AbstractScreen {
 
 	public AyudaNaveScreen(fibooGame game) {
 		super(game);
-		fibooGame.MANAGER.loadNaveminigameScreen();
 	}
 	
 	private float time;
