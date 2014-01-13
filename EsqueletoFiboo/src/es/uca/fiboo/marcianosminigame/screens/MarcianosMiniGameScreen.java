@@ -171,8 +171,8 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 								naves.clear();
 								
 								Gdx.app.log(fibooGame.LOG, "Generando n���mero de naves y de marcianos.");
-								numNaves = (int) (Math.random() * 5) % 5 + 1;
-								numMarcianos = numNaves + (int) (Math.random() * (9 - numNaves)) % (9 - numNaves) + 1;
+								numNaves = (int) (Math.random() * 10) % 5 + 1;
+								numMarcianos = numNaves + (int) (Math.random() * 10) % (9 - numNaves) + 1;
 								numeroMarcianosInt = numMarcianos;
 								numeroNaves = new NumeroActor(numNaves);
 								numeroMarcianos = new NumeroActor(numeroMarcianosInt);
@@ -361,10 +361,10 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			stage.addActor(boton2);
 			
 			numeroMalInt = numeroMarcianosInt;
-			if (Math.random() > 0.5f)
-				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt - 1));
+			if (Math.random() > 0.5f && numeroMarcianosInt > 2)
+				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt)) % (numeroMarcianosInt - 1);
 			else
-				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (numMarcianos - numeroMarcianosInt - 1)) + 1 ;
+				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (9 - numeroMarcianosInt - 1)) + 1 ;
 			numeroSolInt = numeroMarcianosInt;
 			numeroMal = new NumeroActor(numeroMalInt);
 			numeroSol = new NumeroActor(numeroSolInt);
