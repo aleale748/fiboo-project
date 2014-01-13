@@ -1,0 +1,638 @@
+
+atlasNaveMiniGame.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+vida
+  rotate: false
+  xy: 1, 1985
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+vidaEscudo
+  rotate: false
+  xy: 131, 1985
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+vidaVacia
+  rotate: false
+  xy: 261, 1985
+  size: 128, 16
+  orig: 128, 16
+  offset: 0, 0
+  index: -1
+laserPeque
+  rotate: false
+  xy: 391, 1969
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+disparar2
+  rotate: false
+  xy: 457, 1937
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 587, 1937
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+starVacia
+  rotate: false
+  xy: 653, 1937
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+0
+  rotate: false
+  xy: 719, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 785, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 851, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 917, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 983, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 1049, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 1115, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 1181, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 1247, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 1313, 1873
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+asteroide0
+  rotate: false
+  xy: 1379, 1873
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide1
+  rotate: false
+  xy: 1509, 1873
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide2
+  rotate: false
+  xy: 1639, 1873
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide3
+  rotate: false
+  xy: 1769, 1873
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide4
+  rotate: false
+  xy: 1899, 1873
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide5
+  rotate: false
+  xy: 1, 1855
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide6
+  rotate: false
+  xy: 131, 1855
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide7
+  rotate: false
+  xy: 261, 1855
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide8
+  rotate: false
+  xy: 391, 1807
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+asteroide9
+  rotate: false
+  xy: 521, 1807
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+explosion0
+  rotate: false
+  xy: 651, 1615
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion1
+  rotate: false
+  xy: 909, 1615
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion10
+  rotate: false
+  xy: 1167, 1615
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion11
+  rotate: false
+  xy: 1425, 1615
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion12
+  rotate: false
+  xy: 1683, 1615
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion13
+  rotate: false
+  xy: 1, 1597
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion14
+  rotate: false
+  xy: 259, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion15
+  rotate: false
+  xy: 517, 1357
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion16
+  rotate: false
+  xy: 775, 1357
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion17
+  rotate: false
+  xy: 1033, 1357
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion18
+  rotate: false
+  xy: 1291, 1357
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion19
+  rotate: false
+  xy: 1549, 1357
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion2
+  rotate: false
+  xy: 1, 1339
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion20
+  rotate: false
+  xy: 259, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion21
+  rotate: false
+  xy: 517, 1099
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion22
+  rotate: false
+  xy: 775, 1099
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion23
+  rotate: false
+  xy: 1033, 1099
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion3
+  rotate: false
+  xy: 1291, 1099
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion4
+  rotate: false
+  xy: 1549, 1099
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion5
+  rotate: false
+  xy: 1, 1081
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion6
+  rotate: false
+  xy: 259, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion7
+  rotate: false
+  xy: 517, 841
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion8
+  rotate: false
+  xy: 775, 841
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosion9
+  rotate: false
+  xy: 1033, 841
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal0
+  rotate: false
+  xy: 1291, 841
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal1
+  rotate: false
+  xy: 1549, 841
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal10
+  rotate: false
+  xy: 1, 823
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal11
+  rotate: false
+  xy: 259, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal12
+  rotate: false
+  xy: 517, 583
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal13
+  rotate: false
+  xy: 775, 583
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal14
+  rotate: false
+  xy: 1033, 583
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal15
+  rotate: false
+  xy: 1291, 583
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal16
+  rotate: false
+  xy: 1549, 583
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal17
+  rotate: false
+  xy: 1, 565
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal18
+  rotate: false
+  xy: 259, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal19
+  rotate: false
+  xy: 517, 325
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal2
+  rotate: false
+  xy: 775, 325
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal20
+  rotate: false
+  xy: 1033, 325
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal21
+  rotate: false
+  xy: 1291, 325
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal22
+  rotate: false
+  xy: 1549, 325
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal23
+  rotate: false
+  xy: 1, 307
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal3
+  rotate: false
+  xy: 259, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal4
+  rotate: false
+  xy: 517, 67
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal5
+  rotate: false
+  xy: 775, 67
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal6
+  rotate: false
+  xy: 1033, 67
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal7
+  rotate: false
+  xy: 1291, 67
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal8
+  rotate: false
+  xy: 1549, 67
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+explosionMal9
+  rotate: false
+  xy: 1, 49
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+gameover
+  rotate: false
+  xy: 259, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+
+atlasNaveMiniGame2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+palitos0
+  rotate: false
+  xy: 1, 1549
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos1
+  rotate: false
+  xy: 1, 1291
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos10
+  rotate: false
+  xy: 1, 1033
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos2
+  rotate: false
+  xy: 1, 775
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos3
+  rotate: false
+  xy: 1, 517
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos4
+  rotate: false
+  xy: 1, 259
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos5
+  rotate: false
+  xy: 1, 1
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+nave
+  rotate: false
+  xy: 1027, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+win
+  rotate: false
+  xy: 1027, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+
+atlasNaveMiniGame3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+palitos6
+  rotate: false
+  xy: 1, 775
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos7
+  rotate: false
+  xy: 1, 517
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos8
+  rotate: false
+  xy: 1, 259
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
+palitos9
+  rotate: false
+  xy: 1, 1
+  size: 1024, 256
+  orig: 1024, 256
+  offset: 0, 0
+  index: -1
