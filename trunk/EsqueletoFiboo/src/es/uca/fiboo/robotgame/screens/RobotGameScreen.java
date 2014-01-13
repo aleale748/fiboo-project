@@ -67,20 +67,16 @@ public class RobotGameScreen extends AbstractScreen{
 	public RobotGameScreen(fibooGame game){
 		super(game);
 		// load the images for the droplet and the bucket, 64x64 pixels each
-				planetaImage = new Texture(Gdx.files.internal("robotgame/planeta_.png"));
-				//huchaImage = new Image(new Texture(Gdx.files.internal("hucha.png")));
-				lunaImage = new Texture(Gdx.files.internal("robotgame/luna_.png"));
-				estrellaImage = new Texture(Gdx.files.internal("robotgame/estrella_.png"));
-				marcianoImage = new Texture(Gdx.files.internal("robotgame/marciano_.png"));
+				planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
+				lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
+				estrellaImage = fibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
+				marcianoImage = fibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
 				//stage.addActor(huchaImage);
 				
 				// load the drop sound effect and the rain background "music"
-				bienSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/bien.mp3"));
-				malSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/mal.mp3"));
-				reguSound = Gdx.audio.newSound(Gdx.files.internal("robotgame/regu.mp3"));
-				//rainMusic = Gdx.audio.newMusic(Gdx.files.internal("robotgame/rain.mp3"));
-				//rainMusic.setLooping(true);
-		 
+				bienSound = fibooGame.MANAGER.get("robotgame/bien.mp3", Sound.class);
+				malSound = fibooGame.MANAGER.get("robotgame/mal.mp3", Sound.class);
+				reguSound = fibooGame.MANAGER.get("robotgame/regu.mp3", Sound.class);
 				// create the camera and the SpriteBatch
 				camera = new OrthographicCamera();
 				
@@ -109,69 +105,7 @@ public class RobotGameScreen extends AbstractScreen{
 		raindrop.height = Gdx.graphics.getHeight()*0.1f;
 		raindrops.add(raindrop);
 		lastDropTime = TimeUtils.nanoTime();
-	}/*
-	@Override
-	public void render(float delta) {
-		// clear the screen with a dark blue color. The
-		// arguments to glClearColor are the red, green
-		// blue and alpha component in the range [0,1]
-		// of the color to be used to clear the screen.
-		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		//Acciones de los actores
-		stage.act(delta);
-
-
-		//Pintar el resto de actores
-		stage.draw();
-		
-		
-		
-		/*
-		// process user input
-		if (Gdx.input.isTouched()) {
-			Vector3 touchPos = new Vector3();
-			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-			camera.unproject(touchPos);
-			hucha.x = touchPos.x - 64 / 2;
-		}
-		if (Gdx.input.isKeyPressed(Keys.LEFT))
-			hucha.x -= 200 * Gdx.graphics.getDeltaTime();
-		if (Gdx.input.isKeyPressed(Keys.RIGHT))
-			hucha.x += 200 * Gdx.graphics.getDeltaTime();
- 
-		// make sure the bucket stays within the screen bounds
-		if (hucha.x < 0)
-			hucha.x = 0;
-		if (hucha.x > 800 - 64)
-			hucha.x = 800 - 64;
- 
-		// check if we need to create a new raindrop
-		if (TimeUtils.nanoTime() - lastDropTime > 1000000000)
-			spawnRaindrop();
- 
-		// move the raindrops, remove any that are beneath the bottom edge of
-		// the screen or that hit the bucket. In the later case we play back
-		// a sound effect as well.
-		Iterator<Rectangle> iter = raindrops.iterator();
-		while (iter.hasNext()) {
-			Rectangle raindrop = iter.next();
-			raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
-			if (raindrop.y + 64 < 0)
-				iter.remove();
-			if (raindrop.overlaps(hucha)) {
-				dropsGathered++;
-				dropSound.play();
-				iter.remove();
-			}
-		}
 	}
- 
-	@Override
-	public void resize(int width, int height) {
-	}
-*/
 	@Override
 	public void show() {
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
@@ -186,7 +120,7 @@ public class RobotGameScreen extends AbstractScreen{
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		Image imgFondo = new Image(new Texture("robotgame/fondonave.png"));
+		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 
