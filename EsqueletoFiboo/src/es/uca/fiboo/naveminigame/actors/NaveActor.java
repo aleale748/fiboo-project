@@ -21,7 +21,9 @@ public class NaveActor extends Actor implements HealthActor {
 	
 	public NaveActor() {
 		nave = fibooGame.atlasNaveMiniGame.findRegion("nave");
-		setSize(256, 135);
+		nave.setRegionWidth(256);
+		nave.setRegionHeight(135);
+		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		health = 1;
 	}

@@ -34,8 +34,8 @@ public class AyudaNaveScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		time = 0;
-		ayuda = new Image(fibooGame.atlasNaveMiniGame.findRegion("ayuda"));
-		fondo = new Image(fibooGame.atlasNaveMiniGame.findRegion("fondonave"));
+		ayuda = new Image(fibooGame.MANAGER.get("naveminigame/ayuda.png", Texture.class));
+		fondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		ayuda.setFillParent(true);
 		fondo.setFillParent(true);
 		stage.addActor(fondo);
