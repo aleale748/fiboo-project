@@ -82,7 +82,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		Gdx.app.log(fibooGame.LOG, "Cargando imagen de fondo y a���adiendola al escenario");
-		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
+		Image imgFondo = new Image(fibooGame.atlasNaveMiniGame.findRegion("fondonave"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		
@@ -183,7 +183,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			
 			Gdx.app.log(fibooGame.LOG, "Generando asteroides");
 			
-			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 9) % 9 + 1, (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.1f) + (Gdx.graphics.getWidth()*0.1f));
+			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 9) % 9 + 1, (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.15f) + (Gdx.graphics.getWidth()*0.15f));
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
@@ -207,7 +207,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			stage.addActor(asteroide);
 			asteroides.add(asteroide);
 			if (respawnSol % 1 == 0) {
-				AsteroideActor asteroidesol = new AsteroideActor(palitos.getNum(), (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.1f) + (Gdx.graphics.getWidth()*0.1f));
+				AsteroideActor asteroidesol = new AsteroideActor(palitos.getNum(), (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.15f) + (Gdx.graphics.getWidth()*0.15f));
 				asteroidesol.setWidth(widthAsteroides);
 				asteroidesol.setHeight(heightAsteroides);
 				if (random > 0.5)

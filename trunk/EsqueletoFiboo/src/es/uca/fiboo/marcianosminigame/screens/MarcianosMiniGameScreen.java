@@ -54,7 +54,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
-		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
+		Image imgFondo = new Image(fibooGame.atlasNaveMiniGame.findRegion("fondonave"));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		
@@ -377,15 +377,15 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			boton2.setWidth(widthBoton);
 			boton2.setHeight(heightBoton);
 			if (Math.random() > 0.5f) {
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*0.92f, Gdx.graphics.getHeight()/2.2f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.05f, Gdx.graphics.getHeight()/2f);
 				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.1f, Gdx.graphics.getHeight()/2.2f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2f);
 				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
 			}
 			else {
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*0.92f, Gdx.graphics.getHeight()/2.2f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.05f, Gdx.graphics.getHeight()/2f);
 				boton1.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.1f, Gdx.graphics.getHeight()/2.2f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2f);
 				boton2.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
 			}
 			

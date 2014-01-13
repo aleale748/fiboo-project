@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class AsteroideActor extends Actor {
 
-	private TextureRegion alien;
+	private TextureRegion asteroide;
 	private int numero;
 	public float velocidad;
 	
@@ -18,8 +18,8 @@ public class AsteroideActor extends Actor {
 	
 	public AsteroideActor(int numero, float aumentoVelocidad) {
 		this.numero = numero;
-		alien = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero) + ".png", Texture.class));
-		setSize(alien.getRegionWidth(), alien.getRegionHeight());
+		asteroide = fibooGame.atlasNaveMiniGame.findRegion("asteroide" + Integer.toString(numero));
+		setSize(asteroide.getRegionWidth(), asteroide.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		this.velocidad = aumentoVelocidad;
 	}
@@ -35,7 +35,7 @@ public class AsteroideActor extends Actor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(alien, getX(), getY(), getOriginX(), getOriginY(), 
+		batch.draw(asteroide, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
 	}

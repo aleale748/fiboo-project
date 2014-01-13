@@ -13,7 +13,7 @@ public class NaveMarcianoActor extends Actor {
 	private TextureRegion nave;
 	
 	public NaveMarcianoActor() {
-		nave = new TextureRegion(fibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class));
+		nave = fibooGame.atlasMarcianosMiniGame.findRegion("naveMarciano");
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 	}
 	

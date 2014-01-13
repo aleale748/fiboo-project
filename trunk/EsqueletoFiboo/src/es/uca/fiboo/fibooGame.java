@@ -21,7 +21,7 @@ public class fibooGame extends Game {
         public static final boolean DEV_MODE = false;
         
         public static final FibooAssetManager MANAGER = new FibooAssetManager();
-        public static TextureAtlas atlasComplementos;
+        public static TextureAtlas atlasComplementos, atlasNaveMiniGame, atlasMarcianosMiniGame;
 
         private static Personaje personaje;
         private static ArrayList<Complemento> complementos;
@@ -40,9 +40,10 @@ public class fibooGame extends Game {
 
     		Gdx.input.setCatchBackKey(true);
     		atlasComplementos = new TextureAtlas(Gdx.files.internal("data/complementos/complementos.atlas"));
-
+    		atlasNaveMiniGame = new TextureAtlas("naveminigame/imagenesNaveMiniGame.txt");
+    		atlasMarcianosMiniGame = new TextureAtlas("marcianosminigame/imagenesMarcianosMiniGame.txt");
 			fibooGame.MANAGER.loadNaveminigameScreen();
-			fibooGame.MANAGER.loadMarcianosminigameScreen();
+			//fibooGame.MANAGER.loadMarcianosminigameScreen();
 			fibooGame.MANAGER.loadPersonalizacionScreen();
 			fibooGame.MANAGER.loadCameraminigameScreen();
 			fibooGame.MANAGER.robotgameScreen();

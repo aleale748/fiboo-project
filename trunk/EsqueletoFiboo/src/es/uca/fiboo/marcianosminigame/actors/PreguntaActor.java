@@ -12,7 +12,7 @@ public class PreguntaActor extends Actor {
 	private TextureRegion pregunta;
 	
 	public PreguntaActor() {
-		pregunta = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/pregunta.png", Texture.class));
+		pregunta = fibooGame.atlasMarcianosMiniGame.findRegion("pregunta");
 		setSize(pregunta.getRegionWidth(), pregunta.getRegionHeight());
 	}
 	

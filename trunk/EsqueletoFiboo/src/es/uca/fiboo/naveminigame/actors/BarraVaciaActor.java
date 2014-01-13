@@ -12,7 +12,7 @@ public class BarraVaciaActor extends Actor {
 	private TextureRegion barra;
 	
 	public BarraVaciaActor() {
-		barra = new TextureRegion(fibooGame.MANAGER.get("naveminigame/vidaVacia.png", Texture.class));
+		barra = fibooGame.atlasNaveMiniGame.findRegion("vidaVacia");
 		setSize(barra.getRegionWidth(), barra.getRegionHeight());
 	}
 	

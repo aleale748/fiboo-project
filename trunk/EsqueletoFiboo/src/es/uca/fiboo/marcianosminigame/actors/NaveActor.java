@@ -15,7 +15,7 @@ public class NaveActor extends Actor {
 	private boolean colocado, verificado;
 	
 	public NaveActor() {
-		nave = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/nave.png", Texture.class));
+		nave = fibooGame.atlasMarcianosMiniGame.findRegion("nave");
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 		bb = new Rectangle(getX(), getY() + getHeight()/4f, getWidth(),getHeight()/2f);
 		colocado = false;

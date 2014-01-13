@@ -22,7 +22,7 @@ public class ExplosionMalActor extends Actor {
 	public ExplosionMalActor() {
 		explosiones = new TextureRegion[24];
 		for (int i = 0; i < 24; ++i) {
-			explosiones[i] = new TextureRegion(fibooGame.MANAGER.get("naveminigame/explosionMal" + Integer.toString(i) + ".png", Texture.class));
+			explosiones[i] = fibooGame.atlasNaveMiniGame.findRegion("explosionMal" + Integer.toString(i));
 		}
 		stateTime = 0f;
 		
