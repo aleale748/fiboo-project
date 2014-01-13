@@ -216,29 +216,32 @@ public class SacoScreen extends AbstractScreen {
 		float h = Gdx.graphics.getHeight();
 		float w = Gdx.graphics.getWidth();
 		
-		SacoScreenPrincipal.batch.begin();
+		stage.act(delta);
+		stage.draw();
 		
-		SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, "Añade las mismas cosas que tenía el cofre del inicio!", 0, w/2);
-		SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, "Tengo la solución!", w/2, h/20);
+		batch.begin();
+		
+		SacoScreenPrincipal.font.draw(batch, "Añade las mismas cosas que tenía el cofre del inicio!", 0, w/2);
+		SacoScreenPrincipal.font.draw(batch, "Tengo la solución!", w/2, h/20);
 		//Dibujar el cofreA con todos sus botones
-		SacoScreenPrincipal.batch.draw(cofre,cofreR.x, cofreR.y, cofreR.width, cofreR.height); 	
-		SacoScreenPrincipal.batch.draw(maleta, maletaR.x, maletaR.y, maletaR.width, maletaR.height);
-		SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, " " +objetosC[2], w/2 - 225 , h/2 - 30);
+		batch.draw(cofre,cofreR.x, cofreR.y, cofreR.width, cofreR.height); 	
+		batch.draw(maleta, maletaR.x, maletaR.y, maletaR.width, maletaR.height);
+		SacoScreenPrincipal.font.draw(batch, " " +objetosC[2], w/2 - 225 , h/2 - 30);
 		
 		//Arrastrar figuras
-		SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, " " +objetosB[2], gemaButtonMenos.getX()+ gemaButtonMenos.getWidth() + 5, gemaButtonMenos.getY() + gemaButtonMenos.getHeight() - 10);
+		SacoScreenPrincipal.font.draw(batch, " " +objetosB[2], gemaButtonMenos.getX()+ gemaButtonMenos.getWidth() + 5, gemaButtonMenos.getY() + gemaButtonMenos.getHeight() - 10);
 		if(gemaButtonMas.isPressed() || gemaTocada) {
 			gemaTocada = true;
 			gemaG.x = Gdx.input.getX();
 			gemaG.y = h - Gdx.input.getY();
-			SacoScreenPrincipal.batch.draw(gema,gemaG.x,gemaG.y);
+			batch.draw(gema,gemaG.x,gemaG.y);
 		}
 		
 		if(gemaButtonMenos.isPressed() || gemaTocada) {
 			gemaTocada = true;
 			gemaG.x = Gdx.input.getX();
 			gemaG.y = h - Gdx.input.getY();
-			SacoScreenPrincipal.batch.draw(gema,gemaG.x,gemaG.y);
+			batch.draw(gema,gemaG.x,gemaG.y);
 		}
 		
 		if(objetosC[2] + objetosB[2] < objetosA[2] || objetosC[1] + objetosB[1] < objetosA[1] || objetosC[0] + objetosB[0] < objetosA[0]) {
@@ -247,9 +250,7 @@ public class SacoScreen extends AbstractScreen {
 			game.setScreen(new TiempoScreen(game)); //Lanzamos el siguiente intento
 		}
 		
-		SacoScreenPrincipal.batch.end();
-		
-		super.render(delta);
+		batch.end();
 		
 		
 	}

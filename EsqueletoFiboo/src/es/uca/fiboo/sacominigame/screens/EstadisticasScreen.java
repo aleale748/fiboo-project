@@ -42,22 +42,22 @@ public class EstadisticasScreen extends AbstractScreen {
 
 		float h = Gdx.graphics.getHeight();
 		float w = Gdx.graphics.getWidth();
-		SacoScreenPrincipal.batch.begin();
+		batch.begin();
 		
 		if(SacoScreenPrincipal.NUMERO_REPETICIONES == SacoScreenPrincipal.aciertos) {
-			SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, "¡Muy bien! Has respondido todas bien", w/2, h/2);
+			SacoScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/2, h/2);
 			
 		}
 		
 		else if(SacoScreenPrincipal.aciertos == 0) {
-			SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/2, h/2);
+			SacoScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/2, h/2);
 		}
 		
 		else {
-			SacoScreenPrincipal.font.draw(SacoScreenPrincipal.batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/2, h/2);
+			SacoScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/2, h/2);
 		}
 		
-		SacoScreenPrincipal.batch.end();
+		batch.end();
 		super.render(delta);
 	}
 
