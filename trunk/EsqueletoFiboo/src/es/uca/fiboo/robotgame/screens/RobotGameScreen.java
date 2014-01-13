@@ -4,9 +4,10 @@ package es.uca.fiboo.robotgame.screens;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Input.Keys;
+//import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,11 +24,11 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.robotgame.actor.DropObject;
 import es.uca.fiboo.robotgame.actor.RobotActor;
-import es.uca.fiboo.screens.AbstractScreen;
-import es.uca.fiboo.screens.MenuMiniJuegosScreen;
  
 
 public class RobotGameScreen extends AbstractScreen{
@@ -114,7 +115,7 @@ public class RobotGameScreen extends AbstractScreen{
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
+		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 
@@ -147,7 +148,7 @@ public class RobotGameScreen extends AbstractScreen{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act();
 		stage.draw();
-		pause();
+	
 		batch.begin();
 		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.09f, Gdx.graphics.getWidth()*0.09f);	
 		if(objeto==0)

@@ -57,7 +57,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 
 		escala = ((float) ((Gdx.graphics.getHeight() / 6f) / tamNaves));
 		tamMarcianos *= escala;
-		Image imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
+		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		
@@ -146,7 +146,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 						Gdx.app.log(fibooGame.LOG, "Buclesito.");
 						if (contadorBien == 0) {
 							stage.addActor(bien);
-							Gdx.app.log(fibooGame.LOG, "Bien a�adido.");
+							Gdx.app.log(fibooGame.LOG, "Bien a���adido.");
 						}
 						if (contadorBien < 8) {
 							bien.setWidth(widthBien*1.06f);
@@ -177,7 +177,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 						}
 						naves.clear();
 						
-						Gdx.app.log(fibooGame.LOG, "Generando n�mero de naves y de marcianos.");
+						Gdx.app.log(fibooGame.LOG, "Generando n���mero de naves y de marcianos.");
 						numNaves = (int) (Math.random() * 5) % 5 + 1;
 						numMarcianos = numNaves + (int) (Math.random() * (9 - numNaves)) % (9 - numNaves) + 1;
 						numeroMarcianosInt = numMarcianos;
@@ -191,7 +191,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 						stage.addActor(numeroNaves);
 						//stage.addActor(numeroMarcianos);
 						
-						Gdx.app.log(fibooGame.LOG, "N�mero de naves y de marcianos generado: " + numNaves + " naves y " + numMarcianos + " marcianos.");
+						Gdx.app.log(fibooGame.LOG, "N���mero de naves y de marcianos generado: " + numNaves + " naves y " + numMarcianos + " marcianos.");
 						
 						Gdx.app.log(fibooGame.LOG, "Generando naves.");
 						if (numNaves%2 == 0) {
