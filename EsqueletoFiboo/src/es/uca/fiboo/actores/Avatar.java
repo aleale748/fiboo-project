@@ -9,7 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.actores.Complemento.Tipo;
+import es.uca.fiboo.personalizar.actores.Complemento;
+import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
 /**
  * Con el avatar se consigue que siempre se inserten los complementos

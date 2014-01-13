@@ -10,8 +10,8 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Json;
 
-import es.uca.fiboo.actores.Complemento;
 import es.uca.fiboo.actores.Personaje;
+import es.uca.fiboo.personalizar.actores.Complemento;
 import es.uca.fiboo.screens.MainScreen;
 
 public class fibooGame extends Game {

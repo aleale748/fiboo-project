@@ -1,4 +1,4 @@
-package es.uca.fiboo.actores;
+package es.uca.fiboo.personalizar.actores;
 
 import java.util.ArrayList;
 
@@ -12,8 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.actores.Complemento.Tipo;
-import es.uca.fiboo.screens.PruebaComplementosScreen;
+import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
+import es.uca.fiboo.personalizar.screens.PruebaComplementosScreen;
 
 public class BotonCategoria {
 
