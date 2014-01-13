@@ -140,7 +140,7 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadCameraminigameScreen() {
-		load("cameraminigame/cesped2.png", Texture.class);
+		//load("cameraminigame/cesped2.png", Texture.class);
 		load("cameraminigame/0.png", Texture.class);
 		load("cameraminigame/1.png", Texture.class);
 		load("cameraminigame/2.png", Texture.class);
@@ -162,5 +162,45 @@ public class FibooAssetManager extends AssetManager {
 		load("cameraminigame/menu8.png", Texture.class);
 		load("cameraminigame/menu9.png", Texture.class);
 		finishLoading();
+	}
+	public void robotgameScreen() {
+		load("robotgame/estrella_.png", Texture.class);
+		load("robotgame/luna_.png", Texture.class);
+		load("robotgame/marciano_.png", Texture.class);
+		load("robotgame/planeta_.png", Texture.class);
+		load("robotgame/numerosrojos.png", Texture.class);
+		load("robotgame/numerosverdes.png", Texture.class);
+		load("robotgame/pantallainiciorobot.png", Texture.class);
+		load("robotgame/robotfrente.png", Texture.class);
+		load("robotgame/robotderecha.png", Texture.class);
+		load("robotgame/robotizquierda.png", Texture.class);
+		load("robotgame/pantallainiciorobot.png", Texture.class);
+        load("robotgame/bien.mp3", Sound.class);
+        load("robotgame/mal.mp3", Sound.class);
+        load("robotgame/regu.mp3", Sound.class);
+        
+        finishLoading();
+	}
+	public void pianogameScreen() {
+		load("pianogame/logotrompeta.png", Texture.class);
+		load("pianogame/logopiano.png", Texture.class);
+		load("pianogame/piano.png", Texture.class);
+        load("pianogame/do.mp3", Sound.class);
+        load("pianogame/re.mp3", Sound.class);
+        load("pianogame/mi.mp3", Sound.class);
+        load("pianogame/fa.mp3", Sound.class);
+        load("pianogame/sol.mp3", Sound.class);
+        load("pianogame/la.mp3", Sound.class);
+        load("pianogame/si.mp3", Sound.class);
+        load("pianogame/zdo.mp3", Sound.class);
+        load("pianogame/dotrom.mp3", Sound.class);
+        load("pianogame/retrom.mp3", Sound.class);
+        load("pianogame/mitrom.mp3", Sound.class);
+        load("pianogame/fatrom.mp3", Sound.class);
+        load("pianogame/soltrom.mp3", Sound.class);
+        load("pianogame/latrom.mp3", Sound.class);
+        load("pianogame/sitrom.mp3", Sound.class);
+        load("pianogame/zdotrom.mp3", Sound.class);
+        finishLoading();
 	}
 }

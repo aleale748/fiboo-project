@@ -45,7 +45,8 @@ public class fibooGame extends Game {
 			fibooGame.MANAGER.loadMarcianosminigameScreen();
 			fibooGame.MANAGER.loadPersonalizacionScreen();
 			fibooGame.MANAGER.loadCameraminigameScreen();
-            
+			fibooGame.MANAGER.robotgameScreen();
+			fibooGame.MANAGER.pianogameScreen();
 			Gdx.app.log(fibooGame.LOG, "Imagenes cargadas en el manager");
             
             //Cargamos ficheros de datos guardados

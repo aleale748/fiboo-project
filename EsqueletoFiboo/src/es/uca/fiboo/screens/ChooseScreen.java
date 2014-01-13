@@ -25,7 +25,7 @@ public class ChooseScreen extends AbstractScreen {
 	public ChooseScreen(fibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
-		imgFondo = new Image(new Texture("portada/fondonave.png"));
+		imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 	}

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.cameraminigame.screens.CameraScreen;
 import es.uca.fiboo.naveminigame.screens.AyudaNaveScreen;
+import es.uca.fiboo.pianocreen.screens.PianoScreen;
 import es.uca.fiboo.screens.InicioRobotGameScreen;
 import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 
@@ -106,7 +107,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + bolsaBoton.getClass().getSimpleName());
-						game.setScreen(new AyudaNaveScreen(game));
+						game.setScreen(new PianoScreen(game));
 				}
 		});
 		stage.addActor(bolsaBoton);

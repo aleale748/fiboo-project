@@ -20,7 +20,7 @@ public class InicioRobotGameScreen extends AbstractScreen {
 	public InicioRobotGameScreen(fibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
-		imgFondo = new Image(new Texture("robotgame/fondonave.png"));
+		imgFondo = new Image(fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 	}
@@ -28,7 +28,7 @@ public class InicioRobotGameScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		TextureRegion pantallaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("robotgame/pantallainiciorobot.png")));
+		TextureRegion pantallaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("robotgame/pantallainiciorobot.png", Texture.class));
 		Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
