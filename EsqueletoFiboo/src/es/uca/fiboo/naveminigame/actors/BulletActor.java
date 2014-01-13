@@ -15,8 +15,8 @@ public class BulletActor extends Actor {
 	public Rectangle bb;
 	
 	public BulletActor() {
-		bullet = new TextureRegion(fibooGame.MANAGER.get("naveminigame/laserPeque.png", Texture.class), 38, 19);
-		setSize(bullet.getRegionWidth(), bullet.getRegionHeight());
+		bullet = fibooGame.atlasNaveMiniGame.findRegion("laserPeque");
+		setSize(38, 19);
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());	
 	}
 	

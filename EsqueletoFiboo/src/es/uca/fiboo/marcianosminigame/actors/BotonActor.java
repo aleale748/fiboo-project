@@ -12,8 +12,8 @@ public class BotonActor extends Actor {
 	private TextureRegion boton;
 	
 	public BotonActor() {
-		boton = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/boton.png", Texture.class), 202, 205);
-		setSize(boton.getRegionWidth()*0.8f, boton.getRegionHeight()*0.8f);
+		boton = fibooGame.atlasMarcianosMiniGame.findRegion("boton");
+		setSize(202, 205);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public class BienActor extends Actor {
 	private TextureRegion bien;
 	
 	public BienActor() {
-		bien = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/bien.png", Texture.class));
+		bien = fibooGame.atlasMarcianosMiniGame.findRegion("bien");
 		setSize(bien.getRegionWidth(), bien.getRegionHeight());
 		setWidth(getWidth()*0.5f);
 		setHeight(getHeight()*0.5f);

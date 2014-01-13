@@ -12,8 +12,8 @@ public class StarActor extends Actor {
 	private TextureRegion star;
 	
 	public StarActor() {
-		star = new TextureRegion(fibooGame.MANAGER.get("naveminigame/star.png", Texture.class), 42, 40);
-		setSize(star.getRegionWidth(), star.getRegionHeight());
+		star = fibooGame.atlasNaveMiniGame.findRegion("star");
+		setSize(42, 40);
 	}
 	
 	@Override

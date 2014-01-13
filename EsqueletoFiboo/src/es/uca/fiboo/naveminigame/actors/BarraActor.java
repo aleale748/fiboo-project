@@ -15,10 +15,10 @@ public class BarraActor extends Actor {
 	
 	public BarraActor(HealthActor h) {
 		if (h.getClass().getSimpleName().equals("NaveActor")) 
-				barra = new TextureRegion(fibooGame.MANAGER.get("naveminigame/vida.png", Texture.class));
+				barra = fibooGame.atlasNaveMiniGame.findRegion("vida");
 		else
 			if (h.getClass().getSimpleName().equals("EscudoActor"))
-				barra = new TextureRegion(fibooGame.MANAGER.get("naveminigame/vidaEscudo.png", Texture.class));
+				barra = fibooGame.atlasNaveMiniGame.findRegion("vidaEscudo");
 		setSize(barra.getRegionWidth(), barra.getRegionHeight());
 		this.h = h;
 	}

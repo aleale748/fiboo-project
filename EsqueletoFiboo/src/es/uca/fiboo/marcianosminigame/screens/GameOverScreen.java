@@ -2,6 +2,7 @@ package es.uca.fiboo.marcianosminigame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
@@ -18,10 +19,8 @@ public class GameOverScreen extends AbstractScreen {
 	@Override
 	public void render(float delta) {
 		time += 0.05f;
-		batch.begin();
-		batch.draw(gameover, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		batch.end();
-		
+		stage.act();
+		stage.draw();
 		if (time > 5f) {
 			if(Gdx.input.isTouched()) {
 				game.setScreen(new MenuMiniJuegosScreen(game));
@@ -29,12 +28,14 @@ public class GameOverScreen extends AbstractScreen {
 		}
 	}
 	
-	private Texture gameover;
+	private Image gameover;
 
 	@Override
 	public void show() {
 		time = 0;
-		gameover = fibooGame.MANAGER.get("naveminigame/older/gameover.png", Texture.class);
+		gameover= new Image(fibooGame.atlasNaveMiniGame.findRegion("gameover"));
+		gameover.setFillParent(true);
+		stage.addActor(gameover);
 	}
 
 	@Override

@@ -22,8 +22,8 @@ public class MarcianoActor extends Actor {
 	private NaveActor nave;
 	
 	public MarcianoActor() {
-		marciano = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/marciano.png", Texture.class));
-		setSize(marciano.getRegionWidth(), marciano.getRegionHeight());
+		marciano = fibooGame.atlasMarcianosMiniGame.findRegion("marciano");
+		setSize(128, 128);
 		bb = new Rectangle(getX(), getY() + getHeight()/3f, getWidth(),getHeight()/1.8f);
 		colocado = false;
 		this.addListener(new DragListenerPropio(this));

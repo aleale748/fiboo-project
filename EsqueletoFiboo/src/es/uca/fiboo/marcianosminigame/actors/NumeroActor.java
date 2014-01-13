@@ -14,8 +14,8 @@ public class NumeroActor extends Actor {
 	public int a;
 	
 	public NumeroActor(int a) {
-		numero = new TextureRegion(fibooGame.MANAGER.get("naveminigame/" + a + ".png", Texture.class), 60, 100);
-		setSize(numero.getRegionWidth(), numero.getRegionHeight());
+		numero = fibooGame.atlasNaveMiniGame.findRegion(Integer.toString(a));
+		setSize(60, 100);
 		this.a = a;
 	}
 	
