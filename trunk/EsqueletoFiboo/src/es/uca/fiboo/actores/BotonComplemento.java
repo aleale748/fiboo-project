@@ -70,44 +70,61 @@ public class BotonComplemento extends Image {
 			imagen.setSize(escala, escala);
 			
 			float posAvatarX = 0 + escala / 4f;
-			float posAvatarY = (Gdx.graphics.getHeight() - escala) / 2f;
-			setImagenRectangle();
-			avatar = new Rectangle(posAvatarX, posAvatarY, escala / 2f, escala);
-		}
-		
-		private void setImagenRectangle() {
+			float posAvatarY;
+			float widthRectAvatar = escala / 2f;
+			float heightRectAvatar;
+			float widthRectImg = widthRectAvatar;
+			float heightRectImg;
 			
-			float posRectX = getImageRectangeX();
-			float posRectY = getImageRectangleY();
-			float width = escala / 2f;
-			float height;
-			
+			//Si son complementos grandes el Rect de avatar será completo.
+			//Si son complementos de la cara/cabeza el Rect de avatar será la mitad.
 			switch(complemento.getTipo()) {
 			case DISFRAZ:
 			case CAMISA:
 			case PANTALON:
-				height = escala;
+				posAvatarY = (Gdx.graphics.getHeight() - escala) / 2f;
+				heightRectAvatar = escala;
+				heightRectImg = escala;
 				break;
 			default:
-				height = escala / 2f;
+				posAvatarY = Gdx.graphics.getHeight() / 2f;
+				heightRectAvatar = escala / 2f;
+				heightRectImg = heightRectAvatar;
 			}
 			
-			rImagen = new Rectangle(posRectX, posRectY, width, height);
+			avatar = new Rectangle(posAvatarX, posAvatarY, widthRectAvatar, heightRectAvatar);
+			rImagen = new Rectangle(-500f, -500f, widthRectImg, heightRectImg);
 		}
-		
-		private float getImageRectangleY() {
-			switch(complemento.getTipo()) {
-			case DISFRAZ:
-			case CAMISA:
-			case PANTALON:
-				return imagen.getY();
-			default:
-				return imagen.getY() + escala / 2f;
+				
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			if(complemento.isDisponible()) {
+				
+				float dxImagen = Gdx.input.getX() - imagen.getWidth() * 0.5f;
+				float dyImagen = getPosicionY();
+				float dxRect = Gdx.input.getX() - rImagen.getWidth() * 0.5f;
+				float dyRect = Gdx.input.getY() + rImagen.getHeight() * 0.5f;
+
+				imagen.setPosition(dxImagen, Gdx.graphics.getHeight() - dyImagen);
+				rImagen.setPosition(dxRect, Gdx.graphics.getHeight() - dyRect);
+				stage.addActor(imagen);
 			}
+			return super.touchDown(event, x, y, pointer, button);
 		}
-		
-		private float getImageRectangeX() {
-			return imagen.getX() + escala / 4f;
+
+		@Override
+		public void touchDragged(InputEvent event, float x, float y, int pointer) {
+			if(complemento.isDisponible()) {
+				float dxImagen = Gdx.input.getX() - imagen.getWidth() * 0.5f;
+				float dyImagen = getPosicionY();
+				float dxRect = Gdx.input.getX() - rImagen.getWidth() * 0.5f;
+				float dyRect = Gdx.input.getY() + rImagen.getHeight() * 0.5f;
+
+				imagen.setPosition(dxImagen, Gdx.graphics.getHeight() - dyImagen);
+				rImagen.setPosition(dxRect, Gdx.graphics.getHeight() - dyRect);
+				Gdx.app.log(fibooGame.LOG, "rImagen X: " + rImagen.x + ", rImagen Y: " + rImagen.y);
+				Gdx.app.log(fibooGame.LOG, "Imagen X: " + imagen.getX() + ", Imagen Y: " + imagen.getY());
+			}
 		}
 		
 		private float getPosicionY() {
@@ -128,39 +145,27 @@ public class BotonComplemento extends Image {
 			
 			return dy;
 		}
-		
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			if(complemento.isDisponible()) {
-				
-				float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
-				float dy = getPosicionY();
-
-				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
-				rImagen.setPosition(getImageRectangeX(), getImageRectangleY());
-				stage.addActor(imagen);
-			}
-			return super.touchDown(event, x, y, pointer, button);
-		}
-
-		@Override
-		public void touchDragged(InputEvent event, float x, float y, int pointer) {
-			if(complemento.isDisponible()) {
-				float dx = Gdx.input.getX() - imagen.getWidth() * 0.5f;
-				float dy = getPosicionY();
-				imagen.setPosition(dx, Gdx.graphics.getHeight() - dy);
-				rImagen.setPosition(getImageRectangeX(), getImageRectangleY());
-				Gdx.app.log(fibooGame.LOG, "rImagen X: " + rImagen.x + ", rImagen Y: " + rImagen.y);
-				Gdx.app.log(fibooGame.LOG, "Imagen X: " + imagen.getX() + ", Imagen Y: " + imagen.getY());
-			}
-		}
 
 		@Override
 		public void touchUp(InputEvent event, float x, float y,	int pointer, int button) {
-			if(complemento.isDisponible()) {
+			if(complemento.isDisponible()) 
+			{
 				if (rImagen.overlaps(avatar)) {
+					float toX = avatar.x - escala / 4f;
+					float toY;
+					
+					switch(complemento.getTipo()) {
+					case DISFRAZ:
+					case CAMISA:
+					case PANTALON:
+						toY = avatar.y;
+						break;
+					default:
+						toY = (Gdx.graphics.getHeight() - escala) / 2f;
+					}
+					
 					imagen.addAction(Actions.sequence(
-							Actions.moveTo(avatar.x - escala / 4f, avatar.y, 0.8f),
+							Actions.moveTo(toX, toY, 0.8f),
 							new Action() {
 								@Override
 								public boolean act(float delta) {

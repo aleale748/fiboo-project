@@ -70,7 +70,7 @@ public class BotonCategoria {
 		final Window popup = new Window(tipo.toString(), parent.getSkin());
 		TextButton exitButton = new TextButton("X", parent.getSkin());
 		
-		float winHeight = Gdx.graphics.getHeight() * 0.2f;
+		float winHeight = Gdx.graphics.getHeight() * 0.3f;
 		float winWidth = winHeight;
 		popup.getButtonTable().add(exitButton).height(Gdx.graphics.getHeight() * 0.1f).width(Gdx.graphics.getHeight() * 0.1f);
 		
@@ -106,8 +106,8 @@ public class BotonCategoria {
 					}
 				}
 				
-				popup.setX(Gdx.input.getX());
-				popup.setY(Gdx.graphics.getHeight() - Gdx.input.getY());
+				popup.setX(Gdx.graphics.getWidth() / 2f);
+				popup.setY(Gdx.graphics.getHeight() / 2f);
 				parent.getStage().addActor(popup);
 				
 				return super.touchDown(event, x, y, pointer, button);
