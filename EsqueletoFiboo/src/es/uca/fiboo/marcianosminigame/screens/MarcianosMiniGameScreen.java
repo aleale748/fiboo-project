@@ -85,7 +85,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		navesMarcianos = new ArrayList<NaveMarcianoActor>();
 		
 		puntuacionVacia = new ArrayList<EmptyStarActor>();
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.add(new EmptyStarActor());
 			stage.addActor(puntuacionVacia.get(i));
 		}
@@ -107,12 +107,12 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			if (respuesta == 2) {
 				respuesta = 1;
 				puntuacion.add(new StarActor());
-				puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+				puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.3f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.2f);
 				puntuacion.get(puntuacion.size() - 1).setWidth(widthPuntuacion);
 				puntuacion.get(puntuacion.size() - 1).setHeight(heightPuntuacion);
 				stage.addActor(puntuacion.get(puntuacion.size() - 1));
 				
-				if (puntuacion.size() == 10) {
+				if (puntuacion.size() == 5) {
 					dispose();
 					game.setScreen(new WinScreen(game));
 				}
@@ -377,15 +377,15 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			boton2.setWidth(widthBoton);
 			boton2.setHeight(heightBoton);
 			if (Math.random() > 0.5f) {
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.05f, Gdx.graphics.getHeight()/2f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
 				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
 				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
 			}
 			else {
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.05f, Gdx.graphics.getHeight()/2f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
 				boton1.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
 				boton2.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
 			}
 			
@@ -450,10 +450,10 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		heightNumero *= escala;
 		widthBoton *= escala;
 		heightBoton *= escala;
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.get(i).setWidth(widthPuntuacion);
 			puntuacionVacia.get(i).setHeight(heightPuntuacion);
-			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.3f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.2f);
 		}
 		bien.setWidth(widthBien);
 		bien.setHeight(heightBien);
