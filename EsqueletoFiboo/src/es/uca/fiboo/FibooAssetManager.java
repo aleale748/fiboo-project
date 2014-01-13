@@ -163,7 +163,9 @@ public class FibooAssetManager extends AssetManager {
 		load("cameraminigame/menu9.png", Texture.class);
 		finishLoading();
 	}
+
 	public void robotgameScreen() {
+		load("robotgame/fondoestrellas.png", Texture.class);
 		load("robotgame/estrella_.png", Texture.class);
 		load("robotgame/luna_.png", Texture.class);
 		load("robotgame/marciano_.png", Texture.class);
@@ -178,7 +180,6 @@ public class FibooAssetManager extends AssetManager {
         load("robotgame/bien.mp3", Sound.class);
         load("robotgame/mal.mp3", Sound.class);
         load("robotgame/regu.mp3", Sound.class);
-        
         finishLoading();
 	}
 	public void pianogameScreen() {

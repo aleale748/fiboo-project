@@ -35,7 +35,7 @@ public class AyudaNaveScreen extends AbstractScreen {
 	public void show() {
 		time = 0;
 		ayuda = fibooGame.MANAGER.get("naveminigame/ayuda.png", Texture.class);
-		fondo = fibooGame.MANAGER.get("naveminigame/fondonave.png", Texture.class);
+		fondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
 	}
 
 	@Override
