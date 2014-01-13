@@ -4,10 +4,9 @@ package es.uca.fiboo.robotgame.screens;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,22 +17,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.screens.AbstractScreen;
-import es.uca.fiboo.screens.MenuMiniJuegosScreen;
-import es.uca.fiboo.screens.MenuScreen;
 import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.robotgame.actor.DropObject;
 import es.uca.fiboo.robotgame.actor.RobotActor;
+import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
  
 
 public class RobotGameScreen extends AbstractScreen{

@@ -4,26 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Application.ApplicationType;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.naveminigame.actors.*;
-import es.uca.fiboo.screens.*;
+import es.uca.fiboo.naveminigame.actors.AsteroideActor;
+import es.uca.fiboo.naveminigame.actors.BarraActor;
+import es.uca.fiboo.naveminigame.actors.BarraVaciaActor;
+import es.uca.fiboo.naveminigame.actors.BulletActor;
+import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
+import es.uca.fiboo.naveminigame.actors.EscudoActor;
+import es.uca.fiboo.naveminigame.actors.ExplosionActor;
+import es.uca.fiboo.naveminigame.actors.ExplosionMalActor;
+import es.uca.fiboo.naveminigame.actors.NaveActor;
+import es.uca.fiboo.naveminigame.actors.NumeroXActor;
+import es.uca.fiboo.naveminigame.actors.NumeroYActor;
+import es.uca.fiboo.naveminigame.actors.OperadorActor;
+import es.uca.fiboo.naveminigame.actors.PadActor;
+import es.uca.fiboo.naveminigame.actors.PalitosActor;
+import es.uca.fiboo.naveminigame.actors.StarActor;
+import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class NaveMiniGameScreen extends AbstractScreen {
 	
