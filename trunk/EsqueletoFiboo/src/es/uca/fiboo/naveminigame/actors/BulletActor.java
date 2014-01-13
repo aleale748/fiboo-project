@@ -16,7 +16,9 @@ public class BulletActor extends Actor {
 	
 	public BulletActor() {
 		bullet = fibooGame.atlasNaveMiniGame.findRegion("laserPeque");
-		setSize(38, 19);
+		bullet.setRegionWidth(38);
+		bullet.setRegionHeight(19);
+		setSize(bullet.getRegionWidth(), bullet.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());	
 	}
 	

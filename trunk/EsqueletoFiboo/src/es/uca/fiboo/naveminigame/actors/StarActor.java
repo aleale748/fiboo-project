@@ -13,7 +13,9 @@ public class StarActor extends Actor {
 	
 	public StarActor() {
 		star = fibooGame.atlasNaveMiniGame.findRegion("star");
-		setSize(42, 40);
+		star.setRegionWidth(42);
+		star.setRegionHeight(40);
+		setSize(star.getRegionWidth(), star.getRegionHeight());
 	}
 	
 	@Override

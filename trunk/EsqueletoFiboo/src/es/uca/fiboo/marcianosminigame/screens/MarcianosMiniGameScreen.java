@@ -54,7 +54,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
-		Image imgFondo = new Image(fibooGame.atlasNaveMiniGame.findRegion("fondonave"));
+		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		
