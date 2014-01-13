@@ -2,7 +2,8 @@ package es.uca.fiboo.actores;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import es.uca.fiboo.actores.Complemento.Tipo;
+import es.uca.fiboo.personalizar.actores.Complemento;
+import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
 /**
  * Aun una versión muy básica, sólo con el avatar

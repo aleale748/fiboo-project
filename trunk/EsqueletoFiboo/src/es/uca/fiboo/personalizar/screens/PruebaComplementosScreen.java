@@ -1,4 +1,4 @@
-package es.uca.fiboo.screens;
+package es.uca.fiboo.personalizar.screens;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
@@ -17,10 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.actores.BotonCategoria;
-import es.uca.fiboo.actores.BotonComplemento;
-import es.uca.fiboo.actores.Complemento;
-import es.uca.fiboo.actores.Complemento.Tipo;
+import es.uca.fiboo.personalizar.actores.BotonCategoria;
+import es.uca.fiboo.personalizar.actores.BotonComplemento;
+import es.uca.fiboo.personalizar.actores.Complemento;
+import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
+import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuScreen;
 
 public class PruebaComplementosScreen extends AbstractScreen {
 

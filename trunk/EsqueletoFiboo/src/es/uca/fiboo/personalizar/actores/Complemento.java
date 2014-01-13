@@ -1,4 +1,4 @@
-package es.uca.fiboo.actores;
+package es.uca.fiboo.personalizar.actores;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

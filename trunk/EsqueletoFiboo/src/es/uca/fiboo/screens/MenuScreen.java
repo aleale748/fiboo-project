@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.personalizar.screens.PruebaComplementosScreen;
 
 public class MenuScreen extends AbstractScreen {
 

@@ -1,4 +1,4 @@
-package es.uca.fiboo.actores;
+package es.uca.fiboo.personalizar.actores;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.actores.Complemento.Tipo;
+import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
 /**
  * Clase que contiene el botón en miniatura del complemento y su complemento real asignado.
