@@ -8,7 +8,6 @@ import es.uca.fiboo.screens.AbstractScreen;
 
 public class SacoScreenPrincipal extends AbstractScreen {
 	public static final String LOG = "SacoGame";
-	protected static SpriteBatch batch;
 	protected static BitmapFont font;
 	protected static int repeticiones; //Variable para contar las repeticiones del juego
 	protected static int aciertos; //Variable para contar los aciertos que ha tenido
@@ -18,7 +17,6 @@ public class SacoScreenPrincipal extends AbstractScreen {
 	public SacoScreenPrincipal(fibooGame game) {
 		super(game);
 		this.game = game;
-		batch = new SpriteBatch();
 		font = new BitmapFont();
 		repeticiones = 0; //Variable para repetir la ejecución del juego 4 veces, por ejemplo
 		aciertos = 0; //Al inicio los aciertos son 0
