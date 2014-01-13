@@ -3,26 +3,24 @@ package es.uca.fiboo.marcianosminigame.screens;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.Marshaller.Listener;
-
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Application.ApplicationType;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.marcianosminigame.actors.*;
+import es.uca.fiboo.marcianosminigame.actors.BienActor;
+import es.uca.fiboo.marcianosminigame.actors.BotonActor;
+import es.uca.fiboo.marcianosminigame.actors.MarcianoActor;
+import es.uca.fiboo.marcianosminigame.actors.NaveActor;
+import es.uca.fiboo.marcianosminigame.actors.NaveMarcianoActor;
+import es.uca.fiboo.marcianosminigame.actors.NumeroActor;
+import es.uca.fiboo.marcianosminigame.actors.PreguntaActor;
 import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;

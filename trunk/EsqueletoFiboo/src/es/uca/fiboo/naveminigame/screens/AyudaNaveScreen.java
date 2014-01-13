@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
-import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class AyudaNaveScreen extends AbstractScreen {
 

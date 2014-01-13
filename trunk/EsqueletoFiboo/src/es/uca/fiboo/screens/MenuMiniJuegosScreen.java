@@ -1,11 +1,9 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -16,11 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.cameraminigame.screens.CameraScreen;
+import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 import es.uca.fiboo.naveminigame.screens.AyudaNaveScreen;
 import es.uca.fiboo.pianocreen.screens.PianoScreen;
-import es.uca.fiboo.screens.InicioRobotGameScreen;
-import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 

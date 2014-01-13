@@ -1,8 +1,8 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,11 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.naveminigame.screens.NaveMiniGameScreen;
 
 public class MenuScreen extends AbstractScreen {
 
-	private ImageButton entrenarBoton, retosBoton, personalizarBoton;
+	private ImageButton entrenarBoton, personalizarBoton;
 	private Image imgFondo;
 	public MenuScreen(fibooGame game) {
 		super(game);
