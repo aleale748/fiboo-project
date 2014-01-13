@@ -87,58 +87,51 @@ boca
   orig: 256, 256
   offset: 0, 0
   index: -1
-boca2
+camisa
   rotate: false
   xy: 1543, 1415
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-camisa
+disfraz
   rotate: false
   xy: 517, 131
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-disfraz
+gafas
   rotate: false
   xy: 1543, 1157
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-gafas
+ojos
   rotate: false
   xy: 775, 131
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-ojos
+pantalon
   rotate: false
   xy: 1543, 899
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-pantalon
+pelo
   rotate: false
   xy: 1033, 131
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-pelo
-  rotate: false
-  xy: 1543, 641
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
 zapatos
   rotate: false
-  xy: 1291, 131
+  xy: 1543, 641
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
@@ -169,49 +162,49 @@ boca1Icon
   orig: 512, 512
   offset: 0, 0
   index: -1
-boca2Icon
+boca2
   rotate: false
   xy: 515, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-boca3
+boca2Icon
   rotate: false
   xy: 1, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-boca3Icon
+boca3
   rotate: false
   xy: 515, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-disfraz1
+boca3Icon
   rotate: false
   xy: 1029, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-disfraz1Icon
+disfraz1
   rotate: false
   xy: 515, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-disfraz2
+disfraz1Icon
   rotate: false
   xy: 1029, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-disfraz2Icon
+disfraz2
   rotate: false
   xy: 1029, 1
   size: 512, 512
@@ -223,63 +216,63 @@ complementos3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-gafas1
+disfraz2Icon
   rotate: false
   xy: 1, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-gafas1Icon
+gafas1
   rotate: false
   xy: 1, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-gafas2
+gafas1Icon
   rotate: false
   xy: 515, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-gafas2Icon
+gafas2
   rotate: false
   xy: 1, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-ojos1
+gafas2Icon
   rotate: false
   xy: 515, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-ojos1Icon
+ojos1
   rotate: false
   xy: 1029, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-ojos2
+ojos1Icon
   rotate: false
   xy: 515, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-ojos2Icon
+ojos2
   rotate: false
   xy: 1029, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-ojos3
+ojos2Icon
   rotate: false
   xy: 1029, 1
   size: 512, 512
@@ -291,63 +284,63 @@ complementos4.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ojos3Icon
+ojos3
   rotate: false
   xy: 1, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonina1
+ojos3Icon
   rotate: false
   xy: 1, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonina1Icon
+pelonina1
   rotate: false
   xy: 515, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonina2
+pelonina1Icon
   rotate: false
   xy: 1, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonina2Icon
+pelonina2
   rotate: false
   xy: 515, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonina3
+pelonina2Icon
   rotate: false
   xy: 1029, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonina3Icon
+pelonina3
   rotate: false
   xy: 515, 1
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonino1
+pelonina3Icon
   rotate: false
   xy: 1029, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonino1Icon
+pelonino1
   rotate: false
   xy: 1029, 1
   size: 512, 512
@@ -359,30 +352,37 @@ complementos5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-pelonino2
+pelonino1Icon
   rotate: false
   xy: 1, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonino2Icon
+pelonino2
   rotate: false
   xy: 1, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonino3
+pelonino2Icon
   rotate: false
   xy: 515, 1029
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-pelonino3Icon
+pelonino3
   rotate: false
   xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+pelonino3Icon
+  rotate: false
+  xy: 515, 515
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
