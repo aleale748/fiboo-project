@@ -142,7 +142,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		//Gdx.app.log(fibooGame.LOG, "A���adiendo sistema de puntuacion por estrellas");
 		puntuacionVacia = new ArrayList<EmptyStarActor>();
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.add(new EmptyStarActor());
 			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
 			stage.addActor(puntuacionVacia.get(i));
@@ -373,7 +373,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 								asteroides.get(k).remove();
 							}
 							asteroides.clear();
-							if (puntuacion.size() == 10) {
+							if (puntuacion.size() == 5) {
 								dispose();
 								game.setScreen(new WinScreen(game));
 							}
@@ -443,7 +443,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		barraEscudo.setPosition(Gdx.graphics.getWidth() - widthBarra*2.2f, Gdx.graphics.getHeight()*0.9f);
 		nave.setPosition(Gdx.graphics.getWidth()*0.01f, Gdx.graphics.getHeight()/2f - heightNave/2.5f);
 		padShoot.setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.01f);
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.get(i).setWidth(widthPuntuacion);
 			puntuacionVacia.get(i).setHeight(heightPuntuacion);
 		}
