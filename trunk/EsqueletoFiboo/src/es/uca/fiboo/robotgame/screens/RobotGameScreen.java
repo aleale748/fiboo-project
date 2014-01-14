@@ -202,6 +202,7 @@ public class RobotGameScreen extends AbstractScreen{
 					break;
 				}
 				if(numobjetos==0){
+					dispose();
 					game.setScreen(new WinScreen(game));
 				}
 				try{
@@ -216,13 +217,14 @@ public class RobotGameScreen extends AbstractScreen{
 
 	@Override
 	public void dispose() {
-		lunaImage.dispose();
+		/*lunaImage.dispose();
 		estrellaImage.dispose();
 		planetaImage.dispose();
 		marcianoImage.dispose();
 		bienSound.dispose();
 		malSound.dispose();
 		reguSound.dispose();
+		*/
 		super.dispose();
 	}
  
