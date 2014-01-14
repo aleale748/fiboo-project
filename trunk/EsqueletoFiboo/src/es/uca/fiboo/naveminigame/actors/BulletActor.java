@@ -10,7 +10,6 @@ import es.uca.fiboo.fibooGame;
 public class BulletActor extends Actor {
 
 	private TextureRegion bullet;
-	
 	public Rectangle bb;
 	
 	public BulletActor() {
