@@ -34,9 +34,6 @@ public class PersonalizacionScreen extends AbstractScreen {
 	public PersonalizacionScreen(final fibooGame game) {
 		super(game);
 		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
@@ -49,39 +46,12 @@ public class PersonalizacionScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		
-		fondo = fibooGame.MANAGER.get("data/fondopersonalizar.png", Texture.class);
-		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		escalaAvatar = h * 0.7f;
-		
 		// Para probar que se carga bien el skin con todos los ficheros
 		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
         skin = new Skin( skinFile );
 		
-		botonesCat = new ArrayList<BotonCategoria>();
+        botonesCat = new ArrayList<BotonCategoria>();
 		cargaComplementos();
-		
-		// Tabla para colocar los iconos
-		Table table = new Table(skin);
-		
-		float cellHeight = h * 0.2f;
-		float cellWidth = cellHeight;
-		float posTableX = w / 2f + cellWidth * 1.5f;
-		float posTableY = h / 2f;
-		
-		table.setPosition(posTableX, posTableY);
-        stage.addActor(table);
-        
-        int newRow = 0;
-        for(BotonCategoria b : botonesCat) {
-			table.add(b.getIcono()).width(cellWidth).height(cellHeight);
-			newRow++;
-			// 3 complementos por cada fila
-			if(newRow > 2) {
-				newRow = 0;
-				table.row();
-			}
-		}
 	}
 
 	//Carga todos los complementos habidos y por haber
@@ -110,6 +80,40 @@ public class PersonalizacionScreen extends AbstractScreen {
 		for(Entry<Tipo, ArrayList<BotonComplemento>> c : complementosPorTipo.entrySet()) {
 			botonesCat.add(new BotonCategoria(this, c.getValue(), c.getKey()));
 		}
+	}
+	
+	@Override
+	public void show() {
+		super.show();
+		
+		float w = Gdx.graphics.getWidth();
+		float h = Gdx.graphics.getHeight();
+		
+		fondo = fibooGame.MANAGER.get("data/fondopersonalizar.png", Texture.class);
+		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		escalaAvatar = h * 0.7f;
+        
+        // Tabla para colocar los iconos
+ 		Table table = new Table(skin);
+ 		
+ 		float cellHeight = h * 0.2f;
+ 		float cellWidth = cellHeight;
+ 		float posTableX = w / 2f + cellWidth * 1.5f;
+ 		float posTableY = h / 2f;
+ 		
+ 		table.setPosition(posTableX, posTableY);
+         stage.addActor(table);
+         
+         int newRow = 0;
+         for(BotonCategoria b : botonesCat) {
+ 			table.add(b.getIcono()).width(cellWidth).height(cellHeight);
+ 			newRow++;
+ 			// 3 complementos por cada fila
+ 			if(newRow > 2) {
+ 				newRow = 0;
+ 				table.row();
+ 			}
+ 		}
 	}
 	
 	@Override
