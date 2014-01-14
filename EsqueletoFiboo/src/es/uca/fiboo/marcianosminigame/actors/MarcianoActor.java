@@ -1,6 +1,7 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -67,6 +68,7 @@ public class MarcianoActor extends Actor {
 		
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			if (!colocado) {
+				fibooGame.MANAGER.get("sonidos/ahah.mp3", Sound.class).play();
 				posicionX = getX();
 				posicionY = getY();
 				float dx = Gdx.input.getX() - getWidth() * 0.5f;

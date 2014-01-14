@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -138,6 +139,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 							bien.setPosition(Gdx.graphics.getWidth()/2.5f, Gdx.graphics.getHeight()/2.2f);
 							if (contadorBien != 30) {
 								if (contadorBien == 0) {
+									fibooGame.MANAGER.get("sonidos/bien.mp3", Sound.class).play();
 									stage.addActor(bien);
 									Gdx.app.log(fibooGame.LOG, "Bien a���adido.");
 								}
@@ -271,6 +273,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		for (int i = 0; i < naves.size(); ++i) {
 			nave = naves.get(i);
 			if (nave.colocado() && !nave.verificado()) {
+				fibooGame.MANAGER.get("sonidos/yuju.mp3", Sound.class).play();
 				nave.verificar();
 				numeroMarcianosInt--;
 				numeroMarcianos.remove();
@@ -330,7 +333,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 					stage.addActor(navesMarcianos.get(i));
 				}
 			}
-			else
+			else {
 				for (int i = 0; i < numNaves; ++i) {
 					navesMarcianos.add(new NaveMarcianoActor());
 					if (i == 0) 
@@ -344,6 +347,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 					navesMarcianos.get(i).setHeight(tamMarcianos);
 					stage.addActor(navesMarcianos.get(i));
 				}
+			}
 			Gdx.app.log(fibooGame.LOG, "Naves-marcianos solucion generados");
 			numeroNaves.remove();
 			mostrarBien = true;
@@ -354,6 +358,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			pregunta.setWidth(widthPregunta);
 			pregunta.setHeight(heightPregunta);
 			stage.addActor(pregunta);
+			fibooGame.MANAGER.get("sonidos/cuantosquedan.mp3", Sound.class).play();
 			
 			boton1 = new BotonActor();
 			boton2 = new BotonActor();
