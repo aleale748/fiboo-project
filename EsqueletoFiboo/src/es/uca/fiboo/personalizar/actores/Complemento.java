@@ -38,7 +38,7 @@ public class Complemento {
 	
 	public TextureRegion getIcon() {
 		if(icono == null) {	
-			Gdx.app.log(fibooGame.LOG, "Cargando " + imagePath + "Icon");
+			Gdx.app.log("Complemento", "Cargando " + imagePath + "Icon");
 			icono = fibooGame.atlasComplementos.findRegion(imagePath + "Icon");
 		}
 		return icono;
@@ -52,7 +52,7 @@ public class Complemento {
 	
 	public TextureRegion getImagen() {
 		if(imagen == null) {
-			Gdx.app.log(fibooGame.LOG, "Cargando " + imagePath);
+			Gdx.app.log("Complemento", "Cargando " + imagePath);
 			imagen = fibooGame.atlasComplementos.findRegion(imagePath);
 		}
 		return imagen;
@@ -68,6 +68,11 @@ public class Complemento {
 
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
+	}
+	
+	public void dispose() {
+		icono = null;
+		imagen = null;
 	}
 
 	@Override

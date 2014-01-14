@@ -130,6 +130,8 @@ public class PersonalizacionScreen extends AbstractScreen {
 	public void dispose() {
 		fondo.dispose();
 		skin.dispose();
+		for(Complemento c : fibooGame.getComplementos()) c.dispose();
+		fibooGame.getPersonaje().getAvatar().dispose();
 		fibooGame.MANAGER.unload("data/fondopersonalizar.png");
 		fibooGame.MANAGER.unload("complementos/complementos.atlas");
 		Gdx.app.log(fibooGame.LOG, "'Disposed' Fondo, skin, fondo y Atlas de Complementos");
