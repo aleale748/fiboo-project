@@ -2,7 +2,6 @@ package es.uca.fiboo.sacominigame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 
 import es.uca.fiboo.fibooGame;
@@ -87,42 +86,6 @@ public class TiempoScreen extends AbstractScreen {
 			
 			game.setScreen(new EstadisticasScreen(game)); //Como ya ha realizado todas las repeticiones, mostramos las estadísticas
 		}
-
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void dispose() {
-		cofre.dispose();
 
 	}
 

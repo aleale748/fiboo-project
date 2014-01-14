@@ -41,17 +41,4 @@ public class AyudaNaveScreen extends AbstractScreen {
 		stage.addActor(fondo);
 		stage.addActor(ayuda);
 	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

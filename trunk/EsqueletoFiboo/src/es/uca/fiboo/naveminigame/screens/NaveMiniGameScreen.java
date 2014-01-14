@@ -3,7 +3,6 @@ package es.uca.fiboo.naveminigame.screens;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;

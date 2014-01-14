@@ -1,11 +1,10 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
-import es.uca.fiboo.fibooGame;
-
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+
+import es.uca.fiboo.fibooGame;
 
 public class NumeroActor extends Actor {
 	

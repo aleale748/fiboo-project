@@ -1,7 +1,6 @@
 package es.uca.fiboo.naveminigame.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -37,17 +36,4 @@ public class GameOverScreen extends AbstractScreen {
 		gameover.setFillParent(true);
 		stage.addActor(gameover);
 	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

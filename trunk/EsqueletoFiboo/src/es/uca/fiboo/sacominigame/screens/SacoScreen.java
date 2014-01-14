@@ -274,10 +274,10 @@ public class SacoScreen extends AbstractScreen {
 
 	@Override
 	public void dispose() {
-		super.dispose();
 		cofre.dispose();
 		maleta.dispose();
 		gema.dispose();
+		super.dispose();
 	}
 
 }
