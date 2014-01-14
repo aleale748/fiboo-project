@@ -59,7 +59,7 @@ public class LoadingPersonalizacionScreen extends AbstractScreen {
 		batch.begin();
 		
 		loaderVacio.draw(batch, w/4, h/2 - h/20, w/2, h/10);
-		loaderFull.draw(batch, w/4, h/2 - h/20, progress*(w/2), h/10);
+		loaderFull.draw(batch, w/4, h/2 - h/20, progress*w, h/10);
 		if((int)progress % 5 == 0) {
 			font.drawMultiLine(batch, "Cargando..", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
 		}
