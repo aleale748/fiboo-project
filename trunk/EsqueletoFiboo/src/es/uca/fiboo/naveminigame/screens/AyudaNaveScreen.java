@@ -24,6 +24,7 @@ public class AyudaNaveScreen extends AbstractScreen {
 		
 		if (time > 5f) {
 			if(Gdx.input.isTouched()) {
+				dispose();
 				game.setScreen(new NaveMiniGameScreen(game));
 			}
 		}
