@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -48,7 +47,6 @@ public class RobotGameScreen extends AbstractScreen{
 	Array<DropObject> raindrops;
 	long lastDropTime;
 	int objetosGathered;
-	SpriteBatch batch;
 	BitmapFont font;
 	BitmapFont font2;
 	float timer;
@@ -83,7 +81,6 @@ public class RobotGameScreen extends AbstractScreen{
 				objeto= MathUtils.random(0, 2);
 				// create the raindrops array and spawn the first raindrop
 				raindrops = new Array<DropObject>();
-				batch = new SpriteBatch();
 				// Use LibGDX's default Arial font.
 				font = new BitmapFont();
 				font2 = new BitmapFont();
@@ -150,14 +147,14 @@ public class RobotGameScreen extends AbstractScreen{
 		stage.draw();
 	
 		batch.begin();
-		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.09f, Gdx.graphics.getWidth()*0.09f);	
+		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.92f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);	
 		if(objeto==0)
-			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getWidth()*0.07f);
+			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getHeight()*0.93f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
 		if(objeto==1)
-			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getWidth()*0.07f);
+			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f,Gdx.graphics.getHeight()*0.93f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
 		if(objeto==2)
-			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f,  Gdx.graphics.getHeight()*0.96f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.07f, Gdx.graphics.getWidth()*0.07f);
-		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.08f+Gdx.graphics.getWidth()*0.05f, Gdx.graphics.getHeight()*0.95f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.09f, Gdx.graphics.getWidth()*0.09f);
+			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f,  Gdx.graphics.getHeight()*0.93f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
+		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f+Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getHeight()*0.92f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);
 		rand = MathUtils.random(0, 1);
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
