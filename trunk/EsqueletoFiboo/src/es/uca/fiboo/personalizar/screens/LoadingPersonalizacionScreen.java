@@ -55,25 +55,25 @@ public class LoadingPersonalizacionScreen extends AbstractScreen {
 	public void render(float delta) {
 		stage.draw();
 		
+		float progress = fibooGame.MANAGER.getProgress();
+		batch.begin();
+		
+		loaderVacio.draw(batch, w/4, h/2 - h/20, w/2, h/10);
+		loaderFull.draw(batch, w/4, h/2 - h/20, progress*(w/2), h/10);
+		if((int)progress % 5 == 0) {
+			font.drawMultiLine(batch, "Cargando..", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
+		}
+		else if((int)progress % 10 == 0) {
+			font.drawMultiLine(batch, "Cargando...", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
+		}
+		else {
+			font.drawMultiLine(batch, "Cargando.", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
+		}
+		batch.end();
+		
 		if(fibooGame.MANAGER.update()) {
 			fibooGame.atlasComplementos = fibooGame.MANAGER.get("complementos/complementos.atlas", TextureAtlas.class);
 			game.setScreen(new PersonalizacionScreen(game));
-		}
-		else {
-			float progress = fibooGame.MANAGER.getProgress();
-			batch.begin();
-			loaderVacio.draw(batch, w/4, h/2 - h/20, w/2, h/10);
-			loaderFull.draw(batch, w/4, h/2 - h/20, progress*(w/2), h/10);
-			if((int)progress % 5 == 0) {
-				font.drawMultiLine(batch, "Cargando..", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
-			}
-			else if((int)progress % 10 == 0) {
-				font.drawMultiLine(batch, "Cargando...", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
-			}
-			else {
-				font.drawMultiLine(batch, "Cargando.", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
-			}
-			batch.end();
 		}
 		
 		stage.act(delta);
