@@ -24,13 +24,13 @@ import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuScreen;
 
-public class PruebaComplementosScreen extends AbstractScreen {
+public class PersonalizacionScreen extends AbstractScreen {
 
 	private ArrayList<BotonCategoria> botonesCat;
 	private Skin skin;
 	private Texture fondo;
 	
-	public PruebaComplementosScreen(final fibooGame game) {
+	public PersonalizacionScreen(final fibooGame game) {
 		super(game);
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
@@ -65,10 +65,6 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		
 		table.setPosition(posTableX, posTableY);
         stage.addActor(table);
-        table.debug();
-        
-        // Ventana con los botones de categorías
-       // Window win = new Window("Personaliza", skin);
         
         int newRow = 0;
         for(BotonCategoria b : botonesCat) {
@@ -80,23 +76,8 @@ public class PruebaComplementosScreen extends AbstractScreen {
 				table.row();
 			}
 		}
-        
-        /*
-		for(BotonCategoria b : botonesCat) {
-			win.add(b.getIcono()).width(128).height(128);
-			newRow++;
-			// 3 complementos por cada fila
-			if(newRow > 2) {
-				newRow = 0;
-				win.row();
-			}
-		}
-		win.setPosition(Gdx.graphics.getWidth() - win.getWidth() - 100f, (Gdx.graphics.getHeight() - 512f) / 2f);
-        stage.addActor(win);
-        win.debug();
-        */
 	}
-	
+
 	//Carga todos los complementos habidos y por haber
 	private void cargaComplementos() {
 		
@@ -115,8 +96,6 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<BotonComplemento>());
 		
 		for(Complemento c : fibooGame.getComplementos()) {
-			//botones.add(new BotonComplemento(c));
-			
 			if(c.isDisponible()) {
 				complementosPorTipo.get(c.getTipo()).add(new BotonComplemento(c));
 			}
@@ -125,8 +104,6 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		for(Entry<Tipo, ArrayList<BotonComplemento>> c : complementosPorTipo.entrySet()) {
 			botonesCat.add(new BotonCategoria(this, c.getValue(), c.getKey()));
 		}
-		
-		//botones.get(0).setStage(stage);
 	}
 	
 	@Override
@@ -138,7 +115,7 @@ public class PruebaComplementosScreen extends AbstractScreen {
 		//Acciones de los actores
 		stage.act(delta);
 
-		//Pintar avatar
+		//Pintar avatar y fondo
 		batch.begin();
 			batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			fibooGame.getPersonaje().drawAvatar(batch);
@@ -146,10 +123,19 @@ public class PruebaComplementosScreen extends AbstractScreen {
 
 		//Pintar el resto de actores
 		stage.draw();
-		//Table.drawDebug(stage);
-		//Window.drawDebug(stage);
 	}
 
+	
+	@Override
+	public void dispose() {
+		fondo.dispose();
+		skin.dispose();
+		fibooGame.MANAGER.unload("data/fondopersonalizar.png");
+		fibooGame.MANAGER.unload("complementos/complementos.atlas");
+		Gdx.app.log(fibooGame.LOG, "'Disposed' Fondo, skin, fondo y Atlas de Complementos");
+		super.dispose();
+	}
+	
 	public Skin getSkin() {
 		return skin;
 	}

@@ -25,15 +25,15 @@ public class Avatar {
 	//Con transient se consigue que no se guarde ni lea en Json
 	private transient TreeMap<Tipo, Complemento> complementos;
 	private transient TextureRegion base;
+	private transient float posX, posY, escala;
 	
 	private ArrayList<Complemento> data;
-	private float escala;
 	
 	public Avatar() {
 		complementos = new TreeMap<Tipo, Complemento>();
-		base = fibooGame.atlasComplementos.findRegion("base");
-		
 		escala = Gdx.graphics.getHeight() * 0.7f;
+		posX = 0;
+		posY = (Gdx.graphics.getHeight() - escala) / 2f;
 		
 		initializeComplementos();
 	}
@@ -68,31 +68,18 @@ public class Avatar {
 	}
 	
 	public void draw(SpriteBatch batch) {
-		
-		float posX = 0;
-		float posY = (Gdx.graphics.getHeight() - escala) / 2f; 
-		
+		if(base == null) {
+			base = fibooGame.atlasComplementos.findRegion("base");
+		}
 		batch.draw(base, posX, posY, escala, escala);
 		
 		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
 			if(c.getValue() != null) {
-				switch(c.getKey()) {
-				case OJOS: 
-				case PELO: 
-				case GAFAS: 
-				case MASCARA:
-				case BOCA: 
-				case BIGOTE: 
-				case ACCPELO: 
-					batch.draw(c.getValue().getImagen(), posX, posY, escala, escala);
-					break;
-				default:
-					batch.draw(c.getValue().getImagen(), posX, posY, escala, escala);
-					break;
-				}
+				batch.draw(c.getValue().getImagen(), posX, posY, escala, escala);
 			}
 		}
 	}
+	
 	
 	//Guardamos el TreeMap en el array para pasarlo al Json
 	public void formatToSave() {
@@ -108,6 +95,7 @@ public class Avatar {
 		for(Complemento c : data) {
 			complementos.put(c.getTipo(), c);
 		}
+		data.clear();
 	}
 
 }
