@@ -25,16 +25,11 @@ public class Avatar {
 	//Con transient se consigue que no se guarde ni lea en Json
 	private transient TreeMap<Tipo, Complemento> complementos;
 	private transient TextureRegion base;
-	private transient float posX, posY, escala;
 	
 	private ArrayList<Complemento> data;
 	
 	public Avatar() {
 		complementos = new TreeMap<Tipo, Complemento>();
-		escala = Gdx.graphics.getHeight() * 0.7f;
-		posX = 0;
-		posY = (Gdx.graphics.getHeight() - escala) / 2f;
-		
 		initializeComplementos();
 	}
 	
@@ -66,15 +61,16 @@ public class Avatar {
 		addComplemento(fibooGame.getComplementos().get(index));
 	}
 	
-	public void draw(SpriteBatch batch) {
+	public void draw(SpriteBatch batch, float escala) {
 		if(base == null) {
 			base = fibooGame.atlasComplementos.findRegion("base");
 		}
-		batch.draw(base, posX, posY, escala, escala);
+		float posY = (Gdx.graphics.getHeight() - escala) / 2f;
+		batch.draw(base, 0, posY, escala, escala);
 		
 		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
 			if(c.getValue() != null) {
-				batch.draw(c.getValue().getImagen(), posX, posY, escala, escala);
+				batch.draw(c.getValue().getImagen(), 0, posY, escala, escala);
 			}
 		}
 	}

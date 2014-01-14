@@ -29,9 +29,14 @@ public class PersonalizacionScreen extends AbstractScreen {
 	private ArrayList<BotonCategoria> botonesCat;
 	private Skin skin;
 	private Texture fondo;
+	private float escalaAvatar;
 	
 	public PersonalizacionScreen(final fibooGame game) {
 		super(game);
+		
+		float w = Gdx.graphics.getWidth();
+		float h = Gdx.graphics.getHeight();
+		
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
@@ -47,6 +52,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		
 		fondo = fibooGame.MANAGER.get("data/fondopersonalizar.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		escalaAvatar = h * 0.7f;
 		
 		// Para probar que se carga bien el skin con todos los ficheros
 		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
@@ -58,10 +64,10 @@ public class PersonalizacionScreen extends AbstractScreen {
 		// Tabla para colocar los iconos
 		Table table = new Table(skin);
 		
-		float cellHeight = Gdx.graphics.getHeight() * 0.2f;
+		float cellHeight = h * 0.2f;
 		float cellWidth = cellHeight;
-		float posTableX = Gdx.graphics.getWidth() / 2f + cellWidth * 1.5f;
-		float posTableY = Gdx.graphics.getHeight() / 2f;
+		float posTableX = w / 2f + cellWidth * 1.5f;
+		float posTableY = h / 2f;
 		
 		table.setPosition(posTableX, posTableY);
         stage.addActor(table);
@@ -118,7 +124,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		//Pintar avatar y fondo
 		batch.begin();
 			batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			fibooGame.getPersonaje().drawAvatar(batch);
+			fibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
 		batch.end();
 
 		//Pintar el resto de actores
