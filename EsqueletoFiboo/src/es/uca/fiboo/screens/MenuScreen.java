@@ -34,7 +34,7 @@ public class MenuScreen extends AbstractScreen {
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
-				if (keycode == Keys.BACK){
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 						Gdx.app.exit();
 				}
 				return false;

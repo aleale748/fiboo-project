@@ -49,6 +49,7 @@ public class LoadingPersonalizacionScreen extends AbstractScreen {
 		
 		fibooGame.MANAGER.load("data/fondopersonalizar.png", Texture.class);
 		fibooGame.MANAGER.load("complementos/complementos.atlas", TextureAtlas.class);
+		fibooGame.MANAGER.finishLoading();
 	}
 
 	@Override
