@@ -45,20 +45,19 @@ public class EstadisticasScreen extends AbstractScreen {
 		batch.begin();
 		
 		if(SacoScreenPrincipal.NUMERO_REPETICIONES == SacoScreenPrincipal.aciertos) {
-			SacoScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/2, h/2);
+			SacoScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/10, h/2);
 			
 		}
 		
 		else if(SacoScreenPrincipal.aciertos == 0) {
-			SacoScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/2, h/2);
+			SacoScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/10, h/2);
 		}
 		
 		else {
-			SacoScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/2, h/2);
+			SacoScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/10, h/2);
 		}
 		
 		batch.end();
-		super.render(delta);
 	}
 
 	@Override
