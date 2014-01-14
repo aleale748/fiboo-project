@@ -134,13 +134,6 @@ public class PersonalizacionScreen extends AbstractScreen {
 		//Pintar el resto de actores
 		stage.draw();
 	}
-
-	
-	@Override
-	public void dispose() {
-		skin.dispose();
-		super.dispose();
-	}
 	
 	public Skin getSkin() {
 		return skin;
