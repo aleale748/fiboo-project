@@ -7,6 +7,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class FibooAssetManager extends AssetManager {
 	
+	public void loadSonidos() {
+		load("sonidos/ahah.mp3", Sound.class);
+		load("sonidos/bien.mp3", Sound.class);
+		load("sonidos/cuantosquedan.mp3", Sound.class);
+		load("sonidos/fondo.mp3", Sound.class);
+		load("sonidos/yuju.mp3", Sound.class);
+	}
+	
 	public void loadNaveminigameScreen() {
 		load("naveminigame/ayuda.png", Texture.class);
 		load("naveminigame/older/hit.ogg", Sound.class);
