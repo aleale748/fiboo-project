@@ -70,6 +70,8 @@ public class LoadingPersonalizacionScreen extends AbstractScreen {
 			font.drawMultiLine(batch, "Cargando.", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
 		}
 		batch.end();
+		Gdx.app.log("LoadingScreen", "Cargado al: " + progress + "%");
+		Gdx.app.log("LoadingScreen", "Width barra: " + progress*(w/2));
 		
 		if(fibooGame.MANAGER.update()) {
 			fibooGame.atlasComplementos = fibooGame.MANAGER.get("complementos/complementos.atlas", TextureAtlas.class);

@@ -22,8 +22,8 @@ public class Personaje {
 		avatar.addComplemento(complemento);
 	}
 
-	public void drawAvatar(SpriteBatch batch) {
-		avatar.draw(batch);
+	public void drawAvatar(SpriteBatch batch, float escala) {
+		avatar.draw(batch, escala);
 	}
 	
 	public Avatar getAvatar() {
