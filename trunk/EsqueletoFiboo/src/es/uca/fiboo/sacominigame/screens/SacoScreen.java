@@ -1,5 +1,7 @@
 package es.uca.fiboo.sacominigame.screens;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
+import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
 
 public class SacoScreen extends AbstractScreen {
@@ -31,7 +35,7 @@ public class SacoScreen extends AbstractScreen {
 	private Rectangle gemaG;
 	private boolean gemaTocada;
 	private Sound objetosSound;
-	fibooGame game;
+	private fibooGame game;
 	
 	public SacoScreen(final fibooGame game, int[] objetos) {	
 		super(game);
@@ -195,6 +199,19 @@ public class SacoScreen extends AbstractScreen {
 					System.out.println("Bien hecho!");
 					//game.setScreen(new EstadisticasScreen(game,0)); Estadisticas ahora no sirve para esto
 					SacoScreenPrincipal.aciertos++; //Sumamos el acierto actual
+					
+					float w = Gdx.graphics.getWidth();
+					float h = Gdx.graphics.getHeight();
+					
+					float widthPuntuacion = 42;
+					float heightPuntuacion = 42;
+					
+					SacoScreenPrincipal.puntos.add(new StarActor());
+					SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1).setPosition(widthPuntuacion*0.2f + (SacoScreenPrincipal.puntos.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+					SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1).setWidth(widthPuntuacion);
+					SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
+					stage.addActor(SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1));
+					
 					game.setScreen(new TiempoScreen(game)); //Lanzamos el siguiente intento
 				}
 				
@@ -208,6 +225,16 @@ public class SacoScreen extends AbstractScreen {
 		});
 		
 		stage.addActor(llaveButton);
+		
+		for (int i = 0; i < 4; ++i) {
+			stage.addActor(SacoScreenPrincipal.sin_puntos.get(i));
+		}
+		
+		if(!SacoScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
+			for (int i = 0; i < SacoScreenPrincipal.puntos.size(); ++i) {
+				stage.addActor(SacoScreenPrincipal.puntos.get(i));
+			}
+		}
 		
 		
 	}
