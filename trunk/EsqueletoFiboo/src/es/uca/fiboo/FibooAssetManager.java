@@ -11,10 +11,6 @@ public class FibooAssetManager extends AssetManager {
 		load("naveminigame/older/hit.ogg", Sound.class);
 		load("naveminigame/older/explosion.ogg", Sound.class);
 		load("naveminigame/older/shoot.ogg", Sound.class);
-		finishLoading();
-	}
-	
-	public void loadMarcianosminigameScreen() {
 	}
 	
 	public void loadCameraminigameScreen() {
@@ -39,7 +35,6 @@ public class FibooAssetManager extends AssetManager {
 		load("cameraminigame/menu7.png", Texture.class);
 		load("cameraminigame/menu8.png", Texture.class);
 		load("cameraminigame/menu9.png", Texture.class);
-		finishLoading();
 	}
 
 	public void robotgameScreen() {
@@ -58,7 +53,6 @@ public class FibooAssetManager extends AssetManager {
         load("robotgame/bien.mp3", Sound.class);
         load("robotgame/mal.mp3", Sound.class);
         load("robotgame/regu.mp3", Sound.class);
-        finishLoading();
 	}
 	public void pianogameScreen() {
 		load("pianogame/logotrompeta.png", Texture.class);
@@ -80,6 +74,5 @@ public class FibooAssetManager extends AssetManager {
         load("pianogame/latrom.mp3", Sound.class);
         load("pianogame/sitrom.mp3", Sound.class);
         load("pianogame/zdotrom.mp3", Sound.class);
-        finishLoading();
 	}
 }

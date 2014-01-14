@@ -42,11 +42,12 @@ public class fibooGame extends Game {
 
     		atlasNaveMiniGame = new TextureAtlas("naveminigame/atlasNaveMiniGame.atlas");
     		atlasMarcianosMiniGame = new TextureAtlas("marcianosminigame/imagenesMarcianosMiniGame.txt");
-			fibooGame.MANAGER.loadNaveminigameScreen();
-			fibooGame.MANAGER.loadCameraminigameScreen();
-			fibooGame.MANAGER.robotgameScreen();
-			fibooGame.MANAGER.pianogameScreen();
-			Gdx.app.log(fibooGame.LOG, "Imagenes cargadas en el manager");
+			MANAGER.loadNaveminigameScreen();
+			MANAGER.loadCameraminigameScreen();
+			MANAGER.robotgameScreen();
+			MANAGER.pianogameScreen();
+			MANAGER.finishLoading();
+			Gdx.app.log(LOG, "Imagenes cargadas en el manager");
             
             //Cargamos ficheros de datos guardados
             savedData = Gdx.files.local("savedData.json");
@@ -93,10 +94,11 @@ public class fibooGame extends Game {
             savedData.writeString(json.prettyPrint(personaje), false);
             comps.writeString(json.prettyPrint(complementos), false);
             
-            super.dispose();
-            
 			MANAGER.dispose();
 			atlasComplementos.dispose();
+			atlasMarcianosMiniGame.dispose();
+			atlasNaveMiniGame.dispose();
+			super.dispose();
             
             Gdx.app.log(fibooGame.LOG, "'Disposing' game");
         }
