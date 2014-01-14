@@ -62,16 +62,16 @@ public class LoadingPersonalizacionScreen extends AbstractScreen {
 		else {
 			float progress = fibooGame.MANAGER.getProgress();
 			batch.begin();
-			loaderVacio.draw(batch, w/4, h/2, w/2, w/10);
-			loaderFull.draw(batch, w/4, h/2, progress*(w/2), w/10);
-			if(progress % 5 == 0) {
-				font.drawMultiLine(batch, "Cargando..", w/2, h/2 + w/5, 0, BitmapFont.HAlignment.CENTER);
+			loaderVacio.draw(batch, w/4, h/2 - h/20, w/2, h/10);
+			loaderFull.draw(batch, w/4, h/2 - h/20, progress*(w/2), h/10);
+			if((int)progress % 5 == 0) {
+				font.drawMultiLine(batch, "Cargando..", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
 			}
-			else if(progress % 10 == 0) {
-				font.drawMultiLine(batch, "Cargando...", w/2, h/2 + w/5, 0, BitmapFont.HAlignment.CENTER);
+			else if((int)progress % 10 == 0) {
+				font.drawMultiLine(batch, "Cargando...", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
 			}
 			else {
-				font.drawMultiLine(batch, "Cargando.", w/2, h/2 + w/5, 0, BitmapFont.HAlignment.CENTER);
+				font.drawMultiLine(batch, "Cargando.", w/2, h/2 + h/10, 0, BitmapFont.HAlignment.CENTER);
 			}
 			batch.end();
 		}
