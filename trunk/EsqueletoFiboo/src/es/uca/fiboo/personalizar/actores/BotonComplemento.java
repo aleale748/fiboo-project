@@ -14,8 +14,8 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
 /**
- * Clase que contiene el botón en miniatura del complemento y su complemento real asignado.
- * Además contiene un DragListener responsable de arrastrar y colocar los complementos.
+ * Clase que contiene el botï¿½n en miniatura del complemento y su complemento real asignado.
+ * Ademï¿½s contiene un DragListener responsable de arrastrar y colocar los complementos.
  * 
  * @version 0.5
  * @author Sergio
@@ -23,7 +23,7 @@ import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
  */
 public class BotonComplemento extends Image {
 
-	//Necesario para añadir las imagenes y sus acciones
+	//Necesario para aï¿½adir las imagenes y sus acciones
 	private static Stage stage;
 	
 	private Complemento complemento;
@@ -77,8 +77,8 @@ public class BotonComplemento extends Image {
 			float widthRectImg = widthRectAvatar;
 			float heightRectImg;
 			
-			//Si son complementos grandes el Rect de avatar será completo.
-			//Si son complementos de la cara/cabeza el Rect de avatar será la mitad.
+			//Si son complementos grandes el Rect de avatar serï¿½ completo.
+			//Si son complementos de la cara/cabeza el Rect de avatar serï¿½ la mitad.
 			switch(complemento.getTipo()) {
 			case DISFRAZ:
 			case CAMISA:

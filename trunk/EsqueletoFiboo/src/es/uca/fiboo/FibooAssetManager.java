@@ -3,6 +3,7 @@ package es.uca.fiboo;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class FibooAssetManager extends AssetManager {
 	
@@ -11,6 +12,11 @@ public class FibooAssetManager extends AssetManager {
 		load("naveminigame/older/hit.ogg", Sound.class);
 		load("naveminigame/older/explosion.ogg", Sound.class);
 		load("naveminigame/older/shoot.ogg", Sound.class);
+		load("naveminigame/atlasNaveMiniGame.atlas", TextureAtlas.class);
+	}
+	
+	public void loadMarcianosminigameScreen() {
+		load("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
 	}
 	
 	public void loadCameraminigameScreen() {
