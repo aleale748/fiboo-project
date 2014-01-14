@@ -18,6 +18,7 @@ public class ExplosionMalActor extends Actor {
 	public ExplosionMalActor() {
 		explosiones = new TextureRegion[24];
 		for (int i = 0; i < 24; ++i) {
+			Gdx.app.log("ExplosionMalActor", "Asignando findRegion - explosionMal" + i);
 			explosiones[i] = fibooGame.atlasNaveMiniGame.findRegion("explosionMal" + Integer.toString(i));
 		}
 		stateTime = 0f;
