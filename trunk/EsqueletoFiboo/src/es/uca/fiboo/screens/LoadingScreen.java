@@ -100,11 +100,11 @@ public class LoadingScreen extends AbstractScreen {
 		batch.begin();
 		
 		loaderVacio.draw(batch, w/4, h/4 - h/20, w/2, h/10);
-		if(progress > 0) {
+		if(progress > 0.05f) {
 			loaderFull.draw(batch, w/4, h/4 - h/20, progress*(w/2), h/10);
 		}
 		
-		int rand = (int)Math.random() * 4 % 3;
+		int rand = (int)(Math.random() * 10) % 3;
 		if(rand == 0) {
 			font.drawMultiLine(batch, "Cargando..", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
 		}
