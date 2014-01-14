@@ -62,14 +62,12 @@ public class Avatar {
 	}
 	
 	public void setBase(String imagePath) {
-		Complemento peloBase = new Complemento(imagePath, Tipo.PELO);
-		peloBase.setDisponible(true);
-		addComplemento(peloBase);
+		int index = fibooGame.getComplementos().indexOf(new Complemento(imagePath, Tipo.PELO));
+		addComplemento(fibooGame.getComplementos().get(index));
 	}
 	
 	public void draw(SpriteBatch batch) {
 		if(base == null) {
-			Gdx.app.log("Avatar", "Cargando avatar base");
 			base = fibooGame.atlasComplementos.findRegion("base");
 		}
 		batch.draw(base, posX, posY, escala, escala);
@@ -83,7 +81,13 @@ public class Avatar {
 	
 	public void dispose() {
 		base = null;
+		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
+			if(c.getValue() != null) {
+				c.getValue().dispose();
+			}
+		}
 	}
+	
 	
 	//Guardamos el TreeMap en el array para pasarlo al Json
 	public void formatToSave() {

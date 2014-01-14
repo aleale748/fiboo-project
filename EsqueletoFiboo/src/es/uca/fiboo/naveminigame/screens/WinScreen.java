@@ -1,7 +1,6 @@
 package es.uca.fiboo.naveminigame.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -36,18 +35,6 @@ public class WinScreen extends AbstractScreen {
 		win= new Image(fibooGame.atlasNaveMiniGame.findRegion("win"));
 		win.setFillParent(true);
 		stage.addActor(win);
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

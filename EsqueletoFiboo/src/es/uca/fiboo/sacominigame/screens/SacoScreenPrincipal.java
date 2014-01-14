@@ -1,7 +1,6 @@
 package es.uca.fiboo.sacominigame.screens;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;

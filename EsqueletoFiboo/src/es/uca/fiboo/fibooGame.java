@@ -39,7 +39,7 @@ public class fibooGame extends Game {
         public void create() {
 
     		Gdx.input.setCatchBackKey(true);
-    		//atlasComplementos = new TextureAtlas(Gdx.files.internal("complementos/complementos.atlas"));
+
     		atlasNaveMiniGame = new TextureAtlas("naveminigame/atlasNaveMiniGame.atlas");
     		atlasMarcianosMiniGame = new TextureAtlas("marcianosminigame/imagenesMarcianosMiniGame.txt");
 			fibooGame.MANAGER.loadNaveminigameScreen();
@@ -53,8 +53,6 @@ public class fibooGame extends Game {
             comps = Gdx.files.local("comps.json");
             FileHandle firstLoad = Gdx.files.internal("compsdefault.json");
             Json json = new Json(); 
-            
-            System.out.println(json.prettyPrint(complementos));
             
             if(savedData.exists()) {
                     personaje = json.fromJson(Personaje.class, savedData);

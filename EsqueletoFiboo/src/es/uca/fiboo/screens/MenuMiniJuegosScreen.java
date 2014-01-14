@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 import es.uca.fiboo.naveminigame.screens.AyudaNaveScreen;
-import es.uca.fiboo.pianocreen.screens.PianoScreen;
 import es.uca.fiboo.sacominigame.screens.SacoScreenPrincipal;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
