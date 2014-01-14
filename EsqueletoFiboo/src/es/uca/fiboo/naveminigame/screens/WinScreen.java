@@ -22,6 +22,7 @@ public class WinScreen extends AbstractScreen {
 		stage.draw();
 		if (time > 5f) {
 			if(Gdx.input.isTouched()) {
+				dispose();
 				game.setScreen(new MenuMiniJuegosScreen(game));
 			}
 		}
