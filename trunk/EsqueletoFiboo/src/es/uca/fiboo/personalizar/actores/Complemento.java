@@ -69,11 +69,6 @@ public class Complemento {
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-	
-	public void dispose() {
-		icono = null;
-		imagen = null;
-	}
 
 	@Override
 	public boolean equals(Object object) {

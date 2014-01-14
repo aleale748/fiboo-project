@@ -22,7 +22,7 @@ public class BotonCategoria {
 	private Tipo tipo;
 	
 	private Image icono;
-	
+	private Window popup;	
 
 	public BotonCategoria(PersonalizacionScreen parent, ArrayList<BotonComplemento> complementos, Tipo tipo) {
 		this.parent = parent;
@@ -41,7 +41,7 @@ public class BotonCategoria {
 	}
 	
 	private void setAcciones() {
-		final Window popup = new Window(tipo.toString(), parent.getSkin());
+		popup = new Window(tipo.toString(), parent.getSkin());
 		TextButton exitButton = new TextButton("X", parent.getSkin());
 		
 		float winHeight = Gdx.graphics.getHeight() * 0.3f;
