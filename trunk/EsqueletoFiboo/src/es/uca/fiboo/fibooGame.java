@@ -39,6 +39,7 @@ public class fibooGame extends Game {
         public void create() {
 
     		Gdx.input.setCatchBackKey(true);
+    		MANAGER.loadSonidos();
 			MANAGER.loadNaveminigameScreen();
 			MANAGER.loadMarcianosminigameScreen();
 			MANAGER.loadCameraminigameScreen();
@@ -94,7 +95,7 @@ public class fibooGame extends Game {
             savedData.writeString(json.prettyPrint(personaje), false);
             comps.writeString(json.prettyPrint(complementos), false);
             
-			MANAGER.clear();
+			MANAGER.dispose();
 			if (atlasComplementos!=null) atlasComplementos.dispose();
 			atlasMarcianosMiniGame.dispose();
 			atlasNaveMiniGame.dispose();
