@@ -30,26 +30,12 @@ public class fibooGame extends Game {
         // Clase de ayuda de libgdx que logea los FPS cada segundo
         private FPSLogger fpsLogger;
 
-        public MainScreen getMainScreen() {
-                return new MainScreen(this);
-        }
-        
         @SuppressWarnings("unchecked")
         @Override
         public void create() {
 
     		Gdx.input.setCatchBackKey(true);
-    		MANAGER.loadSonidos();
-			MANAGER.loadNaveminigameScreen();
-			MANAGER.loadMarcianosminigameScreen();
-			MANAGER.loadCameraminigameScreen();
-			MANAGER.robotgameScreen();
-			MANAGER.pianogameScreen();
-			MANAGER.finishLoading();
-			atlasNaveMiniGame = MANAGER.get("naveminigame/atlasNaveMiniGame.atlas", TextureAtlas.class);
-    		atlasMarcianosMiniGame = MANAGER.get("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
-			Gdx.app.log(LOG, "Imagenes cargadas en el manager");
-            
+    		            
             //Cargamos ficheros de datos guardados
             savedData = Gdx.files.local("savedData.json");
             comps = Gdx.files.local("comps.json");
@@ -117,7 +103,7 @@ public class fibooGame extends Game {
             Gdx.app.log(fibooGame.LOG, "'Resizing' to: " + width + " x " + height);
 
             if (getScreen() == null) {
-                    setScreen(getMainScreen());
+                    setScreen(new MainScreen(this));
             }
         }
 

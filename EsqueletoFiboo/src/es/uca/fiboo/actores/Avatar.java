@@ -75,16 +75,6 @@ public class Avatar {
 		}
 	}
 	
-	public void dispose() {
-		base = null;
-		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
-			if(c.getValue() != null) {
-				c.getValue().dispose();
-			}
-		}
-	}
-	
-	
 	//Guardamos el TreeMap en el array para pasarlo al Json
 	public void formatToSave() {
 		data = new ArrayList<Complemento>(complementos.size());

@@ -15,6 +15,11 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/yuju.mp3", Sound.class);
 	}
 	
+	public void loadPersonalizacionScreen() {
+		load("data/fondopersonalizar.png", Texture.class);
+		load("complementos/complementos.atlas", TextureAtlas.class);
+	}
+	
 	public void loadNaveminigameScreen() {
 		load("naveminigame/ayuda.png", Texture.class);
 		load("naveminigame/older/hit.ogg", Sound.class);
