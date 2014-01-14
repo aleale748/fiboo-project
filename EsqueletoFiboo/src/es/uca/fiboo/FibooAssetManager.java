@@ -77,6 +77,13 @@ public class FibooAssetManager extends AssetManager {
 		load("pianogame/logotrompeta.png", Texture.class);
 		load("pianogame/logopiano.png", Texture.class);
 		load("pianogame/piano.png", Texture.class);
+		load("pianogame/base.png", Texture.class);
+		load("pianogame/play.png", Texture.class);
+		load("pianogame/stop.png", Texture.class);
+		load("pianogame/pause.png", Texture.class);
+		load("pianogame/mute.png", Texture.class);
+		load("pianogame/sonido.png", Texture.class);
+		
         load("pianogame/do.mp3", Sound.class);
         load("pianogame/re.mp3", Sound.class);
         load("pianogame/mi.mp3", Sound.class);
