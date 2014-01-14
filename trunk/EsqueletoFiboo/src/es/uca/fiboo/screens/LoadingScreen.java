@@ -106,13 +106,13 @@ public class LoadingScreen extends AbstractScreen {
 		
 		int rand = (int)(Math.random() * 10) % 3;
 		if(rand == 0) {
-			font.drawMultiLine(batch, "Cargando..", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
+			font.drawMultiLine(batch, "Cargando.. ", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
 		}
 		else if(rand == 1) {
 			font.drawMultiLine(batch, "Cargando...", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
 		}
 		else {
-			font.drawMultiLine(batch, "Cargando.", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
+			font.drawMultiLine(batch, "Cargando.  ", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
 		}
 		batch.end();
 		Gdx.app.log("LoadingScreen", "Cargado al: " + progress + "%");
