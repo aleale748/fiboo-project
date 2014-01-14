@@ -52,15 +52,15 @@ public class TiempoScreen extends AbstractScreen {
 				float w = Gdx.graphics.getWidth();
 		
 				batch.begin();
-				SacoScreenPrincipal.font.draw(batch, "Recuerda el número de objetos que hay de cada uno!", 0, 480);
+				SacoScreenPrincipal.font.draw(batch, "Recuerda el número de objetos que hay de cada uno!", w/10, h);
 				batch.draw(cofre, w/3, h/4, w/3, h/2);
-				batch.draw(gema, w/2 + w/5, h/3, w/15, h/10);
-				SacoScreenPrincipal.font.draw(batch, " " +objetos[2], w/2 + w/4 + gema.getWidth(), h/3 + h/14);
-				batch.draw(moneda, w/2 + 140, h - 245);
-				SacoScreenPrincipal.font.draw(batch, " " +objetos[1], w/2 + 180, h - 230);
-				batch.draw(collar, w/2 + 140, h - 195);
-				SacoScreenPrincipal.font.draw(batch, " " +objetos[0], w/2 + 180, h - 170);
-				SacoScreenPrincipal.font.draw(batch, " " +(10 - (int)tiempo), w/2 + 220, h - cofre.getHeight() + 20);
+				batch.draw(gema, w/2 + w/5, h/3, w/14, h/12);
+				SacoScreenPrincipal.font.draw(batch, " " +objetos[2], w/2 + w/4 + gema.getWidth(), h/3);
+				batch.draw(moneda, w/2 + w/5, h/5, w/14, h/12);
+				SacoScreenPrincipal.font.draw(batch, " " +objetos[1], w/2 + w/4 + moneda.getWidth(), h/5);
+				batch.draw(collar, w/2 + w/5, h/12, w/14, h/12);
+				SacoScreenPrincipal.font.draw(batch, " " +objetos[0], w/2 + w/4 + collar.getWidth(), h/9);
+				SacoScreenPrincipal.font.draw(batch, " " +(10 - (int)tiempo), w/10, h/2);
 				batch.end();
 			
 				tiempo = tiempo + delta;

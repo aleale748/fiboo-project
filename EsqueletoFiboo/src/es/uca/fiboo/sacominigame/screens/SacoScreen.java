@@ -77,25 +77,26 @@ public class SacoScreen extends AbstractScreen {
 		
 		cofreR = new Rectangle();
 		
-		cofreR.height = h/5;
-		cofreR.width = w/5;
-		cofreR.x = w/3;
-		cofreR.y = h/4;
+		cofreR.height = h/3;
+		cofreR.width = w/3;
+		cofreR.x = w - w/3;
+		cofreR.y = h/3;
 		
 		maletaR = new Rectangle();
 		
-		maletaR.height = h/5;
-		maletaR.width = w/5;
-		maletaR.x = w/4;
-		maletaR.y = h/2;
+		maletaR.height = h/3;
+		maletaR.width = w/3;
+		maletaR.x = w/15;
+		maletaR.y = h/3;
 		
 		
 		//Creamos los botones
 		
 		//Gema de la maleta
-		
 		gemaButtonMas = new ImageButton(gemaDrawable);
-		gemaButtonMas.setPosition(maletaR.x + maletaR.getWidth(), maletaR.y + maletaR.height);
+		gemaButtonMas.setHeight(h/8);
+		gemaButtonMas.setWidth(w/8);
+		gemaButtonMas.setPosition(maletaR.x + w/10, maletaR.y + h/12);
 		
 		gemaButtonMas.addListener(new InputListener() {
 			
@@ -129,7 +130,9 @@ public class SacoScreen extends AbstractScreen {
 		//Gema del cofre
 		
 		gemaButtonMenos = new ImageButton(gemaDrawable);
-		gemaButtonMenos.setPosition(cofreR.x + cofreR.getWidth(), cofreR.y + cofreR.getHeight());
+		gemaButtonMenos.setHeight(h/8);
+		gemaButtonMenos.setWidth(w/8);
+		gemaButtonMenos.setPosition(cofreR.x - w/10, cofreR.y + h/10);
 		
 		gemaButtonMenos.addListener(new InputListener() {
 			
@@ -168,7 +171,9 @@ public class SacoScreen extends AbstractScreen {
 		//llave
 		
 		llaveButton = new ImageButton(llaveDrawable);
-		llaveButton.setPosition(w/2 - 64,h - 470);
+		llaveButton.setHeight(h/8);
+		llaveButton.setWidth(w/8);
+		llaveButton.setPosition(w/2,h/10);
 		
 		llaveButton.addListener(new InputListener() {
 			
@@ -216,20 +221,18 @@ public class SacoScreen extends AbstractScreen {
 		float h = Gdx.graphics.getHeight();
 		float w = Gdx.graphics.getWidth();
 		
-		stage.act(delta);
-		stage.draw();
-		
 		batch.begin();
 		
-		SacoScreenPrincipal.font.draw(batch, "Añade las mismas cosas que tenía el cofre del inicio!", 0, w/2);
+		SacoScreenPrincipal.font.draw(batch, "Añade las mismas cosas que tenía el cofre del inicio!", w/10, h);
 		SacoScreenPrincipal.font.draw(batch, "Tengo la solución!", w/2, h/20);
-		//Dibujar el cofreA con todos sus botones
+		//Dibujar el cofre con todos sus botones
 		batch.draw(cofre,cofreR.x, cofreR.y, cofreR.width, cofreR.height); 	
 		batch.draw(maleta, maletaR.x, maletaR.y, maletaR.width, maletaR.height);
-		SacoScreenPrincipal.font.draw(batch, " " +objetosC[2], w/2 - 225 , h/2 - 30);
 		
-		//Arrastrar figuras
-		SacoScreenPrincipal.font.draw(batch, " " +objetosB[2], gemaButtonMenos.getX()+ gemaButtonMenos.getWidth() + 5, gemaButtonMenos.getY() + gemaButtonMenos.getHeight() - 10);
+		SacoScreenPrincipal.font.draw(batch, " " +objetosC[2], maletaR.x + w/5, maletaR.y + h/6);
+		SacoScreenPrincipal.font.draw(batch, " " +objetosB[2], gemaButtonMenos.getX() + w/8, gemaButtonMenos.getY() + h/8);
+		
+		
 		if(gemaButtonMas.isPressed() || gemaTocada) {
 			gemaTocada = true;
 			gemaG.x = Gdx.input.getX();
@@ -251,6 +254,9 @@ public class SacoScreen extends AbstractScreen {
 		}
 		
 		batch.end();
+		
+		stage.act(delta);
+		stage.draw();
 		
 		
 	}
