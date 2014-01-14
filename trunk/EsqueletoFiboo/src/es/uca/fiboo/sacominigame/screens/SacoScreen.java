@@ -3,6 +3,9 @@ package es.uca.fiboo.sacominigame.screens;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,6 +21,7 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class SacoScreen extends AbstractScreen {
 	//Atributos necesarios
@@ -305,6 +309,23 @@ public class SacoScreen extends AbstractScreen {
 		maleta.dispose();
 		gema.dispose();
 		super.dispose();
+	}
+	
+	@Override 
+	public void show() {
+		
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					dispose();
+					game.setScreen(new MenuMiniJuegosScreen(game));
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
 	}
 
 }
