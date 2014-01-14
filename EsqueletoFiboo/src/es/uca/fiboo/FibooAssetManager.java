@@ -11,9 +11,6 @@ public class FibooAssetManager extends AssetManager {
 		load("naveminigame/older/hit.ogg", Sound.class);
 		load("naveminigame/older/explosion.ogg", Sound.class);
 		load("naveminigame/older/shoot.ogg", Sound.class);
-		load("naveminigame/atlasNaveMiniGame.png", Texture.class);
-		load("naveminigame/atlasNaveMiniGame2.png", Texture.class);
-		load("naveminiGame/atlasNaveMiniGame3.png", Texture.class);
 	}
 	
 	public void loadCameraminigameScreen() {
