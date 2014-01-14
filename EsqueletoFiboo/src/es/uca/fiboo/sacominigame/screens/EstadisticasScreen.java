@@ -28,6 +28,16 @@ public class EstadisticasScreen extends AbstractScreen {
 		//flechaButton.setPosition(x (ponerla bien), y (ponerla bien));
 		//stage.addActor(flechaButton);
 		
+		for (int i = 0; i < 4; ++i) {
+			stage.addActor(SacoScreenPrincipal.sin_puntos.get(i));
+		}
+		
+		if(!SacoScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
+			for (int i = 0; i < SacoScreenPrincipal.puntos.size(); ++i) {
+				stage.addActor(SacoScreenPrincipal.puntos.get(i));
+			}
+		}
+		
 	}
 
 	@Override
@@ -54,6 +64,9 @@ public class EstadisticasScreen extends AbstractScreen {
 		}
 		
 		batch.end();
+		
+		stage.act(delta);
+		stage.draw();
 	}
 
 }

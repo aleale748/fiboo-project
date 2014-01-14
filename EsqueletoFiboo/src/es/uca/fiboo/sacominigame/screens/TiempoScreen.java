@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
+import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
+import java.util.List;
 
 public class TiempoScreen extends AbstractScreen {
 	private int[] objetos;
@@ -33,6 +36,16 @@ public class TiempoScreen extends AbstractScreen {
 		collar = new Texture(Gdx.files.internal("sacominigame/img/collar.png"));
 		
 		tiempo = 0;
+		
+		for (int i = 0; i < 4; ++i) {
+			stage.addActor(SacoScreenPrincipal.sin_puntos.get(i));
+		}
+		
+		if(!SacoScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
+			for (int i = 0; i < SacoScreenPrincipal.puntos.size(); ++i) {
+				stage.addActor(SacoScreenPrincipal.puntos.get(i));
+			}
+		}
 		
 	}
 	
@@ -86,6 +99,9 @@ public class TiempoScreen extends AbstractScreen {
 			
 			game.setScreen(new EstadisticasScreen(game)); //Como ya ha realizado todas las repeticiones, mostramos las estadísticas
 		}
+		
+		stage.act(delta);
+		stage.draw();
 
 	}
 
