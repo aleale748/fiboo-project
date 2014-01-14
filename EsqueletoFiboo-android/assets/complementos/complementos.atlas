@@ -1,7 +1,7 @@
 
 complementos.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 adpelo1
   rotate: false
@@ -146,7 +146,7 @@ vacio
 
 complementos2.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 boca1
   rotate: false
@@ -214,7 +214,7 @@ disfraz2
 
 complementos3.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 disfraz2Icon
   rotate: false
@@ -282,7 +282,7 @@ ojos2Icon
 
 complementos4.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 ojos3
   rotate: false
@@ -350,7 +350,7 @@ pelonino1
 
 complementos5.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 pelonino1Icon
   rotate: false
