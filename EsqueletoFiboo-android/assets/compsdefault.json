@@ -1,122 +1,122 @@
 [
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "OJOS",
 	"imagePath": "ojos1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "OJOS",
 	"imagePath": "ojos2",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "OJOS",
 	"imagePath": "ojos3",
-	"disponible": false
+	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "PELO",
 	"imagePath": "pelonina1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "PELO",
 	"imagePath": "pelonina2",
-	"disponible": false
+	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "PELO",
 	"imagePath": "pelonina3",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "PELO",
 	"imagePath": "pelonino1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "PELO",
 	"imagePath": "pelonino2",
-	"disponible": false
+	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "PELO",
 	"imagePath": "pelonino3",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "DISFRAZ",
 	"imagePath": "disfraz1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "DISFRAZ",
 	"imagePath": "disfraz2",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "GAFAS",
 	"imagePath": "gafas1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "GAFAS",
 	"imagePath": "gafas2",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BIGOTE",
 	"imagePath": "bigote1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BIGOTE",
 	"imagePath": "bigote2",
-	"disponible": false
+	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "ACCPELO",
 	"imagePath": "adpelo1",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "ACCPELO",
 	"imagePath": "adpelo2",
-	"disponible": false
+	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BOCA",
 	"imagePath": "boca2",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BOCA",
 	"imagePath": "boca3",
 	"disponible": true
 },
 {
-	"class": "es.uca.fiboo.actores.Complemento",
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BOCA",
 	"imagePath": "boca1",
-	"disponible": false
+	"disponible": true
 }
 ]
