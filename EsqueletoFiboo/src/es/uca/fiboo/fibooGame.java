@@ -39,12 +39,10 @@ public class fibooGame extends Game {
         public void create() {
 
     		Gdx.input.setCatchBackKey(true);
-    		atlasComplementos = new TextureAtlas(Gdx.files.internal("data/complementos/complementos.atlas"));
+    		//atlasComplementos = new TextureAtlas(Gdx.files.internal("complementos/complementos.atlas"));
     		atlasNaveMiniGame = new TextureAtlas("naveminigame/atlasNaveMiniGame.atlas");
     		atlasMarcianosMiniGame = new TextureAtlas("marcianosminigame/imagenesMarcianosMiniGame.txt");
 			fibooGame.MANAGER.loadNaveminigameScreen();
-			//fibooGame.MANAGER.loadMarcianosminigameScreen();
-			fibooGame.MANAGER.loadPersonalizacionScreen();
 			fibooGame.MANAGER.loadCameraminigameScreen();
 			fibooGame.MANAGER.robotgameScreen();
 			fibooGame.MANAGER.pianogameScreen();

@@ -29,14 +29,13 @@ public abstract class AbstractScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
-		// Limpia la pantalla rellen??????ndola con el color RGB dado (blanco)
+		// Limpia la pantalla rellenándola con el color RGB dado (blanco)
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		// Actualiza y dibuja los actores del stage
 		stage.act(delta);
 		stage.draw();
-
 	}
 
 	@Override

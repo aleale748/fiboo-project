@@ -6,11 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class FibooAssetManager extends AssetManager {
 	
-	public void loadPersonalizacionScreen() {
-		load("data/fondopersonalizar.png", Texture.class);
-		finishLoading();
-	}
-	
 	public void loadNaveminigameScreen() {
 		load("naveminigame/ayuda.png", Texture.class);
 		load("naveminigame/older/hit.ogg", Sound.class);

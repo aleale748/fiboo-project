@@ -67,6 +67,7 @@ public class BotonComplemento extends Image {
 
 		public DragComplemento() {
 			imagen = new Image(complemento.getImagen());
+			Gdx.app.log(fibooGame.LOG, "Creando imagen de complemento " + complemento.getImagePath());
 			imagen.setSize(escala, escala);
 			
 			float posAvatarX = 0 + escala / 4f;
@@ -122,8 +123,6 @@ public class BotonComplemento extends Image {
 
 				imagen.setPosition(dxImagen, Gdx.graphics.getHeight() - dyImagen);
 				rImagen.setPosition(dxRect, Gdx.graphics.getHeight() - dyRect);
-				Gdx.app.log(fibooGame.LOG, "rImagen X: " + rImagen.x + ", rImagen Y: " + rImagen.y);
-				Gdx.app.log(fibooGame.LOG, "Imagen X: " + imagen.getX() + ", Imagen Y: " + imagen.getY());
 			}
 		}
 		

@@ -21,7 +21,7 @@ public class Complemento {
 	private Tipo tipo;
 	private String imagePath;
 	private boolean disponible;
-	private transient TextureRegion imagen;
+	private transient TextureRegion imagen, icono;
 	
 	//Necesario para Json
 	public Complemento() {}
@@ -36,14 +36,11 @@ public class Complemento {
 		return tipo;
 	}
 	
-	//Provisional mientras no hay Atlas.
-	// disfraz1.png -> disfraz1Icon.png
 	public TextureRegion getIcon() {
-		//String[] split = imagePath.split("[.]+");
-		//String path = split[0] + "Icon";
-		
-		TextureRegion icono = fibooGame.atlasComplementos.findRegion(imagePath + "Icon");
-		//icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		if(icono == null) {	
+			Gdx.app.log(fibooGame.LOG, "Cargando " + imagePath + "Icon");
+			icono = fibooGame.atlasComplementos.findRegion(imagePath + "Icon");
+		}
 		return icono;
 	}
 	
@@ -53,12 +50,10 @@ public class Complemento {
 		return false;
 	}
 	
-	//Se instancia la imagen sólo si se necesita
 	public TextureRegion getImagen() {
 		if(imagen == null) {
 			Gdx.app.log(fibooGame.LOG, "Cargando " + imagePath);
 			imagen = fibooGame.atlasComplementos.findRegion(imagePath);
-			//imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return imagen;
 	}
