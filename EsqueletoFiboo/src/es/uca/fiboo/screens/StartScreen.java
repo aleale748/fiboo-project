@@ -23,7 +23,7 @@ public class StartScreen extends AbstractScreen {
         public StartScreen(fibooGame game) {
                 super(game);
                 Gdx.input.setInputProcessor(stage);
-                imgFondo = new Image(new Texture("portada/portada.png"));
+                imgFondo = new Image(new Texture("portada/portadafiboo.png"));
         		imgFondo.setFillParent(true);
         		stage.addActor(imgFondo);
         }
