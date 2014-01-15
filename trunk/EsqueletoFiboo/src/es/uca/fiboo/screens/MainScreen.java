@@ -28,26 +28,33 @@ public class MainScreen extends AbstractScreen {
 		super.show();
 		TextureRegion fondoRegion = new TextureRegion(new Texture("portada/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
-		// Se crea el actor fondoImage y su tamaï¿½o se fija al llamar resize()
+		// Se crea el actor fondoImage y su tamaño se fija al llamar resize()
 		fondoImage = new Image(fondoDrawable, Scaling.fit);
 		fondoImage.setFillParent(true);
 		
 		// Esto es necesario para el efecto fade-in. Esto la hace transparente
 		fondoImage.getColor().a = 0f;
 		
-		// Se aï¿½ade la acciï¿½n de aparecer, esperar y desaparecer
+		// Se añade la acción de aparecer, esperar y desaparecer
 		fondoImage.addAction( sequence(fadeIn(0.75f), delay(2.75f), fadeOut(0.75f),
 				new Action() {
 					@Override
 					public boolean act(float delta) {
-						// La ï¿½ltima acciï¿½n moverï¿½ hacia pantalla de inicio
+						// La última acción moverá hacia pantalla de inicio
 						game.setScreen(new LoadingScreen(game));
 						return true;
 					}
 		}));
 		
-		// Aï¿½adimos el actor al stage
+		// Añadimos el actor al stage
 		stage.addActor(fondoImage);
+	}
+
+	@Override
+	public void hide() {
+		fondoImage.clear();
+		super.hide();
+		super.dispose();
 	}
 
 }

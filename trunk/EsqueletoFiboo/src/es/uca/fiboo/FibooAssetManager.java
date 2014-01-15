@@ -25,7 +25,7 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/pantallamenuentrenamiento.png", Texture.class);
 		load("portada/logoasteroid.png", Texture.class);
 		load("portada/fondopersonalizar.png", Texture.class);
-		}
+	}
 	
 	public void loadSonidos() {
 		load("sonidos/ahah.mp3", Sound.class);

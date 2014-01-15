@@ -1,105 +1,102 @@
 package es.uca.fiboo.screens;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.personalizar.screens.PersonalizacionScreen;
 
 public class MenuScreen extends AbstractScreen {
 
-	private ImageButton entrenarBoton, personalizarBoton;
+	private Image entrenarBoton, personalizarBoton;
 	private Image imgFondo;
-	float w, h;
+	private float w, h;
+	
 	public MenuScreen(fibooGame game) {
 		super(game);
+		Gdx.input.setInputProcessor(stage);
+		
 		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuprincipal.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
-		w= Gdx.graphics.getWidth();
-		h= Gdx.graphics.getHeight();
+		w = Gdx.graphics.getWidth();
+		h = Gdx.graphics.getHeight();
 	}
 	
 	@Override
 	public void show() {
 		super.show();
 		
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
-			@Override
-			public boolean keyUp(int keycode) {
-				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-						Gdx.app.exit();
-				}
-				return false;
-			}
-		}, stage);
-		
-		Gdx.input.setInputProcessor(inputMultiplexer);
-		float imgWidth = w * 0.3f;
+		float imgWidth = w * 0.25f;
 		float imgHeight = imgWidth;
 		
 		// Cargamos imagenes de botones
-		TextureRegion entrenarBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class));
-		Drawable entrenarBotonDrawable = new TextureRegionDrawable(entrenarBotonRegion);
+		Texture entrenar = fibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class);
+		Texture personalizar = fibooGame.MANAGER.get("portada/botonpersonalizar.png", Texture.class);
+		entrenar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		personalizar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		//TextureRegion retosBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("data/RetosBoton.png")));
-		//Drawable retosBotonDrawable = new TextureRegionDrawable(retosBotonRegion);
-		
-		TextureRegion personalizarBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/botonpersonalizar.png", Texture.class));
-		Drawable personalizarBotonDrawable = new TextureRegionDrawable(personalizarBotonRegion);
-		
-		// Creamos botones, los posicionamos y los a??adimos al stage
-		entrenarBoton = new ImageButton(entrenarBotonDrawable);
+		// Creamos botones, los posicionamos y los añadimos al stage
+		entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
-		entrenarBoton.setPosition(w/4 - entrenarBoton.getWidth()/2, 
-				h/2 - entrenarBoton.getHeight()/2);
-		entrenarBoton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + entrenarBoton.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + entrenarBoton.getClass().getSimpleName());
-						game.setScreen(new MenuMiniJuegosScreen(game));
-				}
-		});
-		stage.addActor(entrenarBoton);
+		entrenarBoton.setX(w/4 - entrenarBoton.getWidth()/2);
+		entrenarBoton.setY(h/2 - entrenarBoton.getHeight()/2);
+		entrenarBoton.addListener(new MyClickListener(1)); 
 		
-		//retosBoton = new ImageButton(retosBotonDrawable);
-		//retosBoton.setPosition(150f, 150f);
-		//stage.addActor(retosBoton);
-		
-		personalizarBoton = new ImageButton(personalizarBotonDrawable);
+		personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
-		personalizarBoton.setPosition(w/(4f/3f) - personalizarBoton.getWidth()/2, 
-				h/2 - personalizarBoton.getHeight()/2);
-		personalizarBoton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + personalizarBoton.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + personalizarBoton.getClass().getSimpleName());
-						game.setScreen(new PersonalizacionScreen(game));
-				}
-		});
+		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
+		personalizarBoton.setY(h/2 - personalizarBoton.getHeight()/2);
+		personalizarBoton.addListener(new MyClickListener(2));
+		
+		stage.addActor(entrenarBoton);
 		stage.addActor(personalizarBoton);
+	}
+	
+	private class MyClickListener extends ClickListener {
+		
+		private int screen;
+
+		public MyClickListener(int screen) {
+			this.screen = screen;
+		}
+		
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			switch(screen) {
+				case 1:
+					Gdx.app.log(fibooGame.LOG, "Clickeando en botón Minijuegos");
+					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
+							new Action() {
+								@Override
+								public boolean act(float delta) {
+									game.setScreen(new MenuMiniJuegosScreen(game));
+									return true;
+								}
+							}));
+					break;
+				case 2:
+					Gdx.app.log(fibooGame.LOG, "Clickeando en botón Personalización");
+					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
+							new Action() {
+								@Override
+								public boolean act(float delta) {
+									game.setScreen(new PersonalizacionScreen(game));
+									return true;
+								}
+							}));
+					break;					
+			}
+		}
 	}
 
 }
