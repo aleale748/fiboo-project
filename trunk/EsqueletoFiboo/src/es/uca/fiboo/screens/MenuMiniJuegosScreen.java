@@ -17,8 +17,6 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 import es.uca.fiboo.naveminigame.screens.AyudaNaveScreen;
 import es.uca.fiboo.pianocreen.screens.InicioPianoGameScreen;
-import es.uca.fiboo.sacominigame.screens.SacoScreen;
-import es.uca.fiboo.sacominigame.screens.SacoScreenPrincipal;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 

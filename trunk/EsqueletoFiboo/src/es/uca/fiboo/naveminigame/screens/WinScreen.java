@@ -1,12 +1,11 @@
 package es.uca.fiboo.naveminigame.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -54,7 +53,9 @@ public class WinScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		time = 0;
-		win= new Image(new TextureRegion(fibooGame.MANAGER.get("naveminigame/win.png", Texture.class)));
+		Texture imagen = fibooGame.MANAGER.get("naveminigame/win.png", Texture.class);
+		imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		win = new Image(imagen);
 		win.setFillParent(true);
 		stage.addActor(win);
 	}

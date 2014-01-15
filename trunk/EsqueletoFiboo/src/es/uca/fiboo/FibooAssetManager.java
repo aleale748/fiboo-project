@@ -3,7 +3,6 @@ package es.uca.fiboo;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class FibooAssetManager extends AssetManager {
 	
