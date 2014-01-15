@@ -35,7 +35,7 @@ public class LoadingScreen extends AbstractScreen {
 	public void show() {
 		super.show();
 		
-		fibooGame.MANAGER.load("portada/portada.png", Texture.class);
+		fibooGame.MANAGER.load("portada/portadafiboo.png", Texture.class);
 		fibooGame.MANAGER.load("portada/playportada.png", Texture.class);
 		fibooGame.MANAGER.load("loading/vacio.png", Texture.class);
 		fibooGame.MANAGER.load("loading/full.png", Texture.class);
@@ -47,7 +47,7 @@ public class LoadingScreen extends AbstractScreen {
 		loaderVacio = new NinePatch(new TextureRegion(vacioT, 24, 24), 8, 8, 8, 8);
 		loaderFull = new NinePatch(new TextureRegion(fullT, 24, 24), 8, 8, 8, 8);
 		
-		Texture bgT = fibooGame.MANAGER.get("portada/portada.png", Texture.class);
+		Texture bgT = fibooGame.MANAGER.get("portada/portadafiboo.png", Texture.class);
 		bgT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		bg = new Image(bgT);
 		bg.setFillParent(true);
@@ -130,7 +130,7 @@ public class LoadingScreen extends AbstractScreen {
 
 	@Override
 	public void hide() {
-		fibooGame.MANAGER.unload("portada/portada.png");
+		fibooGame.MANAGER.unload("portada/portadafiboo.png");
 		fibooGame.MANAGER.unload("portada/playportada.png");
 		fibooGame.MANAGER.unload("loading/vacio.png");
 		fibooGame.MANAGER.unload("loading/full.png");
