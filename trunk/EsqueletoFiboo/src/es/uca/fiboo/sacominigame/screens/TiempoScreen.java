@@ -16,6 +16,7 @@ import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import java.util.List;
 
 public class TiempoScreen extends AbstractScreen {
+	
 	private int[] objetos;
 	private Texture cofre;
 	private float tiempo;
@@ -107,7 +108,6 @@ public class TiempoScreen extends AbstractScreen {
 		
 		stage.act(delta);
 		stage.draw();
-
 	}
 	
 	@Override 
@@ -117,14 +117,20 @@ public class TiempoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
+					dispose();
 				}
 				return false;
 			}
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
+	}
+	
+	@Override
+	public void dispose() {
+		//fibooGame.MANAGER.unloadSacoMiniGameSounds();
+		super.dispose();
 	}
 
 }

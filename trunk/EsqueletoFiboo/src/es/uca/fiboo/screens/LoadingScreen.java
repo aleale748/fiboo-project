@@ -1,7 +1,7 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -47,23 +47,26 @@ public class LoadingScreen extends AbstractScreen {
 		bg.setFillParent(true);
 		stage.addActor(bg);
 
-		fibooGame.MANAGER.loadMusicaFondo();
-		fibooGame.MANAGER.finishLoading();
-		fibooGame.MANAGER.loadSonidos();
-		fibooGame.MANAGER.loadPersonalizacionScreen();
-		fibooGame.MANAGER.loadNaveminigameScreen();
-		fibooGame.MANAGER.loadMarcianosminigameScreen();
-		fibooGame.MANAGER.loadCameraminigameScreen();
-		fibooGame.MANAGER.loadRobotGameScreen();
-		fibooGame.MANAGER.loadPianoGameScreen();
-		fibooGame.MANAGER.loadmenuScreen();
-		fibooGame.MANAGER.loadSacogameScreen();
-		fibooGame.MANAGER.loadAscensorGameScreen();
-		fibooGame.MANAGER.get("sonidos/fondo.mp3",Sound.class).loop();
+		//fibooGame.MANAGER.loadMusicaFondo();
+		//fibooGame.MANAGER.finishLoading();
+		//fibooGame.MANAGER.loadSonidos();
+		fibooGame.MANAGER.loadPersonalizacionTextures();
+		fibooGame.MANAGER.loadNaveMiniGameTextures();
+		fibooGame.MANAGER.loadMarcianosMiniGameTextures();
+		fibooGame.MANAGER.loadCameraMiniGameTextures();
+		fibooGame.MANAGER.loadRobotMiniGameTextures();
+		fibooGame.MANAGER.loadPianoMiniGameTextures();
+		fibooGame.MANAGER.loadMenuTextures();
+		fibooGame.MANAGER.loadSacoMiniGameTextures();
+		fibooGame.MANAGER.loadAscensorGameTextures();
+		//fibooGame.MANAGER.get("sonidos/fondo.mp3",Sound.class).loop();
 	}
 
 	@Override
 	public void render(float delta) {
+		Gdx.gl.glClearColor(0, 0, 0, 1f);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		stage.draw();
 		
 		float progress = fibooGame.MANAGER.getProgress();
@@ -90,9 +93,7 @@ public class LoadingScreen extends AbstractScreen {
 
 	@Override
 	public void hide() {
-		fibooGame.MANAGER.unload("portada/portadafiboo.png");
-		fibooGame.MANAGER.unload("loading/vacio.png");
-		fibooGame.MANAGER.unload("loading/full.png");
+		super.hide();
 		font.dispose();
 		super.dispose();
 	}

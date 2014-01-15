@@ -1,9 +1,9 @@
 package es.uca.fiboo.sacominigame.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -50,8 +50,8 @@ public class EstadisticasScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
+					dispose();
 				}
 				return false;
 			}
@@ -71,13 +71,10 @@ public class EstadisticasScreen extends AbstractScreen {
 		
 		if(SacoScreenPrincipal.NUMERO_REPETICIONES == SacoScreenPrincipal.aciertos) {
 			SacoScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/10, h/2);
-			
 		}
-		
 		else if(SacoScreenPrincipal.aciertos == 0) {
 			SacoScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/10, h/2);
 		}
-		
 		else {
 			SacoScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/10, h/2);
 		}
@@ -86,6 +83,12 @@ public class EstadisticasScreen extends AbstractScreen {
 		
 		stage.act(delta);
 		stage.draw();
+	}
+	
+	@Override
+	public void dispose() {
+		fibooGame.MANAGER.unloadSacoMiniGameSounds();
+		super.dispose();
 	}
 
 }

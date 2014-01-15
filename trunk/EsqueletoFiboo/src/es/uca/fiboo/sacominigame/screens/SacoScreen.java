@@ -53,7 +53,7 @@ public class SacoScreen extends AbstractScreen {
 		
 		//Cargamos el sonido:
 		
-		objetosSound = Gdx.audio.newSound(Gdx.files.internal("sacominigame/clic.wav"));
+		objetosSound = fibooGame.MANAGER.get("sacominigame/clic.wav", Sound.class);
 		
 		objetosA = new int[3];
 		objetosB = new int[3];
@@ -169,7 +169,6 @@ public class SacoScreen extends AbstractScreen {
 					}
 					gemaTocada = false;
 				}
-				
 			}
 		});
 		
@@ -288,8 +287,6 @@ public class SacoScreen extends AbstractScreen {
 		
 		stage.act(delta);
 		stage.draw();
-		
-		
 	}
 	
 	private boolean sonIguales(int[] objetosA, int[] objetosB) {
@@ -308,6 +305,7 @@ public class SacoScreen extends AbstractScreen {
 		cofre.dispose();
 		maleta.dispose();
 		gema.dispose();
+		fibooGame.MANAGER.unloadSacoMiniGameSounds();
 		super.dispose();
 	}
 	
@@ -318,9 +316,9 @@ public class SacoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-					dispose();
+					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
+					dispose();
 				}
 				return false;
 			}

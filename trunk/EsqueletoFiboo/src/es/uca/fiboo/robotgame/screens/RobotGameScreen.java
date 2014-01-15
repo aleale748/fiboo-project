@@ -41,7 +41,7 @@ public class RobotGameScreen extends AbstractScreen{
 	Sound bienSound;
 	Sound malSound;
 	Sound reguSound;
-	Sound musicaFondo;
+	//Sound musicaFondo;
 	//Music rainMusic;
 	OrthographicCamera camera;
 	Rectangle hucha;
@@ -62,38 +62,38 @@ public class RobotGameScreen extends AbstractScreen{
 		super(game);
 		
 		// load the images for the droplet and the bucket, 64x64 pixels each
-				planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
-				lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
-				estrellaImage = fibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
-				marcianoImage = fibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
-				//stage.addActor(huchaImage);
-				
-				// load the drop sound effect and the rain background "music"
-				musicaFondo = fibooGame.MANAGER.get("sonidos/robot.mp3", Sound.class);
-				bienSound = fibooGame.MANAGER.get("robotgame/bien.mp3", Sound.class);
-				malSound = fibooGame.MANAGER.get("robotgame/mal.mp3", Sound.class);
-				reguSound = fibooGame.MANAGER.get("robotgame/regu.mp3", Sound.class);
-				// create the camera and the SpriteBatch
-				camera = new OrthographicCamera();
-				
-				camera.setToOrtho(false, Gdx.graphics.getHeight(), Gdx.graphics.getWidth());
-		 
-				// create a Rectangle to logically represent the bucket
-				
-				numobjetos= 10;
-				objeto= MathUtils.random(0, 2);
-				// create the raindrops array and spawn the first raindrop
-				raindrops = new Array<DropObject>();
-				// Use LibGDX's default Arial font.
-				font = new BitmapFont();
-				font2 = new BitmapFont();
-				numeros= new Numeros();
-				musicaFondo.loop();
-				spawnRaindrop();
+		planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
+		lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
+		estrellaImage = fibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
+		marcianoImage = fibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
+		//stage.addActor(huchaImage);
+		
+		// load the drop sound effect and the rain background "music"
+		//musicaFondo = fibooGame.MANAGER.get("sonidos/robot.mp3", Sound.class);
+		bienSound = fibooGame.MANAGER.get("robotgame/bien.mp3", Sound.class);
+		malSound = fibooGame.MANAGER.get("robotgame/mal.mp3", Sound.class);
+		reguSound = fibooGame.MANAGER.get("robotgame/regu.mp3", Sound.class);
+		// create the camera and the SpriteBatch
+		camera = new OrthographicCamera();
+		
+		camera.setToOrtho(false, Gdx.graphics.getHeight(), Gdx.graphics.getWidth());
+ 
+		// create a Rectangle to logically represent the bucket
+		
+		numobjetos = 10;
+		objeto = MathUtils.random(0, 2);
+		// create the raindrops array and spawn the first raindrop
+		raindrops = new Array<DropObject>();
+		// Use LibGDX's default Arial font.
+		font = new BitmapFont();
+		font2 = new BitmapFont();
+		numeros= new Numeros();
+		//musicaFondo.loop();
+		spawnRaindrop();
 	}
 	
 	private void spawnRaindrop() {
-		int rand= MathUtils.random(0, 3);
+		int rand = MathUtils.random(0, 3);
 		DropObject raindrop = new DropObject(rand);
 		raindrop.x = MathUtils.random(0, Gdx.graphics.getWidth() - Gdx.graphics.getHeight()*0.1f);
 		raindrop.y = Gdx.graphics.getHeight();
@@ -108,10 +108,10 @@ public class RobotGameScreen extends AbstractScreen{
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					dispose();
-					musicaFondo.stop();
-					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					//musicaFondo.stop();
+					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
+					dispose();
 				}
 				return false;
 			}
@@ -205,8 +205,8 @@ public class RobotGameScreen extends AbstractScreen{
 					break;
 				}
 				if(numobjetos==0){
-					musicaFondo.stop();
-					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					//musicaFondo.stop();
+					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new WinScreen(game));
 				}
 				try{
@@ -229,11 +229,12 @@ public class RobotGameScreen extends AbstractScreen{
 		malSound.dispose();
 		reguSound.dispose();
 		*/
+		fibooGame.MANAGER.unloadRobotMiniGameSounds();
 		super.dispose();
 	}
  
 	private class Numeros{
-		private static final int FRAME_COLS= 11;
+		private static final int FRAME_COLS = 11;
 		Texture numrojos;
 		Texture numverdes;
 		TextureRegion[] numerosrojos;
@@ -251,7 +252,7 @@ public class RobotGameScreen extends AbstractScreen{
 			for (int i = 0; i < FRAME_COLS; i++) {
 				numerosrojos[index] = tmp1[0][i];
 				numerosverdes[index++] = tmp2[0][i];
-				}
+			}
 			//spriteBatch = new SpriteBatch();                                // #12 
 		}
 		
