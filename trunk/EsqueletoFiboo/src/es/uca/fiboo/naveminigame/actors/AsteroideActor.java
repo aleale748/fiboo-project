@@ -1,5 +1,6 @@
 package es.uca.fiboo.naveminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -17,7 +18,7 @@ public class AsteroideActor extends Actor {
 	
 	public AsteroideActor(int numero, float aumentoVelocidad) {
 		this.numero = numero;
-		asteroide = fibooGame.atlasNaveMiniGame.findRegion("asteroide" + Integer.toString(numero));
+		asteroide = new TextureRegion(fibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero) + ".png", Texture.class));
 		setSize(asteroide.getRegionWidth(), asteroide.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		this.velocidad = aumentoVelocidad;

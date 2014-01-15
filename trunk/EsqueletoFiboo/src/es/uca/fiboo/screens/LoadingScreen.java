@@ -83,8 +83,6 @@ public class LoadingScreen extends AbstractScreen {
 		
 		if(fibooGame.MANAGER.update()) {
 			fibooGame.atlasComplementos = fibooGame.MANAGER.get("complementos/complementos.atlas", TextureAtlas.class);
-			fibooGame.atlasNaveMiniGame = fibooGame.MANAGER.get("naveminigame/atlasNaveMiniGame.atlas", TextureAtlas.class);
-			fibooGame.atlasMarcianosMiniGame = fibooGame.MANAGER.get("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
 			game.setScreen(new StartScreen(game));
 		}
 		

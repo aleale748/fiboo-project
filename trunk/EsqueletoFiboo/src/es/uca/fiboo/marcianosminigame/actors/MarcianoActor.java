@@ -2,6 +2,7 @@ package es.uca.fiboo.marcianosminigame.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -22,7 +23,7 @@ public class MarcianoActor extends Actor {
 	private NaveActor nave;
 	
 	public MarcianoActor() {
-		marciano = fibooGame.atlasMarcianosMiniGame.findRegion("marciano");
+		marciano = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/marciano.png", Texture.class));
 		setSize(128, 128);
 		bb = new Rectangle(getX(), getY() + getHeight()/3f, getWidth(),getHeight()/1.8f);
 		colocado = false;

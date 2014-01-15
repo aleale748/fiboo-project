@@ -1,5 +1,6 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,7 +12,7 @@ public class PreguntaActor extends Actor {
 	private TextureRegion pregunta;
 	
 	public PreguntaActor() {
-		pregunta = fibooGame.atlasMarcianosMiniGame.findRegion("pregunta");
+		pregunta = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/pregunta.png", Texture.class));
 		setSize(pregunta.getRegionWidth(), pregunta.getRegionHeight());
 	}
 	
