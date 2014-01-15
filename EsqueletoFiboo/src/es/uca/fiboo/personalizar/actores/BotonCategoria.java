@@ -53,11 +53,16 @@ public class BotonCategoria {
 		}
 		else {
 			int newRow = 0;
+			int maxPorFila;
+			if(complementos.size() > 5) 
+				maxPorFila = 3;
+			else
+				maxPorFila = 2;
+			
 			for(BotonComplemento b : complementos) {
 				popup.add(b).width(winWidth).height(winHeight);
 				newRow++;
-				// 2 complementos por cada fila
-				if(newRow > 1) {
+				if(newRow > maxPorFila-1) {
 					newRow = 0;
 					popup.row().fill().expandX();
 				}
