@@ -22,20 +22,23 @@ public class ChooseScreen extends AbstractScreen {
 	private ImageButton ninoBoton;
 	private ImageButton ninaBoton;
 	private Image imgFondo;
+	float w,h;
 	public ChooseScreen(fibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
 		imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+		w= Gdx.graphics.getWidth();
+		h= Gdx.graphics.getHeight();
 	}
 
 	@Override
 	public void show() {
 		super.show();
 
-		TextureRegion ninoBotonRegion = new TextureRegion(new Texture("data/polaroidnino2.png"));
-		TextureRegion ninaBotonRegion = new TextureRegion(new Texture("data/polaroidnina2.png"));
+		TextureRegion ninoBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/polaroidnino2.png", Texture.class));
+		TextureRegion ninaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/polaroidnina2.png", Texture.class));
 		Drawable ninoBotonDrawable = new TextureRegionDrawable(ninoBotonRegion);
 		Drawable ninaBotonDrawable = new TextureRegionDrawable(ninaBotonRegion);
 
@@ -43,13 +46,13 @@ public class ChooseScreen extends AbstractScreen {
 		ninoBoton = new ImageButton(ninoBotonDrawable);
 		ninaBoton = new ImageButton(ninaBotonDrawable);
 		
-		float imgWidth = Gdx.graphics.getWidth() * 0.3f;
+		float imgWidth = w * 0.3f;
 		float imgHeight = imgWidth;
 		ninoBoton.setSize(imgWidth, imgHeight);
 		ninaBoton.setSize(imgWidth, imgHeight);		
 		
-		ninoBoton.setX(Gdx.graphics.getWidth() / 4f - ninoBoton.getWidth() / 2f);
-		ninoBoton.setY(Gdx.graphics.getHeight() / 2f - ninoBoton.getHeight() / 2f);
+		ninoBoton.setX( w / 4f - ninoBoton.getWidth() / 2f);
+		ninoBoton.setY(h / 2f - ninoBoton.getHeight() / 2f);
 		ninoBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -74,8 +77,8 @@ public class ChooseScreen extends AbstractScreen {
 			}
 		});
 		
-		ninaBoton.setX(Gdx.graphics.getWidth() / (4f/3f) - ninaBoton.getWidth() / 2f);
-		ninaBoton.setY(Gdx.graphics.getHeight() / 2 - ninaBoton.getHeight() / 2f);
+		ninaBoton.setX(w / (4f/3f) - ninaBoton.getWidth() / 2f);
+		ninaBoton.setY(h / 2 - ninaBoton.getHeight() / 2f);
 		ninaBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

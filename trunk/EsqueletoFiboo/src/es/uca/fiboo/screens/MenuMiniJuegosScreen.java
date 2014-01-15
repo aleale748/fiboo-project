@@ -16,17 +16,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.marcianosminigame.screens.MarcianosMiniGameScreen;
 import es.uca.fiboo.naveminigame.screens.AyudaNaveScreen;
+import es.uca.fiboo.pianocreen.screens.InicioPianoGameScreen;
+import es.uca.fiboo.sacominigame.screens.SacoScreen;
 import es.uca.fiboo.sacominigame.screens.SacoScreenPrincipal;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 
-	private ImageButton naveBoton, bolsaBoton, robotBoton, mapaBoton, atrasBoton;
+	private ImageButton naveBoton, bolsaBoton, robotBoton, mapaBoton, atrasBoton, pianoBoton, ascensorBoton;
 	private Image imgFondo;
+	float w,h;
 	public MenuMiniJuegosScreen(fibooGame game) {
 		super(game);
-		imgFondo = new Image(new Texture("portada/pantallamenuentrenamiento.png"));
+		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+		w= Gdx.graphics.getWidth();
+		h= Gdx.graphics.getHeight();
 	}
 
 	@Override
@@ -43,32 +48,39 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		float imgWidth = Gdx.graphics.getWidth() * 0.3f;
+		float imgWidth = w * 0.2f;
 		float imgHeight = imgWidth;
 	
 		// Cargamos imagenes de botones
-		TextureRegion naveBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/naveboton.png")));
+		TextureRegion naveBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/naveboton.png", Texture.class));
 		Drawable naveBotonDrawable = new TextureRegionDrawable(naveBotonRegion);
 		
 		//TextureRegion retosBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("data/RetosBoton.png")));
 		//Drawable retosBotonDrawable = new TextureRegionDrawable(retosBotonRegion);
 		
-		TextureRegion bolsaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/bolsaboton.png")));
+		TextureRegion bolsaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/bolsaboton.png", Texture.class));
 		Drawable bolsaBotonDrawable = new TextureRegionDrawable(bolsaBotonRegion);
 		
-		TextureRegion robotBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/robotboton.png")));
+		TextureRegion robotBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/robotboton.png", Texture.class));
 		Drawable robotBotonDrawable = new TextureRegionDrawable(robotBotonRegion);
 		
-		TextureRegion mapaBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/mapaboton.png")));
+		TextureRegion mapaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/mapaboton.png", Texture.class));
 		Drawable mapaBotonDrawable = new TextureRegionDrawable(mapaBotonRegion);
+		
+		TextureRegion pianoBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/pianoboton.png", Texture.class));
+		Drawable pianoBotonDrawable = new TextureRegionDrawable(pianoBotonRegion);
+		
+		TextureRegion ascensorBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/ascensorboton.png", Texture.class));
+		Drawable ascensorBotonDrawable = new TextureRegionDrawable(ascensorBotonRegion);
+		
 		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasboton.png")));
 		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		naveBoton = new ImageButton(naveBotonDrawable);
 		naveBoton.setSize(imgWidth, imgHeight);
-		naveBoton.setPosition(Gdx.graphics.getWidth()/4 - naveBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/4 - naveBoton.getHeight()/2);
+		naveBoton.setPosition(w*0.25f - naveBoton.getWidth()/2, 
+				h/4 - naveBoton.getHeight()/2);
 		naveBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -90,8 +102,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		bolsaBoton = new ImageButton(bolsaBotonDrawable);
 		bolsaBoton.setSize(imgWidth, imgHeight);
-		bolsaBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - bolsaBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/4 - bolsaBoton.getHeight()/2);
+		bolsaBoton.setPosition(w*0.5f - bolsaBoton.getWidth()/2, 
+				h/4 - bolsaBoton.getHeight()/2);
 		bolsaBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -102,15 +114,15 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + bolsaBoton.getClass().getSimpleName());
-						game.setScreen(new SacoScreenPrincipal(game));
-				}
+				game.setScreen(new InicioSacoGameScreen(game));
+			}
 		});
 		stage.addActor(bolsaBoton);
 		
 		mapaBoton = new ImageButton(mapaBotonDrawable);
 		mapaBoton.setSize(imgWidth, imgHeight);
-		mapaBoton.setPosition(Gdx.graphics.getWidth()/4 - mapaBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/3f) - mapaBoton.getHeight()/2);
+		mapaBoton.setPosition(w*0.75f - mapaBoton.getWidth()/2, 
+				h/(4f/3f) - mapaBoton.getHeight()/2);
 		mapaBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -128,8 +140,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		robotBoton = new ImageButton(robotBotonDrawable);
 		robotBoton.setSize(imgWidth, imgHeight);
-		robotBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - robotBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/3f) - robotBoton.getHeight()/2);
+		robotBoton.setPosition(w*0.25f - robotBoton.getWidth()/2, 
+				h/(4f/3f) - robotBoton.getHeight()/2);
 		robotBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -145,10 +157,48 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		});
 		stage.addActor(robotBoton);
 		
+		pianoBoton = new ImageButton(pianoBotonDrawable);
+		pianoBoton.setSize(imgWidth, imgHeight);
+		pianoBoton.setPosition(w*0.5f - pianoBoton.getWidth()/2, 
+				h/(4f/3f) - pianoBoton.getHeight()/2);
+		pianoBoton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching down on " + pianoBoton.getClass().getSimpleName());
+				return true;
+			}
+			
+			@Override
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching up on " + pianoBoton.getClass().getSimpleName());
+						game.setScreen(new InicioPianoGameScreen(game));
+				}
+		});
+		stage.addActor(pianoBoton);
+		
+		ascensorBoton = new ImageButton(ascensorBotonDrawable);
+		ascensorBoton.setSize(imgWidth, imgHeight);
+		ascensorBoton.setPosition(w*0.75f - ascensorBoton.getWidth()/2, 
+				h/4 - ascensorBoton.getHeight()/2);
+		ascensorBoton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching down on " + ascensorBoton.getClass().getSimpleName());
+				return true;
+			}
+			
+			@Override
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching up on " + ascensorBoton.getClass().getSimpleName());
+						game.setScreen(new InicioSacoGameScreen(game));
+				}
+		});
+		stage.addActor(ascensorBoton);
+		
 		atrasBoton = new ImageButton(atrasBotonDrawable);
 		atrasBoton.setSize(imgWidth/2, imgHeight/2);
-		atrasBoton.setPosition(Gdx.graphics.getWidth()/(4f/0.3f) - atrasBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/(4f/0.5f) - atrasBoton.getHeight()/2);
+		atrasBoton.setPosition(w/(4f/0.3f) - atrasBoton.getWidth()/2, 
+				h/(4f/0.5f) - atrasBoton.getHeight()/2);
 		atrasBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

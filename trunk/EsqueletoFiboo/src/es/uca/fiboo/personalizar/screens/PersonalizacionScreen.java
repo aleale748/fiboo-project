@@ -90,6 +90,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		float h = Gdx.graphics.getHeight();
 		
 		setFondoAleatorio();
+
 		escalaAvatar = h * 0.7f;
         
         // Tabla para colocar los iconos

@@ -20,11 +20,14 @@ public class MenuScreen extends AbstractScreen {
 
 	private ImageButton entrenarBoton, personalizarBoton;
 	private Image imgFondo;
+	float w, h;
 	public MenuScreen(fibooGame game) {
 		super(game);
-		imgFondo = new Image(new Texture("portada/pantallamenuprincipal.png"));
+		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuprincipal.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+		w= Gdx.graphics.getWidth();
+		h= Gdx.graphics.getHeight();
 	}
 	
 	@Override
@@ -42,24 +45,24 @@ public class MenuScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		float imgWidth = Gdx.graphics.getWidth() * 0.3f;
+		float imgWidth = w * 0.3f;
 		float imgHeight = imgWidth;
 		
 		// Cargamos imagenes de botones
-		TextureRegion entrenarBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/botonentrenamiento.png")));
+		TextureRegion entrenarBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class));
 		Drawable entrenarBotonDrawable = new TextureRegionDrawable(entrenarBotonRegion);
 		
 		//TextureRegion retosBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("data/RetosBoton.png")));
 		//Drawable retosBotonDrawable = new TextureRegionDrawable(retosBotonRegion);
 		
-		TextureRegion personalizarBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/botonpersonalizar.png")));
+		TextureRegion personalizarBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/botonpersonalizar.png", Texture.class));
 		Drawable personalizarBotonDrawable = new TextureRegionDrawable(personalizarBotonRegion);
 		
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		entrenarBoton = new ImageButton(entrenarBotonDrawable);
 		entrenarBoton.setSize(imgWidth, imgHeight);
-		entrenarBoton.setPosition(Gdx.graphics.getWidth()/4 - entrenarBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/2 - entrenarBoton.getHeight()/2);
+		entrenarBoton.setPosition(w/4 - entrenarBoton.getWidth()/2, 
+				h/2 - entrenarBoton.getHeight()/2);
 		entrenarBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -81,8 +84,8 @@ public class MenuScreen extends AbstractScreen {
 		
 		personalizarBoton = new ImageButton(personalizarBotonDrawable);
 		personalizarBoton.setSize(imgWidth, imgHeight);
-		personalizarBoton.setPosition(Gdx.graphics.getWidth()/(4f/3f) - personalizarBoton.getWidth()/2, 
-				Gdx.graphics.getHeight()/2 - personalizarBoton.getHeight()/2);
+		personalizarBoton.setPosition(w/(4f/3f) - personalizarBoton.getWidth()/2, 
+				h/2 - personalizarBoton.getHeight()/2);
 		personalizarBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

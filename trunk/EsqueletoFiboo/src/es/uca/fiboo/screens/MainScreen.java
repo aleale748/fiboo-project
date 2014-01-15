@@ -26,7 +26,7 @@ public class MainScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		TextureRegion fondoRegion = new TextureRegion(new Texture("data/logoasteroid.png"));
+		TextureRegion fondoRegion = new TextureRegion(new Texture("portada/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
 		// Se crea el actor fondoImage y su tama�o se fija al llamar resize()
 		fondoImage = new Image(fondoDrawable, Scaling.fit);
