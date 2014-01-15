@@ -366,7 +366,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				if (nave.getHealth() <= 0) {
 					//Gdx.app.log(fibooGame.LOG, "Nave debilitada. Partida terminada.");
 					dispose();
-					fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
+					//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 					game.setScreen(new GameOverScreen(game));
 				}
 			} else {
@@ -395,7 +395,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							asteroides.clear();
 							if (puntuacion.size() == 5) {
 								dispose();
-								fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
+								//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 								game.setScreen(new WinScreen(game));
 							}
 						} else {
@@ -410,7 +410,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							stage.addActor(explosionesMal.get(explosionesMal.size()-1));
 							if (nave.getHealth() <= 0) {
 								dispose();
-								fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
+								//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 								game.setScreen(new GameOverScreen(game));
 							}
 						}
