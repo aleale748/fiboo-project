@@ -71,7 +71,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	public void show() {
 		
 		velocidadAsteroide = 100 * Gdx.graphics.getDeltaTime();
-		velocidadBala = 200 * Gdx.graphics.getDeltaTime();
+		velocidadBala = 500 * Gdx.graphics.getDeltaTime();
 		
 		//Gdx.app.log(fibooGame.LOG, "Comienza Minijuego de destruir asteroides");
 		asteroides = new ArrayList<AsteroideActor>();
@@ -371,7 +371,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				}
 			} else {
 				for (int j = 0; j < bullets.size(); j++) {
-					if (asteroide.bb.overlaps(bullets.get(j).bb)) {
+					if (asteroide.bb.overlaps(bullets.get(j).bb) && !resuelto) {
 						//Gdx.app.log(fibooGame.LOG, "Colisión bala-asteroide producida");
 						if (asteroides.get(i).getNumero() == palitos.getNum()) {	
 							//Gdx.app.log(fibooGame.LOG, "Asteroide soluci���n destruido");
@@ -414,12 +414,13 @@ public class NaveMiniGameScreen extends AbstractScreen {
 								game.setScreen(new GameOverScreen(game));
 							}
 						}
-						if (!asteroides.isEmpty()) {
+						if (asteroides.size() > i) {
 							asteroides.get(i).remove();
 							asteroides.remove(i);
 						}
 						bullets.get(j).remove();
 						bullets.remove(j);
+						
 						explosion.play();
 					}
 				}
