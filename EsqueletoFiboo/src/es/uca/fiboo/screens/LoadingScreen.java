@@ -50,14 +50,14 @@ public class LoadingScreen extends AbstractScreen {
 		//fibooGame.MANAGER.loadMusicaFondo();
 		//fibooGame.MANAGER.finishLoading();
 		//fibooGame.MANAGER.loadSonidos();
-		fibooGame.MANAGER.loadPersonalizacionTextures();
-		fibooGame.MANAGER.loadNaveMiniGameTextures();
 		fibooGame.MANAGER.loadMarcianosMiniGameTextures();
 		fibooGame.MANAGER.loadCameraMiniGameTextures();
 		fibooGame.MANAGER.loadRobotMiniGameTextures();
 		fibooGame.MANAGER.loadPianoMiniGameTextures();
+		fibooGame.MANAGER.loadNaveMiniGameTextures();
 		fibooGame.MANAGER.loadMenuTextures();
 		fibooGame.MANAGER.loadSacoMiniGameTextures();
+		fibooGame.MANAGER.loadPersonalizacionTextures();
 		fibooGame.MANAGER.loadAscensorGameTextures();
 		//fibooGame.MANAGER.get("sonidos/fondo.mp3",Sound.class).loop();
 	}

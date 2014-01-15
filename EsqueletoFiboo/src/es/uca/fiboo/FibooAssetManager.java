@@ -64,6 +64,20 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Texturas y Sonidos de Marcianos minijuego
 	public void loadMarcianosMiniGameTextures() {
+		load("marcianosminigame/star.png", Texture.class);
+		load("marcianosminigame/starVacia.png", Texture.class);
+		load("marcianosminigame/0.png", Texture.class);
+		load("marcianosminigame/1.png", Texture.class);
+		load("marcianosminigame/2.png", Texture.class);
+		load("marcianosminigame/3.png", Texture.class);
+		load("marcianosminigame/4.png", Texture.class);
+		load("marcianosminigame/5.png", Texture.class);
+		load("marcianosminigame/6.png", Texture.class);
+		load("marcianosminigame/7.png", Texture.class);
+		load("marcianosminigame/8.png", Texture.class);
+		load("marcianosminigame/9.png", Texture.class);
+		load("marcianosminigame/win.png", Texture.class);
+		load("marcianosminigame/gameover.png", Texture.class);
 		load("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
 	}
 	
