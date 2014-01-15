@@ -1,6 +1,7 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,6 +19,8 @@ public class InicioRobotGameScreen extends AbstractScreen {
 	private Image imgFondo;
 	public InicioRobotGameScreen(fibooGame game) {
 		super(game);
+		fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
+		fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
 		Gdx.input.setInputProcessor(stage);
 		imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
@@ -45,6 +48,7 @@ public class InicioRobotGameScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + pantallaAyuda.getClass().getSimpleName());
+					fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).stop();	
 					game.setScreen(new RobotGameScreen(game));
 				}
 		});

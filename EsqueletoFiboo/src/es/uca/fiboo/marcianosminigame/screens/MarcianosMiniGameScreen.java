@@ -38,7 +38,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	private List<MarcianoActor> marcianos;
 	private List<NaveActor> naves;
 	private List<NaveMarcianoActor> navesMarcianos;
-	private boolean resuelto, mostrarBien, movimiento;
+	private boolean resuelto, mostrarBien, movimiento, mostrarPregunta;
 	private NumeroActor numeroNaves, numeroMarcianos;
 	private int numeroMarcianosInt;
 	private BienActor bien;
@@ -55,6 +55,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
+		fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
 		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
@@ -72,6 +73,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 						dispose();
+						fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 						game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
@@ -93,6 +95,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		
 		puntuacion = new ArrayList<StarActor>();
 		
+		movimiento = false;
+		mostrarPregunta = false;
+		
 		Gdx.app.log(fibooGame.LOG, "Show terminado.");
 	}
 	
@@ -100,6 +105,98 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	public void render(float delta) {
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		stage.act();
+		if (movimiento) {
+			if (navesMarcianos.get(navesMarcianos.size()-1).getX() > Gdx.graphics.getWidth()) {
+				for (int i = 0; i < numNaves; ++i) {
+					navesMarcianos.get(i).remove();
+				}
+				navesMarcianos.clear();
+				movimiento = false;
+			}
+		}
+		else {
+			if (mostrarPregunta) {
+			pregunta = new PreguntaActor();
+			pregunta.setPosition(Gdx.graphics.getWidth()/2f - widthPregunta/2f, Gdx.graphics.getHeight() * 2.5f / 4f);
+			pregunta.setWidth(widthPregunta);
+			pregunta.setHeight(heightPregunta);
+			stage.addActor(pregunta);
+			fibooGame.MANAGER.get("sonidos/cuantosquedan.mp3", Sound.class).play();
+			
+			boton1 = new BotonActor();
+			boton2 = new BotonActor();
+			stage.addActor(boton1);
+			stage.addActor(boton2);
+			
+			numeroMalInt = numeroMarcianosInt;
+			if (Math.random() > 0.5f && numeroMarcianosInt > 2)
+				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt)) % (numeroMarcianosInt - 1);
+			else
+				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (9 - numeroMarcianosInt - 1)) + 1 ;
+			numeroSolInt = numeroMarcianosInt;
+			numeroMal = new NumeroActor(numeroMalInt);
+			numeroSol = new NumeroActor(numeroSolInt);
+			numeroMal.setWidth(widthNumero);
+			numeroMal.setHeight(heightNumero);
+			numeroSol.setWidth(widthNumero);
+			numeroSol.setHeight(heightNumero);
+			boton1.setWidth(widthBoton);
+			boton1.setHeight(heightBoton);
+			boton2.setWidth(widthBoton);
+			boton2.setHeight(heightBoton);
+			if (Math.random() > 0.5f) {
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
+				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
+				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
+			}
+			else {
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
+				boton1.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
+				boton2.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
+			}
+			
+			stage.addActor(numeroMal);
+			stage.addActor(numeroSol);
+			
+			boton2.addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					respuesta = 3;
+					return super.touchDown(event, x, y, pointer, button);
+				}
+			});
+			
+			boton1.addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					respuesta = 2;
+					return super.touchDown(event, x, y, pointer, button);
+				}
+			});
+			
+			numeroMal.addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					respuesta = 3;
+					return super.touchDown(event, x, y, pointer, button);
+				}
+			});
+			
+			numeroSol.addListener(new InputListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					respuesta = 2;
+					return super.touchDown(event, x, y, pointer, button);
+				}
+			});
+			mostrarPregunta = false;
+			}
 		if (respuesta == 3) {
 			dispose();
 			game.setScreen(new GameOverScreen(game));
@@ -125,16 +222,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			} 
 			else
 				if (respuesta == 1) {
-					if (movimiento) {
-						if (navesMarcianos.get(navesMarcianos.size()-1).getX() > Gdx.graphics.getWidth()) {
-							for (int i = 0; i < numNaves; ++i) {
-								navesMarcianos.get(i).remove();
-							}
-							navesMarcianos.clear();
-							movimiento = false;
-						}
-					}
-					else {
+					
 						if (mostrarBien) {
 							bien.setPosition(Gdx.graphics.getWidth()/2.5f, Gdx.graphics.getHeight()/2.2f);
 							if (contadorBien != 30) {
@@ -352,87 +440,8 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			numeroNaves.remove();
 			mostrarBien = true;
 			movimiento = true;
-			
-			pregunta = new PreguntaActor();
-			pregunta.setPosition(Gdx.graphics.getWidth()/2f - widthPregunta/2f, Gdx.graphics.getHeight() * 2.5f / 4f);
-			pregunta.setWidth(widthPregunta);
-			pregunta.setHeight(heightPregunta);
-			stage.addActor(pregunta);
-			fibooGame.MANAGER.get("sonidos/cuantosquedan.mp3", Sound.class).play();
-			
-			boton1 = new BotonActor();
-			boton2 = new BotonActor();
-			stage.addActor(boton1);
-			stage.addActor(boton2);
-			
-			numeroMalInt = numeroMarcianosInt;
-			if (Math.random() > 0.5f && numeroMarcianosInt > 2)
-				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt)) % (numeroMarcianosInt - 1);
-			else
-				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (9 - numeroMarcianosInt - 1)) + 1 ;
-			numeroSolInt = numeroMarcianosInt;
-			numeroMal = new NumeroActor(numeroMalInt);
-			numeroSol = new NumeroActor(numeroSolInt);
-			numeroMal.setWidth(widthNumero);
-			numeroMal.setHeight(heightNumero);
-			numeroSol.setWidth(widthNumero);
-			numeroSol.setHeight(heightNumero);
-			boton1.setWidth(widthBoton);
-			boton1.setHeight(heightBoton);
-			boton2.setWidth(widthBoton);
-			boton2.setHeight(heightBoton);
-			if (Math.random() > 0.5f) {
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
-				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
-				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
-			}
-			else {
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
-				boton1.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
-				boton2.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
-			}
-			
-			stage.addActor(numeroMal);
-			stage.addActor(numeroSol);
-			
-			boton2.addListener(new InputListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					respuesta = 3;
-					return super.touchDown(event, x, y, pointer, button);
-				}
-			});
-			
-			boton1.addListener(new InputListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					respuesta = 2;
-					return super.touchDown(event, x, y, pointer, button);
-				}
-			});
-			
-			numeroMal.addListener(new InputListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					respuesta = 3;
-					return super.touchDown(event, x, y, pointer, button);
-				}
-			});
-			
-			numeroSol.addListener(new InputListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					respuesta = 2;
-					return super.touchDown(event, x, y, pointer, button);
-				}
-			});
-			
+			mostrarPregunta = true;
+	
 			respuesta = 0;
 		}
 		

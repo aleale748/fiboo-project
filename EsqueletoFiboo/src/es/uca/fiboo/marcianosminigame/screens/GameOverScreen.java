@@ -1,6 +1,7 @@
 package es.uca.fiboo.marcianosminigame.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -22,6 +23,7 @@ public class GameOverScreen extends AbstractScreen {
 		stage.draw();
 		if (time > 5f) {
 			if(Gdx.input.isTouched()) {
+				fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 				game.setScreen(new MenuMiniJuegosScreen(game));
 			}
 		}

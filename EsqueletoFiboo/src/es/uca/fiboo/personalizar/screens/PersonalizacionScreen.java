@@ -46,12 +46,6 @@ public class PersonalizacionScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		// Para probar que se carga bien el skin con todos los ficheros
-		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
-        skin = new Skin( skinFile );
-		
-        botonesCat = new ArrayList<BotonCategoria>();
-		cargaComplementos();
 	}
 
 	//Carga todos los complementos habidos y por haber
@@ -84,7 +78,14 @@ public class PersonalizacionScreen extends AbstractScreen {
 	
 	@Override
 	public void show() {
-		super.show();
+
+		// Para probar que se carga bien el skin con todos los ficheros
+		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
+        skin = new Skin( skinFile );
+		
+        botonesCat = new ArrayList<BotonCategoria>();
+		cargaComplementos();
+		//super.show();
 		
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();

@@ -11,18 +11,20 @@ public class BulletActor extends Actor {
 
 	private TextureRegion bullet;
 	public Rectangle bb;
+	float velocidad;
 	
-	public BulletActor() {
+	public BulletActor(float velocidad) {
 		bullet = fibooGame.atlasNaveMiniGame.findRegion("laserPeque");
 		bullet.setRegionWidth(38);
 		bullet.setRegionHeight(19);
 		setSize(bullet.getRegionWidth(), bullet.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());	
+		this.velocidad = velocidad;
 	}
 	
 	@Override
 	public void act(float delta) {
-		translate(300 * delta, 0);
+		translate(velocidad, 0);
 		bb.x = getX();
 		bb.y = getY();
 		bb.width = getWidth();

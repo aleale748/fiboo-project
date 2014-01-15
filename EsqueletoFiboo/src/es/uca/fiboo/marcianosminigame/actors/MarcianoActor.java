@@ -68,7 +68,7 @@ public class MarcianoActor extends Actor {
 		
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			if (!colocado) {
-				fibooGame.MANAGER.get("sonidos/ahah.mp3", Sound.class).play();
+				fibooGame.MANAGER.get("sonidos/guala.mp3", Sound.class).play();
 				posicionX = getX();
 				posicionY = getY();
 				float dx = Gdx.input.getX() - getWidth() * 0.5f;
@@ -99,10 +99,6 @@ public class MarcianoActor extends Actor {
 				marciano.colocar();
 				nave.colocar();
 				Gdx.app.log(fibooGame.LOG, "Else terminado.");
-			}
-			else  {
-				setPosition(posicionX, posicionY);
-				bb.setPosition(posicionX, posicionY);
 			}
 			super.touchUp(event, x, y, pointer, button);
 		}

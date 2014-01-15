@@ -1,6 +1,7 @@
 package es.uca.fiboo.naveminigame.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -22,8 +23,9 @@ public class AyudaNaveScreen extends AbstractScreen {
 		
 		stage.draw();
 		
-		if (time > 5f) {
+		if (time > 2f) {
 			if(Gdx.input.isTouched()) {
+				fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).stop();
 				dispose();
 				game.setScreen(new NaveMiniGameScreen(game));
 			}
@@ -34,6 +36,8 @@ public class AyudaNaveScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
+		fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
+		fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
 		time = 0;
 		ayuda = new Image(fibooGame.MANAGER.get("naveminigame/ayuda.png", Texture.class));
 		fondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));

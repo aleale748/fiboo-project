@@ -27,12 +27,12 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/fondopersonalizar.png", Texture.class);
 	}
 	
-	public void loadSonidos() {
-		load("sonidos/ahah.mp3", Sound.class);
-		load("sonidos/bien.mp3", Sound.class);
-		load("sonidos/cuantosquedan.mp3", Sound.class);
+	public void loadMusicaFondo() {
 		load("sonidos/fondo.mp3", Sound.class);
-		load("sonidos/yuju.mp3", Sound.class);
+	}
+	
+	public void loadSonidos() {
+		load("sonidos/ayuda.mp3", Sound.class);
 	}
 	
 	public void loadPersonalizacionScreen() {
@@ -41,6 +41,7 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadNaveminigameScreen() {
+		load("sonidos/naves.mp3", Sound.class);
 		load("naveminigame/ayuda.png", Texture.class);
 		load("naveminigame/older/hit.ogg", Sound.class);
 		load("naveminigame/older/explosion.ogg", Sound.class);
@@ -50,6 +51,11 @@ public class FibooAssetManager extends AssetManager {
 	
 	public void loadMarcianosminigameScreen() {
 		load("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
+		load("sonidos/guala.mp3", Sound.class);
+		load("sonidos/bien.mp3", Sound.class);
+		load("sonidos/cuantosquedan.mp3", Sound.class);
+		load("sonidos/fondo.mp3", Sound.class);
+		load("sonidos/yuju.mp3", Sound.class);
 	}
 	
 	public void loadCameraminigameScreen() {
@@ -78,7 +84,8 @@ public class FibooAssetManager extends AssetManager {
 
 
 	public void loadRobotGameScreen() {
-
+		
+		load("sonidos/robot.mp3", Sound.class);
 		load("robotgame/fondoestrellas.png", Texture.class);
 		load("robotgame/estrella_.png", Texture.class);
 		load("robotgame/luna_.png", Texture.class);

@@ -59,6 +59,7 @@ public class PianoScreen extends AbstractScreen {
 	float h, w;
 	public PianoScreen(fibooGame game) {
 		super(game);
+		fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
 		Gdx.app.log(fibooGame.LOG, "Constructor piano empieza;");
 		seleccion= 0;
 		h= Gdx.graphics.getHeight();
@@ -94,6 +95,7 @@ public class PianoScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					dispose();
+					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
