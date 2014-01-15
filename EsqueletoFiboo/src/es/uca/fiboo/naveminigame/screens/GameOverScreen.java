@@ -26,7 +26,7 @@ public class GameOverScreen extends AbstractScreen {
 		time += 0.05f;
 		stage.act();
 		stage.draw();
-		if (time > 5f) {
+		if (time > 2f) {
 			if(Gdx.input.isTouched()) {
 				//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 				game.setScreen(new MenuMiniJuegosScreen(game));
