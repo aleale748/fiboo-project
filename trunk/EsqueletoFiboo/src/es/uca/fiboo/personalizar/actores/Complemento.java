@@ -1,7 +1,8 @@
 package es.uca.fiboo.personalizar.actores;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import es.uca.fiboo.fibooGame;
 
@@ -21,7 +22,7 @@ public class Complemento {
 	private Tipo tipo;
 	private String imagePath;
 	private boolean disponible;
-	private transient TextureRegion imagen, icono;
+	private transient Texture imagen, icono;
 	
 	//Necesario para Json
 	public Complemento() {}
@@ -36,10 +37,11 @@ public class Complemento {
 		return tipo;
 	}
 	
-	public TextureRegion getIcon() {
+	public Texture getIcon() {
 		if(icono == null) {	
 			Gdx.app.log("Complemento", "Cargando " + imagePath + "Icon");
-			icono = fibooGame.atlasComplementos.findRegion(imagePath + "Icon");
+			icono = fibooGame.MANAGER.get("complementos/" + imagePath + "Icon.png", Texture.class);
+			icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return icono;
 	}
@@ -50,10 +52,11 @@ public class Complemento {
 		return false;
 	}
 	
-	public TextureRegion getImagen() {
+	public Texture getImagen() {
 		if(imagen == null) {
 			Gdx.app.log("Complemento", "Cargando " + imagePath);
-			imagen = fibooGame.atlasComplementos.findRegion(imagePath);
+			imagen = fibooGame.MANAGER.get("complementos/" + imagePath + ".png", Texture.class);
+			imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return imagen;
 	}

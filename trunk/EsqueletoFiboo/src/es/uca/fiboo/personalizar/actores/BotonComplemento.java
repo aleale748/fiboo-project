@@ -1,6 +1,7 @@
 package es.uca.fiboo.personalizar.actores;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,23 +15,23 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
 /**
- * Clase que contiene el botï¿½n en miniatura del complemento y su complemento real asignado.
- * Ademï¿½s contiene un DragListener responsable de arrastrar y colocar los complementos.
+ * Clase que contiene el botón en miniatura del complemento y su complemento real asignado.
+ * Además contiene un DragListener responsable de arrastrar y colocar los complementos.
  * 
- * @version 0.5
+ * @version 0.6
  * @author Sergio
  * 
  */
 public class BotonComplemento extends Image {
 
-	//Necesario para aï¿½adir las imagenes y sus acciones
+	//Necesario para añadir las imagenes y sus acciones
 	private static Stage stage;
 	
 	private Complemento complemento;
 	private float escala;
 	
 	public BotonComplemento(Tipo tipo) {
-		super(fibooGame.atlasComplementos.findRegion("vacio"));
+		super(fibooGame.MANAGER.get("complementos/vacio.png", Texture.class));
 		addQuitarComplementoListener(tipo);
 	}
 	
@@ -85,13 +86,12 @@ public class BotonComplemento extends Image {
 			case PANTALON:
 				posAvatarY = (Gdx.graphics.getHeight() - escala) / 2f;
 				heightRectAvatar = escala;
-				heightRectImg = escala;
 				break;
 			default:
 				posAvatarY = Gdx.graphics.getHeight() / 2f;
 				heightRectAvatar = escala / 2f;
-				heightRectImg = heightRectAvatar;
 			}
+			heightRectImg = heightRectAvatar;
 			
 			avatar = new Rectangle(posAvatarX, posAvatarY, widthRectAvatar, heightRectAvatar);
 			rImagen = new Rectangle(-500f, -500f, widthRectImg, heightRectImg);
@@ -157,8 +157,7 @@ public class BotonComplemento extends Image {
 					case DISFRAZ:
 					case CAMISA:
 					case PANTALON:
-						toY = avatar.y;
-						break;
+						toY = avatar.y; break;
 					default:
 						toY = (Gdx.graphics.getHeight() - escala) / 2f;
 					}
