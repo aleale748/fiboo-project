@@ -2,6 +2,7 @@ package es.uca.fiboo.marcianosminigame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -34,7 +35,7 @@ public class GameOverScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		time = 0;
-		gameover= new Image(fibooGame.atlasNaveMiniGame.findRegion("gameover"));
+		gameover= new Image(fibooGame.MANAGER.get("marcianosminigame/gameover.png", Texture.class));
 		gameover.setFillParent(true);
 		stage.addActor(gameover);
 	}

@@ -414,7 +414,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 								game.setScreen(new GameOverScreen(game));
 							}
 						}
-						if (asteroides.size() > i) {
+						if (!asteroides.isEmpty()) {
 							asteroides.get(i).remove();
 							asteroides.remove(i);
 						}
