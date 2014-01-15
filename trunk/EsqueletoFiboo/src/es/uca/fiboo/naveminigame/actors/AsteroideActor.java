@@ -25,7 +25,7 @@ public class AsteroideActor extends Actor {
 	
 	@Override
 	public void act(float delta) {
-		translate(-velocidad * delta, 0);
+		translate(-velocidad, 0);
 		bb.x = getX();
 		bb.y = getY();
 		bb.width = getWidth();

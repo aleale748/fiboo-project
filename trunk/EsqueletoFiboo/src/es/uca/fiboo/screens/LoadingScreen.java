@@ -1,6 +1,7 @@
 package es.uca.fiboo.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -45,9 +46,11 @@ public class LoadingScreen extends AbstractScreen {
 		bg = new Image(bgT);
 		bg.setFillParent(true);
 		stage.addActor(bg);
-		
-		fibooGame.MANAGER.loadPersonalizacionScreen();
+
+		fibooGame.MANAGER.loadMusicaFondo();
+		fibooGame.MANAGER.finishLoading();
 		fibooGame.MANAGER.loadSonidos();
+		fibooGame.MANAGER.loadPersonalizacionScreen();
 		fibooGame.MANAGER.loadNaveminigameScreen();
 		fibooGame.MANAGER.loadMarcianosminigameScreen();
 		fibooGame.MANAGER.loadCameraminigameScreen();
@@ -56,6 +59,7 @@ public class LoadingScreen extends AbstractScreen {
 		fibooGame.MANAGER.loadmenuScreen();
 		fibooGame.MANAGER.loadSacogameScreen();
 		fibooGame.MANAGER.loadAscensorGameScreen();
+		fibooGame.MANAGER.get("sonidos/fondo.mp3",Sound.class).loop();
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public class LoadingScreen extends AbstractScreen {
 			fibooGame.atlasComplementos = fibooGame.MANAGER.get("complementos/complementos.atlas", TextureAtlas.class);
 			fibooGame.atlasNaveMiniGame = fibooGame.MANAGER.get("naveminigame/atlasNaveMiniGame.atlas", TextureAtlas.class);
 			fibooGame.atlasMarcianosMiniGame = fibooGame.MANAGER.get("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
-			game.setScreen(new ChooseScreen(game));
+			game.setScreen(new StartScreen(game));
 		}
 		
 		stage.act(delta);

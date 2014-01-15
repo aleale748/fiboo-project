@@ -66,7 +66,7 @@ public class SacoScreen extends AbstractScreen {
 		
 		gemaTocada = false;
 		
-		//Se crean los rectangulos, botones y se cargan las imágenes necesarias..
+		//Se crean los rectangulos, botones y se cargan las imï¿½genes necesarias..
 		
 		cofre = new Texture(Gdx.files.internal("sacominigame/img/cofre_grande.png"));
 		maleta = new Texture(Gdx.files.internal("sacominigame/img/maleta.png"));
@@ -254,8 +254,8 @@ public class SacoScreen extends AbstractScreen {
 		
 		batch.begin();
 		
-		SacoScreenPrincipal.font.draw(batch, "Añade las mismas cosas que tenía el cofre del inicio!", w/10, h);
-		SacoScreenPrincipal.font.draw(batch, "Tengo la solución!", w/2, h/20);
+		SacoScreenPrincipal.font.draw(batch, "Aï¿½ade las mismas cosas que tenï¿½a el cofre del inicio!", w/10, h);
+		SacoScreenPrincipal.font.draw(batch, "Tengo la soluciï¿½n!", w/2, h/20);
 		//Dibujar el cofre con todos sus botones
 		batch.draw(cofre,cofreR.x, cofreR.y, cofreR.width, cofreR.height); 	
 		batch.draw(maleta, maletaR.x, maletaR.y, maletaR.width, maletaR.height);
@@ -318,6 +318,7 @@ public class SacoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}

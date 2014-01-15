@@ -5,6 +5,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
 import es.uca.fiboo.fibooGame;
 
 public class StartScreen extends AbstractScreen {
@@ -31,7 +33,6 @@ public class StartScreen extends AbstractScreen {
         @Override
         public void show() {
                 super.show();
-
                 TextureRegion playBotonRegion = new TextureRegion(new Texture("portada/playportada.png"));
                 Drawable playBotonDrawable = new TextureRegionDrawable(playBotonRegion);
 

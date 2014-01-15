@@ -38,11 +38,18 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, 
 			widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, 
 			heightPuntuacion = 40, widthBarra = 128, heightBarra = 16, 
-			widthPad = 119, heightPad = 57, escala;
+			widthPad = 119, heightPad = 57, velocidadAsteroide, velocidadBala, 
+			escala;
+	Sound musicaFondo, disparo, explosion, golpe;
 	
 	public NaveMiniGameScreen(fibooGame game) {
 		super(game);
 		//Gdx.app.log(fibooGame.LOG, "Bien construido.");
+		musicaFondo = fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class);
+		musicaFondo.loop(0.25f);
+		explosion = fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class);
+		disparo = fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class);
+		golpe = fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class);
 	}
 
 	private NaveActor nave;
@@ -63,6 +70,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		
+		velocidadAsteroide = 100 * Gdx.graphics.getDeltaTime();
+		velocidadBala = 200 * Gdx.graphics.getDeltaTime();
+		
 		//Gdx.app.log(fibooGame.LOG, "Comienza Minijuego de destruir asteroides");
 		asteroides = new ArrayList<AsteroideActor>();
 		bullets = new ArrayList<BulletActor>();
@@ -72,6 +82,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					dispose();
+					musicaFondo.stop();
+					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
@@ -183,7 +195,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			
 			//Gdx.app.log(fibooGame.LOG, "Generando asteroides");
 			Gdx.app.log("NaveMiniGame", "NEW - AsteroideActor");
-			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 10) % 9, (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.15f) + (Gdx.graphics.getWidth()*0.15f));
+			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 10) % 9, (float) (puntuacion.size()/5f)*velocidadAsteroide + velocidadAsteroide);
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
@@ -208,7 +220,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			asteroides.add(asteroide);
 			if (respawnSol % 1 == 0) {
 				Gdx.app.log("NaveMiniGame", "NEW - AsteroideActor");
-				AsteroideActor asteroidesol = new AsteroideActor(palitos.getNum(), (float) (puntuacion.size()/10f)*(Gdx.graphics.getWidth()*0.15f) + (Gdx.graphics.getWidth()*0.15f));
+				AsteroideActor asteroidesol = new AsteroideActor(palitos.getNum(), (float) (puntuacion.size()/5f)*velocidadAsteroide + velocidadAsteroide);
 				asteroidesol.setWidth(widthAsteroides);
 				asteroidesol.setHeight(heightAsteroides);
 				if (random > 0.5)
@@ -257,7 +269,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		for(int i = 0; i < asteroides.size(); i++) {
 			if (asteroides.get(i).getRight() < widthAsteroides*0.9f) {
 				asteroide = asteroides.get(i);
-				fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class).play();
+				explosion.play();
 				if (escudo.getHealth() > 0.4f) {
 					if (asteroide.getNumero() == palitos.getNum()) {
 						//Gdx.app.log(fibooGame.LOG, "Colisión de asteroide con escudo solución producida");
@@ -279,10 +291,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 					}
 					asteroides.get(i).remove();
 					asteroides.remove(i);
-					fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
+					golpe.play();
 				} else  {
 					//Gdx.app.log(fibooGame.LOG, "Escudo debilitado. Partida terminada.");
 					dispose();
+					fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 					game.setScreen(new GameOverScreen(game));
 				}
 			}
@@ -349,10 +362,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				asteroides.get(i).remove();
 				asteroides.remove(i);
 				nave.sumHealth(-0.4f);
-				fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
+				golpe.play();
 				if (nave.getHealth() <= 0) {
 					//Gdx.app.log(fibooGame.LOG, "Nave debilitada. Partida terminada.");
 					dispose();
+					fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 					game.setScreen(new GameOverScreen(game));
 				}
 			} else {
@@ -381,12 +395,13 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							asteroides.clear();
 							if (puntuacion.size() == 5) {
 								dispose();
+								fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 								game.setScreen(new WinScreen(game));
 							}
 						} else {
 							//Gdx.app.log(fibooGame.LOG, "Asteroide err���neo destruido");
 							nave.sumHealth(-0.2f);
-							fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class).play();
+							golpe.play();
 							Gdx.app.log("NaveMiniGame", "NEW - ExplosionMalActor");
 							explosionesMal.add(new ExplosionMalActor());
 							explosionesMal.get(explosionesMal.size()-1).setPosition(asteroides.get(i).getX()*0.98f, asteroides.get(i).getY()*0.75f);
@@ -395,6 +410,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							stage.addActor(explosionesMal.get(explosionesMal.size()-1));
 							if (nave.getHealth() <= 0) {
 								dispose();
+								fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 								game.setScreen(new GameOverScreen(game));
 							}
 						}
@@ -404,7 +420,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 						}
 						bullets.get(j).remove();
 						bullets.remove(j);
-						fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class).play();
+						explosion.play();
 					}
 				}
 			}
@@ -450,6 +466,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		barraEscudo.setPosition(Gdx.graphics.getWidth() - widthBarra*2.2f, Gdx.graphics.getHeight()*0.9f);
 		nave.setPosition(Gdx.graphics.getWidth()*0.01f, Gdx.graphics.getHeight()/2f - heightNave/2.5f);
 		padShoot.setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.01f);
+
 		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.get(i).setWidth(widthPuntuacion);
 			puntuacionVacia.get(i).setHeight(heightPuntuacion);
@@ -460,7 +477,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			Gdx.app.log("NaveMiniGame", "NEW - bullet");
-			BulletActor bullet = new BulletActor();
+			BulletActor bullet = new BulletActor(velocidadBala);
 			bullet.setWidth(widthBullets);
 			bullet.setHeight(heightBullets);
 			bullet.setPosition(nave.getX() + widthNave - widthNave/4.5f, nave.getY() + (heightNave - heightNave/5f));
@@ -468,7 +485,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			bullet.bb.y = bullet.getY();
 			stage.addActor(bullet);
 			bullets.add(bullet);
-			fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class).play();
+			disparo.play();
 			return true;
 		}
 	}
@@ -505,7 +522,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			if(character != ' ') return false;
 			
 			Gdx.app.log("NaveMiniGame", "NEW - bullet");
-			BulletActor bullet = new BulletActor();
+			BulletActor bullet = new BulletActor(velocidadBala);
 			bullet.setWidth(widthBullets);
 			bullet.setHeight(heightBullets);
 			bullet.setPosition(nave.getX() + widthNave - widthNave/4.5f, nave.getY() + (heightNave - heightNave/5f));
@@ -513,9 +530,18 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			bullet.bb.y = bullet.getY();
 			stage.addActor(bullet);
 			bullets.add(bullet);
-			fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class).play();
+			disparo.play();
 			return true;
 		}
+	}
+	
+	@Override
+	public void dispose() {
+		/*musicaFondo.dispose();
+		explosion.dispose();
+		golpe.dispose();
+		disparo.dispose();*/
+		super.dispose();
 	}
 
 }

@@ -41,6 +41,7 @@ public class RobotGameScreen extends AbstractScreen{
 	Sound bienSound;
 	Sound malSound;
 	Sound reguSound;
+	Sound musicaFondo;
 	//Music rainMusic;
 	OrthographicCamera camera;
 	Rectangle hucha;
@@ -59,6 +60,7 @@ public class RobotGameScreen extends AbstractScreen{
 	
 	public RobotGameScreen(fibooGame game){
 		super(game);
+		
 		// load the images for the droplet and the bucket, 64x64 pixels each
 				planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
 				lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
@@ -67,6 +69,7 @@ public class RobotGameScreen extends AbstractScreen{
 				//stage.addActor(huchaImage);
 				
 				// load the drop sound effect and the rain background "music"
+				musicaFondo = fibooGame.MANAGER.get("sonidos/robot.mp3", Sound.class);
 				bienSound = fibooGame.MANAGER.get("robotgame/bien.mp3", Sound.class);
 				malSound = fibooGame.MANAGER.get("robotgame/mal.mp3", Sound.class);
 				reguSound = fibooGame.MANAGER.get("robotgame/regu.mp3", Sound.class);
@@ -85,6 +88,7 @@ public class RobotGameScreen extends AbstractScreen{
 				font = new BitmapFont();
 				font2 = new BitmapFont();
 				numeros= new Numeros();
+				musicaFondo.loop();
 				spawnRaindrop();
 	}
 	
@@ -105,6 +109,8 @@ public class RobotGameScreen extends AbstractScreen{
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					dispose();
+					musicaFondo.stop();
+					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
@@ -199,7 +205,8 @@ public class RobotGameScreen extends AbstractScreen{
 					break;
 				}
 				if(numobjetos==0){
-					dispose();
+					musicaFondo.stop();
+					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new WinScreen(game));
 				}
 				try{
