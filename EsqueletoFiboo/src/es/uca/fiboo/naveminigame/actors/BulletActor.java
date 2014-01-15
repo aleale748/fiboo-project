@@ -1,5 +1,6 @@
 package es.uca.fiboo.naveminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -14,7 +15,7 @@ public class BulletActor extends Actor {
 	float velocidad;
 	
 	public BulletActor(float velocidad) {
-		bullet = fibooGame.atlasNaveMiniGame.findRegion("laserPeque");
+		bullet = new TextureRegion(fibooGame.MANAGER.get("naveminigame/laserPeque.png", Texture.class));
 		bullet.setRegionWidth(38);
 		bullet.setRegionHeight(19);
 		setSize(bullet.getRegionWidth(), bullet.getRegionHeight());

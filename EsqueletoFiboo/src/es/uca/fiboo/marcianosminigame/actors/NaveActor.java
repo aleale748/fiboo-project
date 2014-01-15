@@ -1,5 +1,6 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -14,7 +15,7 @@ public class NaveActor extends Actor {
 	private boolean colocado, verificado;
 	
 	public NaveActor() {
-		nave = fibooGame.atlasMarcianosMiniGame.findRegion("nave");
+		nave = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/nave.png", Texture.class));
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 		bb = new Rectangle(getX(), getY() + getHeight()/4f, getWidth(),getHeight()/2f);
 		colocado = false;

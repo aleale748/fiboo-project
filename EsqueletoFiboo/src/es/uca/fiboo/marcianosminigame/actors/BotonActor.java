@@ -1,5 +1,6 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,7 +12,7 @@ public class BotonActor extends Actor {
 	private TextureRegion boton;
 	
 	public BotonActor() {
-		boton = fibooGame.atlasMarcianosMiniGame.findRegion("boton");
+		boton = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/boton.png", Texture.class));
 		setSize(202, 205);
 	}
 	

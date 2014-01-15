@@ -1,5 +1,6 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -13,8 +14,8 @@ public class NumeroActor extends Actor {
 	public int a;
 	
 	public NumeroActor(int a) {
-		numero = fibooGame.atlasNaveMiniGame.findRegion(Integer.toString(a));
-		setSize(60, 100);
+		numero = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/" + Integer.toString(a) + ".png", Texture.class), 60, 100);
+		setSize(numero.getRegionWidth(), numero.getRegionHeight());
 		this.a = a;
 	}
 	

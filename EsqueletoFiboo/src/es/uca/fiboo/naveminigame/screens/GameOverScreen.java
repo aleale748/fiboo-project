@@ -2,6 +2,8 @@ package es.uca.fiboo.naveminigame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -34,7 +36,7 @@ public class GameOverScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		time = 0;
-		gameover= new Image(fibooGame.atlasNaveMiniGame.findRegion("gameover"));
+		gameover= new Image(new TextureRegion(fibooGame.MANAGER.get("naveminigame/gameover.png", Texture.class)));
 		gameover.setFillParent(true);
 		stage.addActor(gameover);
 	}

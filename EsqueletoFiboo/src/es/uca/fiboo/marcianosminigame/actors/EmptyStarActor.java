@@ -1,5 +1,6 @@
 package es.uca.fiboo.marcianosminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,8 +12,8 @@ public class EmptyStarActor extends Actor {
 	private TextureRegion star;
 	
 	public EmptyStarActor() {
-		star = fibooGame.atlasNaveMiniGame.findRegion("starVacia");
-		setSize(42, 40);
+		star = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/starVacia.png", Texture.class), 42, 40);
+		setSize(star.getRegionWidth(), star.getRegionHeight());
 	}
 	
 	@Override

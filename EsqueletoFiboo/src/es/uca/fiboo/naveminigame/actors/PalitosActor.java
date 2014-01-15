@@ -1,5 +1,6 @@
 package es.uca.fiboo.naveminigame.actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,7 +13,7 @@ public class PalitosActor extends Actor {
 	private int num;
 	
 	public PalitosActor(int num) {
-		palitos = fibooGame.atlasNaveMiniGame.findRegion("palitos" + num);
+		palitos = new TextureRegion(fibooGame.MANAGER.get("naveminigame/palitos" + Integer.toString(num) + ".png", Texture.class));
 		setSize(palitos.getRegionWidth()/2f, palitos.getRegionHeight()/2f);
 		this.num = num;
 	}
