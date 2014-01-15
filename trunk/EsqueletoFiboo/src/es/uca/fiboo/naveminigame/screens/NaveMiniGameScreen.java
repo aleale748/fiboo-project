@@ -295,7 +295,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				} else  {
 					//Gdx.app.log(fibooGame.LOG, "Escudo debilitado. Partida terminada.");
 					dispose();
-					fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
+					//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 					game.setScreen(new GameOverScreen(game));
 				}
 			}
