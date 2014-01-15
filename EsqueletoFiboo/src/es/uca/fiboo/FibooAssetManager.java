@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class FibooAssetManager extends AssetManager {
 	
+	public void loadMenu() {
+
+	}
+	
 	public void loadSonidos() {
 		load("sonidos/ahah.mp3", Sound.class);
 		load("sonidos/bien.mp3", Sound.class);
@@ -56,7 +60,7 @@ public class FibooAssetManager extends AssetManager {
 		load("cameraminigame/menu9.png", Texture.class);
 	}
 
-	public void robotgameScreen() {
+	public void loadRobotGameScreen() {
 		load("robotgame/fondoestrellas.png", Texture.class);
 		load("robotgame/estrella_.png", Texture.class);
 		load("robotgame/luna_.png", Texture.class);
@@ -73,7 +77,8 @@ public class FibooAssetManager extends AssetManager {
         load("robotgame/mal.mp3", Sound.class);
         load("robotgame/regu.mp3", Sound.class);
 	}
-	public void pianogameScreen() {
+	
+	public void loadPianoGameScreen() {
 		load("pianogame/logotrompeta.png", Texture.class);
 		load("pianogame/logopiano.png", Texture.class);
 		load("pianogame/piano.png", Texture.class);
@@ -100,5 +105,13 @@ public class FibooAssetManager extends AssetManager {
         load("pianogame/latrom.mp3", Sound.class);
         load("pianogame/sitrom.mp3", Sound.class);
         load("pianogame/zdotrom.mp3", Sound.class);
+	}
+	
+	public void loadAscensorGameScreen() {
+		load("ascensor/habitacionverde.png", Texture.class);
+		load("ascensor/habitacionmorada.png", Texture.class);
+		load("ascensor/habitacionceleste.png", Texture.class);
+		load("ascensor/habitacionnaranja.png", Texture.class);
+		load("ascensor/habitacionrosa.png", Texture.class);
 	}
 }

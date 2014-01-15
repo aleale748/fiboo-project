@@ -89,8 +89,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		
-		fondo = fibooGame.MANAGER.get("data/fondopersonalizar.png", Texture.class);
-		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		setFondoAleatorio();
 		escalaAvatar = h * 0.7f;
         
         // Tabla para colocar los iconos
@@ -116,6 +115,18 @@ public class PersonalizacionScreen extends AbstractScreen {
  		}
 	}
 	
+	private void setFondoAleatorio() {
+		int fondoRand = (int)(Math.random()*10) % 5;
+		switch(fondoRand) {
+			case 0: fondo = fibooGame.MANAGER.get("ascensor/habitacionverde.png", Texture.class); break;
+			case 1: fondo = fibooGame.MANAGER.get("ascensor/habitacionrosa.png", Texture.class); break;
+			case 2: fondo = fibooGame.MANAGER.get("ascensor/habitacionceleste.png", Texture.class); break;
+			case 3: fondo = fibooGame.MANAGER.get("ascensor/habitacionmorada.png", Texture.class); break;
+			case 4: fondo = fibooGame.MANAGER.get("ascensor/habitacionnaranja.png", Texture.class); break;
+		}
+		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+	}
+
 	@Override
 	public void render(float delta) {		
 		
