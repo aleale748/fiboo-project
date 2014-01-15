@@ -44,8 +44,9 @@ public class BotonCategoria {
 		popup = new Window(tipo.toString(), parent.getSkin());
 		TextButton exitButton = new TextButton("X", parent.getSkin());
 		
-		float winHeight = Gdx.graphics.getHeight() * 0.3f;
+		float winHeight = Gdx.graphics.getHeight() * 0.25f;
 		float winWidth = winHeight;
+		float padding = Gdx.graphics.getHeight() * 0.05f;
 		popup.getButtonTable().add(exitButton).height(Gdx.graphics.getHeight() * 0.1f).width(Gdx.graphics.getHeight() * 0.1f);
 		
 		if(complementos.isEmpty()) {
@@ -60,7 +61,7 @@ public class BotonCategoria {
 				maxPorFila = 2;
 			
 			for(BotonComplemento b : complementos) {
-				popup.add(b).width(winWidth).height(winHeight);
+				popup.add(b).width(winWidth).height(winHeight).padTop(padding).padRight(padding / 2f).padLeft(padding / 2f);
 				newRow++;
 				if(newRow > maxPorFila-1) {
 					newRow = 0;
@@ -68,7 +69,7 @@ public class BotonCategoria {
 				}
 			}
 		}
-		popup.add(new BotonComplemento(tipo)).width(winWidth).height(winHeight);
+		popup.add(new BotonComplemento(tipo)).width(winWidth).height(winHeight).padTop(padding).padRight(padding / 2f).padLeft(padding / 2f);
 		popup.pack();
 		
 		icono.addListener(new InputListener() {
