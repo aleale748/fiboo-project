@@ -51,8 +51,9 @@ public class LoadingScreen extends AbstractScreen {
 		fibooGame.MANAGER.loadNaveminigameScreen();
 		fibooGame.MANAGER.loadMarcianosminigameScreen();
 		fibooGame.MANAGER.loadCameraminigameScreen();
-		fibooGame.MANAGER.robotgameScreen();
-		fibooGame.MANAGER.pianogameScreen();
+		fibooGame.MANAGER.loadRobotGameScreen();
+		fibooGame.MANAGER.loadPianoGameScreen();
+		fibooGame.MANAGER.loadAscensorGameScreen();
 	}
 
 	@Override
