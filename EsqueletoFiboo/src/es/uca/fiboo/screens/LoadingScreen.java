@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -82,7 +81,6 @@ public class LoadingScreen extends AbstractScreen {
 		Gdx.app.log("LoadingScreen", "Cargado al: " + progress + "%");
 		
 		if(fibooGame.MANAGER.update()) {
-			fibooGame.atlasComplementos = fibooGame.MANAGER.get("complementos/complementos.atlas", TextureAtlas.class);
 			game.setScreen(new StartScreen(game));
 		}
 		

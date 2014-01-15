@@ -7,7 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Json;
 
 import es.uca.fiboo.actores.Personaje;
@@ -21,7 +20,7 @@ public class fibooGame extends Game {
         public static final boolean DEV_MODE = false;
         
         public static final FibooAssetManager MANAGER = new FibooAssetManager();
-        public static TextureAtlas atlasComplementos, atlasNaveMiniGame, atlasMarcianosMiniGame;
+        // public static TextureAtlas atlasComplementos, atlasNaveMiniGame, atlasMarcianosMiniGame;
 
         private static Personaje personaje;
         private static ArrayList<Complemento> complementos;
@@ -82,9 +81,9 @@ public class fibooGame extends Game {
             comps.writeString(json.prettyPrint(complementos), false);
             
 			MANAGER.dispose();
-			if (atlasComplementos!=null) atlasComplementos.dispose();
-			atlasMarcianosMiniGame.dispose();
-			atlasNaveMiniGame.dispose();
+			//if (atlasComplementos!=null) atlasComplementos.dispose();
+			//atlasMarcianosMiniGame.dispose();
+			//atlasNaveMiniGame.dispose();
 			super.dispose();
 			System.exit(0);
             Gdx.app.log(fibooGame.LOG, "'Disposing' game");

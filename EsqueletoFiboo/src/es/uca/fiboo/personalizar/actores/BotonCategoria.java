@@ -3,6 +3,8 @@ package es.uca.fiboo.personalizar.actores;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -32,7 +34,12 @@ public class BotonCategoria {
 		}
 		this.tipo = tipo;
 		
-		setImagen();
+		String iconPath = "complementos/iconos/" + tipo.toString().toLowerCase() + ".png";
+		Texture imagenIcono = fibooGame.MANAGER.get(iconPath, Texture.class);
+		imagenIcono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		icono = new Image(imagenIcono); 
+		Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
+		
 		setAcciones();
 	}
 	
@@ -100,50 +107,4 @@ public class BotonCategoria {
 			}
 		});
 	}
-	
-	private void setImagen() {
-		switch(tipo) {
-		case OJOS: 
-			icono = new Image(fibooGame.atlasComplementos.findRegion("ojos")); 
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case PELO: 
-			icono = new Image(fibooGame.atlasComplementos.findRegion("pelo"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case ACCPELO: 
-			icono = new Image(fibooGame.atlasComplementos.findRegion("accpelo"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case BIGOTE: 
-			icono = new Image(fibooGame.atlasComplementos.findRegion("bigote"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case BOCA: 
-			icono = new Image(fibooGame.atlasComplementos.findRegion("boca"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case GAFAS:
-			icono = new Image(fibooGame.atlasComplementos.findRegion("gafas"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case DISFRAZ:
-			icono = new Image(fibooGame.atlasComplementos.findRegion("disfraz"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case CAMISA:
-			icono = new Image(fibooGame.atlasComplementos.findRegion("camisa"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case PANTALON:
-			icono = new Image(fibooGame.atlasComplementos.findRegion("pantalon"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		case MASCARA:
-			icono = new Image(fibooGame.atlasComplementos.findRegion("mascara"));
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
-			break;
-		}	
-	}
-		
 }
