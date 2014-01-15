@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class FibooAssetManager extends AssetManager {
 	
-
-	public void loadmenuScreen() {
+	//Botones y pantallas de menús
+	public void loadMenuTextures() {
 		load("portada/atrasboton.png", Texture.class);
 		load("portada/atrasbotonpeque.png", Texture.class);
 		load("portada/bolsaboton.png", Texture.class);
@@ -24,6 +24,7 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/pantallamenuprincipal.png", Texture.class);
 		load("portada/pantallamenuentrenamiento.png", Texture.class);
 		load("portada/logoasteroid.png", Texture.class);
+		load("portada/playportada.png", Texture.class);
 		load("portada/fondopersonalizar.png", Texture.class);
 	}
 	
@@ -35,22 +36,38 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/ayuda.mp3", Sound.class);
 	}
 	
-	public void loadPersonalizacionScreen() {
+	//Texturas de pantalla de Personalización
+	public void loadPersonalizacionTextures() {
 		load("portada/fondopersonalizar.png", Texture.class);
 		load("complementos/complementos.atlas", TextureAtlas.class);
 	}
 	
-	public void loadNaveminigameScreen() {
-		load("sonidos/naves.mp3", Sound.class);
+	//Texturas y Sonidos de Nave minijuego
+	public void loadNaveMiniGameTextures() {
 		load("naveminigame/ayuda.png", Texture.class);
-		load("naveminigame/older/hit.ogg", Sound.class);
-		load("naveminigame/older/explosion.ogg", Sound.class);
-		load("naveminigame/older/shoot.ogg", Sound.class);
 		load("naveminigame/atlasNaveMiniGame.atlas", TextureAtlas.class);
 	}
 	
-	public void loadMarcianosminigameScreen() {
+	public void loadNaveMiniGameSounds() {
+		load("naveminigame/older/hit.ogg", Sound.class);
+		load("naveminigame/older/explosion.ogg", Sound.class);
+		load("naveminigame/older/shoot.ogg", Sound.class);
+		load("sonidos/naves.mp3", Sound.class);
+	}
+	
+	public void unloadNaveMiniGameSounds() {
+		unload("naveminigame/older/hit.ogg");
+		unload("naveminigame/older/explosion.ogg");
+		unload("naveminigame/older/shoot.ogg");
+		unload("sonidos/naves.mp3");
+	}
+	
+	//Texturas y Sonidos de Marcianos minijuego
+	public void loadMarcianosMiniGameTextures() {
 		load("marcianosminigame/imagenesMarcianosMiniGame.txt", TextureAtlas.class);
+	}
+	
+	public void loadMarcianosMiniGameSounds() {
 		load("sonidos/guala.mp3", Sound.class);
 		load("sonidos/bien.mp3", Sound.class);
 		load("sonidos/cuantosquedan.mp3", Sound.class);
@@ -58,7 +75,16 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/yuju.mp3", Sound.class);
 	}
 	
-	public void loadCameraminigameScreen() {
+	public void unloadMarcianosMiniGameSounds() {
+		unload("sonidos/guala.mp3");
+		unload("sonidos/bien.mp3");
+		unload("sonidos/cuantosquedan.mp3");
+		unload("sonidos/fondo.mp3");
+		unload("sonidos/yuju.mp3");
+	}
+	
+	//Texturas de Camara mini juego
+	public void loadCameraMiniGameTextures() {
 		//load("cameraminigame/cesped2.png", Texture.class);
 		load("cameraminigame/0.png", Texture.class);
 		load("cameraminigame/1.png", Texture.class);
@@ -82,10 +108,8 @@ public class FibooAssetManager extends AssetManager {
 		load("cameraminigame/menu9.png", Texture.class);
 	}
 
-
-	public void loadRobotGameScreen() {
-		
-		load("sonidos/robot.mp3", Sound.class);
+	//Texturas y Sonidos de Robot minijuego
+	public void loadRobotMiniGameTextures() {
 		load("robotgame/fondoestrellas.png", Texture.class);
 		load("robotgame/estrella_.png", Texture.class);
 		load("robotgame/luna_.png", Texture.class);
@@ -98,12 +122,24 @@ public class FibooAssetManager extends AssetManager {
 		load("robotgame/robotderecha.png", Texture.class);
 		load("robotgame/robotizquierda.png", Texture.class);
 		load("robotgame/pantallainiciorobot.png", Texture.class);
-        load("robotgame/bien.mp3", Sound.class);
+	}
+	
+	public void loadRobotMiniGameSounds() {
+		load("sonidos/robot.mp3", Sound.class);
+		load("robotgame/bien.mp3", Sound.class);
         load("robotgame/mal.mp3", Sound.class);
         load("robotgame/regu.mp3", Sound.class);
 	}
+	
+	public void unloadRobotMiniGameSounds() {
+		unload("sonidos/robot.mp3");
+		unload("robotgame/bien.mp3");
+        unload("robotgame/mal.mp3");
+        unload("robotgame/regu.mp3");
+	}
 
-	public void loadPianoGameScreen() {
+	//Texturas y Sonidos de Piano minijuego
+	public void loadPianoMiniGameTextures() {
 		load("pianogame/pantallainiciopiano.png", Texture.class);
 		load("pianogame/logotrompeta.png", Texture.class);
 		load("pianogame/logopiano.png", Texture.class);
@@ -114,7 +150,9 @@ public class FibooAssetManager extends AssetManager {
 		load("pianogame/pause.png", Texture.class);
 		load("pianogame/mute.png", Texture.class);
 		load("pianogame/sonido.png", Texture.class);
-		
+	}
+	
+	public void loadPianoMiniGameSounds() {
         load("pianogame/do.mp3", Sound.class);
         load("pianogame/re.mp3", Sound.class);
         load("pianogame/mi.mp3", Sound.class);
@@ -131,19 +169,45 @@ public class FibooAssetManager extends AssetManager {
         load("pianogame/latrom.mp3", Sound.class);
         load("pianogame/sitrom.mp3", Sound.class);
         load("pianogame/zdotrom.mp3", Sound.class);
-
-	}
-	public void loadSacogameScreen() {
-		load("sacominigame/pantallainiciobolsa.png", Texture.class);
-
 	}
 	
-	public void loadAscensorGameScreen() {
+	public void unloadPianoMiniGameSounds() {
+        unload("pianogame/do.mp3");
+        unload("pianogame/re.mp3");
+        unload("pianogame/mi.mp3");
+        unload("pianogame/fa.mp3");
+        unload("pianogame/sol.mp3");
+        unload("pianogame/la.mp3");
+        unload("pianogame/si.mp3");
+        unload("pianogame/zdo.mp3");
+        unload("pianogame/dotrom.mp3");
+        unload("pianogame/retrom.mp3");
+        unload("pianogame/mitrom.mp3");
+        unload("pianogame/fatrom.mp3");
+        unload("pianogame/soltrom.mp3");
+        unload("pianogame/latrom.mp3");
+        unload("pianogame/sitrom.mp3");
+        unload("pianogame/zdotrom.mp3");
+	}
+	
+	//Texturas de Saco minigame
+	public void loadSacoMiniGameTextures() {
+		load("sacominigame/pantallainiciobolsa.png", Texture.class);
+	}
+	
+	public void loadSacoMiniGameSounds() {
+		load("sacominigame/clic.wav", Sound.class);
+	}
+	
+	public void unloadSacoMiniGameSounds() {
+		unload("sacominigame/clic.wav");
+	}
+	
+	public void loadAscensorGameTextures() {
 		load("ascensor/habitacionverde.png", Texture.class);
 		load("ascensor/habitacionmorada.png", Texture.class);
 		load("ascensor/habitacionceleste.png", Texture.class);
 		load("ascensor/habitacionnaranja.png", Texture.class);
 		load("ascensor/habitacionrosa.png", Texture.class);
-
 	}
 }

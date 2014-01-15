@@ -5,66 +5,70 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import es.uca.fiboo.fibooGame;
 
 public class StartScreen extends AbstractScreen {
 
-        private ImageButton playBoton;
-        private Image imgFondo;
-        public StartScreen(fibooGame game) {
-                super(game);
-                Gdx.input.setInputProcessor(stage);
-                imgFondo = new Image(new Texture("portada/portadafiboo.png"));
-        		imgFondo.setFillParent(true);
-        		stage.addActor(imgFondo);
-        }
+    private Image playBoton;
+    private Image imgFondo;
+    
+    public StartScreen(fibooGame game) {
+        super(game);
+        Gdx.input.setInputProcessor(stage);
+        
+        imgFondo = new Image(fibooGame.MANAGER.get("portada/portadafiboo.png", Texture.class));
+		imgFondo.setFillParent(true);
+		stage.addActor(imgFondo);
+    }
 
-        @Override
-        public void show() {
-                super.show();
-                TextureRegion playBotonRegion = new TextureRegion(new Texture("portada/playportada.png"));
-                Drawable playBotonDrawable = new TextureRegionDrawable(playBotonRegion);
-
-                // Creamos el boton, lo posicionamo y lo a??adimo al stage
-                playBoton = new ImageButton(playBotonDrawable);
-                playBoton.setPosition(Gdx.graphics.getWidth()/2 - playBoton.getWidth()/2, 
-                                Gdx.graphics.getHeight()/4 - playBoton.getHeight()/2);
-                playBoton.addListener(new InputListener() {
+    @Override
+    public void show() {
+        super.show();
+        
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        
+        Texture boton = fibooGame.MANAGER.get("portada/playportada.png", Texture.class); 
+        boton.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+        
+        playBoton = new Image(boton);
+        float botonWidth = w * 0.3f;
+		float botonHeight = botonWidth;
+		
+		playBoton.setSize(botonWidth, botonHeight);
+        playBoton.setX(w/2 - playBoton.getWidth()/2);
+        playBoton.setY(h/4 - playBoton.getHeight()/2);
+        
+        playBoton.addListener(new ClickListener() {
+            @Override
+			public void clicked(InputEvent event, float x, float y) {
+				stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
+                    new Action() {
                         @Override
-                        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                                Gdx.app.log(fibooGame.LOG, "Touching down on playBoton");
-                                return true;
+                        public boolean act(float delta) {
+                            game.setScreen(new ChooseScreen(game));
+                            return true;
                         }
-                        
-                        @Override
-                        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                                Gdx.app.log(fibooGame.LOG, "Touching up on playBoton");
-                                imgFondo.addAction(sequence(delay(1.0f), fadeOut(0.75f)));
-                                playBoton.addAction( sequence(delay(1.0f), fadeOut(0.75f),
-                                new Action() {
-                                        @Override
-                                        public boolean act(float delta) {
-                                                // La ??ltima acci??n mover?? hacia pantalla de men??
-                                                game.setScreen(new ChooseScreen(game));
-                                                //game.setScreen(new MenuScreen(game));
-                                                return true;
-                                        }
-                                }));
-                        }
-                });
-                
-                stage.addActor(playBoton);
-        }
+                    }));
+			}
+        });
+        
+        stage.addActor(playBoton);
+    }
+    
+    @Override
+    public void hide() {
+    	super.hide();
+    	fibooGame.MANAGER.unload("portada/playportada.png");
+    	fibooGame.MANAGER.unload("portada/portadafiboo.png");
+    	dispose();
+    }
 
 }

@@ -45,8 +45,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	public NaveMiniGameScreen(fibooGame game) {
 		super(game);
 		//Gdx.app.log(fibooGame.LOG, "Bien construido.");
-		musicaFondo = fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class);
-		musicaFondo.loop(0.25f);
+		//musicaFondo = fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class);
+		//musicaFondo.loop(0.25f);
 		explosion = fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class);
 		disparo = fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class);
 		golpe = fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class);
@@ -81,10 +81,10 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					dispose();
-					musicaFondo.stop();
-					fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					//musicaFondo.stop();
+					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
+					dispose();
 				}
 				return false;
 			}
@@ -541,6 +541,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		explosion.dispose();
 		golpe.dispose();
 		disparo.dispose();*/
+		fibooGame.MANAGER.unloadNaveMiniGameSounds();
 		super.dispose();
 	}
 
