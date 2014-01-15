@@ -38,8 +38,62 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Texturas de pantalla de Personalización
 	public void loadPersonalizacionTextures() {
-		load("portada/fondopersonalizar.png", Texture.class);
-		load("complementos/complementos.atlas", TextureAtlas.class);
+		//load("complementos/complementos.atlas", TextureAtlas.class);
+		
+		//load("portada/fondopersonalizar.png", Texture.class);		
+		load("complementos/base.png", Texture.class);
+		load("complementos/adpelo1.png", Texture.class);
+		load("complementos/adpelo1Icon.png", Texture.class);
+		load("complementos/adpelo2.png", Texture.class);
+		load("complementos/adpelo2Icon.png", Texture.class);
+		load("complementos/bigote1.png", Texture.class);
+		load("complementos/bigote1Icon.png", Texture.class);
+		load("complementos/bigote2.png", Texture.class);
+		load("complementos/bigote2Icon.png", Texture.class);
+		load("complementos/boca1.png", Texture.class);
+		load("complementos/boca1Icon.png", Texture.class);
+		load("complementos/boca2.png", Texture.class);
+		load("complementos/boca2Icon.png", Texture.class);
+		load("complementos/boca3.png", Texture.class);
+		load("complementos/boca3Icon.png", Texture.class);
+		load("complementos/disfraz1.png", Texture.class);
+		load("complementos/disfraz1Icon.png", Texture.class);
+		load("complementos/disfraz2.png", Texture.class);
+		load("complementos/disfraz2Icon.png", Texture.class);
+		load("complementos/gafas1.png", Texture.class);
+		load("complementos/gafas1Icon.png", Texture.class);
+		load("complementos/gafas2.png", Texture.class);
+		load("complementos/gafas2Icon.png", Texture.class);
+		load("complementos/ojos1.png", Texture.class);
+		load("complementos/ojos1Icon.png", Texture.class);
+		load("complementos/ojos2.png", Texture.class);
+		load("complementos/ojos2Icon.png", Texture.class);
+		load("complementos/ojos3.png", Texture.class);
+		load("complementos/ojos3Icon.png", Texture.class);
+		load("complementos/pelonina1.png", Texture.class);
+		load("complementos/pelonina1Icon.png", Texture.class);
+		load("complementos/pelonina2.png", Texture.class);
+		load("complementos/pelonina2Icon.png", Texture.class);
+		load("complementos/pelonina3.png", Texture.class);
+		load("complementos/pelonina3Icon.png", Texture.class);
+		load("complementos/pelonino1.png", Texture.class);
+		load("complementos/pelonino1Icon.png", Texture.class);
+		load("complementos/pelonino2.png", Texture.class);
+		load("complementos/pelonino2Icon.png", Texture.class);
+		load("complementos/pelonino3.png", Texture.class);
+		load("complementos/pelonino3Icon.png", Texture.class);
+		load("complementos/vacio.png", Texture.class);
+
+		//Iconos
+		load("complementos/iconos/accpelo.png", Texture.class);
+		load("complementos/iconos/bigote.png", Texture.class);
+		load("complementos/iconos/boca.png", Texture.class);
+		load("complementos/iconos/camisa.png", Texture.class);
+		load("complementos/iconos/disfraz.png", Texture.class);
+		load("complementos/iconos/gafas.png", Texture.class);
+		load("complementos/iconos/ojos.png", Texture.class);
+		load("complementos/iconos/pantalon.png", Texture.class);
+		load("complementos/iconos/pelo.png", Texture.class);
 	}
 	
 	//Texturas y Sonidos de Nave minijuego
