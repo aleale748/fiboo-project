@@ -5,6 +5,9 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -23,8 +26,6 @@ public class MenuScreen extends AbstractScreen {
 	
 	public MenuScreen(fibooGame game) {
 		super(game);
-		Gdx.input.setInputProcessor(stage);
-		
 		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuprincipal.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
@@ -35,6 +36,21 @@ public class MenuScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
+
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					//musicaFondo.stop();
+					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					dispose();
+					Gdx.app.exit();
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		float imgWidth = w * 0.25f;
 		float imgHeight = imgWidth;
