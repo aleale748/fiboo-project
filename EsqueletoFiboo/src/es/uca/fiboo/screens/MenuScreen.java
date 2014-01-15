@@ -43,7 +43,6 @@ public class MenuScreen extends AbstractScreen {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-					dispose();
 					Gdx.app.exit();
 				}
 				return false;
@@ -61,7 +60,7 @@ public class MenuScreen extends AbstractScreen {
 		entrenar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		personalizar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		// Creamos botones, los posicionamos y los añadimos al stage
+		// Creamos botones, los posicionamos y los aï¿½adimos al stage
 		entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
 		entrenarBoton.setX(w/4 - entrenarBoton.getWidth()/2);
@@ -90,7 +89,7 @@ public class MenuScreen extends AbstractScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			switch(screen) {
 				case 1:
-					Gdx.app.log(fibooGame.LOG, "Clickeando en botón Minijuegos");
+					Gdx.app.log(fibooGame.LOG, "Clickeando en botï¿½n Minijuegos");
 					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
 							new Action() {
 								@Override
@@ -101,7 +100,7 @@ public class MenuScreen extends AbstractScreen {
 							}));
 					break;
 				case 2:
-					Gdx.app.log(fibooGame.LOG, "Clickeando en botón Personalización");
+					Gdx.app.log(fibooGame.LOG, "Clickeando en botï¿½n Personalizaciï¿½n");
 					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
 							new Action() {
 								@Override
