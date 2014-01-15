@@ -75,16 +75,6 @@ public class FibooAssetManager extends AssetManager {
         load("naveminigame/vidaVacia.png", Texture.class);
         load("naveminigame/laserPeque.png", Texture.class);
 		load("naveminigame/gameover.png", Texture.class);
-		load("naveminigame/0.png", Texture.class);
-		load("naveminigame/1.png", Texture.class);
-		load("naveminigame/2.png", Texture.class);
-		load("naveminigame/3.png", Texture.class);
-		load("naveminigame/4.png", Texture.class);
-		load("naveminigame/5.png", Texture.class);
-		load("naveminigame/6.png", Texture.class);
-		load("naveminigame/7.png", Texture.class);
-		load("naveminigame/8.png", Texture.class);
-		load("naveminigame/9.png", Texture.class);
 		load("naveminigame/explosion0.png", Texture.class);
 		load("naveminigame/explosion1.png", Texture.class);
 		load("naveminigame/explosion2.png", Texture.class);
