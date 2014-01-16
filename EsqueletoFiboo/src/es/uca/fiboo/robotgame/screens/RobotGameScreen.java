@@ -70,9 +70,9 @@ public class RobotGameScreen extends AbstractScreen{
 		
 		// load the drop sound effect and the rain background "music"
 		//musicaFondo = fibooGame.MANAGER.get("sonidos/robot.mp3", Sound.class);
-		bienSound = fibooGame.MANAGER.get("robotgame/bien.mp3", Sound.class);
-		malSound = fibooGame.MANAGER.get("robotgame/mal.mp3", Sound.class);
-		reguSound = fibooGame.MANAGER.get("robotgame/regu.mp3", Sound.class);
+		bienSound = fibooGame.MANAGER.get("robotgame/bien.ogg", Sound.class);
+		malSound = fibooGame.MANAGER.get("robotgame/mal.ogg", Sound.class);
+		reguSound = fibooGame.MANAGER.get("robotgame/regu.ogg", Sound.class);
 		// create the camera and the SpriteBatch
 		camera = new OrthographicCamera();
 		
