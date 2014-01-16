@@ -217,19 +217,19 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadMarcianosMiniGameSounds() {
-		load("sonidos/guala.mp3", Sound.class);
-		load("sonidos/bien.mp3", Sound.class);
-		load("sonidos/cuantosquedan.mp3", Sound.class);
+		load("sonidos/guala.ogg", Sound.class);
+		load("sonidos/bien.ogg", Sound.class);
+		load("sonidos/cuantosquedan.ogg", Sound.class);
 		load("sonidos/fondo.mp3", Sound.class);
-		load("sonidos/yuju.mp3", Sound.class);
+		load("sonidos/yuju.ogg", Sound.class);
 	}
 	
 	public void unloadMarcianosMiniGameSounds() {
-		unload("sonidos/guala.mp3");
-		unload("sonidos/bien.mp3");
-		unload("sonidos/cuantosquedan.mp3");
+		unload("sonidos/guala.ogg");
+		unload("sonidos/bien.ogg");
+		unload("sonidos/cuantosquedan.ogg");
 		unload("sonidos/fondo.mp3");
-		unload("sonidos/yuju.mp3");
+		unload("sonidos/yuju.ogg");
 	}
 	
 	//Texturas de Camara mini juego
@@ -275,16 +275,16 @@ public class FibooAssetManager extends AssetManager {
 	
 	public void loadRobotMiniGameSounds() {
 		load("sonidos/robot.mp3", Sound.class);
-		load("robotgame/bien.mp3", Sound.class);
-        load("robotgame/mal.mp3", Sound.class);
-        load("robotgame/regu.mp3", Sound.class);
+		load("robotgame/bien.ogg", Sound.class);
+        load("robotgame/mal.ogg", Sound.class);
+        load("robotgame/regu.ogg", Sound.class);
 	}
 	
 	public void unloadRobotMiniGameSounds() {
 		unload("sonidos/robot.mp3");
-		unload("robotgame/bien.mp3");
-        unload("robotgame/mal.mp3");
-        unload("robotgame/regu.mp3");
+		unload("robotgame/bien.ogg");
+        unload("robotgame/mal.ogg");
+        unload("robotgame/regu.ogg");
 	}
 
 	//Texturas y Sonidos de Piano minijuego

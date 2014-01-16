@@ -126,7 +126,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			pregunta.setWidth(widthPregunta);
 			pregunta.setHeight(heightPregunta);
 			stage.addActor(pregunta);
-			fibooGame.MANAGER.get("sonidos/cuantosquedan.mp3", Sound.class).play();
+			fibooGame.MANAGER.get("sonidos/cuantosquedan.ogg", Sound.class).play();
 			
 			boton1 = new BotonActor();
 			boton2 = new BotonActor();
@@ -232,7 +232,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 							bien.setPosition(Gdx.graphics.getWidth()/2.5f, Gdx.graphics.getHeight()/2.2f);
 							if (contadorBien != 30) {
 								if (contadorBien == 0) {
-									fibooGame.MANAGER.get("sonidos/bien.mp3", Sound.class).play();
+									fibooGame.MANAGER.get("sonidos/bien.ogg", Sound.class).play();
 									stage.addActor(bien);
 									Gdx.app.log(fibooGame.LOG, "Bien añadido.");
 								}
@@ -366,7 +366,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		for (int i = 0; i < naves.size(); ++i) {
 			nave = naves.get(i);
 			if (nave.colocado() && !nave.verificado()) {
-				fibooGame.MANAGER.get("sonidos/yuju.mp3", Sound.class).play();
+				fibooGame.MANAGER.get("sonidos/yuju.ogg", Sound.class).play();
 				nave.verificar();
 				numeroMarcianosInt--;
 				numeroMarcianos.remove();
