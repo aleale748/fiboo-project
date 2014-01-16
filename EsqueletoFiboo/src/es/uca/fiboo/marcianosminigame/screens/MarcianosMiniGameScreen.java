@@ -234,7 +234,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 								if (contadorBien == 0) {
 									fibooGame.MANAGER.get("sonidos/bien.ogg", Sound.class).play();
 									stage.addActor(bien);
-									Gdx.app.log(fibooGame.LOG, "Bien añadido.");
+									Gdx.app.log(fibooGame.LOG, "Bien aï¿½adido.");
 								}
 								if (contadorBien < 8) {
 									bien.setWidth(widthBien*1.06f);
@@ -265,7 +265,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 								}
 								naves.clear();
 								
-								Gdx.app.log(fibooGame.LOG, "Generando número de naves y de marcianos.");
+								Gdx.app.log(fibooGame.LOG, "Generando nï¿½mero de naves y de marcianos.");
 								numNaves = (int) (Math.random() * 10) % 5 + 1;
 								numMarcianos = numNaves + (int) (Math.random() * 10) % (9 - numNaves) + 1;
 								numeroMarcianosInt = numMarcianos;
@@ -279,7 +279,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 								stage.addActor(numeroNaves);
 								//stage.addActor(numeroMarcianos);
 								
-								Gdx.app.log(fibooGame.LOG, "Número de naves y de marcianos generado: " + numNaves + " naves y " + numMarcianos + " marcianos.");
+								Gdx.app.log(fibooGame.LOG, "Nï¿½mero de naves y de marcianos generado: " + numNaves + " naves y " + numMarcianos + " marcianos.");
 								
 								Gdx.app.log(fibooGame.LOG, "Generando naves.");
 								if (numNaves%2 == 0) {
