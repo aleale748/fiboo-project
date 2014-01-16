@@ -69,7 +69,7 @@ public class MarcianoActor extends Actor {
 		
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			if (!colocado) {
-				fibooGame.MANAGER.get("sonidos/guala.mp3", Sound.class).play();
+				fibooGame.MANAGER.get("sonidos/guala.ogg", Sound.class).play();
 				posicionX = getX();
 				posicionY = getY();
 				float dx = Gdx.input.getX() - getWidth() * 0.5f;
