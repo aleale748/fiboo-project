@@ -73,7 +73,7 @@ public class InicioPianoGameScreen extends AbstractScreen {
 			Gdx.app.log("InicioPianoScreen", "Cargado al: " + progress + "%");
 			
 			if(fibooGame.MANAGER.update()) {
-				game.setScreen(new PianoScreen(game));
+				game.setScreen(new AyudaPlayPianoScreen(game));
 				dispose();
 			}
 					

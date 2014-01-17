@@ -1,4 +1,4 @@
-package es.uca.fiboo.naveminigame.screens;
+package es.uca.fiboo.robotgame.screens;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
@@ -19,13 +19,13 @@ import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
-public class AyudaPlayNaveScreen extends AbstractScreen {
+public class AyudaPlayRobotScreen extends AbstractScreen {
 
 	private Image pantallaAyuda;
 	private Image imgFondo;
 	private Image playBoton;
 	
-	public AyudaPlayNaveScreen(fibooGame game) {
+	public AyudaPlayRobotScreen(fibooGame game) {
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
 		//fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
@@ -49,7 +49,7 @@ public class AyudaPlayNaveScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		Texture fondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
-		Texture ayuda = fibooGame.MANAGER.get("naveminigame/ayuda.png", Texture.class);
+		Texture ayuda = fibooGame.MANAGER.get("robotgame/pantallainiciorobot.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		ayuda.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -85,7 +85,7 @@ public class AyudaPlayNaveScreen extends AbstractScreen {
                     new Action() {
                         @Override
                         public boolean act(float delta) {
-                            game.setScreen(new NaveMiniGameScreen(game));
+                            game.setScreen(new RobotGameScreen(game));
                             return true;
                         }
                     }));
