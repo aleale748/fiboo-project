@@ -8,6 +8,8 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Botones y pantallas de men�s
 	public void loadMenuTextures() {
+		load("marcianosminigame/win.png", Texture.class);
+		load("marcianosminigame/gameover.png", Texture.class);
 		load("robotgame/numerosrojos.png", Texture.class);
 		load("robotgame/numerosverdes.png", Texture.class);
 		load("sacominigame/pantallainiciobolsa.png", Texture.class);
@@ -210,8 +212,6 @@ public class FibooAssetManager extends AssetManager {
 		load("marcianosminigame/7.png", Texture.class);
 		load("marcianosminigame/8.png", Texture.class);
 		load("marcianosminigame/9.png", Texture.class);
-		load("marcianosminigame/win.png", Texture.class);
-		load("marcianosminigame/gameover.png", Texture.class);
 		load("marcianosminigame/bien.png", Texture.class);
 		load("marcianosminigame/pregunta.png", Texture.class);
 		load("marcianosminigame/naveMarciano.png", Texture.class);
@@ -233,8 +233,6 @@ public class FibooAssetManager extends AssetManager {
 		unload("marcianosminigame/7.png");
 		unload("marcianosminigame/8.png");
 		unload("marcianosminigame/9.png");
-		unload("marcianosminigame/win.png");
-		unload("marcianosminigame/gameover.png");
 		unload("marcianosminigame/bien.png");
 		unload("marcianosminigame/pregunta.png");
 		unload("marcianosminigame/naveMarciano.png");
