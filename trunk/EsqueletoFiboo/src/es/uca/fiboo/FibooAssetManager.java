@@ -245,7 +245,6 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/guala.ogg", Sound.class);
 		load("sonidos/bien.ogg", Sound.class);
 		load("sonidos/cuantosquedan.ogg", Sound.class);
-		load("sonidos/fondo.mp3", Sound.class);
 		load("sonidos/yuju.ogg", Sound.class);
 	}
 	
@@ -253,7 +252,6 @@ public class FibooAssetManager extends AssetManager {
 		unload("sonidos/guala.ogg");
 		unload("sonidos/bien.ogg");
 		unload("sonidos/cuantosquedan.ogg");
-		unload("sonidos/fondo.mp3");
 		unload("sonidos/yuju.ogg");
 	}
 	
