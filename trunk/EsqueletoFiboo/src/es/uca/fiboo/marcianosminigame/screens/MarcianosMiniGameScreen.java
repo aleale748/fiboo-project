@@ -79,8 +79,8 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 						//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-						game.setScreen(new MenuMiniJuegosScreen(game));
 						dispose();
+						game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
 			}
