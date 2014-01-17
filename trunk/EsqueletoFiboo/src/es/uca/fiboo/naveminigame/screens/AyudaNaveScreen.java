@@ -13,44 +13,49 @@ import es.uca.fiboo.screens.AbstractScreen;
 
 public class AyudaNaveScreen extends AbstractScreen {
 
-	private Image fondo, ayuda;
+	private Image pantallaAyuda;
+	private Image imgFondo;
 	private NinePatch loaderVacio;
 	private NinePatch loaderFull;
 	private float w, h;
 	
 	public AyudaNaveScreen(fibooGame game) {
 		super(game);
+		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
+		//fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
+		Gdx.input.setInputProcessor(stage);
 		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		h = Gdx.graphics.getHeight();	
 	}
 	
 	@Override
 	public void show() {
-		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
-		//fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
+		super.show();
+		Texture fondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
+		Texture ayuda = fibooGame.MANAGER.get("naveminigame/ayuda.png", Texture.class);
+		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		ayuda.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		Texture imgAyuda = fibooGame.MANAGER.get("naveminigame/ayuda.png", Texture.class);
-		Texture imgFondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
-		imgAyuda.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		imgFondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		imgFondo = new Image(fondo);
+		imgFondo.setFillParent(true);
 		
-		ayuda = new Image(imgAyuda);
-		fondo = new Image(imgFondo);
-		ayuda.setFillParent(true);
-		fondo.setFillParent(true);
+		pantallaAyuda = new Image(ayuda);
+		pantallaAyuda.setSize(Gdx.graphics.getWidth()*0.85f, Gdx.graphics.getWidth()*0.85f);
+		pantallaAyuda.setX(Gdx.graphics.getWidth()/2 - pantallaAyuda.getWidth()/2); 
+        pantallaAyuda.setY(Gdx.graphics.getHeight()/2 - pantallaAyuda.getHeight()/2);
+		
+        stage.addActor(imgFondo);
+		stage.addActor(pantallaAyuda);
 		
 		Texture vacioT = fibooGame.MANAGER.get("loading/vacio.png", Texture.class);
 		Texture fullT = fibooGame.MANAGER.get("loading/full.png", Texture.class);
 		loaderVacio = new NinePatch(new TextureRegion(vacioT, 24, 24), 8, 8, 8, 8);
 		loaderFull = new NinePatch(new TextureRegion(fullT, 24, 24), 8, 8, 8, 8);
 		
-		stage.addActor(fondo);
-		stage.addActor(ayuda);
-		
 		//Cargando sonidos
 		fibooGame.MANAGER.loadNaveMiniGameSounds();
 	}
-
+	
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1f);
@@ -61,20 +66,20 @@ public class AyudaNaveScreen extends AbstractScreen {
 		float progress = fibooGame.MANAGER.getProgress();
 		batch.begin();
 		
-		loaderVacio.draw(batch, w*0.375f, h/7 - h*0.025f, w/4, h*0.05f);
+		loaderVacio.draw(batch, w*0.375f, h/8 - h*0.025f, w/4, h*0.05f);
 		if(progress > 0.05f) {
-			loaderFull.draw(batch, w*0.375f, h/7 - h*0.025f, progress*(w/4), h*0.05f);
+			loaderFull.draw(batch, w*0.375f, h/8 - h*0.025f, progress*(w/4), h*0.05f);
 		}
 		
 		batch.end();
-		Gdx.app.log("InicioNaveScreen", "Cargado al: " + progress + "%");
+		Gdx.app.log("InicioNaveMiniGameScreen", "Cargado al: " + progress + "%");
 		
 		if(fibooGame.MANAGER.update()) {
-			game.setScreen(new NaveMiniGameScreen(game));
+			game.setScreen(new AyudaPlayNaveScreen(game));
 			dispose();
 		}
 				
 		stage.act(delta);
 	}
-	
+
 }

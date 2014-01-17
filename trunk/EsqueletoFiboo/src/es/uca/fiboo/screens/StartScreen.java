@@ -66,7 +66,7 @@ public class StartScreen extends AbstractScreen {
     @Override
     public void hide() {
     	super.hide();
-    	fibooGame.MANAGER.unload("portada/playportada.png");
+    	//fibooGame.MANAGER.unload("portada/playportada.png");
     	fibooGame.MANAGER.unload("portada/portadafiboo.png");
     	dispose();
     }

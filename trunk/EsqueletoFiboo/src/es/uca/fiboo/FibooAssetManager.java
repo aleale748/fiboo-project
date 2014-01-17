@@ -6,8 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class FibooAssetManager extends AssetManager {
 	
-	//Botones y pantallas de menús
+	//Botones y pantallas de menï¿½s
 	public void loadMenuTextures() {
+		load("sacominigame/pantallainiciobolsa.png", Texture.class);
+		load("pianogame/pantallainiciopiano.png", Texture.class);
+		load("naveminigame/ayuda.png", Texture.class);
+		load("robotgame/pantallainiciorobot.png", Texture.class);
+		load("robotgame/fondoestrellas.png", Texture.class);
 		load("portada/atrasboton.png", Texture.class);
 		load("portada/atrasbotonpeque.png", Texture.class);
 		load("portada/bolsaboton.png", Texture.class);
@@ -35,7 +40,7 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/ayuda.mp3", Sound.class);
 	}
 	
-	//Texturas de pantalla de Personalización
+	//Texturas de pantalla de Personalizaciï¿½n
 	public void loadPersonalizacionTextures() {
 		//load("complementos/complementos.atlas", TextureAtlas.class);
 		
@@ -97,7 +102,6 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Texturas y Sonidos de Nave minijuego
 	public void loadNaveMiniGameTextures() {
-		load("naveminigame/ayuda.png", Texture.class);
 		load("naveminigame/win.png", Texture.class);
         load("naveminigame/disparar2.png", Texture.class);
         load("naveminigame/palitos0.png", Texture.class);
@@ -216,6 +220,29 @@ public class FibooAssetManager extends AssetManager {
 		load("marcianosminigame/boton.png", Texture.class);
 	}
 	
+	public void unloadMarcianosMiniGameTextures() {
+		unload("marcianosminigame/star.png");
+		unload("marcianosminigame/starVacia.png");
+		unload("marcianosminigame/0.png");
+		unload("marcianosminigame/1.png");
+		unload("marcianosminigame/2.png");
+		unload("marcianosminigame/3.png");
+		unload("marcianosminigame/4.png");
+		unload("marcianosminigame/5.png");
+		unload("marcianosminigame/6.png");
+		unload("marcianosminigame/7.png");
+		unload("marcianosminigame/8.png");
+		unload("marcianosminigame/9.png");
+		unload("marcianosminigame/win.png");
+		unload("marcianosminigame/gameover.png");
+		unload("marcianosminigame/bien.png");
+		unload("marcianosminigame/pregunta.png");
+		unload("marcianosminigame/naveMarciano.png");
+		unload("marcianosminigame/nave.png");
+		unload("marcianosminigame/marciano.png");
+		unload("marcianosminigame/boton.png");
+	}
+	
 	public void loadMarcianosMiniGameSounds() {
 		load("sonidos/guala.ogg", Sound.class);
 		load("sonidos/bien.ogg", Sound.class);
@@ -259,18 +286,29 @@ public class FibooAssetManager extends AssetManager {
 
 	//Texturas y Sonidos de Robot minijuego
 	public void loadRobotMiniGameTextures() {
-		load("robotgame/fondoestrellas.png", Texture.class);
 		load("robotgame/estrella_.png", Texture.class);
 		load("robotgame/luna_.png", Texture.class);
 		load("robotgame/marciano_.png", Texture.class);
 		load("robotgame/planeta_.png", Texture.class);
 		load("robotgame/numerosrojos.png", Texture.class);
 		load("robotgame/numerosverdes.png", Texture.class);
-		load("robotgame/pantallainiciorobot.png", Texture.class);
 		load("robotgame/robotfrente.png", Texture.class);
 		load("robotgame/robotderecha.png", Texture.class);
 		load("robotgame/robotizquierda.png", Texture.class);
 		load("robotgame/pantallainiciorobot.png", Texture.class);
+	}
+	
+	public void unloadRobotMiniGameTextures() {
+		unload("robotgame/estrella_.png");
+		unload("robotgame/luna_.png");
+		unload("robotgame/marciano_.png");
+		unload("robotgame/planeta_.png");
+		unload("robotgame/numerosrojos.png");
+		unload("robotgame/numerosverdes.png");
+		unload("robotgame/robotfrente.png");
+		unload("robotgame/robotderecha.png");
+		unload("robotgame/robotizquierda.png");
+		unload("robotgame/pantallainiciorobot.png");
 	}
 	
 	public void loadRobotMiniGameSounds() {
@@ -289,7 +327,6 @@ public class FibooAssetManager extends AssetManager {
 
 	//Texturas y Sonidos de Piano minijuego
 	public void loadPianoMiniGameTextures() {
-		load("pianogame/pantallainiciopiano.png", Texture.class);
 		load("pianogame/logotrompeta.png", Texture.class);
 		load("pianogame/logopiano.png", Texture.class);
 		load("pianogame/piano.png", Texture.class);
@@ -341,7 +378,6 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Texturas de Saco minigame
 	public void loadSacoMiniGameTextures() {
-		load("sacominigame/pantallainiciobolsa.png", Texture.class);
 	}
 	
 	public void loadSacoMiniGameSounds() {

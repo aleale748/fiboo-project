@@ -53,7 +53,7 @@ public class InicioRobotGameScreen extends AbstractScreen {
 		loaderFull = new NinePatch(new TextureRegion(fullT, 24, 24), 8, 8, 8, 8);
 		
 		//Cargando sonidos
-		fibooGame.MANAGER.loadRobotMiniGameSounds();
+		fibooGame.MANAGER.loadRobotMiniGameTextures();
 	}
 	
 	@Override

@@ -229,7 +229,7 @@ public class RobotGameScreen extends AbstractScreen{
 		malSound.dispose();
 		reguSound.dispose();
 		*/
-		fibooGame.MANAGER.unloadRobotMiniGameSounds();
+		fibooGame.MANAGER.unloadRobotMiniGameTextures();
 		super.dispose();
 	}
  
