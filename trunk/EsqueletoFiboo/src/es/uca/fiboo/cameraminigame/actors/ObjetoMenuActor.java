@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.cameraminigame.screens.CameraScreen;
 
 public class ObjetoMenuActor extends Actor {
 	
@@ -20,7 +21,8 @@ public class ObjetoMenuActor extends Actor {
 		// Ahora que tenemos la textura de la pala aprovechamos para cambiar
 		// el tama??o de este actor y hacer que coincida con el tama??o de
 		// la pala.
-		setSize(texture.getWidth(), texture.getHeight());
+		setSize(CameraScreen.coordenadasMundo.x*0.01f,
+				CameraScreen.coordenadasMundo.y*0.01f);
 		this.tipoInt = tipoInt;
 	}
 	
