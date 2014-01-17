@@ -45,8 +45,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	public NaveMiniGameScreen(fibooGame game) {
 		super(game);
-		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
+		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
+		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		//Gdx.app.log(fibooGame.LOG, "Bien construido.");
 		//musicaFondo = fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class);
 		//musicaFondo.loop(0.25f);
@@ -86,8 +86,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
+					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
 			}
@@ -546,7 +546,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		golpe.dispose();
 		disparo.dispose();*/
 		fibooGame.MANAGER.unloadNaveMiniGameSounds();
-		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
+		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
 		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
 		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();

@@ -61,8 +61,8 @@ public class RobotGameScreen extends AbstractScreen{
 	
 	public RobotGameScreen(fibooGame game){
 		super(game);
-		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
+		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
+		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		// load the images for the droplet and the bucket, 64x64 pixels each
 		planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
 		lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
@@ -220,6 +220,7 @@ public class RobotGameScreen extends AbstractScreen{
 				if(numobjetos==0){
 					//musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					dispose();
 					game.setScreen(new WinScreen(game));
 				}
 				try{
@@ -243,7 +244,7 @@ public class RobotGameScreen extends AbstractScreen{
 		reguSound.dispose();
 		*/
 		fibooGame.MANAGER.unloadRobotMiniGameTextures();
-		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
+		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
 		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
 		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
