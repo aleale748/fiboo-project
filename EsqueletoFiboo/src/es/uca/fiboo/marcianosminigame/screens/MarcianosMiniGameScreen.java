@@ -33,7 +33,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		super(game);
 		
 		//Mientras no hay pantalla de ayuda
-		fibooGame.MANAGER.loadMarcianosMiniGameSounds();
+		fibooGame.MANAGER.loadMarcianosMiniGameTextures();
 		fibooGame.MANAGER.finishLoading();
 		//----------------------------------
 	}
@@ -453,7 +453,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.unloadMarcianosMiniGameSounds();
+		fibooGame.MANAGER.unloadMarcianosMiniGameTextures();
 		super.dispose();
 	}
 
