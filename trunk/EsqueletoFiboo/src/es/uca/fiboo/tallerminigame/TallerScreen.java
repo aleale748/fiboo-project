@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -45,6 +46,9 @@ public class TallerScreen extends AbstractScreen {
 		super(game);
 		
 		this.game = game;
+		
+		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		
 		Gdx.input.setInputProcessor(stage);
 		
@@ -306,6 +310,9 @@ public class TallerScreen extends AbstractScreen {
 		maleta.dispose();
 		gema.dispose();
 		fibooGame.MANAGER.unloadSacoMiniGameSounds();
+		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 	
@@ -317,8 +324,8 @@ public class TallerScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
+					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
 				return false;
 			}

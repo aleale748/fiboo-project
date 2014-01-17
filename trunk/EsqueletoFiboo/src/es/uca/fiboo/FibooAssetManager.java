@@ -1,6 +1,7 @@
 package es.uca.fiboo;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -32,6 +33,9 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/pantallamenuprincipal.png", Texture.class);
 		load("portada/pantallamenuentrenamiento.png", Texture.class);
 		load("portada/fondopersonalizar.png", Texture.class);
+		load("sonidos/fondo.ogg", Music.class);
+		load("sonidos/ayuda.ogg", Music.class);
+		load("sonidos/minijuego.ogg", Music.class);
 	}
 	
 	public void loadMusicaFondo() {

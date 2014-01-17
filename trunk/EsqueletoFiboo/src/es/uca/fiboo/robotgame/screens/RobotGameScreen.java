@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 //import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
@@ -60,7 +61,8 @@ public class RobotGameScreen extends AbstractScreen{
 	
 	public RobotGameScreen(fibooGame game){
 		super(game);
-		
+		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		// load the images for the droplet and the bucket, 64x64 pixels each
 		planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
 		lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
@@ -241,6 +243,9 @@ public class RobotGameScreen extends AbstractScreen{
 		reguSound.dispose();
 		*/
 		fibooGame.MANAGER.unloadRobotMiniGameTextures();
+		fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
  
