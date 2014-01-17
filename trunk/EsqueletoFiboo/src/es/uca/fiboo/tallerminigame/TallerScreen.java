@@ -1,4 +1,4 @@
-package tallerminigame;
+package es.uca.fiboo.tallerminigame;
 
 import java.util.List;
 

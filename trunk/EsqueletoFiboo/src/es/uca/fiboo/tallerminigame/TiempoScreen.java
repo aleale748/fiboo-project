@@ -1,4 +1,4 @@
-package tallerminigame;
+package es.uca.fiboo.tallerminigame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
