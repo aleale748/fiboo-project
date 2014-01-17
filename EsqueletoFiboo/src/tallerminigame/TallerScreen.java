@@ -1,4 +1,4 @@
-package es.uca.fiboo.sacominigame.screens;
+package tallerminigame;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
-public class SacoScreen extends AbstractScreen {
+public class TallerScreen extends AbstractScreen {
 	//Atributos necesarios
 	private int[] objetosA;
 	private int[] objetosB;
@@ -41,7 +41,7 @@ public class SacoScreen extends AbstractScreen {
 	private Sound objetosSound;
 	private fibooGame game;
 	
-	public SacoScreen(final fibooGame game, int[] objetos) {	
+	public TallerScreen(final fibooGame game, int[] objetos) {	
 		super(game);
 		
 		this.game = game;
@@ -110,13 +110,13 @@ public class SacoScreen extends AbstractScreen {
 			
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(SacoScreenPrincipal.LOG, "Touching down on gemaButtonMas");
+				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching down on gemaButtonMas");
 				
 				return true;
 			}
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(SacoScreenPrincipal.LOG, "Touching up on gemaButtonMas");
+				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching up on gemaButtonMas");
 				
 				if(cofreR.overlaps(gemaG)) {
 					objetosSound.play();
@@ -146,13 +146,13 @@ public class SacoScreen extends AbstractScreen {
 			
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(SacoScreenPrincipal.LOG, "Touching down on gemaButtonMenos");
+				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching down on gemaButtonMenos");
 				
 				return true;
 			}
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(SacoScreenPrincipal.LOG, "Touching up on gemaButtonMenos");
+				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching up on gemaButtonMenos");
 				
 				if(maletaR.overlaps(gemaG) && objetosB[2] > 0) {
 					objetosSound.play();
@@ -186,13 +186,13 @@ public class SacoScreen extends AbstractScreen {
 			
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(SacoScreenPrincipal.LOG, "Touching down on llaveButton");
+				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching down on llaveButton");
 				
 				return true;
 			}
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(SacoScreenPrincipal.LOG, "Touching up on llaveButton");
+				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching up on llaveButton");
 				
 				//Para las pruebas
 				objetosB[0] = objetosA[0];
@@ -201,7 +201,7 @@ public class SacoScreen extends AbstractScreen {
 				if(sonIguales(objetosA,objetosB)) {
 					System.out.println("Bien hecho!");
 					//game.setScreen(new EstadisticasScreen(game,0)); Estadisticas ahora no sirve para esto
-					SacoScreenPrincipal.aciertos++; //Sumamos el acierto actual
+					TallerScreenPrincipal.aciertos++; //Sumamos el acierto actual
 					
 					float w = Gdx.graphics.getWidth();
 					float h = Gdx.graphics.getHeight();
@@ -209,11 +209,11 @@ public class SacoScreen extends AbstractScreen {
 					float widthPuntuacion = 42;
 					float heightPuntuacion = 42;
 					
-					SacoScreenPrincipal.puntos.add(new StarActor());
-					SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1).setPosition(widthPuntuacion*0.2f + (SacoScreenPrincipal.puntos.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
-					SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1).setWidth(widthPuntuacion);
-					SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
-					stage.addActor(SacoScreenPrincipal.puntos.get(SacoScreenPrincipal.puntos.size() - 1));
+					TallerScreenPrincipal.puntos.add(new StarActor());
+					TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setPosition(widthPuntuacion*0.2f + (TallerScreenPrincipal.puntos.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+					TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setWidth(widthPuntuacion);
+					TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
+					stage.addActor(TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1));
 					
 					game.setScreen(new TiempoScreen(game)); //Lanzamos el siguiente intento
 				}
@@ -230,12 +230,12 @@ public class SacoScreen extends AbstractScreen {
 		stage.addActor(llaveButton);
 		
 		for (int i = 0; i < 4; ++i) {
-			stage.addActor(SacoScreenPrincipal.sin_puntos.get(i));
+			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
 		}
 		
-		if(!SacoScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
-			for (int i = 0; i < SacoScreenPrincipal.puntos.size(); ++i) {
-				stage.addActor(SacoScreenPrincipal.puntos.get(i));
+		if(!TallerScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
+			for (int i = 0; i < TallerScreenPrincipal.puntos.size(); ++i) {
+				stage.addActor(TallerScreenPrincipal.puntos.get(i));
 			}
 		}
 		
@@ -253,14 +253,14 @@ public class SacoScreen extends AbstractScreen {
 		
 		batch.begin();
 		
-		SacoScreenPrincipal.font.draw(batch, "A�ade las mismas cosas que ten�a el cofre del inicio!", w/10, h);
-		SacoScreenPrincipal.font.draw(batch, "Tengo la soluci�n!", w/2, h/20);
+		TallerScreenPrincipal.font.draw(batch, "A�ade las mismas cosas que ten�a el cofre del inicio!", w/10, h);
+		TallerScreenPrincipal.font.draw(batch, "Tengo la soluci�n!", w/2, h/20);
 		//Dibujar el cofre con todos sus botones
 		batch.draw(cofre,cofreR.x, cofreR.y, cofreR.width, cofreR.height); 	
 		batch.draw(maleta, maletaR.x, maletaR.y, maletaR.width, maletaR.height);
 		
-		SacoScreenPrincipal.font.draw(batch, " " +objetosC[2], maletaR.x + w/5, maletaR.y + h/6);
-		SacoScreenPrincipal.font.draw(batch, " " +objetosB[2], gemaButtonMenos.getX() + w/8, gemaButtonMenos.getY() + h/8);
+		TallerScreenPrincipal.font.draw(batch, " " +objetosC[2], maletaR.x + w/5, maletaR.y + h/6);
+		TallerScreenPrincipal.font.draw(batch, " " +objetosB[2], gemaButtonMenos.getX() + w/8, gemaButtonMenos.getY() + h/8);
 		
 		
 		if(gemaButtonMas.isPressed() || gemaTocada) {
