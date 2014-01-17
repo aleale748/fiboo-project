@@ -93,9 +93,20 @@ public class RobotGameScreen extends AbstractScreen{
 	}
 	
 	private void spawnRaindrop() {
-		int rand = MathUtils.random(0, 3);
-		DropObject raindrop = new DropObject(rand);
-		raindrop.x = MathUtils.random(0, Gdx.graphics.getWidth() - Gdx.graphics.getHeight()*0.1f);
+		float rand= MathUtils.random();
+		int elec= 0;
+		if(rand<0.4f){
+			elec= objeto;
+		}
+		else{    
+			rand = MathUtils.random();
+			if (rand > 0.5f && objeto !=0) 
+				elec = MathUtils.ceil(MathUtils.random(0, objeto));
+			else
+				elec = MathUtils.random(objeto + 1, 3);
+		}
+		DropObject raindrop = new DropObject(elec);
+		raindrop.x = MathUtils.random(0, Gdx.graphics.getWidth() - Gdx.graphics.getHeight()*0.1f*2f);
 		raindrop.y = Gdx.graphics.getHeight();
 		raindrop.width = Gdx.graphics.getHeight()*0.1f;
 		raindrop.height = Gdx.graphics.getHeight()*0.1f;
@@ -239,11 +250,10 @@ public class RobotGameScreen extends AbstractScreen{
 		Texture numverdes;
 		TextureRegion[] numerosrojos;
 		TextureRegion[] numerosverdes;
-		//SpriteBatch spriteBatch;
-		
+
 		public Numeros(){
-			numrojos= new Texture(Gdx.files.internal("robotgame/numerosrojos.png"));  
-			numverdes= new Texture(Gdx.files.internal("robotgame/numerosverdes.png"));  
+			numrojos= fibooGame.MANAGER.get("robotgame/numerosrojos.png", Texture.class);  
+			numverdes= fibooGame.MANAGER.get("robotgame/numerosverdes.png", Texture.class);  
 			TextureRegion[][] tmp1 = TextureRegion.split(numrojos, numrojos.getWidth() / FRAME_COLS, numrojos.getHeight());                                // #10
 			TextureRegion[][] tmp2 = TextureRegion.split(numverdes, numverdes.getWidth() / FRAME_COLS, numverdes.getHeight()); 
 			numerosrojos = new TextureRegion[FRAME_COLS];
@@ -253,7 +263,6 @@ public class RobotGameScreen extends AbstractScreen{
 				numerosrojos[index] = tmp1[0][i];
 				numerosverdes[index++] = tmp2[0][i];
 			}
-			//spriteBatch = new SpriteBatch();                                // #12 
 		}
 		
 		public TextureRegion rojos(int n){

@@ -6,6 +6,7 @@ import es.uca.fiboo.screens.AbstractLoadingScreen;
 public class InicioPianoGameScreen extends AbstractLoadingScreen {
 	
 		public InicioPianoGameScreen(fibooGame game) {
+
 			super(game);	
 		}
 		
