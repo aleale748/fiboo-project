@@ -1,4 +1,4 @@
-package es.uca.fiboo.sacominigame.screens;
+package tallerminigame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -33,12 +33,12 @@ public class EstadisticasScreen extends AbstractScreen {
 		//stage.addActor(flechaButton);
 		
 		for (int i = 0; i < 4; ++i) {
-			stage.addActor(SacoScreenPrincipal.sin_puntos.get(i));
+			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
 		}
 		
-		if(!SacoScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
-			for (int i = 0; i < SacoScreenPrincipal.puntos.size(); ++i) {
-				stage.addActor(SacoScreenPrincipal.puntos.get(i));
+		if(!TallerScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
+			for (int i = 0; i < TallerScreenPrincipal.puntos.size(); ++i) {
+				stage.addActor(TallerScreenPrincipal.puntos.get(i));
 			}
 		}
 	}
@@ -69,14 +69,14 @@ public class EstadisticasScreen extends AbstractScreen {
 		float w = Gdx.graphics.getWidth();
 		batch.begin();
 		
-		if(SacoScreenPrincipal.NUMERO_REPETICIONES == SacoScreenPrincipal.aciertos) {
-			SacoScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/10, h/2);
+		if(TallerScreenPrincipal.NUMERO_REPETICIONES == TallerScreenPrincipal.aciertos) {
+			TallerScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/10, h/2);
 		}
-		else if(SacoScreenPrincipal.aciertos == 0) {
-			SacoScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/10, h/2);
+		else if(TallerScreenPrincipal.aciertos == 0) {
+			TallerScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/10, h/2);
 		}
 		else {
-			SacoScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/10, h/2);
+			TallerScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/10, h/2);
 		}
 		
 		batch.end();

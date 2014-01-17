@@ -1,4 +1,4 @@
-package es.uca.fiboo.sacominigame.screens;
+package tallerminigame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
 
-public class SacoScreenPrincipal extends AbstractScreen {
+public class TallerScreenPrincipal extends AbstractScreen {
 	public static final String LOG = "SacoGame";
 	protected static BitmapFont font;
 	protected static int repeticiones; //Variable para contar las repeticiones del juego
@@ -21,7 +21,7 @@ public class SacoScreenPrincipal extends AbstractScreen {
 	protected static List<EmptyStarActor> sin_puntos;
 	fibooGame game;
 
-	public SacoScreenPrincipal(fibooGame game) {
+	public TallerScreenPrincipal(fibooGame game) {
 		super(game);
 		this.game = game;
 		font = new BitmapFont();

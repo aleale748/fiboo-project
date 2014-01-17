@@ -1,6 +1,6 @@
 package es.uca.fiboo.screens;
+import tallerminigame.TallerScreenPrincipal;
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.sacominigame.screens.SacoScreenPrincipal;
 
 public class InicioSacoGameScreen extends AbstractLoadingScreen {
 	
@@ -10,7 +10,7 @@ public class InicioSacoGameScreen extends AbstractLoadingScreen {
 	
 	@Override
 	public void setGameScreen() {
-        game.setScreen(new SacoScreenPrincipal(game));
+        game.setScreen(new TallerScreenPrincipal(game));
 	}
 	
 	@Override
