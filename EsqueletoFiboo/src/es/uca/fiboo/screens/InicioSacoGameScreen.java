@@ -1,6 +1,6 @@
 package es.uca.fiboo.screens;
-import tallerminigame.TallerScreenPrincipal;
 import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.tallerminigame.TallerScreenPrincipal;
 
 public class InicioSacoGameScreen extends AbstractLoadingScreen {
 	
