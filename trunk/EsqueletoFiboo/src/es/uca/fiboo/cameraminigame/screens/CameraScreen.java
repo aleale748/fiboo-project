@@ -5,20 +5,27 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.cameraminigame.actors.*;
 import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class CameraScreen extends AbstractScreen {
 	
@@ -34,11 +41,13 @@ public class CameraScreen extends AbstractScreen {
 	
 	private final static int N=10;
 	int w,h;
-	int numerosRestantes;
+	int numerosRestantes = N;
 
 	private OrthographicCamera camera;
 
-	private Vector2 coordenadasMundo;
+	public static Vector2 coordenadasMundo;
+
+	private ImageButton atrasBoton;
 	
 	public void show() {	
 		
@@ -46,15 +55,14 @@ public class CameraScreen extends AbstractScreen {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 
-		coordenadasMundo = new Vector2(4096,2048);
+		coordenadasMundo = new Vector2(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());//(4096,2048);
 		
 		camera = new OrthographicCamera(w,h);
 		//stage.setViewport(1024, 512, false);
 		stage.setCamera(camera);
 		//camera.update();
-		numerosRestantes = N;
 		
-		Image imgFondo = new Image(fibooGame.MANAGER.get("cameraminigame/cesped2.png", Texture.class));
+		final Image imgFondo = new Image(fibooGame.MANAGER.get("cameraminigame/1.png", Texture.class));
 		//imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 
@@ -74,7 +82,7 @@ public class CameraScreen extends AbstractScreen {
 					Gdx.app.log(fibooGame.LOG, "pulsado en " + indiceAux);
 					objetoActors.get(indiceAux).remove();
 					objetoMenuActors.get(indiceAux).remove();
-					numerosRestantes--;
+					--numerosRestantes;
 					if (numerosRestantes == 0) {
 						game.setScreen(new WinScreen(game));
 					}
@@ -95,20 +103,41 @@ public class CameraScreen extends AbstractScreen {
 		// esto, que tambi??n puede expresarse como restar la mitad del ancho
 		// o del alto de la pantalla a la mitad del ancho o el alto del objeto.
 		
-		int espaciado = -50;
+		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
+		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
+		atrasBoton = new ImageButton(atrasBotonDrawable);
+		atrasBoton.setPosition(0,0);
+		atrasBoton.setSize(coordenadasMundo.x*0.1f, coordenadasMundo.y*0.1f);
+		atrasBoton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching down on " + atrasBoton.getClass().getSimpleName());
+				return true;
+			}
+			
+			@Override
+			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
+						game.setScreen(new MenuMiniJuegosScreen(game));
+				}
+		}); 
+		stage.addActor(atrasBoton);
+
 		int ind = 0;
+		int espaciado = 50;
+		
 		while (ind < N) {//for(int ind=0;ind<N;++ind) {
-			float randomX = MathUtils.random(objetoMenuActors.get(ind).getWidth(), coordenadasMundo.x -objetoActors.get(ind).getWidth());
-			float randomY = MathUtils.random(objetoActors.get(ind).getHeight(), coordenadasMundo.y - objetoActors.get(ind).getHeight());
+			float randomX = MathUtils.random(objetoMenuActors.get(ind).getWidth(), coordenadasMundo.x * 2 -objetoActors.get(ind).getWidth());//1280
+			float randomY = MathUtils.random(objetoActors.get(ind).getHeight(), coordenadasMundo.y * 1.8f - objetoActors.get(ind).getHeight());//450
+			Gdx.app.log(fibooGame.LOG, "xMAX=" + coordenadasMundo.x*2 + " yMAX=" + coordenadasMundo.y*2);
 			float objetoActorWidth = objetoActors.get(ind).getWidth();
 			float objetoActorHeight = objetoActors.get(ind).getHeight();
 			
 			rectangles.add(new Rectangle(randomX, randomY, objetoActorWidth, objetoActorHeight));
-			Gdx.app.log(fibooGame.LOG, "rectangle:" + ind + ", size:" + rectangles.size());
 			if (noHayOverlaps(rectangles)) {
 				Gdx.app.log(fibooGame.LOG, "dentro if ind:" + ind);
 				objetoActors.get(ind).setPosition(randomX, randomY);
-				objetoMenuActors.get(ind).setPosition(0,espaciado+=50);
+				objetoMenuActors.get(ind).setPosition(40,espaciado+=60);
 				stage.addActor(objetoActors.get(ind));
 				stage.addActor(objetoMenuActors.get(ind));
 				
@@ -119,12 +148,72 @@ public class CameraScreen extends AbstractScreen {
 				rectangles.remove(ind);
 			}
 		}	
+
+		
+		stage.addListener(new InputListener() {
+			@Override
+			public void touchDragged(InputEvent event, float x, float y,
+					int pointer) {
+				float coordenadaPulsadaXLocal = Gdx.input.getX() - coordenadaPulsadaX;
+				float coordenadaPulsadaYLocal = Gdx.input.getY() - coordenadaPulsadaY;
+				Gdx.app.log(fibooGame.LOG, "x=" + x);
+				Gdx.app.log(fibooGame.LOG, "getX()=" + Gdx.input.getX());
+				Gdx.app.log(fibooGame.LOG, "coordenadaPulsadaX=" + coordenadaPulsadaX);
+				Gdx.app.log(fibooGame.LOG, "coordenadaPulsadaXLocal=" + coordenadaPulsadaXLocal);
+				Gdx.app.log(fibooGame.LOG, "camera.position.x=" + camera.position.x);
+				Gdx.app.log(fibooGame.LOG, "w/2=" + w/2);
+				if ((camera.position.x + coordenadaPulsadaXLocal > w/2) && 
+						(camera.position.x + coordenadaPulsadaXLocal + camera.viewportWidth <= (4096 - w/2)) && 
+						(camera.position.y + coordenadaPulsadaYLocal > h/2) && 
+						(camera.position.y + coordenadaPulsadaYLocal + camera.viewportHeight <= (2048 - h/2)))
+				{
+					for(int i=0;i<N;++i) {
+						objetoMenuActors.get(i).translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
+					}
+					atrasBoton.translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
+					camera.translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
+				}
+				 
+				//camera.translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
+				// TODO Auto-generated method stub
+				super.touchDragged(event, x, y, pointer);
+			}
+
+			private int coordenadaPulsadaX;
+			private int coordenadaPulsadaY;
+
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				coordenadaPulsadaX = Gdx.input.getX();
+				coordenadaPulsadaY = Gdx.input.getY();
+				Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+				return true;
+			}
+		});
+		
+		/*stage.addListener((new DragListener() {
+			float mitadFondoWidth = imgFondo.getImageWidth()/2;
+	    	float mitadFondoHeight = imgFondo.getImageHeight()/2;
+	    	
+		    public void touchDragged (InputEvent event, float x, float y, int pointer) {
+	            		    	//camera.translate(Gdx.input.getX()*0.01f, Gdx.input.getY()*0.01f, 0);
+		    	//imgFondo.setPosition(imgFondo.getX(), imgFondo.getY());
+	            System.out.println("touchdragged" + x + ", " + y);
+
+	        }
+
+	    }));*/
+		
 		camera.position.set(imgFondo.getImageWidth()/2, imgFondo.getImageHeight()/2, 0);
 	}
 	
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		//Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+		//Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		//Gdx.gl.glClearColor(0, 0, 0.2f, 1);
+	    //Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
+	    Gdx.gl.glClearColor(0x64/255.0f, 0x95/255.0f, 0xed/255.0f, 0xff/255.0f);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);		
 		
 		camera.update();
 		camera.apply(Gdx.graphics.getGL10());
@@ -156,6 +245,9 @@ public class CameraScreen extends AbstractScreen {
 
 	@Override
 	public void resize(int width, int height) {
+		coordenadasMundo.x = width;
+		coordenadasMundo.y = height;
+		//show();
 		stage.setViewport(width, height, true);
 	}
 	public void handleInput() {
@@ -169,45 +261,37 @@ public class CameraScreen extends AbstractScreen {
 		}*/
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			Gdx.app.log(fibooGame.LOG, "pulsado left");
-			//if (camera.position.x > w/2) {
-			if (camera.position.x > w/2)//+ camera.viewportWidth)
+			
+			if (camera.position.x > w/2)
 			{
 				Gdx.app.log(fibooGame.LOG, "x=" + camera.position.x);
 				Gdx.app.log(fibooGame.LOG, "y=" + camera.position.y);
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(-3,0);
 				}
+				atrasBoton.translate(-3, 0);
 				camera.translate(-3, 0, 0);
 			}
-			/*x -= 5;
-			camera.translate(x, y);
-			cameraHelper.applyTo(camera);*/
-			//}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			Gdx.app.log(fibooGame.LOG, "pulsado right");
-			//if (camera.position.x < w/2) {
-			if (camera.position.x + camera.viewportWidth <= (4096 - w/2))//+ camera.viewportWidth)
+			if (camera.position.x + camera.viewportWidth <= (4096 - w/2))
 			{
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(3,0);
 				}
+				atrasBoton.translate(3,0);
 				camera.translate(3, 0, 0);
 			}
-			/*x += 5;
-			camera.translate(x, y);
-			cameraHelper.applyTo(camera);*/
-			//}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			Gdx.app.log(fibooGame.LOG, "pulsado down con y:" + camera.position.y);
 			if (camera.position.y > h/2) {
-				camera.translate(0, -3, 0);
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(0,-3);
 				}
-			/*cameraHelper.setPosition(x, y);
-			cameraHelper.applyTo(camera);*/
+				atrasBoton.translate(0, -3);
+				camera.translate(0, -3, 0);
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
@@ -216,11 +300,9 @@ public class CameraScreen extends AbstractScreen {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(0,3);
 				}
-				camera.translate(0, 3, 0);
+				atrasBoton.translate(0, 3);
+				camera.translate(0, 3);
 			}
-			/*cameraHelper.setPosition(x, y);
-			cameraHelper.applyTo(camera);*/
-			//}
 		}
 		/*float minCameraX = camera.zoom * (camera.viewportWidth / 2);
 		float maxCameraX = coordenadasMundo.x - minCameraX;
