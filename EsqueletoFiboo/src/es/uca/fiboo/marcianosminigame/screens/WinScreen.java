@@ -1,11 +1,11 @@
 package es.uca.fiboo.marcianosminigame.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
@@ -29,6 +29,7 @@ public class WinScreen extends AbstractScreen {
 			if(Gdx.input.isTouched()) {
 				//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 				game.setScreen(new MenuMiniJuegosScreen(game));
+				dispose();
 			}
 		}
 	}
@@ -53,7 +54,9 @@ public class WinScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		time = 0;
-		win= new Image(fibooGame.MANAGER.get("marcianosminigame/win.png", Texture.class));
+		Texture textura = fibooGame.MANAGER.get("marcianosminigame/win.png", Texture.class);
+		textura.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		win = new Image(textura);
 		win.setFillParent(true);
 		stage.addActor(win);
 	}
