@@ -1,12 +1,17 @@
 package es.uca.fiboo.screens;
 
+import com.badlogic.gdx.audio.Music;
+
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.robotgame.screens.RobotGameScreen;
 
 public class InicioRobotGameScreen extends AbstractLoadingScreen {
 
 	public InicioRobotGameScreen(fibooGame game) {
-		super(game);	
+		super(game);
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
+		fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).play();	
 	}
 	
 	@Override

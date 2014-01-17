@@ -5,6 +5,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -110,6 +111,8 @@ public class LoadingScreen extends AbstractScreen {
 		stage.draw();
 		
 		if(fibooGame.MANAGER.update()) {
+			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 			if(!playBoton.isVisible())
 				playBoton.setVisible(true);
 		}
