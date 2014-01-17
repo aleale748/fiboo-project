@@ -29,8 +29,6 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/polaroidnina2.png", Texture.class);
 		load("portada/pantallamenuprincipal.png", Texture.class);
 		load("portada/pantallamenuentrenamiento.png", Texture.class);
-		load("portada/logoasteroid.png", Texture.class);
-		load("portada/playportada.png", Texture.class);
 		load("portada/fondopersonalizar.png", Texture.class);
 	}
 	
