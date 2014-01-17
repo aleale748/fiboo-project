@@ -39,7 +39,7 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadSonidos() {
-		load("sonidos/ayuda.mp3", Sound.class);
+		//load("sonidos/ayuda.mp3", Sound.class);
 	}
 	
 	//Texturas de pantalla de Personalizaci�n
@@ -188,14 +188,14 @@ public class FibooAssetManager extends AssetManager {
 		load("naveminigame/older/hit.ogg", Sound.class);
 		load("naveminigame/older/explosion.ogg", Sound.class);
 		load("naveminigame/older/shoot.ogg", Sound.class);
-		load("sonidos/naves.mp3", Sound.class);
+		//load("sonidos/naves.mp3", Sound.class);
 	}
 	
 	public void unloadNaveMiniGameSounds() {
 		unload("naveminigame/older/hit.ogg");
 		unload("naveminigame/older/explosion.ogg");
 		unload("naveminigame/older/shoot.ogg");
-		unload("sonidos/naves.mp3");
+		//unload("sonidos/naves.mp3");
 	}
 	
 	//Texturas y Sonidos de Marcianos minijuego
@@ -304,14 +304,14 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadRobotMiniGameSounds() {
-		load("sonidos/robot.mp3", Sound.class);
+		//load("sonidos/robot.mp3", Sound.class);
 		load("robotgame/bien.ogg", Sound.class);
         load("robotgame/mal.ogg", Sound.class);
         load("robotgame/regu.ogg", Sound.class);
 	}
 	
 	public void unloadRobotMiniGameSounds() {
-		unload("sonidos/robot.mp3");
+		//unload("sonidos/robot.mp3");
 		unload("robotgame/bien.ogg");
         unload("robotgame/mal.ogg");
         unload("robotgame/regu.ogg");
