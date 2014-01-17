@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.robotgame.screens.RobotGameScreen;
+import es.uca.fiboo.robotgame.screens.AyudaPlayRobotScreen;
 
 public class InicioRobotGameScreen extends AbstractScreen {
 
@@ -75,7 +75,7 @@ public class InicioRobotGameScreen extends AbstractScreen {
 		Gdx.app.log("InicioRobotScreen", "Cargado al: " + progress + "%");
 		
 		if(fibooGame.MANAGER.update()) {
-			game.setScreen(new RobotGameScreen(game));
+			game.setScreen(new AyudaPlayRobotScreen(game));
 			dispose();
 		}
 				

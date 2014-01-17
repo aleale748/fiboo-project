@@ -38,7 +38,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
-				if (keycode == Keys.BACK){
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 						game.setScreen(new MenuScreen(game));
 				}
 				return false;

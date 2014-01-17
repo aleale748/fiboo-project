@@ -8,6 +8,8 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Botones y pantallas de men�s
 	public void loadMenuTextures() {
+		load("robotgame/numerosrojos.png", Texture.class);
+		load("robotgame/numerosverdes.png", Texture.class);
 		load("sacominigame/pantallainiciobolsa.png", Texture.class);
 		load("pianogame/pantallainiciopiano.png", Texture.class);
 		load("naveminigame/ayuda.png", Texture.class);
@@ -290,8 +292,6 @@ public class FibooAssetManager extends AssetManager {
 		load("robotgame/luna_.png", Texture.class);
 		load("robotgame/marciano_.png", Texture.class);
 		load("robotgame/planeta_.png", Texture.class);
-		load("robotgame/numerosrojos.png", Texture.class);
-		load("robotgame/numerosverdes.png", Texture.class);
 		load("robotgame/robotfrente.png", Texture.class);
 		load("robotgame/robotderecha.png", Texture.class);
 		load("robotgame/robotizquierda.png", Texture.class);
@@ -303,8 +303,6 @@ public class FibooAssetManager extends AssetManager {
 		unload("robotgame/luna_.png");
 		unload("robotgame/marciano_.png");
 		unload("robotgame/planeta_.png");
-		unload("robotgame/numerosrojos.png");
-		unload("robotgame/numerosverdes.png");
 		unload("robotgame/robotfrente.png");
 		unload("robotgame/robotderecha.png");
 		unload("robotgame/robotizquierda.png");

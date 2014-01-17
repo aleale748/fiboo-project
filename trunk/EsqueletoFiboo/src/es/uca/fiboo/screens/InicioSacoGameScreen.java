@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.sacominigame.screens.SacoScreenPrincipal;
+import es.uca.fiboo.sacominigame.screens.AyudaPlaySacoScreen;
 
 public class InicioSacoGameScreen extends AbstractScreen {
 
@@ -72,7 +72,7 @@ public class InicioSacoGameScreen extends AbstractScreen {
 		Gdx.app.log("InicioSacoScreen", "Cargado al: " + progress + "%");
 		
 		if(fibooGame.MANAGER.update()) {
-			game.setScreen(new SacoScreenPrincipal(game));
+			game.setScreen(new AyudaPlaySacoScreen(game));
 			dispose();
 		}
 				
