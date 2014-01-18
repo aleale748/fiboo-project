@@ -373,7 +373,38 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadSacoMiniGameSounds() {
-		load("sacominigame/clic.wav", Sound.class);
+		load("sacominigame/robotalegre.png", Texture.class);
+		load("sacominigame/robottriste.png", Texture.class);
+		load("sacominigame/tornillo1.png", Texture.class);
+		load("sacominigame/tornillo1azul.png", Texture.class);
+		load("sacominigame/tornillo1rojo.png", Texture.class);
+		load("sacominigame/tornillo2.png", Texture.class);
+		load("sacominigame/tornillo2azul.png", Texture.class);
+		load("sacominigame/tornillo2rojo.png", Texture.class);
+		load("sacominigame/tornillo3.png", Texture.class);
+		load("sacominigame/tornillo3azul.png", Texture.class);
+		load("sacominigame/tornillo3rojo.png", Texture.class);
+		load("sacominigame/tornillo4.png", Texture.class);
+		load("sacominigame/tornillo4azul.png", Texture.class);
+		load("sacominigame/tornillo4rojo.png", Texture.class);
+		load("sacominigame/tornillo5.png", Texture.class);
+		load("sacominigame/tornillo5azul.png", Texture.class);
+		load("sacominigame/tornillo5rojo.png", Texture.class);
+		load("sacominigame/tornillo6.png", Texture.class);
+		load("sacominigame/tornillo6azul.png", Texture.class);
+		load("sacominigame/tornillo6rojo.png", Texture.class);
+		load("sacominigame/tallerboton.png", Texture.class);
+		load("sacominigame/0.png", Texture.class);
+		load("sacominigame/1.png", Texture.class);
+		load("sacominigame/2.png", Texture.class);
+		load("sacominigame/3.png", Texture.class);
+		load("sacominigame/4.png", Texture.class);
+		load("sacominigame/5.png", Texture.class);
+		load("sacominigame/6.png", Texture.class);
+		load("sacominigame/7.png", Texture.class);
+		load("sacominigame/8.png", Texture.class);
+		load("sacominigame/9.png", Texture.class);
+		
 	}
 	
 	public void unloadSacoMiniGameSounds() {
