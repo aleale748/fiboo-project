@@ -44,7 +44,7 @@ public class TallerScreenPrincipal extends AbstractScreen {
 	}
 	
 	public void show() {
-		game.setScreen(new TiempoScreen(game));
+		game.setScreen(new TiempoScreen(game,0));
 	}
 	
 }

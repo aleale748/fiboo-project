@@ -30,10 +30,13 @@ public class TallerScreen extends AbstractScreen {
 	private Texture robot_triste;
 	private Texture robot_alegre;
 	private Texture boton_taller;
+	private Texture robot_normal;
 	private Sound objetosSound;
 	private int tornilloActual;
 	private Rectangle barrigaRobot;
 	private ArrayList<Texture> tornillosElegidos;
+	private Sound bien;
+	private Sound mal;
 	private fibooGame game;
 	
 	
@@ -64,7 +67,10 @@ public class TallerScreen extends AbstractScreen {
 		//Se cargan las imagenes necesarias
 		robot_triste = fibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
 		robot_alegre = fibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
+		robot_normal = fibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
+		bien = fibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
+		mal = fibooGame.MANAGER.get("sacominigame/mal.ogg", Sound.class);
 		
 		//Situamos la barriga del robot
 		
@@ -112,28 +118,16 @@ public class TallerScreen extends AbstractScreen {
 		//Posicionamos todos los tornillos y les asignamos su tamaño
 		
 		for(int i=0; i<tornillos.size(); i++) {
-			tornillosBotones.get(i).setHeight(h/9.6f);
-			tornillosBotones.get(i).setWidth(w/9.6f);
+			tornillosBotones.get(i).setHeight(h/6f);
+			tornillosBotones.get(i).setWidth(w/6f);
 		}
 		
-		tornillosBotones.get(0).setPosition(w/10f, h/1.5f);
-		tornillosBotones.get(1).setPosition(w/5.5f, h/1.5f);
-		tornillosBotones.get(2).setPosition(w/3.7f, h/1.5f);
-		tornillosBotones.get(3).setPosition(w/2.8f, h/1.5f);
-		tornillosBotones.get(4).setPosition(w/10f, h/1.8f);
-		tornillosBotones.get(5).setPosition(w/5.5f, h/1.8f);
-		tornillosBotones.get(6).setPosition(w/3.7f, h/1.8f);
-		tornillosBotones.get(7).setPosition(w/2.8f, h/1.8f);
-		tornillosBotones.get(8).setPosition(w/10f, h/2.3f);
-		tornillosBotones.get(9).setPosition(w/5.5f, h/2.3f);
-		tornillosBotones.get(10).setPosition(w/3.7f, h/2.3f);
-		tornillosBotones.get(11).setPosition(w/2.8f, h/2.3f);
-		tornillosBotones.get(12).setPosition(w/10f, h/3.1f);
-		tornillosBotones.get(13).setPosition(w/5.5f, h/3.1f);
-		tornillosBotones.get(14).setPosition(w/3.7f, h/3.1f);
-		tornillosBotones.get(15).setPosition(w/2.8f, h/3.1f);
-		tornillosBotones.get(16).setPosition(w/5.5f, h/4.6f);
-		tornillosBotones.get(17).setPosition(w/3.7f, h/4.6f);
+		tornillosBotones.get(0).setPosition(w/11f, h/1.8f);
+		tornillosBotones.get(1).setPosition(w/4.9f, h/1.8f);
+		tornillosBotones.get(2).setPosition(w/3.2f, h/1.8f);
+		tornillosBotones.get(3).setPosition(w/11f, h/3.1f);
+		tornillosBotones.get(4).setPosition(w/4.9f, h/3.1f);
+		tornillosBotones.get(5).setPosition(w/3.2f, h/3.1f);
 		
 		
 		//Añadimos todos los botones al stage
@@ -145,7 +139,7 @@ public class TallerScreen extends AbstractScreen {
 		
 		//Botón para comprobar el resultado
 		
-		ImageButton tallerButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(boton_taller)));
+		/*ImageButton tallerButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(boton_taller)));
 		tallerButton.setHeight(h/4);
 		tallerButton.setWidth(w/4);
 		tallerButton.setPosition(w/800,h/800);
@@ -189,6 +183,7 @@ public class TallerScreen extends AbstractScreen {
 		});
 		
 		stage.addActor(tallerButton);
+		*/
 		
 		for (int i = 0; i < 4; ++i) {
 			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
@@ -211,16 +206,36 @@ public class TallerScreen extends AbstractScreen {
 		
 		batch.begin();
 		
-		if(TallerScreenPrincipal.aciertos > TallerScreenPrincipal.fallos) {
+		if((tornillosUsados.size() == tornillosElegidos.size()) && tornillosUsados.containsAll(tornillosElegidos)) { //Ha acertado
 			batch.draw(robot_alegre, 0, 0, w, h);
+			bien.play();
+			
+			
+			TallerScreenPrincipal.aciertos++; //Sumamos el acierto actual
+			
+			float widthPuntuacion = 42;
+			float heightPuntuacion = 42;
+			
+			TallerScreenPrincipal.puntos.add(new StarActor());
+			TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setPosition(widthPuntuacion*0.2f + (TallerScreenPrincipal.puntos.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setWidth(widthPuntuacion);
+			TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
+			stage.addActor(TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1));
+			
+			
+			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
+		}
+		
+		else if(!tornillosUsados.containsAll(tornillosElegidos)) {
+			batch.draw(robot_triste, 0, 0, w, h);
+			mal.play();
+			
+			TallerScreenPrincipal.fallos++; //Sumamos el fallo actual
+			game.setScreen(new TiempoScreen(game,0)); //Lanzamos el siguiente intento
 		}
 		
 		else {
-			batch.draw(robot_triste, 0, 0, w, h);
-		}
-		//Dibujar el cofre con todos sus botones
-		//batch.draw(cofre,cofreR.x, cofreR.y, cofreR.width, cofreR.height); 	
-		//batch.draw(maleta, maletaR.x, maletaR.y, maletaR.width, maletaR.height);	
+			batch.draw(robot_normal, 0, 0, w, h);
 		
 		//Comprobamos si alguno de los botones ha sido presionado
 		
@@ -256,6 +271,7 @@ public class TallerScreen extends AbstractScreen {
 				batch.draw(tornillosElegidos.get(3), w/1.62f, h/4.5f, w/10, h/10);
 			break;
 		}
+		}
 		
 		batch.end();
 		
@@ -267,7 +283,7 @@ public class TallerScreen extends AbstractScreen {
 	@Override
 	public void dispose() {
 		fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		super.dispose();
+		//super.dispose();
 	}
 	
 	@Override 

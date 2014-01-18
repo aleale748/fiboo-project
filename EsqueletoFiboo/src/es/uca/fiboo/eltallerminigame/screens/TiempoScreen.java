@@ -21,13 +21,16 @@ public class TiempoScreen extends AbstractScreen {
 	private Texture robot_triste;
 	private Texture robot_alegre;
 	private ArrayList<Texture> numeros;
-	int numeroTornillos;
+	private int numeroTornillos;
+	private int estado;
 	fibooGame game;
 	
-	public TiempoScreen(fibooGame game) {
+	public TiempoScreen(fibooGame game, int estado) {
 		super(game);
 		
 		this.game = game;
+		
+		this.estado = estado;
 		
 		//Calculamos el ancho y alto de la pantalla para escalar
 		h = Gdx.graphics.getHeight();
@@ -43,21 +46,9 @@ public class TiempoScreen extends AbstractScreen {
 		tornillosUsados = new ArrayList<Texture>();
 		numeros = new ArrayList<Texture>();
 		
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo1.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo1azul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo1rojo.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo2.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo2azul.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo2rojo.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo3.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo3azul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo3rojo.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo4.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo4azul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo4rojo.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo5.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo5azul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo5rojo.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo6.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo6azul.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo6rojo.png", Texture.class));
@@ -113,12 +104,13 @@ public class TiempoScreen extends AbstractScreen {
 				Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 				batch.begin();
-				//TallerScreenPrincipal.font.draw(batch, "Recuerda el número de objetos que hay de cada uno!", w/10, h);
-				if(TallerScreenPrincipal.aciertos > TallerScreenPrincipal.fallos) {
-					batch.draw(robot_alegre, 0, 0, w, h);
+				
+				if(estado == 0) {
+					batch.draw(robot_triste, 0, 0, w, h); //Deberia ser el robot normal
 				}
+				
 				else {
-					batch.draw(robot_triste, 0, 0, w, h);
+					batch.draw(robot_alegre, 0, 0, w, h); //Deberia ser el robot normal
 				}
 				//Miramos cuantos tornillos debemos colocar:
 				
@@ -194,7 +186,7 @@ public class TiempoScreen extends AbstractScreen {
 	@Override
 	public void dispose() {
 		//fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		super.dispose();
+		//super.dispose();
 	}
 
 }

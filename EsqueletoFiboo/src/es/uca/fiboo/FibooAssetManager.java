@@ -374,6 +374,7 @@ public class FibooAssetManager extends AssetManager {
 	public void loadSacoMiniGameTextures() {
 		load("sacominigame/robotalegre.png", Texture.class);
 		load("sacominigame/robottriste.png", Texture.class);
+		load("sacominigame/robottallerneutro.png", Texture.class);
 		load("sacominigame/tornillo1.png", Texture.class);
 		load("sacominigame/tornillo1azul.png", Texture.class);
 		load("sacominigame/tornillo1rojo.png", Texture.class);
@@ -407,11 +408,15 @@ public class FibooAssetManager extends AssetManager {
 	
 	public void loadSacoMiniGameSounds() {
 		load("sacominigame/clic.wav", Sound.class);
+		load("sacominigame/bien.ogg", Sound.class);
+		load("sacominigame/mal.ogg", Sound.class);
 		
 	}
 	
 	public void unloadSacoMiniGameSounds() {
 		unload("sacominigame/clic.wav");
+		load("sacominigame/bien.ogg", Sound.class);
+		load("sacominigame/mal.ogg", Sound.class);
 	}
 	
 	public void loadAscensorGameTextures() {
