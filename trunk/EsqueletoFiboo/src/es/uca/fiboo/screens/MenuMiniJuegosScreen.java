@@ -21,7 +21,7 @@ import es.uca.fiboo.pianocreen.screens.InicioPianoGameScreen;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 
-	private ImageButton naveBoton, bolsaBoton, robotBoton, mapaBoton, atrasBoton, pianoBoton, ascensorBoton;
+	private ImageButton naveBoton, bolsaBoton, robotBoton, marcianoBoton, atrasBoton, pianoBoton, ascensorBoton;
 	private Image imgFondo;
 	float w,h;
 	public MenuMiniJuegosScreen(fibooGame game) {
@@ -63,8 +63,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		TextureRegion robotBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/robotboton.png", Texture.class));
 		Drawable robotBotonDrawable = new TextureRegionDrawable(robotBotonRegion);
 		
-		TextureRegion mapaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/mapaboton.png", Texture.class));
-		Drawable mapaBotonDrawable = new TextureRegionDrawable(mapaBotonRegion);
+		TextureRegion marcianoBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/marcianoboton.png", Texture.class));
+		Drawable marcianoBotonDrawable = new TextureRegionDrawable(marcianoBotonRegion);
 		
 		TextureRegion pianoBotonRegion = new TextureRegion(fibooGame.MANAGER.get("portada/pianoboton.png", Texture.class));
 		Drawable pianoBotonDrawable = new TextureRegionDrawable(pianoBotonRegion);
@@ -118,24 +118,24 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		});
 		stage.addActor(bolsaBoton);
 		
-		mapaBoton = new ImageButton(mapaBotonDrawable);
-		mapaBoton.setSize(imgWidth, imgHeight);
-		mapaBoton.setPosition(w*0.75f - mapaBoton.getWidth()/2, 
-				h/(4f/3f) - mapaBoton.getHeight()/2);
-		mapaBoton.addListener(new InputListener() {
+		marcianoBoton = new ImageButton(marcianoBotonDrawable);
+		marcianoBoton.setSize(imgWidth, imgHeight);
+		marcianoBoton.setPosition(w*0.75f - marcianoBoton.getWidth()/2, 
+				h/(4f/3f) - marcianoBoton.getHeight()/2);
+		marcianoBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + mapaBoton.getClass().getSimpleName());
+				Gdx.app.log(fibooGame.LOG, "Touching down on " + marcianoBoton.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + mapaBoton.getClass().getSimpleName());
+				Gdx.app.log(fibooGame.LOG, "Touching up on " + marcianoBoton.getClass().getSimpleName());
 						game.setScreen(new CameraScreen(game));
 				}
 		});
-		stage.addActor(mapaBoton);
+		stage.addActor(marcianoBoton);
 		
 		robotBoton = new ImageButton(robotBotonDrawable);
 		robotBoton.setSize(imgWidth, imgHeight);
