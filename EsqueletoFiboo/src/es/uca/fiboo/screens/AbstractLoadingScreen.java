@@ -69,7 +69,7 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 		float botonHeight = botonWidth;
 		
 		playBoton.setSize(botonWidth, botonHeight);
-        playBoton.setX(w/2 - playBoton.getWidth()/2);
+        playBoton.setX(w/1.1f - playBoton.getWidth()/2);
         playBoton.setY(h/6 - playBoton.getHeight()/2);
         playBoton.setVisible(false);
         
@@ -125,7 +125,7 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 	}
 	
 	/*
-	 * Screen a la que redirigirá la pantalla
+	 * Screen a la que redirigirï¿½ la pantalla
 	 */
 	public abstract void setGameScreen();
 	
