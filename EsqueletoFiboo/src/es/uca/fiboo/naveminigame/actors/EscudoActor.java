@@ -33,7 +33,7 @@ public class EscudoActor extends Actor implements HealthActor {
 	public void act(float delta) {
 		timer += delta;
 		if (timer > 2 && health < 0.99f) {
-			health += 0.01f;
+			//health += 0.01f;
 			timer = 0;
 		}
 	}
