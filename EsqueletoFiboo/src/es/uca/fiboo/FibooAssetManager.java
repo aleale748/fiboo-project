@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class FibooAssetManager extends AssetManager {
 	
-	//Botones y pantallas de men�s
+	//Botones y pantallas de menús
 	public void loadMenuTextures() {
 		load("marcianosminigame/win.png", Texture.class);
 		load("marcianosminigame/gameover.png", Texture.class);
@@ -26,6 +26,7 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/mapaboton.png", Texture.class);
 		load("portada/naveboton.png", Texture.class);
 		load("portada/pianoboton.png", Texture.class);
+		load("portada/marcianoboton.png", Texture.class);
 		load("portada/ascensorboton.png", Texture.class);
 		load("portada/robotboton.png", Texture.class);
 		load("portada/polaroidnino2.png", Texture.class);
@@ -42,7 +43,7 @@ public class FibooAssetManager extends AssetManager {
 		//load("sonidos/ayuda.mp3", Sound.class);
 	}
 	
-	//Texturas de pantalla de Personalizaci�n
+	//Texturas de pantalla de Personalizaci���n
 	public void loadPersonalizacionTextures() {
 		//load("complementos/complementos.atlas", TextureAtlas.class);
 		
