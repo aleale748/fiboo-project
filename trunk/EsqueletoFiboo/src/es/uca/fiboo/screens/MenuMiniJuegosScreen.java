@@ -189,7 +189,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(fibooGame.LOG, "Touching up on " + maricianoBoton.getClass().getSimpleName());
-						game.setScreen(new InicioSacoGameScreen(game));
+						game.setScreen(new MarcianosMiniGameScreen(game));
 				}
 		});
 		stage.addActor(maricianoBoton);
