@@ -18,15 +18,21 @@ public class ObjetoActor extends Actor {
 	public ObjetoActor(int tipoInt) {
 		String nombreFichero = Integer.toString(tipoInt) + ".png";
 		texture = fibooGame.MANAGER.get("cameraminigame/" + nombreFichero, Texture.class);
-		setSize(CameraScreen.coordenadasMundo.x*0.2f,
-				CameraScreen.coordenadasMundo.y*0.2f);
 		//rectangle = new Rectangle(x, y, width, height)
 		this.tipoInt = tipoInt;
 	}
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(texture, getX(), getY());
+		batch.draw(texture, getX(), getY(), CameraScreen.tamanoMundo.x*0.15f, CameraScreen.tamanoMundo.x*0.15f);
+	}
+	
+	public float getAncho() {
+		return CameraScreen.tamanoMundo.x*0.15f;
+	}
+	
+	public float getAlto() {
+		return CameraScreen.tamanoMundo.y*0.15f;
 	}
 	
 	public int getTipoInt() {
