@@ -2,7 +2,7 @@ package es.uca.fiboo.screens;
 import com.badlogic.gdx.audio.Music;
 
 import es.uca.fiboo.fibooGame;
-import es.uca.fiboo.tallerminigame.TallerScreenPrincipal;
+import es.uca.fiboo.eltallerminigame.screens.TallerScreenPrincipal;
 
 public class InicioSacoGameScreen extends AbstractLoadingScreen {
 	
