@@ -76,8 +76,8 @@ public class EstadisticasScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		super.dispose();
+		//fibooGame.MANAGER.unloadSacoMiniGameSounds();
+		//super.dispose();
 	}
 
 }
