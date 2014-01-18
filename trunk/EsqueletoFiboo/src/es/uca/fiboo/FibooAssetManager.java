@@ -13,6 +13,7 @@ public class FibooAssetManager extends AssetManager {
 		load("marcianosminigame/gameover.png", Texture.class);
 		load("robotgame/numerosrojos.png", Texture.class);
 		load("robotgame/numerosverdes.png", Texture.class);
+		load("marcianosminigame/pantallaayudamarcianos.png", Texture.class);
 		load("sacominigame/pantallainiciobolsa.png", Texture.class);
 		load("pianogame/pantallainiciopiano.png", Texture.class);
 		load("naveminigame/ayuda.png", Texture.class);
