@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -26,6 +30,7 @@ import es.uca.fiboo.cameraminigame.actors.*;
 import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
+import es.uca.fiboo.screens.MenuScreen;
 
 public class CameraScreen extends AbstractScreen {
 	
@@ -43,40 +48,61 @@ public class CameraScreen extends AbstractScreen {
 	int w,h;
 	int numerosRestantes = N;
 
+	private boolean[] eliminada;
+	
 	private OrthographicCamera camera;
 
-	public static Vector2 coordenadasMundo;
-
-	private ImageButton atrasBoton;
+	public static Vector2 tamanoMundo;
 	
+	private int coordenadaPulsadaX;
+	private int coordenadaPulsadaY;
+
 	public void show() {	
 		
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter()
+		{
+			/*public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				coordenadaPulsadaX = Gdx.input.getX();
+				coordenadaPulsadaY = Gdx.input.getY();
+				Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+				return true;
+			}*/
+
+		}, stage);
+
 		Gdx.input.setInputProcessor(stage);
+		
+		//inputMultiplexer.addProcessor(stage);
+		
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 
-		coordenadasMundo = new Vector2(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());//(4096,2048);
+		tamanoMundo = new Vector2(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());//(4096,2048);
 		
-		camera = new OrthographicCamera(w,h);
+		//inputMultiplexer.addProcessor();
+		
+		camera = new OrthographicCamera(tamanoMundo.x,tamanoMundo.y);
 		//stage.setViewport(1024, 512, false);
 		stage.setCamera(camera);
 		//camera.update();
 		
-		final Image imgFondo = new Image(fibooGame.MANAGER.get("cameraminigame/1.png", Texture.class));
+		//final Image imgFondo = new Image(fibooGame.MANAGER.get("cameraminigame/1.png", Texture.class));
 		//imgFondo.setFillParent(true);
-		stage.addActor(imgFondo);
+		//stage.addActor(imgFondo);
 
 		objetoActors = new ArrayList<ObjetoActor>();
 		objetoMenuActors = new ArrayList<ObjetoMenuActor>();
 		rectangles = new ArrayList<Rectangle>();
+		eliminada = new boolean[N];
 		
 		// Construimos los elementos que vamos a usar en nuestro juego.
 		for(int indice=0; indice<N; ++indice) {
 			objetoActors.add(new ObjetoActor(indice));
 			objetoMenuActors.add(new ObjetoMenuActor(indice));
+			eliminada[indice] = false;
 
 			final int indiceAux = indice;
-			objetoActors.get(indice).addListener(new InputListener() {
+			objetoActors.get(indice).addListener(new MyInputProcessor(indiceAux, coordenadaPulsadaX, coordenadaPulsadaY) /*{
 				public boolean touchDown(InputEvent event, float x, float y, int pointer,
 						int button) {
 					Gdx.app.log(fibooGame.LOG, "pulsado en " + indiceAux);
@@ -88,7 +114,7 @@ public class CameraScreen extends AbstractScreen {
 					}
 					return true;
 				}
-			});
+			}*/);
 		}
 		
 		// Posicionamos los objetoActors en la pantalla. La pelota se sit??a en el
@@ -103,33 +129,13 @@ public class CameraScreen extends AbstractScreen {
 		// esto, que tambi??n puede expresarse como restar la mitad del ancho
 		// o del alto de la pantalla a la mitad del ancho o el alto del objeto.
 		
-		TextureRegion atrasBotonRegion = new TextureRegion(new Texture(Gdx.files.internal("portada/atrasbotonpeque.png")));
-		Drawable atrasBotonDrawable = new TextureRegionDrawable(atrasBotonRegion);
-		atrasBoton = new ImageButton(atrasBotonDrawable);
-		atrasBoton.setPosition(0,0);
-		atrasBoton.setSize(coordenadasMundo.x*0.1f, coordenadasMundo.y*0.1f);
-		atrasBoton.addListener(new InputListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + atrasBoton.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + atrasBoton.getClass().getSimpleName());
-						game.setScreen(new MenuMiniJuegosScreen(game));
-				}
-		}); 
-		stage.addActor(atrasBoton);
-
 		int ind = 0;
-		int espaciado = 50;
+		float espaciado = tamanoMundo.y * 0.005f;
 		
 		while (ind < N) {//for(int ind=0;ind<N;++ind) {
-			float randomX = MathUtils.random(objetoMenuActors.get(ind).getWidth(), coordenadasMundo.x * 2 -objetoActors.get(ind).getWidth());//1280
-			float randomY = MathUtils.random(objetoActors.get(ind).getHeight(), coordenadasMundo.y * 1.8f - objetoActors.get(ind).getHeight());//450
-			Gdx.app.log(fibooGame.LOG, "xMAX=" + coordenadasMundo.x*2 + " yMAX=" + coordenadasMundo.y*2);
+			float randomX = MathUtils.random(objetoMenuActors.get(ind).getWidth(), tamanoMundo.x * 2 -objetoActors.get(ind).getWidth());//1280
+			float randomY = MathUtils.random(objetoActors.get(ind).getHeight(), tamanoMundo.y * 1.8f - objetoActors.get(ind).getHeight());//450
+			Gdx.app.log(fibooGame.LOG, "xMAX=" + tamanoMundo.x*2 + " yMAX=" + tamanoMundo.y*2);
 			float objetoActorWidth = objetoActors.get(ind).getWidth();
 			float objetoActorHeight = objetoActors.get(ind).getHeight();
 			
@@ -137,74 +143,84 @@ public class CameraScreen extends AbstractScreen {
 			if (noHayOverlaps(rectangles)) {
 				Gdx.app.log(fibooGame.LOG, "dentro if ind:" + ind);
 				objetoActors.get(ind).setPosition(randomX, randomY);
-				objetoMenuActors.get(ind).setPosition(40,espaciado+=60);
+				objetoMenuActors.get(ind).setPosition(tamanoMundo.x * 0.015f,espaciado);
+				espaciado += tamanoMundo.y * 0.1f;
 				stage.addActor(objetoActors.get(ind));
 				stage.addActor(objetoMenuActors.get(ind));
 				
 				ind++;
 			}
 			else {
-				Gdx.app.log(fibooGame.LOG, "dentro else ind:" + ind);
+				//Gdx.app.log(fibooGame.LOG, "dentro else ind:" + ind);
 				rectangles.remove(ind);
 			}
 		}	
 
 		
 		stage.addListener(new InputListener() {
-			@Override
-			public void touchDragged(InputEvent event, float x, float y,
-					int pointer) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				coordenadaPulsadaX = Gdx.input.getX();
+				coordenadaPulsadaY = Gdx.input.getY();
+				Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+				int numBoton = esDentroBoton(x, y, rectangles, objetoActors);
+				if (numBoton != N)//Si esta dentro de algún botón,
+				{
+					Gdx.app.log(fibooGame.LOG, "conseguido");
+					Gdx.app.log(fibooGame.LOG, "pulsado en " + numBoton);
+					objetoActors.get(numBoton).remove();
+					objetoMenuActors.get(numBoton).remove();
+					eliminada[numBoton] = true;
+					--numerosRestantes;
+					if (numerosRestantes == 0) {
+						game.setScreen(new WinScreen(game));
+					}
+				}
+				else
+				{
+					Gdx.app.log(fibooGame.LOG, "NO entra con (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+				};
+				return true;
+			}
+		});
+		
+		stage.addListener((new DragListener() {
+		 /*   public void touchDragged (InputEvent event, float x, float y, int pointer) {
+	            		    	//camera.translate(Gdx.input.getX()*0.01f, Gdx.input.getY()*0.01f, 0);
+		    	//imgFondo.setPosition(imgFondo.getX(), imgFondo.getY());
+	            System.out.println("touchdragged" + x + ", " + y);
+
+	        }*/
+			public void touchDragged(InputEvent event, float x, float y, int pointer)
+			{
 				float coordenadaPulsadaXLocal = Gdx.input.getX() - coordenadaPulsadaX;
 				float coordenadaPulsadaYLocal = Gdx.input.getY() - coordenadaPulsadaY;
+
 				Gdx.app.log(fibooGame.LOG, "x=" + x);
 				Gdx.app.log(fibooGame.LOG, "getX()=" + Gdx.input.getX());
 				Gdx.app.log(fibooGame.LOG, "coordenadaPulsadaX=" + coordenadaPulsadaX);
 				Gdx.app.log(fibooGame.LOG, "coordenadaPulsadaXLocal=" + coordenadaPulsadaXLocal);
 				Gdx.app.log(fibooGame.LOG, "camera.position.x=" + camera.position.x);
 				Gdx.app.log(fibooGame.LOG, "w/2=" + w/2);
+
 				if ((camera.position.x + coordenadaPulsadaXLocal > w/2) && 
 						(camera.position.x + coordenadaPulsadaXLocal + camera.viewportWidth <= (4096 - w/2)) && 
 						(camera.position.y + coordenadaPulsadaYLocal > h/2) && 
 						(camera.position.y + coordenadaPulsadaYLocal + camera.viewportHeight <= (2048 - h/2)))
 				{
-					for(int i=0;i<N;++i) {
+					for(int i=0;i<N;++i)
+					{
 						objetoMenuActors.get(i).translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
 					}
-					atrasBoton.translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
 					camera.translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
 				}
-				 
+
 				//camera.translate(coordenadaPulsadaXLocal, coordenadaPulsadaYLocal);
-				// TODO Auto-generated method stub
 				super.touchDragged(event, x, y, pointer);
 			}
 
-			private int coordenadaPulsadaX;
-			private int coordenadaPulsadaY;
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				coordenadaPulsadaX = Gdx.input.getX();
-				coordenadaPulsadaY = Gdx.input.getY();
-				Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
-				return true;
-			}
-		});
+	    }));
 		
-		/*stage.addListener((new DragListener() {
-			float mitadFondoWidth = imgFondo.getImageWidth()/2;
-	    	float mitadFondoHeight = imgFondo.getImageHeight()/2;
-	    	
-		    public void touchDragged (InputEvent event, float x, float y, int pointer) {
-	            		    	//camera.translate(Gdx.input.getX()*0.01f, Gdx.input.getY()*0.01f, 0);
-		    	//imgFondo.setPosition(imgFondo.getX(), imgFondo.getY());
-	            System.out.println("touchdragged" + x + ", " + y);
-
-	        }
-
-	    }));*/
-		
-		camera.position.set(imgFondo.getImageWidth()/2, imgFondo.getImageHeight()/2, 0);
+		camera.position.set(tamanoMundo.x/2, tamanoMundo.y/2, 0);
 	}
 	
 	public void render(float delta) {
@@ -245,8 +261,8 @@ public class CameraScreen extends AbstractScreen {
 
 	@Override
 	public void resize(int width, int height) {
-		coordenadasMundo.x = width;
-		coordenadasMundo.y = height;
+		tamanoMundo.x = width;
+		tamanoMundo.y = height;
 		//show();
 		stage.setViewport(width, height, true);
 	}
@@ -269,7 +285,6 @@ public class CameraScreen extends AbstractScreen {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(-3,0);
 				}
-				atrasBoton.translate(-3, 0);
 				camera.translate(-3, 0, 0);
 			}
 		}
@@ -280,7 +295,6 @@ public class CameraScreen extends AbstractScreen {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(3,0);
 				}
-				atrasBoton.translate(3,0);
 				camera.translate(3, 0, 0);
 			}
 		}
@@ -290,7 +304,6 @@ public class CameraScreen extends AbstractScreen {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(0,-3);
 				}
-				atrasBoton.translate(0, -3);
 				camera.translate(0, -3, 0);
 			}
 		}
@@ -300,14 +313,13 @@ public class CameraScreen extends AbstractScreen {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(0,3);
 				}
-				atrasBoton.translate(0, 3);
 				camera.translate(0, 3);
 			}
 		}
 		/*float minCameraX = camera.zoom * (camera.viewportWidth / 2);
-		float maxCameraX = coordenadasMundo.x - minCameraX;
+		float maxCameraX = TamanoMundo.x - minCameraX;
 		float minCameraY = camera.zoom * (camera.viewportHeight / 2);
-		float maxCameraY = coordenadasMundo.y - minCameraY;
+		float maxCameraY = TamanoMundo.y - minCameraY;
 */
 		/*camera.position.set(Math.min(maxCameraX, Math.max(camera.position.x, minCameraX)),
 		        Math.min(maxCameraY, Math.max(camera.position.y, minCameraY)),
@@ -325,5 +337,108 @@ public class CameraScreen extends AbstractScreen {
 			indice++;
 		}
 		return true;
+	}
+	private int esDentroBoton (float x, float y, List<Rectangle> rectangles, List<ObjetoActor> objetoActors) {
+		//Gdx.app.log(fibooGame.LOG, "dentro fun ind:" + indice + "size:" + rectangles.size());
+		Gdx.app.log(fibooGame.LOG, "bucle en (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+		
+		float fallo = 65;
+		int i=0;
+		while (i < N)
+		{
+			if (!eliminada[i])
+			{
+				//Vector2 vector2 = new Vector2();
+				//vector2 = rectangle.getPosition(vector2);
+				float anchoAdi = rectangles.get(i).getX() + objetoActors.get(i).getAncho();
+				float altoAdi = rectangles.get(i).getY() + objetoActors.get(i).getAlto();
+				//Gdx.app.log(fibooGame.LOG, "vect2: (" + vector2.x+ " , " + "vect2+w: " + temp2 + ")");
+				Gdx.app.log(fibooGame.LOG, "rect" + i + " es: [x(" + rectangles.get(i).getX() + "," + anchoAdi + ") y(" +
+					rectangles.get(i).getY() + "," + altoAdi + ")]");
+				if (x >= rectangles.get(i).getX() - fallo && x <= anchoAdi + fallo &&
+					y >= rectangles.get(i).getY() - fallo && y <= altoAdi + fallo)
+				{
+					return i;
+				}
+			}
+			++i;
+		}
+		return N;
+	}
+	
+	private class MyInputProcessor extends InputListener implements InputProcessor {
+		
+		final int indiceAux;
+		private int coordenadaPulsadaX;
+		private int coordenadaPulsadaY;
+
+		
+		public MyInputProcessor (int indice, int x, int y) {
+			indiceAux = indice;
+			coordenadaPulsadaX = x;
+			coordenadaPulsadaY = y;
+		}
+
+		@Override
+		public boolean keyDown(int keycode) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean keyUp(int keycode) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean keyTyped(char character) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+			//boton
+			Gdx.app.log(fibooGame.LOG, "pulsado en " + indiceAux);
+			objetoActors.get(indiceAux).remove();
+			objetoMenuActors.get(indiceAux).remove();
+			--numerosRestantes;
+			if (numerosRestantes == 0) {
+				game.setScreen(new WinScreen(game));
+			}
+
+			coordenadaPulsadaX = Gdx.input.getX();
+			coordenadaPulsadaY = Gdx.input.getY();
+			Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+						
+			return true;
+			//return false;
+		}
+
+		@Override
+		public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean touchDragged(int screenX, int screenY, int pointer) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean mouseMoved(int screenX, int screenY) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean scrolled(int amount) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
 	}
 }

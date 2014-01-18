@@ -21,14 +21,12 @@ public class ObjetoMenuActor extends Actor {
 		// Ahora que tenemos la textura de la pala aprovechamos para cambiar
 		// el tama??o de este actor y hacer que coincida con el tama??o de
 		// la pala.
-		setSize(CameraScreen.coordenadasMundo.x*0.01f,
-				CameraScreen.coordenadasMundo.y*0.01f);
 		this.tipoInt = tipoInt;
 	}
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(texture, getX(), getY());
+		batch.draw(texture, getX(), getY(), CameraScreen.tamanoMundo.x*0.055f, CameraScreen.tamanoMundo.x*0.055f);
 	}
 
 	public int getTipoInt() {
