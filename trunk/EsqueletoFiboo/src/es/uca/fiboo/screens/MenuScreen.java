@@ -26,7 +26,7 @@ public class MenuScreen extends AbstractScreen {
 	
 	public MenuScreen(fibooGame game) {
 		super(game);
-		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuprincipal.png", Texture.class));
+		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		w = Gdx.graphics.getWidth();
@@ -63,14 +63,14 @@ public class MenuScreen extends AbstractScreen {
 		// Creamos botones, los posicionamos y los a�adimos al stage
 		entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
-		entrenarBoton.setX(w/4 - entrenarBoton.getWidth()/2);
-		entrenarBoton.setY(h/2 - entrenarBoton.getHeight()/2);
+		entrenarBoton.setX(w/(4f/3f) - entrenarBoton.getWidth()/2);
+		entrenarBoton.setY(h/(4f/2.7f) - entrenarBoton.getHeight()/2);
 		entrenarBoton.addListener(new MyClickListener(1)); 
 		
 		personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
 		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
-		personalizarBoton.setY(h/2 - personalizarBoton.getHeight()/2);
+		personalizarBoton.setY(h/3.3f - personalizarBoton.getHeight()/2);
 		personalizarBoton.addListener(new MyClickListener(2));
 		
 		stage.addActor(entrenarBoton);
