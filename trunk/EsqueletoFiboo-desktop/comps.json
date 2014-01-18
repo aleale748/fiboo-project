@@ -1,0 +1,122 @@
+[
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: ojos1,
+	disponible: true,
+	tipo: OJOS
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: ojos2,
+	disponible: true,
+	tipo: OJOS
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: ojos3,
+	disponible: true,
+	tipo: OJOS
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: pelonina1,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: pelonina2,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: pelonina3,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: pelonino1,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: pelonino2,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: pelonino3,
+	disponible: true,
+	tipo: PELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: disfraz1,
+	disponible: true,
+	tipo: DISFRAZ
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: disfraz2,
+	disponible: true,
+	tipo: DISFRAZ
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: gafas1,
+	disponible: true,
+	tipo: GAFAS
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: gafas2,
+	disponible: true,
+	tipo: GAFAS
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: bigote1,
+	disponible: true,
+	tipo: BIGOTE
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: bigote2,
+	disponible: true,
+	tipo: BIGOTE
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: adpelo1,
+	disponible: true,
+	tipo: ACCPELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: adpelo2,
+	disponible: true,
+	tipo: ACCPELO
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: boca2,
+	disponible: true,
+	tipo: BOCA
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: boca3,
+	disponible: true,
+	tipo: BOCA
+},
+{
+	class: es.uca.fiboo.personalizar.actores.Complemento,
+	imagePath: boca1,
+	disponible: true,
+	tipo: BOCA
+}
+]

@@ -1,0 +1,11 @@
+{
+avatar: {
+	data: [
+		{
+			imagePath: pelonina3,
+			disponible: true,
+			tipo: PELO
+		}
+	]
+}
+}
