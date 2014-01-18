@@ -200,7 +200,7 @@ public class RobotGameScreen extends AbstractScreen{
 		while (iter.hasNext()) {
 			DropObject raindrop = iter.next();
 			raindrop.y -= 100 * Gdx.graphics.getDeltaTime();
-			if (raindrop.y + (Gdx.graphics.getHeight()*0.1f)/2 < 0)
+			if (raindrop.y + raindrop.getHeight() < 0)
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
 				switch(raindrop.getTipo()){
