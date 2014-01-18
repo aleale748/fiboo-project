@@ -50,7 +50,7 @@ public class NaveActor extends Actor implements HealthActor {
 		
 		timer += delta;
 		if (timer > 2 && health < 0.99f) { 
-			health += 0.01f;
+			//health += 0.01f;
 			timer = 0;
 		}
 	}
