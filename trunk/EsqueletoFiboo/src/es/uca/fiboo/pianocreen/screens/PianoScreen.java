@@ -49,7 +49,7 @@ public class PianoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					//fibooGame.MANAGER.get("sonidos/fondo.ogg", Sound.class).loop();
 					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
@@ -59,7 +59,7 @@ public class PianoScreen extends AbstractScreen {
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
-		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
+		//fibooGame.MANAGER.get("sonidos/fondo.ogg", Sound.class).stop();
 		Gdx.app.log(fibooGame.LOG, "Constructor piano empieza;");
 		seleccion = 0;
 		h = Gdx.graphics.getHeight();
@@ -99,22 +99,22 @@ public class PianoScreen extends AbstractScreen {
 		imgHeight = imgWidth;
 		TextureRegion pantallaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/piano.png", Texture.class));
 		Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
-		doSound = fibooGame.MANAGER.get("pianogame/do.mp3", Sound.class);
-		reSound = fibooGame.MANAGER.get("pianogame/re.mp3", Sound.class);
-		miSound = fibooGame.MANAGER.get("pianogame/mi.mp3", Sound.class);
-		faSound = fibooGame.MANAGER.get("pianogame/fa.mp3", Sound.class);
-		solSound = fibooGame.MANAGER.get("pianogame/sol.mp3", Sound.class);
-		laSound = fibooGame.MANAGER.get("pianogame/la.mp3", Sound.class);
-		siSound = fibooGame.MANAGER.get("pianogame/si.mp3", Sound.class);
-		zdoSound = fibooGame.MANAGER.get("pianogame/zdo.mp3", Sound.class);
-		dotSound = fibooGame.MANAGER.get("pianogame/dotrom.mp3", Sound.class);
-		retSound = fibooGame.MANAGER.get("pianogame/retrom.mp3", Sound.class);
-		mitSound = fibooGame.MANAGER.get("pianogame/mitrom.mp3", Sound.class);
-		fatSound = fibooGame.MANAGER.get("pianogame/fatrom.mp3", Sound.class);
-		soltSound = fibooGame.MANAGER.get("pianogame/soltrom.mp3", Sound.class);
-		latSound = fibooGame.MANAGER.get("pianogame/latrom.mp3", Sound.class);
-		sitSound = fibooGame.MANAGER.get("pianogame/sitrom.mp3", Sound.class);
-		zdotSound = fibooGame.MANAGER.get("pianogame/zdotrom.mp3", Sound.class);
+		doSound = fibooGame.MANAGER.get("pianogame/do.ogg", Sound.class);
+		reSound = fibooGame.MANAGER.get("pianogame/re.ogg", Sound.class);
+		miSound = fibooGame.MANAGER.get("pianogame/mi.ogg", Sound.class);
+		faSound = fibooGame.MANAGER.get("pianogame/fa.ogg", Sound.class);
+		solSound = fibooGame.MANAGER.get("pianogame/sol.ogg", Sound.class);
+		laSound = fibooGame.MANAGER.get("pianogame/la.ogg", Sound.class);
+		siSound = fibooGame.MANAGER.get("pianogame/si.ogg", Sound.class);
+		zdoSound = fibooGame.MANAGER.get("pianogame/zdo.ogg", Sound.class);
+		dotSound = fibooGame.MANAGER.get("pianogame/dotrom.ogg", Sound.class);
+		retSound = fibooGame.MANAGER.get("pianogame/retrom.ogg", Sound.class);
+		mitSound = fibooGame.MANAGER.get("pianogame/mitrom.ogg", Sound.class);
+		fatSound = fibooGame.MANAGER.get("pianogame/fatrom.ogg", Sound.class);
+		soltSound = fibooGame.MANAGER.get("pianogame/soltrom.ogg", Sound.class);
+		latSound = fibooGame.MANAGER.get("pianogame/latrom.ogg", Sound.class);
+		sitSound = fibooGame.MANAGER.get("pianogame/sitrom.ogg", Sound.class);
+		zdotSound = fibooGame.MANAGER.get("pianogame/zdotrom.ogg", Sound.class);
 		
 		// Creamos botones, los posicionamos y los añadimos al stage
 		imagenPiano = new Image(pantallaBotonDrawable);

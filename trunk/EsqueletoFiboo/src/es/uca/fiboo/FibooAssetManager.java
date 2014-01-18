@@ -38,10 +38,6 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/minijuego.ogg", Music.class);
 	}
 	
-	public void loadMusicaFondo() {
-		load("sonidos/fondo.mp3", Sound.class);
-	}
-	
 	public void loadSonidos() {
 		//load("sonidos/ayuda.mp3", Sound.class);
 	}
@@ -335,41 +331,41 @@ public class FibooAssetManager extends AssetManager {
 	}
 	
 	public void loadPianoMiniGameSounds() {
-        load("pianogame/do.mp3", Sound.class);
-        load("pianogame/re.mp3", Sound.class);
-        load("pianogame/mi.mp3", Sound.class);
-        load("pianogame/fa.mp3", Sound.class);
-        load("pianogame/sol.mp3", Sound.class);
-        load("pianogame/la.mp3", Sound.class);
-        load("pianogame/si.mp3", Sound.class);
-        load("pianogame/zdo.mp3", Sound.class);
-        load("pianogame/dotrom.mp3", Sound.class);
-        load("pianogame/retrom.mp3", Sound.class);
-        load("pianogame/mitrom.mp3", Sound.class);
-        load("pianogame/fatrom.mp3", Sound.class);
-        load("pianogame/soltrom.mp3", Sound.class);
-        load("pianogame/latrom.mp3", Sound.class);
-        load("pianogame/sitrom.mp3", Sound.class);
-        load("pianogame/zdotrom.mp3", Sound.class);
+        load("pianogame/do.ogg", Sound.class);
+        load("pianogame/re.ogg", Sound.class);
+        load("pianogame/mi.ogg", Sound.class);
+        load("pianogame/fa.ogg", Sound.class);
+        load("pianogame/sol.ogg", Sound.class);
+        load("pianogame/la.ogg", Sound.class);
+        load("pianogame/si.ogg", Sound.class);
+        load("pianogame/zdo.ogg", Sound.class);
+        load("pianogame/dotrom.ogg", Sound.class);
+        load("pianogame/retrom.ogg", Sound.class);
+        load("pianogame/mitrom.ogg", Sound.class);
+        load("pianogame/fatrom.ogg", Sound.class);
+        load("pianogame/soltrom.ogg", Sound.class);
+        load("pianogame/latrom.ogg", Sound.class);
+        load("pianogame/sitrom.ogg", Sound.class);
+        load("pianogame/zdotrom.ogg", Sound.class);
 	}
 	
 	public void unloadPianoMiniGameSounds() {
-        unload("pianogame/do.mp3");
-        unload("pianogame/re.mp3");
-        unload("pianogame/mi.mp3");
-        unload("pianogame/fa.mp3");
-        unload("pianogame/sol.mp3");
-        unload("pianogame/la.mp3");
-        unload("pianogame/si.mp3");
-        unload("pianogame/zdo.mp3");
-        unload("pianogame/dotrom.mp3");
-        unload("pianogame/retrom.mp3");
-        unload("pianogame/mitrom.mp3");
-        unload("pianogame/fatrom.mp3");
-        unload("pianogame/soltrom.mp3");
-        unload("pianogame/latrom.mp3");
-        unload("pianogame/sitrom.mp3");
-        unload("pianogame/zdotrom.mp3");
+        unload("pianogame/do.ogg");
+        unload("pianogame/re.ogg");
+        unload("pianogame/mi.ogg");
+        unload("pianogame/fa.ogg");
+        unload("pianogame/sol.ogg");
+        unload("pianogame/la.ogg");
+        unload("pianogame/si.ogg");
+        unload("pianogame/zdo.ogg");
+        unload("pianogame/dotrom.ogg");
+        unload("pianogame/retrom.ogg");
+        unload("pianogame/mitrom.ogg");
+        unload("pianogame/fatrom.ogg");
+        unload("pianogame/soltrom.ogg");
+        unload("pianogame/latrom.ogg");
+        unload("pianogame/sitrom.ogg");
+        unload("pianogame/zdotrom.ogg");
 	}
 	
 	//Texturas de Saco minigame
