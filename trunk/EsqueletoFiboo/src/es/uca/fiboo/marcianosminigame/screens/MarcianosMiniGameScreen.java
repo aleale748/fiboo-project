@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -135,10 +136,11 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			stage.addActor(boton2);
 			
 			numeroMalInt = numeroMarcianosInt;
-			if (Math.random() > 0.5f && numeroMarcianosInt > 2)
-				numeroMalInt = (int) (Math.random() * (numeroMarcianosInt)) % (numeroMarcianosInt - 1);
+			if (Math.random() > 0.5f && numeroMarcianosInt != 0)
+				numeroMalInt = MathUtils.random(0,numeroMarcianosInt-1);
 			else
-				numeroMalInt = numeroMarcianosInt + (int) (Math.random() * (9 - numeroMarcianosInt - 1)) + 1 ;
+				if (numeroMarcianosInt != 9)
+				numeroMalInt = MathUtils.random(numeroMarcianosInt+1, 9);
 			numeroSolInt = numeroMarcianosInt;
 			numeroMal = new NumeroActor(numeroMalInt);
 			numeroSol = new NumeroActor(numeroSolInt);
@@ -267,8 +269,8 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 								naves.clear();
 								
 								//Gdx.app.log(fibooGame.LOG, "Generando n�mero de naves y de marcianos.");
-								numNaves = (int) (Math.random() * 10) % 5 + 1;
-								numMarcianos = numNaves + (int) (Math.random() * 10) % (9 - numNaves) + 1;
+								numNaves = MathUtils.random(1, 5);
+								numMarcianos = MathUtils.random(numNaves, 9);
 								numeroMarcianosInt = numMarcianos;
 								numeroNaves = new NumeroActor(numNaves);
 								numeroMarcianos = new NumeroActor(numeroMarcianosInt);

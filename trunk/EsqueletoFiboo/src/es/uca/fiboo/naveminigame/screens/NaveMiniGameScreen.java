@@ -12,6 +12,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -185,7 +186,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		
 		if (resuelto) {
 			Gdx.app.log("NaveMiniGame", "NEW - PalitosActor");
-			palitos = new PalitosActor((int) (Math.random() * 10) % 9);
+			palitos = new PalitosActor(MathUtils.random(0, 9));
 			palitos.setWidth(widthPalitos);
 			palitos.setHeight(heightPalitos);
 			palitos.setPosition(Gdx.graphics.getWidth()/2f - palitos.getWidth()/2f, palitos.getHeight()/10f - palitos.getHeight()/8f);
@@ -198,7 +199,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			
 			//Gdx.app.log(fibooGame.LOG, "Generando asteroides");
 			Gdx.app.log("NaveMiniGame", "NEW - AsteroideActor");
-			AsteroideActor asteroide = new AsteroideActor((int) (Math.random() * 10) % 9, (float) (puntuacion.size()/5f)*velocidadAsteroide + velocidadAsteroide);
+			AsteroideActor asteroide = new AsteroideActor(MathUtils.random(0, 9), (float) (puntuacion.size()/5f)*velocidadAsteroide + velocidadAsteroide);
 			aleatorio1 = (float) Math.random();
 			aleatorio2 = (float) Math.random();
 			if (Math.abs(aleatorio1 - aleatorio2) < 0.3f)
