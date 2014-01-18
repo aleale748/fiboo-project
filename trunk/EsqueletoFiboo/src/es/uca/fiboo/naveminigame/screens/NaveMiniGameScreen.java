@@ -403,7 +403,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							}
 						} else {
 							//Gdx.app.log(fibooGame.LOG, "Asteroide err���neo destruido");
-							nave.sumHealth(-0.2f);
+							nave.sumHealth(-0.4f);
 							golpe.play();
 							Gdx.app.log("NaveMiniGame", "NEW - ExplosionMalActor");
 							explosionesMal.add(new ExplosionMalActor());
