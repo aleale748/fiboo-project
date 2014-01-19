@@ -36,6 +36,7 @@ public class TallerScreen extends AbstractScreen {
 	private int tornilloActual;
 	private Rectangle barrigaRobot;
 	private ArrayList<Texture> tornillosElegidos;
+	private int numTornillosUsados;
 	private Sound bien;
 	private Sound mal;
 	private fibooGame game;
@@ -56,6 +57,7 @@ public class TallerScreen extends AbstractScreen {
 		tornillosBotones = new ArrayList<ImageButton>();
 		barrigaRobot = new Rectangle();
 		tornillosElegidos = new ArrayList<Texture>();
+		numTornillosUsados = tornillosUsados.size();
 
 		
 		//Inicializamos los objetos de los ArrayList
@@ -104,6 +106,9 @@ public class TallerScreen extends AbstractScreen {
 						tornillosTocados.set(tornilloActual, false);
 						if(tornillosElegidos.size() < 4) {
 							tornillosElegidos.add(tornillos.get(tornilloActual));
+							if(tornillosUsados.contains(tornillos.get(tornilloActual))) { //Si lo ha puesto lo borra ya
+								tornillosUsados.remove(tornillos.get(tornilloActual));
+							}
 						}
 					}
 					
@@ -210,7 +215,7 @@ public class TallerScreen extends AbstractScreen {
 		
 		batch.begin();
 		
-		if((tornillosUsados.size() == tornillosElegidos.size()) && tornillosUsados.containsAll(tornillosElegidos)) { //Ha acertado
+		if(tornillosElegidos.size() == numTornillosUsados && tornillosUsados.isEmpty()) { //Ha acertado
 			batch.draw(robot_alegre, 0, 0, w, h);
 			bien.play();
 			
@@ -230,7 +235,7 @@ public class TallerScreen extends AbstractScreen {
 			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
 		}
 		
-		else if(tornillosUsados.size() == tornillosElegidos.size() && !tornillosUsados.containsAll(tornillosElegidos)) {
+		else if(tornillosElegidos.size() == numTornillosUsados && !tornillosUsados.isEmpty()) {
 			batch.draw(robot_triste, 0, 0, w, h);
 			mal.play();
 			
