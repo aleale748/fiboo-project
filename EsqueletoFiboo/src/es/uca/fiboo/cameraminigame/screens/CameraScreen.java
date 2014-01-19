@@ -27,10 +27,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.cameraminigame.actors.*;
-import es.uca.fiboo.naveminigame.screens.WinScreen;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import es.uca.fiboo.screens.MenuScreen;
+import es.uca.fiboo.screens.WinScreen;
 
 public class CameraScreen extends AbstractScreen {
 	
