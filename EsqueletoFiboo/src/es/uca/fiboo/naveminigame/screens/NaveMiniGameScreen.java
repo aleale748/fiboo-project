@@ -41,7 +41,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	float widthNave = 256, heightNave = 135, widthPalitos = 1024/2f, heightPalitos = 256/2f, 
 			widthBullets = 38, heightBullets = 19, widthAsteroides = 128, heightAsteroides = 128, 
 			widthExplosiones = 256, heightExplosiones = 256, widthPuntuacion = 42, 
-			heightPuntuacion = 40, widthBarra = 128, heightBarra = 16, 
+			heightPuntuacion = 40, widthBasePunt = 135, 
+					heightBasePunt = 90,widthBarra = 128, heightBarra = 16, 
 			widthPad = 119, heightPad = 57, velocidadAsteroide, velocidadBala, 
 			escala;
 	Sound musicaFondo, disparo, explosion, golpe;
@@ -72,10 +73,12 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	private List<ExplosionActor> explosiones;
 	private List<ExplosionMalActor> explosionesMal;
 	private PalitosActor palitos;
-	
+	Image baseestrellas;
+	float h, w;
 	@Override
 	public void show() {
-		
+		w= Gdx.graphics.getWidth();
+		h= Gdx.graphics.getHeight(); 
 		velocidadAsteroide = 100 * Gdx.graphics.getDeltaTime();
 		velocidadBala = 500 * Gdx.graphics.getDeltaTime();
 		
@@ -102,6 +105,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+		baseestrellas = new Image(fibooGame.MANAGER.get("portada/base.png", Texture.class));
+		baseestrellas.setPosition(w*0.12f - widthBasePunt/2f, h-heightBasePunt/2f);
+		baseestrellas.setWidth(widthBasePunt);
+		baseestrellas.setHeight(heightBasePunt);
+		stage.addActor(baseestrellas);
 		
 		//Gdx.app.log(fibooGame.LOG, "Imagen de fondo añadida");
 		
@@ -161,7 +169,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		puntuacionVacia = new ArrayList<EmptyStarActor>();
 		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.add(new EmptyStarActor());
-			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, h - heightPuntuacion*1.1f);
 			stage.addActor(puntuacionVacia.get(i));
 		}
 		
@@ -191,7 +199,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			palitos = new PalitosActor(MathUtils.random(0, 9));
 			palitos.setWidth(widthPalitos);
 			palitos.setHeight(heightPalitos);
-			palitos.setPosition(Gdx.graphics.getWidth()/2f - palitos.getWidth()/2f, palitos.getHeight()/10f - palitos.getHeight()/8f);
+			palitos.setPosition(w/2f - palitos.getWidth()/2f, palitos.getHeight()/10f - palitos.getHeight()/8f);
 			stage.addActor(palitos);
 			resuelto = false;
 		}
@@ -216,9 +224,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			asteroide.setHeight(heightAsteroides);
 			random = (float) Math.random();
 			if (random > 0.5)
-				asteroide.setPosition(Gdx.graphics.getWidth() + Gdx.graphics.getWidth()*0.25f, Gdx.graphics.getHeight() * (aleatorio1 * 0.6f + 0.1f));
+				asteroide.setPosition(w + w*0.25f, h * (aleatorio1 * 0.6f + 0.1f));
 			else 
-				asteroide.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio1 * 0.6f + 0.1f));
+				asteroide.setPosition(w, h * (aleatorio1 * 0.6f + 0.1f));
 			asteroide.velocidad*= escala*1.001f;
 			asteroide.bb.x = asteroide.getX();
 			asteroide.bb.y = asteroide.getY();
@@ -230,9 +238,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				asteroidesol.setWidth(widthAsteroides);
 				asteroidesol.setHeight(heightAsteroides);
 				if (random > 0.5)
-					asteroidesol.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
+					asteroidesol.setPosition(w, h * (aleatorio2 * 0.6f + 0.1f));
 				else 
-					asteroidesol.setPosition(Gdx.graphics.getWidth() + Gdx.graphics.getWidth()*0.25f, Gdx.graphics.getHeight() * (aleatorio2 * 0.6f + 0.1f));
+					asteroidesol.setPosition(w + w*0.25f, h * (aleatorio2 * 0.6f + 0.1f));
 				asteroidesol.velocidad *= escala*1.001f;
 				asteroidesol.bb.x = asteroidesol.getX();
 				asteroidesol.bb.y = asteroidesol.getY();
@@ -323,11 +331,11 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		//Gdx.app.log(fibooGame.LOG, "Recolocando estrellas");
 		
 		for(int i = 0; i < puntuacionVacia.size(); ++i) {
-			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, h - heightPuntuacion*1.1f);
 		}
 		
 		for(int i = 0; i < puntuacion.size(); ++i) {
-			puntuacion.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			puntuacion.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, h - heightPuntuacion*1.1f);
 		}
 		
 		//Gdx.app.log(fibooGame.LOG, "Recolocación de estrellas terminada");
@@ -384,7 +392,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							palitos.remove();
 							Gdx.app.log("NaveMiniGame", "NEW - StarActor");
 							puntuacion.add(new StarActor());
-							puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+							puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, h - heightPuntuacion*1.1f);
 							puntuacion.get(puntuacion.size() - 1).setWidth(widthPuntuacion);
 							puntuacion.get(puntuacion.size() - 1).setHeight(heightPuntuacion);
 							stage.addActor(puntuacion.get(puntuacion.size() - 1));
@@ -437,7 +445,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void resize(int width, int height) {
-		escala = ((float) (Gdx.graphics.getWidth() / 4f) / widthNave);
+		escala = ((float) (w / 4f) / widthNave);
 		widthNave *= escala;
 		heightNave *= escala;
 		widthAsteroides *= escala;
@@ -447,6 +455,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		widthPuntuacion *= escala;
 		heightPuntuacion *= escala;
 		widthBarra *= escala;
+		heightBasePunt *= escala;
+		widthBasePunt *= escala;
 		heightBarra *= escala;
 		widthPalitos *= escala;
 		heightPalitos *= escala;
@@ -467,12 +477,12 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		barraNave.setWidth(widthBarra*2);
 		barraEscudo.setHeight(heightBarra*2);
 		barraEscudo.setWidth(widthBarra*2);
-		vidaNave.setPosition(Gdx.graphics.getWidth() - widthBarra*2.2f, Gdx.graphics.getHeight()*0.94f);
-		vidaEscudo.setPosition(Gdx.graphics.getWidth() - widthBarra*2.2f, Gdx.graphics.getHeight()*0.9f);
-		barraNave.setPosition(Gdx.graphics.getWidth() - widthBarra*2.2f, Gdx.graphics.getHeight()*0.94f);
-		barraEscudo.setPosition(Gdx.graphics.getWidth() - widthBarra*2.2f, Gdx.graphics.getHeight()*0.9f);
-		nave.setPosition(Gdx.graphics.getWidth()*0.01f, Gdx.graphics.getHeight()/2f - heightNave/2.5f);
-		padShoot.setPosition(Gdx.graphics.getWidth() * 0.75f, Gdx.graphics.getHeight() * 0.01f);
+		vidaNave.setPosition(w - widthBarra*2.2f, h*0.94f);
+		vidaEscudo.setPosition(w - widthBarra*2.2f, h*0.9f);
+		barraNave.setPosition(w - widthBarra*2.2f, h*0.94f);
+		barraEscudo.setPosition(w - widthBarra*2.2f, h*0.9f);
+		nave.setPosition(w*0.01f, h/2f - heightNave/2.5f);
+		padShoot.setPosition(w * 0.75f, h * 0.01f);
 
 		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.get(i).setWidth(widthPuntuacion);
