@@ -18,13 +18,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
-import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class CreditosScreen extends AbstractScreen {
 
 	private Image pantallaAyuda;
 	private Image imgFondo;
-	private Image playBoton;
 	
 	public CreditosScreen(FibooGame game) {
 		super(game);

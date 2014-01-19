@@ -19,7 +19,6 @@ public class MarcianoActor extends Actor {
 	private TextureRegion marciano;
 	public Rectangle bb;
 	private boolean colocado;
-	private float posicionX, posicionY;
 	private NaveActor nave;
 	
 	public MarcianoActor() {
@@ -70,8 +69,6 @@ public class MarcianoActor extends Actor {
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			if (!colocado) {
 				FibooGame.MANAGER.get("sonidos/guala.ogg", Sound.class).play();
-				posicionX = getX();
-				posicionY = getY();
 				float dx = Gdx.input.getX() - getWidth() * 0.5f;
 				float dy = Gdx.input.getY() + getHeight() * 0.5f;
 
@@ -95,8 +92,6 @@ public class MarcianoActor extends Actor {
 			if (nave!=null && !nave.colocado() && marciano.bb.overlaps(nave.bb)) {
 				Gdx.app.log(FibooGame.LOG, "Else de touchup empezado.");
 				marciano.addAction(Actions.moveTo(nave.getX(), nave.getY(), 0.5f));
-				posicionX = getX();
-				posicionY = getY();
 				marciano.colocar();
 				nave.colocar();
 				Gdx.app.log(FibooGame.LOG, "Else terminado.");
