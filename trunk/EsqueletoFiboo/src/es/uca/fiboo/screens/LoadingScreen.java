@@ -57,7 +57,7 @@ public class LoadingScreen extends AbstractScreen {
 		Image bg = new Image(bgT);
 		bg.setFillParent(true);
 		
-		//Botón iniciar juego
+		//Botï¿½n iniciar juego
 		Texture boton = fibooGame.MANAGER.get("portada/playportada.png", Texture.class); 
         boton.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         playBoton = new Image(boton);

@@ -40,6 +40,8 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/minijuego.ogg", Music.class);
 		load("portada/win.png", Texture.class);
 		load("portada/gameover.png", Texture.class);
+		load("portada/info.png", Texture.class);
+		load("portada/creditos.png", Texture.class);
 	}
 	
 	public void loadSonidos() {
