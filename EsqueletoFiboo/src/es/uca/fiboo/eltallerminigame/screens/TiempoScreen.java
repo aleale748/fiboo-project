@@ -7,7 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import java.util.ArrayList;
@@ -25,9 +25,9 @@ public class TiempoScreen extends AbstractScreen {
 	private ArrayList<Texture> numeros;
 	private int numeroTornillos;
 	private int estado;
-	fibooGame game;
+	FibooGame game;
 	
-	public TiempoScreen(fibooGame game, int estado) {
+	public TiempoScreen(FibooGame game, int estado) {
 		super(game);
 		
 		this.game = game;
@@ -40,37 +40,37 @@ public class TiempoScreen extends AbstractScreen {
 
 		
 		//Cargamos el fondo del screen
-		robot_triste = fibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
-		robot_alegre = fibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
-		robot_normal = fibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
+		robot_triste = FibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
+		robot_alegre = FibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
+		robot_normal = FibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		
 		//Cargamos el vector de tornillos
 		tornillos = new ArrayList<Texture>();
 		tornillosUsados = new ArrayList<Texture>();
 		numeros = new ArrayList<Texture>();
 		
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo2.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo2azul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo2rojo.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo6.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo6azul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/tornillo6rojo.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/circuitogris.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/circuitoazul.png", Texture.class));
-		tornillos.add(fibooGame.MANAGER.get("sacominigame/circuitorojo.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/tornillo2.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/tornillo2azul.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/tornillo2rojo.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/tornillo6.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/tornillo6azul.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/tornillo6rojo.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/circuitogris.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/circuitoazul.png", Texture.class));
+		tornillos.add(FibooGame.MANAGER.get("sacominigame/circuitorojo.png", Texture.class));
 		
 		//Cargamos los numeros
 		
-		numeros.add(fibooGame.MANAGER.get("sacominigame/0.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/1.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/2.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/3.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/4.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/5.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/6.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/7.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/8.png", Texture.class));
-		numeros.add(fibooGame.MANAGER.get("sacominigame/9.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/0.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/1.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/2.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/3.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/4.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/5.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/6.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/7.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/8.png", Texture.class));
+		numeros.add(FibooGame.MANAGER.get("sacominigame/9.png", Texture.class));
 		
 		//Sacamos el numero de objetos (aleatorio) pueden salir de 1 hasta 4 objetos
 		
@@ -186,10 +186,10 @@ public class TiempoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-        			fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
-					fibooGame.MANAGER.unloadSacoMiniGameSounds();
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+        			FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
+					FibooGame.MANAGER.unloadSacoMiniGameSounds();
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
 				}

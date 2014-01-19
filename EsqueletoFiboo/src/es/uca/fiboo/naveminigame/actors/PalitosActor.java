@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class PalitosActor extends Actor {
 
@@ -13,7 +13,7 @@ public class PalitosActor extends Actor {
 	private int num;
 	
 	public PalitosActor(int num) {
-		palitos = new TextureRegion(fibooGame.MANAGER.get("naveminigame/palitos" + Integer.toString(num) + ".png", Texture.class));
+		palitos = new TextureRegion(FibooGame.MANAGER.get("naveminigame/palitos" + Integer.toString(num) + ".png", Texture.class));
 		setSize(palitos.getRegionWidth()/2f, palitos.getRegionHeight()/2f);
 		this.num = num;
 	}

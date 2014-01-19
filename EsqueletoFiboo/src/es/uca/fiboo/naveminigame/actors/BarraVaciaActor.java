@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class BarraVaciaActor extends Actor {
 	
 	private TextureRegion barra;
 	
 	public BarraVaciaActor() {
-		barra = new TextureRegion(fibooGame.MANAGER.get("naveminigame/vidaVacia.png", Texture.class));
+		barra = new TextureRegion(FibooGame.MANAGER.get("naveminigame/vidaVacia.png", Texture.class));
 		setSize(barra.getRegionWidth(), barra.getRegionHeight());
 	}
 	

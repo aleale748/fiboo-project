@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
@@ -43,7 +43,7 @@ public class PianoScreen extends AbstractScreen {
 	boolean mute, isplay, isstop, ismute, ispause;
 	float h, w;
 	
-	public PianoScreen(final fibooGame game) {
+	public PianoScreen(final FibooGame game) {
 		super(game);
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
@@ -60,11 +60,11 @@ public class PianoScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		//fibooGame.MANAGER.get("sonidos/fondo.ogg", Sound.class).stop();
-		Gdx.app.log(fibooGame.LOG, "Constructor piano empieza;");
+		Gdx.app.log(FibooGame.LOG, "Constructor piano empieza;");
 		seleccion = 0;
 		h = Gdx.graphics.getHeight();
 		w = Gdx.graphics.getWidth();
-		Gdx.app.log(fibooGame.LOG, "Constructor piano ok;");
+		Gdx.app.log(FibooGame.LOG, "Constructor piano ok;");
 		
 		alturapiano= h - h*0.68359375f;
 		alturanotas= h * 0.7f;
@@ -87,34 +87,34 @@ public class PianoScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		Gdx.app.log(fibooGame.LOG, "super.show() ok;");
-		fondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
-		basecontroles = fibooGame.MANAGER.get("portada/base.png", Texture.class);
+		Gdx.app.log(FibooGame.LOG, "super.show() ok;");
+		fondo = FibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
+		basecontroles = FibooGame.MANAGER.get("portada/base.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		basecontroles.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		anchopiano = w;
 
-		Gdx.app.log(fibooGame.LOG, "multiplexer ok;");
+		Gdx.app.log(FibooGame.LOG, "multiplexer ok;");
 		imgWidth = (Gdx.graphics.getWidth() * 0.2f)/2f;
 		imgHeight = imgWidth;
-		TextureRegion pantallaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/piano.png", Texture.class));
+		TextureRegion pantallaBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/piano.png", Texture.class));
 		Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
-		doSound = fibooGame.MANAGER.get("pianogame/do.ogg", Sound.class);
-		reSound = fibooGame.MANAGER.get("pianogame/re.ogg", Sound.class);
-		miSound = fibooGame.MANAGER.get("pianogame/mi.ogg", Sound.class);
-		faSound = fibooGame.MANAGER.get("pianogame/fa.ogg", Sound.class);
-		solSound = fibooGame.MANAGER.get("pianogame/sol.ogg", Sound.class);
-		laSound = fibooGame.MANAGER.get("pianogame/la.ogg", Sound.class);
-		siSound = fibooGame.MANAGER.get("pianogame/si.ogg", Sound.class);
-		zdoSound = fibooGame.MANAGER.get("pianogame/zdo.ogg", Sound.class);
-		dotSound = fibooGame.MANAGER.get("pianogame/dotrom.ogg", Sound.class);
-		retSound = fibooGame.MANAGER.get("pianogame/retrom.ogg", Sound.class);
-		mitSound = fibooGame.MANAGER.get("pianogame/mitrom.ogg", Sound.class);
-		fatSound = fibooGame.MANAGER.get("pianogame/fatrom.ogg", Sound.class);
-		soltSound = fibooGame.MANAGER.get("pianogame/soltrom.ogg", Sound.class);
-		latSound = fibooGame.MANAGER.get("pianogame/latrom.ogg", Sound.class);
-		sitSound = fibooGame.MANAGER.get("pianogame/sitrom.ogg", Sound.class);
-		zdotSound = fibooGame.MANAGER.get("pianogame/zdotrom.ogg", Sound.class);
+		doSound = FibooGame.MANAGER.get("pianogame/do.ogg", Sound.class);
+		reSound = FibooGame.MANAGER.get("pianogame/re.ogg", Sound.class);
+		miSound = FibooGame.MANAGER.get("pianogame/mi.ogg", Sound.class);
+		faSound = FibooGame.MANAGER.get("pianogame/fa.ogg", Sound.class);
+		solSound = FibooGame.MANAGER.get("pianogame/sol.ogg", Sound.class);
+		laSound = FibooGame.MANAGER.get("pianogame/la.ogg", Sound.class);
+		siSound = FibooGame.MANAGER.get("pianogame/si.ogg", Sound.class);
+		zdoSound = FibooGame.MANAGER.get("pianogame/zdo.ogg", Sound.class);
+		dotSound = FibooGame.MANAGER.get("pianogame/dotrom.ogg", Sound.class);
+		retSound = FibooGame.MANAGER.get("pianogame/retrom.ogg", Sound.class);
+		mitSound = FibooGame.MANAGER.get("pianogame/mitrom.ogg", Sound.class);
+		fatSound = FibooGame.MANAGER.get("pianogame/fatrom.ogg", Sound.class);
+		soltSound = FibooGame.MANAGER.get("pianogame/soltrom.ogg", Sound.class);
+		latSound = FibooGame.MANAGER.get("pianogame/latrom.ogg", Sound.class);
+		sitSound = FibooGame.MANAGER.get("pianogame/sitrom.ogg", Sound.class);
+		zdotSound = FibooGame.MANAGER.get("pianogame/zdotrom.ogg", Sound.class);
 		
 		// Creamos botones, los posicionamos y los a�adimos al stage
 		imagenPiano = new Image(pantallaBotonDrawable);
@@ -122,7 +122,7 @@ public class PianoScreen extends AbstractScreen {
 		imagenPiano.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + imagenPiano.getClass().getSimpleName()+" Y: "+Gdx.input.getY()+"tres cuartos:"+alturapiano);
+				Gdx.app.log(FibooGame.LOG, "Touching down on " + imagenPiano.getClass().getSimpleName()+" Y: "+Gdx.input.getY()+"tres cuartos:"+alturapiano);
 				
 				float click = Gdx.input.getX();
 				if(Gdx.input.getY() > alturapiano) {
@@ -168,13 +168,13 @@ public class PianoScreen extends AbstractScreen {
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + imagenPiano.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + imagenPiano.getClass().getSimpleName());
 				}
 		});
 		stage.addActor(imagenPiano);
-		TextureRegion logopianoBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/logopiano.png", Texture.class));
+		TextureRegion logopianoBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/logopiano.png", Texture.class));
 		Drawable logopianoBotonDrawable = new TextureRegionDrawable(logopianoBotonRegion);
-		TextureRegion logotrompetaBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/logotrompeta.png", Texture.class));
+		TextureRegion logotrompetaBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/logotrompeta.png", Texture.class));
 		Drawable logotrompetaBotonDrawable = new TextureRegionDrawable(logotrompetaBotonRegion);
 		logopiano = new ImageButton(logopianoBotonDrawable);
 		logopiano.setSize(imgWidth, imgHeight);
@@ -183,13 +183,13 @@ public class PianoScreen extends AbstractScreen {
 		logopiano.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + logopiano.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on " + logopiano.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + logopiano.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + logopiano.getClass().getSimpleName());
 						seleccion = 0;
 				}
 		});
@@ -201,26 +201,26 @@ public class PianoScreen extends AbstractScreen {
 		logotrompeta.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on " + logotrompeta.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on " + logotrompeta.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + logotrompeta.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + logotrompeta.getClass().getSimpleName());
 						seleccion= 1;
 				}
 		});
 		stage.addActor(logotrompeta);
-		TextureRegion playBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/play.png", Texture.class));
+		TextureRegion playBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/play.png", Texture.class));
 		Drawable playBotonDrawable = new TextureRegionDrawable(playBotonRegion);
-		TextureRegion stopBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/stop.png", Texture.class));
+		TextureRegion stopBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/stop.png", Texture.class));
 		Drawable stopBotonDrawable = new TextureRegionDrawable(stopBotonRegion);
-		TextureRegion pauseBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/pause.png", Texture.class));
+		TextureRegion pauseBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/pause.png", Texture.class));
 		Drawable pauseBotonDrawable = new TextureRegionDrawable(pauseBotonRegion);
-		TextureRegion sonidoBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/sonido.png", Texture.class));
+		TextureRegion sonidoBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/sonido.png", Texture.class));
 		Drawable sonidoBotonDrawable = new TextureRegionDrawable(sonidoBotonRegion);
-		TextureRegion silencioBotonRegion = new TextureRegion(fibooGame.MANAGER.get("pianogame/mute.png", Texture.class));
+		TextureRegion silencioBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/mute.png", Texture.class));
 		Drawable silencioBotonDrawable = new TextureRegionDrawable(silencioBotonRegion);
 		
 		play = new ImageButton(playBotonDrawable);
@@ -229,13 +229,13 @@ public class PianoScreen extends AbstractScreen {
 		play.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on play" + play.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on play" + play.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + play.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + play.getClass().getSimpleName());
 						isplay= true;
 						ispause= false;
 				}
@@ -248,13 +248,13 @@ public class PianoScreen extends AbstractScreen {
 		stop.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on stop" + stop.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on stop" + stop.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + stop.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + stop.getClass().getSimpleName());
 				isplay = false;
 				ispause = false;
 				nota = 0;
@@ -271,13 +271,13 @@ public class PianoScreen extends AbstractScreen {
 		pause.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on pause" + pause.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on pause" + pause.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + pause.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + pause.getClass().getSimpleName());
 				isplay = false;
 				ispause = true;
 				}
@@ -290,13 +290,13 @@ public class PianoScreen extends AbstractScreen {
 		sonido.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on pause" + sonido.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on pause" + sonido.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + sonido.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + sonido.getClass().getSimpleName());
 				ismute = false;
 			}
 		});
@@ -308,13 +308,13 @@ public class PianoScreen extends AbstractScreen {
 		silencio.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching down on silencio" + silencio.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching down on silencio" + silencio.getClass().getSimpleName());
 				return true;
 			}
 			
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Touching up on " + silencio.getClass().getSimpleName());
+				Gdx.app.log(FibooGame.LOG, "Touching up on " + silencio.getClass().getSimpleName());
 				ismute = true;
 			}
 		});
@@ -380,9 +380,9 @@ public class PianoScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.unloadPianoMiniGameSounds();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+		FibooGame.MANAGER.unloadPianoMiniGameSounds();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 
@@ -392,7 +392,7 @@ public class PianoScreen extends AbstractScreen {
 		TextureRegion[] numerosverdes;
 		
 		public Numeros(){
-			numverdes = fibooGame.MANAGER.get("robotgame/numerosverdes.png", Texture.class);   
+			numverdes = FibooGame.MANAGER.get("robotgame/numerosverdes.png", Texture.class);   
 			TextureRegion[][] tmp = TextureRegion.split(numverdes, numverdes.getWidth() / FRAME_COLS, numverdes.getHeight()); 
 			numerosverdes = new TextureRegion[FRAME_COLS];
 			int index = 0;

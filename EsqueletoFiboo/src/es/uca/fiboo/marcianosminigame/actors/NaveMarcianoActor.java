@@ -6,14 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class NaveMarcianoActor extends Actor {
 	
 	private TextureRegion nave;
 	
 	public NaveMarcianoActor() {
-		nave = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/naveMarciano.png", Texture.class));
+		nave = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/naveMarciano.png", Texture.class));
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 	}
 	

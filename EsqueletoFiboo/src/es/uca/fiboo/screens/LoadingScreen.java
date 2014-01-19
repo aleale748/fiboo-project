@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class LoadingScreen extends AbstractScreen {
 
@@ -28,7 +28,7 @@ public class LoadingScreen extends AbstractScreen {
 	private NinePatch loaderFull;
 	private float w, h;
 	
-	public LoadingScreen(fibooGame game) {
+	public LoadingScreen(FibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
 		w = Gdx.graphics.getWidth();
@@ -39,27 +39,27 @@ public class LoadingScreen extends AbstractScreen {
 	public void show() {
 		super.show();
 		
-		fibooGame.MANAGER.load("portada/portadafiboo.png", Texture.class);
-		fibooGame.MANAGER.load("portada/playportada.png", Texture.class);
-		fibooGame.MANAGER.load("loading/vacio.png", Texture.class);
-		fibooGame.MANAGER.load("loading/full.png", Texture.class);
-		fibooGame.MANAGER.finishLoading();
+		FibooGame.MANAGER.load("portada/portadafiboo.png", Texture.class);
+		FibooGame.MANAGER.load("portada/playportada.png", Texture.class);
+		FibooGame.MANAGER.load("loading/vacio.png", Texture.class);
+		FibooGame.MANAGER.load("loading/full.png", Texture.class);
+		FibooGame.MANAGER.finishLoading();
 		
 		//Barra de carga y texto cargando...
 		font = new BitmapFont();
-		Texture vacioT = fibooGame.MANAGER.get("loading/vacio.png", Texture.class);
-		Texture fullT = fibooGame.MANAGER.get("loading/full.png", Texture.class);
+		Texture vacioT = FibooGame.MANAGER.get("loading/vacio.png", Texture.class);
+		Texture fullT = FibooGame.MANAGER.get("loading/full.png", Texture.class);
 		loaderVacio = new NinePatch(new TextureRegion(vacioT, 24, 24), 8, 8, 8, 8);
 		loaderFull = new NinePatch(new TextureRegion(fullT, 24, 24), 8, 8, 8, 8);
 		
 		//Fondo de pantalla
-		Texture bgT = fibooGame.MANAGER.get("portada/portadafiboo.png", Texture.class);
+		Texture bgT = FibooGame.MANAGER.get("portada/portadafiboo.png", Texture.class);
 		bgT.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image bg = new Image(bgT);
 		bg.setFillParent(true);
 		
 		//Bot�n iniciar juego
-		Texture boton = fibooGame.MANAGER.get("portada/playportada.png", Texture.class); 
+		Texture boton = FibooGame.MANAGER.get("portada/playportada.png", Texture.class); 
         boton.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         playBoton = new Image(boton);
         playBoton.setVisible(false);
@@ -78,9 +78,11 @@ public class LoadingScreen extends AbstractScreen {
                         @Override
                         public boolean act(float delta) {
                         	if(isFisrtGame()) {
+                        		Gdx.app.log(getName(), "cargando choose screen");
                         		game.setScreen(new ChooseScreen(game));
                         	}
                         	else {
+                        		Gdx.app.log(getName(), "cargando menu screen");
                         		game.setScreen(new MenuScreen(game));
                         	}
                             return true;
@@ -96,16 +98,16 @@ public class LoadingScreen extends AbstractScreen {
 		//fibooGame.MANAGER.loadMusicaFondo();
 		//fibooGame.MANAGER.finishLoading();
 		//fibooGame.MANAGER.loadSonidos();
-		fibooGame.MANAGER.loadCameraMiniGameTextures();
+		FibooGame.MANAGER.loadCameraMiniGameTextures();
 		//fibooGame.MANAGER.loadRobotMiniGameTextures();
-		fibooGame.MANAGER.loadPianoMiniGameTextures();
-		fibooGame.MANAGER.loadNaveMiniGameTextures();
-		fibooGame.MANAGER.loadMenuTextures();
-		fibooGame.MANAGER.loadRobotMiniGameSounds();
-		fibooGame.MANAGER.loadSacoMiniGameTextures();
-		fibooGame.MANAGER.loadMarcianosMiniGameSounds();
-		fibooGame.MANAGER.loadPersonalizacionTextures();
-		fibooGame.MANAGER.loadAscensorGameTextures();
+		FibooGame.MANAGER.loadPianoMiniGameTextures();
+		FibooGame.MANAGER.loadNaveMiniGameTextures();
+		FibooGame.MANAGER.loadMenuTextures();
+		FibooGame.MANAGER.loadRobotMiniGameSounds();
+		FibooGame.MANAGER.loadSacoMiniGameTextures();
+		FibooGame.MANAGER.loadMarcianosMiniGameSounds();
+		FibooGame.MANAGER.loadPersonalizacionTextures();
+		FibooGame.MANAGER.loadAscensorGameTextures();
 		//fibooGame.MANAGER.get("sonidos/fondo.mp3",Sound.class).loop();
 	}
 
@@ -116,15 +118,15 @@ public class LoadingScreen extends AbstractScreen {
 		
 		stage.draw();
 		
-		if(fibooGame.MANAGER.update()) {
+		if(FibooGame.MANAGER.update()) {
 			if(!playBoton.isVisible()) {
-				fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-				fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+				FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+				FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 				playBoton.setVisible(true);
 			}
 		}
 		else {
-			float progress = fibooGame.MANAGER.getProgress();
+			float progress = FibooGame.MANAGER.getProgress();
 			batch.begin();
 			
 			loaderVacio.draw(batch, w/4, h/4 - h/20, w/2, h/10);
@@ -134,7 +136,7 @@ public class LoadingScreen extends AbstractScreen {
 			
 			font.drawMultiLine(batch, "Cargando", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
 			batch.end();
-			Gdx.app.log(getName(), "Cargado al: " + progress + "%");
+			//Gdx.app.log(getName(), "Cargado al: " + progress + "%");
 		}
 
 		stage.act(delta);
@@ -149,10 +151,11 @@ public class LoadingScreen extends AbstractScreen {
 	
 
 	private boolean isFisrtGame() {
-		FileHandle savedData = Gdx.files.local("saveData.json");
-		if(savedData.exists())
+		FileHandle savedData = Gdx.files.local("savedData.json");
+		if(savedData.exists()) {
+			Gdx.app.log(getName(), "Save data Existe");
 			return false;
-		
+		}
 		return true;
 	}
 

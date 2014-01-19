@@ -2,16 +2,16 @@ package es.uca.fiboo.pianocreen.screens;
 
 import com.badlogic.gdx.audio.Music;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractLoadingScreen;
 
 public class InicioPianoGameScreen extends AbstractLoadingScreen {
 	
-		public InicioPianoGameScreen(fibooGame game) {
+		public InicioPianoGameScreen(FibooGame game) {
 			super(game);	
-			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
-			fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
-			fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).play();
+			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
+			FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
+			FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).play();
 		}
 		
 		@Override
@@ -21,7 +21,7 @@ public class InicioPianoGameScreen extends AbstractLoadingScreen {
 		
 		@Override
 		public void loadAssets() {
-			fibooGame.MANAGER.loadPianoMiniGameSounds();
+			FibooGame.MANAGER.loadPianoMiniGameSounds();
 		}
 		
 		@Override

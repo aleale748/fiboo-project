@@ -6,7 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 /*
  * Clase base para todas las Screens
@@ -15,9 +15,9 @@ public abstract class AbstractScreen implements Screen {
 
 	protected final Stage stage;
 	protected final SpriteBatch batch;
-	protected final fibooGame game;
+	protected final FibooGame game;
 	
-	public AbstractScreen(fibooGame game) {
+	public AbstractScreen(FibooGame game) {
 		this.game = game;
 		this.batch = new SpriteBatch();
 		this.stage = new Stage(0, 0, true);
@@ -40,7 +40,7 @@ public abstract class AbstractScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		Gdx.app.log(fibooGame.LOG, "'Resizing' screen: " + getName() + " to: " + width + " x " + height);
+		Gdx.app.log(FibooGame.LOG, "'Resizing' screen: " + getName() + " to: " + width + " x " + height);
 		
 		// Redimensiona el stage
 		stage.setViewport(width, height, true);
@@ -48,27 +48,27 @@ public abstract class AbstractScreen implements Screen {
 
 	@Override
 	public void show() {
-		Gdx.app.log(fibooGame.LOG, "'Showing' screen: " + getName());
+		Gdx.app.log(FibooGame.LOG, "'Showing' screen: " + getName());
 	}
 
 	@Override
 	public void hide() {
-		Gdx.app.log(fibooGame.LOG, "'Hidding' screen: " + getName());
+		Gdx.app.log(FibooGame.LOG, "'Hidding' screen: " + getName());
 	}
 
 	@Override
 	public void pause() {
-		Gdx.app.log(fibooGame.LOG, "'Pausing' screen: " + getName());
+		Gdx.app.log(FibooGame.LOG, "'Pausing' screen: " + getName());
 	}
 
 	@Override
 	public void resume() {
-		Gdx.app.log(fibooGame.LOG, "'Resuming' screen: " + getName());
+		Gdx.app.log(FibooGame.LOG, "'Resuming' screen: " + getName());
 	}
 
 	@Override
 	public void dispose() {
-		Gdx.app.log(fibooGame.LOG, "'Disposing' screen: " + getName());
+		Gdx.app.log(FibooGame.LOG, "'Disposing' screen: " + getName());
 
 		// Liberando memoria
 		stage.dispose();

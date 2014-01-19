@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 /**
  * El complemento guarda la imagen de este y su disponibilidad, 
@@ -40,7 +40,7 @@ public class Complemento {
 	public Texture getIcon() {
 		if(icono == null) {	
 			Gdx.app.log("Complemento", "Cargando " + imagePath + "Icon");
-			icono = fibooGame.MANAGER.get("complementos/" + imagePath + "Icon.png", Texture.class);
+			icono = FibooGame.MANAGER.get("complementos/" + imagePath + "Icon.png", Texture.class);
 			icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return icono;
@@ -55,7 +55,7 @@ public class Complemento {
 	public Texture getImagen() {
 		if(imagen == null) {
 			Gdx.app.log("Complemento", "Cargando " + imagePath);
-			imagen = fibooGame.MANAGER.get("complementos/" + imagePath + ".png", Texture.class);
+			imagen = FibooGame.MANAGER.get("complementos/" + imagePath + ".png", Texture.class);
 			imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return imagen;

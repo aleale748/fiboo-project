@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class PreguntaActor extends Actor {
 	
 	private TextureRegion pregunta;
 	
 	public PreguntaActor() {
-		pregunta = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/pregunta.png", Texture.class));
+		pregunta = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/pregunta.png", Texture.class));
 		setSize(pregunta.getRegionWidth(), pregunta.getRegionHeight());
 	}
 	

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.personalizar.actores.Complemento;
 import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
@@ -65,13 +65,13 @@ public class Avatar {
 	}
 	
 	public void setBase(String imagePath) {
-		int index = fibooGame.getComplementos().indexOf(new Complemento(imagePath, Tipo.PELO));
-		addComplemento(fibooGame.getComplementos().get(index));
+		int index = FibooGame.getComplementos().indexOf(new Complemento(imagePath, Tipo.PELO));
+		addComplemento(FibooGame.getComplementos().get(index));
 	}
 	
 	public void draw(SpriteBatch batch, float escala) {
 		if(base == null) {
-			base = fibooGame.MANAGER.get("complementos/base.png");
+			base = FibooGame.MANAGER.get("complementos/base.png");
 			base.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		float posY = (Gdx.graphics.getHeight() - escala) / 2f;

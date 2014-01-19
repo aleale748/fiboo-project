@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class PadActor extends Actor {
 
 	private TextureRegion button;
 	
 	public PadActor() {
-		button = new TextureRegion(fibooGame.MANAGER.get("naveminigame/disparar2.png", Texture.class), 119, 57);
+		button = new TextureRegion(FibooGame.MANAGER.get("naveminigame/disparar2.png", Texture.class), 119, 57);
 		setSize(button.getRegionWidth(), button.getRegionHeight());
 	}
 	

@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.marcianosminigame.actors.BienActor;
 import es.uca.fiboo.marcianosminigame.actors.BotonActor;
 import es.uca.fiboo.marcianosminigame.actors.MarcianoActor;
@@ -33,12 +33,12 @@ import es.uca.fiboo.screens.WinScreen;
 
 public class MarcianosMiniGameScreen extends AbstractScreen {
 	float w, h;
-	public MarcianosMiniGameScreen(fibooGame game) {
+	public MarcianosMiniGameScreen(FibooGame game) {
 		super(game);
 		//Mientras no hay pantalla de ayuda
-		fibooGame.MANAGER.loadMarcianosMiniGameTextures();
-		fibooGame.MANAGER.finishLoading();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
+		FibooGame.MANAGER.loadMarcianosMiniGameTextures();
+		FibooGame.MANAGER.finishLoading();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
 		//----------------------------------
 	}
 	private float escala, widthPuntuacion = 42, heightPuntuacion = 40, widthBasePunt= 120, heightBasePunt= 90, tamNaves = 128, tamMarcianos = 128, 
@@ -65,14 +65,14 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
-		fibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).play();
 		w= Gdx.graphics.getWidth();
 		h= Gdx.graphics.getHeight();
-		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
+		Image imgFondo = new Image(FibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
-		baseestrellas = new Image(fibooGame.MANAGER.get("portada/base.png", Texture.class));
+		baseestrellas = new Image(FibooGame.MANAGER.get("portada/base.png", Texture.class));
 		baseestrellas.setPosition(w*0.11f - widthBasePunt/2f, h-heightBasePunt/2f);
 		baseestrellas.setWidth(widthBasePunt);
 		baseestrellas.setHeight(heightBasePunt);
@@ -90,7 +90,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 						//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-						fibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).stop();
+						FibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).stop();
 						dispose();
 						game.setScreen(new MenuMiniJuegosScreen(game));
 				}
@@ -140,7 +140,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			pregunta.setWidth(widthPregunta);
 			pregunta.setHeight(heightPregunta);
 			stage.addActor(pregunta);
-			fibooGame.MANAGER.get("sonidos/cuantosquedan.ogg", Sound.class).play();
+			FibooGame.MANAGER.get("sonidos/cuantosquedan.ogg", Sound.class).play();
 			
 			boton1 = new BotonActor();
 			boton2 = new BotonActor();
@@ -218,7 +218,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			mostrarPregunta = false;
 			}
 		if (respuesta == 3) {
-			fibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).stop();
+			FibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).stop();
 			dispose();
 			game.setScreen(new GameOverScreen(game));
 		}
@@ -232,7 +232,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 				stage.addActor(puntuacion.get(puntuacion.size() - 1));
 				
 				if (puntuacion.size() == 5) {
-					fibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).stop();
+					FibooGame.MANAGER.get("sonidos/marcianos.ogg", Music.class).stop();
 					dispose();
 					game.setScreen(new WinScreen(game));
 				}
@@ -249,7 +249,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 							bien.setPosition(w/2.5f, h/2.2f);
 							if (contadorBien != 30) {
 								if (contadorBien == 0) {
-									fibooGame.MANAGER.get("sonidos/bien.ogg", Sound.class).play();
+									FibooGame.MANAGER.get("sonidos/bien.ogg", Sound.class).play();
 									stage.addActor(bien);
 									//Gdx.app.log(fibooGame.LOG, "Bien a�adido.");
 								}
@@ -383,7 +383,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		for (int i = 0; i < naves.size(); ++i) {
 			nave = naves.get(i);
 			if (nave.colocado() && !nave.verificado()) {
-				fibooGame.MANAGER.get("sonidos/yuju.ogg", Sound.class).play();
+				FibooGame.MANAGER.get("sonidos/yuju.ogg", Sound.class).play();
 				nave.verificar();
 				numeroMarcianosInt--;
 				numeroMarcianos.remove();
@@ -470,9 +470,9 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.unloadMarcianosMiniGameTextures();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+		FibooGame.MANAGER.unloadMarcianosMiniGameTextures();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 
