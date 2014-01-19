@@ -11,7 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.GameOverScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
+import es.uca.fiboo.screens.WinScreen;
 
 public class EstadisticasScreen extends AbstractScreen {
 	protected fibooGame game;
@@ -60,13 +62,16 @@ public class EstadisticasScreen extends AbstractScreen {
 		batch.begin();
 		
 		if(TallerScreenPrincipal.NUMERO_REPETICIONES == TallerScreenPrincipal.aciertos) {
-			TallerScreenPrincipal.font.draw(batch, "¡Muy bien! Has respondido todas bien", w/10, h/2);
+			//TallerScreenPrincipal.font.draw(batch, "ï¿½Muy bien! Has respondido todas bien", w/10, h/2);
+			game.setScreen(new WinScreen(game));
 		}
 		else if(TallerScreenPrincipal.aciertos == 0) {
-			TallerScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difícil ¡Sigue intentandolo!", w/10, h/2);
+			//TallerScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue difï¿½cil ï¿½Sigue intentandolo!", w/10, h/2);
+			game.setScreen(new GameOverScreen(game));
 		}
 		else {
-			TallerScreenPrincipal.font.draw(batch, "Esta bien, pero aún puedes mejorar ¡Sigue intentandolo!", w/10, h/2);
+			//TallerScreenPrincipal.font.draw(batch, "Esta bien, pero aï¿½n puedes mejorar ï¿½Sigue intentandolo!", w/10, h/2);
+			game.setScreen(new GameOverScreen(game));
 		}
 		
 		batch.end();
