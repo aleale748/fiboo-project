@@ -1,4 +1,4 @@
-package es.uca.fiboo.actores;
+package es.uca.fiboo.actors;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;

@@ -1,4 +1,4 @@
-package es.uca.fiboo.pianocreen.screens;
+package es.uca.fiboo.piano.screens;
 
 import com.badlogic.gdx.audio.Music;
 

@@ -1,12 +1,12 @@
-package es.uca.fiboo.screens;
+package es.uca.fiboo.tallerminigame.screens;
 import com.badlogic.gdx.audio.Music;
 
 import es.uca.fiboo.FibooGame;
-import es.uca.fiboo.eltallerminigame.screens.TallerScreenPrincipal;
+import es.uca.fiboo.screens.AbstractLoadingScreen;
 
-public class InicioSacoGameScreen extends AbstractLoadingScreen {
+public class InicioTallerGameScreen extends AbstractLoadingScreen {
 	
-	public InicioSacoGameScreen(FibooGame game) {
+	public InicioTallerGameScreen(FibooGame game) {
 		super(game);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
 		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);

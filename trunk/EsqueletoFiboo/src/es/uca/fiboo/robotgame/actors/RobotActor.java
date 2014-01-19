@@ -1,4 +1,4 @@
-package es.uca.fiboo.robotgame.actor;
+package es.uca.fiboo.robotgame.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

@@ -1,9 +1,9 @@
-package es.uca.fiboo.screens;
+package es.uca.fiboo.robotgame.screens;
 
 import com.badlogic.gdx.audio.Music;
 
 import es.uca.fiboo.FibooGame;
-import es.uca.fiboo.robotgame.screens.RobotGameScreen;
+import es.uca.fiboo.screens.AbstractLoadingScreen;
 
 public class InicioRobotGameScreen extends AbstractLoadingScreen {
 
