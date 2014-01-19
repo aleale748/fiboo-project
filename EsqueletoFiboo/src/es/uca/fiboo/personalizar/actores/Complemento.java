@@ -9,7 +9,7 @@ import es.uca.fiboo.FibooGame;
 /**
  * El complemento guarda la imagen de este y su disponibilidad, 
  * 
- * @version 0.2
+ * @version 0.3
  * @author Sergio
  *
  */
@@ -44,12 +44,6 @@ public class Complemento {
 			icono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		return icono;
-	}
-	
-	public boolean isTipo(Tipo tipo) {
-		if(tipo == this.tipo)
-			return true;
-		return false;
 	}
 	
 	public Texture getImagen() {
