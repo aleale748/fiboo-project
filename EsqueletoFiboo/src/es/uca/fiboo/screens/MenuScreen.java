@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -22,7 +23,7 @@ public class MenuScreen extends AbstractScreen {
 
 	private Image entrenarBoton, personalizarBoton, infoBoton;
 	private Image imgFondo;
-	private float w, h;
+	private float w, h, escalaAvatar;
 	
 	public MenuScreen(fibooGame game) {
 		super(game);
@@ -53,6 +54,8 @@ public class MenuScreen extends AbstractScreen {
 		
 		float imgWidth = w * 0.35f;
 		float imgHeight = imgWidth;
+		
+		escalaAvatar = h * 0.7f;
 		
 		// Cargamos imagenes de botones
 		Texture entrenar = fibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class);
@@ -86,6 +89,16 @@ public class MenuScreen extends AbstractScreen {
 		stage.addActor(personalizarBoton);
 	}
 	
+	@Override
+	public void render(float delta) {
+		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		stage.act(delta);
+		stage.draw();
+		batch.begin();
+		fibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
+		batch.end();
+	}
+	
 	private class MyClickListener extends ClickListener {
 		
 		private int screen;
@@ -103,6 +116,7 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
+									dispose();
 									game.setScreen(new CreditosScreen(game));
 									return true;
 								}
@@ -114,6 +128,7 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
+									dispose();
 									game.setScreen(new MenuMiniJuegosScreen(game));
 									return true;
 								}
@@ -125,6 +140,7 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
+									dispose();
 									game.setScreen(new PersonalizacionScreen(game));
 									return true;
 								}
