@@ -20,6 +20,7 @@ public class TiempoScreen extends AbstractScreen {
 	private ArrayList<Texture> tornillosUsados;
 	private Texture robot_triste;
 	private Texture robot_alegre;
+	private Texture robot_normal;
 	private ArrayList<Texture> numeros;
 	private int numeroTornillos;
 	private int estado;
@@ -40,6 +41,7 @@ public class TiempoScreen extends AbstractScreen {
 		//Cargamos el fondo del screen
 		robot_triste = fibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
 		robot_alegre = fibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
+		robot_normal = fibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		
 		//Cargamos el vector de tornillos
 		tornillos = new ArrayList<Texture>();
@@ -106,11 +108,15 @@ public class TiempoScreen extends AbstractScreen {
 				batch.begin();
 				
 				if(estado == 0) {
-					batch.draw(robot_triste, 0, 0, w, h); //Deberia ser el robot normal
+					batch.draw(robot_triste, 0, 0, w, h); 
+				}
+				
+				else if(estado == 1) {
+					batch.draw(robot_alegre, 0, 0, w, h); 
 				}
 				
 				else {
-					batch.draw(robot_alegre, 0, 0, w, h); //Deberia ser el robot normal
+					batch.draw(robot_normal, 0, 0, w, h); 
 				}
 				//Miramos cuantos tornillos debemos colocar:
 				
