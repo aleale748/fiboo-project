@@ -116,7 +116,6 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
-									dispose();
 									game.setScreen(new CreditosScreen(game));
 									return true;
 								}
@@ -128,7 +127,6 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
-									dispose();
 									game.setScreen(new MenuMiniJuegosScreen(game));
 									return true;
 								}
@@ -140,7 +138,6 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
-									dispose();
 									game.setScreen(new PersonalizacionScreen(game));
 									return true;
 								}
