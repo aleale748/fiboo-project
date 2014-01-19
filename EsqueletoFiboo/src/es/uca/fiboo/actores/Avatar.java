@@ -54,6 +54,10 @@ public class Avatar {
 		if(c.getTipo() == Tipo.CAMISETA || c.getTipo() == Tipo.PANTALON) {
 			complementos.put(Tipo.DISFRAZ, null);
 		}
+		else if(c.getTipo() == Tipo.DISFRAZ) {
+			complementos.put(Tipo.CAMISETA, null);
+			complementos.put(Tipo.PANTALON, null);
+		}
 	}
 	
 	public void removeComplemento(Tipo tipo) {
