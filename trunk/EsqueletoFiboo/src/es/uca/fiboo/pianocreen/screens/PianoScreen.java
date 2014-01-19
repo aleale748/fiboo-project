@@ -89,7 +89,7 @@ public class PianoScreen extends AbstractScreen {
 		super.show();
 		Gdx.app.log(fibooGame.LOG, "super.show() ok;");
 		fondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
-		basecontroles = fibooGame.MANAGER.get("pianogame/base.png", Texture.class);
+		basecontroles = fibooGame.MANAGER.get("portada/base.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		basecontroles.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		anchopiano = w;
@@ -116,7 +116,7 @@ public class PianoScreen extends AbstractScreen {
 		sitSound = fibooGame.MANAGER.get("pianogame/sitrom.ogg", Sound.class);
 		zdotSound = fibooGame.MANAGER.get("pianogame/zdotrom.ogg", Sound.class);
 		
-		// Creamos botones, los posicionamos y los añadimos al stage
+		// Creamos botones, los posicionamos y los aï¿½adimos al stage
 		imagenPiano = new Image(pantallaBotonDrawable);
 		imagenPiano.setFillParent(true);
 		imagenPiano.addListener(new InputListener() {
