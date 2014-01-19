@@ -50,7 +50,7 @@ public class TallerScreen extends AbstractScreen {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 		tornillosTocados = new ArrayList<Boolean>();
-		robot = fibooGame.MANAGER.get("sacominigame/robot.mp3", Sound.class);
+		robot = fibooGame.MANAGER.get("sacominigame/robot.ogg", Sound.class);
 		posicionesTornillos = new ArrayList<Rectangle>();
 		barrigaRobot = new Rectangle();
 		tornillosBotones = new ArrayList<ImageButton>();
@@ -71,7 +71,7 @@ public class TallerScreen extends AbstractScreen {
 		robot_normal = fibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
 		bien = fibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
-		mal = fibooGame.MANAGER.get("sacominigame/mal.ogg", Sound.class);
+		mal = fibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
 		
 		//Situamos la barriga del robot
 		

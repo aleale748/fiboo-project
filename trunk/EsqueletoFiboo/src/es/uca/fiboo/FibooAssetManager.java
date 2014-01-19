@@ -405,15 +405,16 @@ public class FibooAssetManager extends AssetManager {
 	public void loadSacoMiniGameSounds() {
 		load("sacominigame/clic.wav", Sound.class);
 		load("sacominigame/bien.ogg", Sound.class);
-		load("sacominigame/mal.ogg", Sound.class);
-		load("sacominigame/robot.mp3", Sound.class);
+		load("sacominigame/nono.ogg", Sound.class);
+		load("sacominigame/robot.ogg", Sound.class);
 		
 	}
 	
 	public void unloadSacoMiniGameSounds() {
 		unload("sacominigame/clic.wav");
-		load("sacominigame/bien.ogg", Sound.class);
-		load("sacominigame/mal.ogg", Sound.class);
+		unload("sacominigame/bien.ogg");
+		unload("sacominigame/nono.ogg");
+		unload("sacominigame/robot.ogg");
 	}
 	
 	public void loadAscensorGameTextures() {
