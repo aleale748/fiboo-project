@@ -32,7 +32,9 @@ import es.uca.fiboo.naveminigame.actors.PadActor;
 import es.uca.fiboo.naveminigame.actors.PalitosActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.GameOverScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
+import es.uca.fiboo.screens.WinScreen;
 
 public class NaveMiniGameScreen extends AbstractScreen {
 	
