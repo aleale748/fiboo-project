@@ -39,6 +39,8 @@ public class RobotGameScreen extends AbstractScreen{
 	Texture lunaImage;
 	Texture estrellaImage;
 	Texture marcianoImage;
+	private Texture basecontroles;
+	
 	Sound bienSound;
 	Sound malSound;
 	Sound reguSound;
@@ -58,18 +60,20 @@ public class RobotGameScreen extends AbstractScreen{
 	int ultima_posicion;
 	private int numobjetos;
 	private Numeros numeros;
-	
+	float h, w;
 	public RobotGameScreen(fibooGame game){
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		// load the images for the droplet and the bucket, 64x64 pixels each
+		h= Gdx.graphics.getHeight();
+		w= Gdx.graphics.getWidth();
 		planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
 		lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
 		estrellaImage = fibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
 		marcianoImage = fibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
-		//stage.addActor(huchaImage);
 		
+		basecontroles = fibooGame.MANAGER.get("portada/base.png", Texture.class);
 		// load the drop sound effect and the rain background "music"
 		//musicaFondo = fibooGame.MANAGER.get("sonidos/robot.mp3", Sound.class);
 		bienSound = fibooGame.MANAGER.get("robotgame/bien.ogg", Sound.class);
@@ -78,7 +82,7 @@ public class RobotGameScreen extends AbstractScreen{
 		// create the camera and the SpriteBatch
 		camera = new OrthographicCamera();
 		
-		camera.setToOrtho(false, Gdx.graphics.getHeight(), Gdx.graphics.getWidth());
+		camera.setToOrtho(false, h, w);
  
 		// create a Rectangle to logically represent the bucket
 		
@@ -87,8 +91,7 @@ public class RobotGameScreen extends AbstractScreen{
 		// create the raindrops array and spawn the first raindrop
 		raindrops = new Array<DropObject>();
 		// Use LibGDX's default Arial font.
-		font = new BitmapFont();
-		font2 = new BitmapFont();
+		
 		numeros= new Numeros();
 		//musicaFondo.loop();
 		spawnRaindrop();
@@ -108,10 +111,10 @@ public class RobotGameScreen extends AbstractScreen{
 				elec = MathUtils.random(objeto + 1, 3);
 		}
 		DropObject raindrop = new DropObject(elec);
-		raindrop.x = MathUtils.random(0, Gdx.graphics.getWidth() - Gdx.graphics.getHeight()*0.1f*2f);
-		raindrop.y = Gdx.graphics.getHeight();
-		raindrop.width = Gdx.graphics.getHeight()*0.1f;
-		raindrop.height = Gdx.graphics.getHeight()*0.1f;
+		raindrop.x = MathUtils.random(0, w - h*0.1f*2f);
+		raindrop.y = h;
+		raindrop.width = h*0.1f;
+		raindrop.height = h*0.1f;
 		raindrops.add(raindrop);
 		lastDropTime = TimeUtils.nanoTime();
 	}
@@ -166,25 +169,27 @@ public class RobotGameScreen extends AbstractScreen{
 		stage.draw();
 	
 		batch.begin();
-		batch.draw(numeros.rojos(numobjetos), Gdx.graphics.getWidth()*0.03f,Gdx.graphics.getHeight()*0.92f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);	
+
+		batch.draw(basecontroles, w*0.015f, h*0.8f, w*0.3f, h*0.2f);
+		batch.draw(numeros.rojos(numobjetos), w*0.03f,h*0.92f-w*0.08f/2, w*0.1f, w*0.1f);	
 		if(objeto==0)
-			batch.draw(planetaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getHeight()*0.93f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
+			batch.draw(planetaImage, w*0.03f+w*0.1f, h*0.93f-w*0.08f/2,  w*0.08f, w*0.08f);
 		if(objeto==1)
-			batch.draw(estrellaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f,Gdx.graphics.getHeight()*0.93f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
+			batch.draw(estrellaImage, w*0.03f+w*0.1f,h*0.93f-w*0.08f/2,  w*0.08f, w*0.08f);
 		if(objeto==2)
-			batch.draw(lunaImage, Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f,  Gdx.graphics.getHeight()*0.93f-Gdx.graphics.getWidth()*0.08f/2,  Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getWidth()*0.08f);
-		batch.draw(numeros.verdes(objetosGathered), Gdx.graphics.getWidth()*0.03f+Gdx.graphics.getWidth()*0.1f+Gdx.graphics.getWidth()*0.08f, Gdx.graphics.getHeight()*0.92f-Gdx.graphics.getWidth()*0.08f/2, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);
+			batch.draw(lunaImage, w*0.03f+w*0.1f,  h*0.93f-w*0.08f/2,  w*0.08f, w*0.08f);
+		batch.draw(numeros.verdes(objetosGathered), w*0.03f+w*0.1f+w*0.08f, h*0.92f-w*0.08f/2, w*0.1f, w*0.1f);
 		rand = MathUtils.random(0, 1);
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
 			case PLANETA:
-				batch.draw(planetaImage, raindrop.x, raindrop.y,  Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
+				batch.draw(planetaImage, raindrop.x, raindrop.y,  w*0.1f, w*0.1f);break;
 			case ESTRELLA:
-				batch.draw(estrellaImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;	
+				batch.draw(estrellaImage, raindrop.x, raindrop.y, w*0.1f, w*0.1f);break;	
 			case LUNA:
-				batch.draw(lunaImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
+				batch.draw(lunaImage, raindrop.x, raindrop.y, w*0.1f, w*0.1f);break;
 			case MARCIANO:
-				batch.draw(marcianoImage, raindrop.x, raindrop.y, Gdx.graphics.getWidth()*0.1f, Gdx.graphics.getWidth()*0.1f);break;
+				batch.draw(marcianoImage, raindrop.x, raindrop.y, w*0.1f, w*0.1f);break;
 			default:
 				break;
 			}
