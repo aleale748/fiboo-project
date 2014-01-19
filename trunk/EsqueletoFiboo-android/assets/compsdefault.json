@@ -79,6 +79,12 @@
 },
 {
 	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "GAFAS",
+	"imagePath": "gafas3",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BIGOTE",
 	"imagePath": "bigote1",
 	"disponible": true
@@ -91,6 +97,12 @@
 },
 {
 	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "BIGOTE",
+	"imagePath": "bigote3",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "ACCPELO",
 	"imagePath": "adpelo1",
 	"disponible": true
@@ -99,6 +111,12 @@
 	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "ACCPELO",
 	"imagePath": "adpelo2",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "ACCPELO",
+	"imagePath": "adpelo3",
 	"disponible": true
 },
 {
@@ -117,6 +135,60 @@
 	"class": "es.uca.fiboo.personalizar.actores.Complemento",
 	"tipo": "BOCA",
 	"imagePath": "boca1",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "CAMISETA",
+	"imagePath": "camiseta1",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "CAMISETA",
+	"imagePath": "camiseta2",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "CAMISETA",
+	"imagePath": "camiseta3",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "CAMISETA",
+	"imagePath": "camiseta4",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "CAMISETA",
+	"imagePath": "camiseta5",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "PANTALON",
+	"imagePath": "pantalon1",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "PANTALON",
+	"imagePath": "pantalon2",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "PANTALON",
+	"imagePath": "pantalon3",
+	"disponible": true
+},
+{
+	"class": "es.uca.fiboo.personalizar.actores.Complemento",
+	"tipo": "PANTALON",
+	"imagePath": "pantalon4",
 	"disponible": true
 }
 ]
