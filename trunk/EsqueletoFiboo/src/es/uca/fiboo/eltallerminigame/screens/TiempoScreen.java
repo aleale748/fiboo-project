@@ -185,6 +185,7 @@ public class TiempoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+        			fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
 					fibooGame.MANAGER.unloadSacoMiniGameSounds();
 					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
 					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();

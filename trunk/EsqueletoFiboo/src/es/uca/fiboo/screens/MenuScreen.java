@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -111,11 +112,12 @@ public class MenuScreen extends AbstractScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			switch(screen) {
 				case 1:
-					Gdx.app.log(fibooGame.LOG, "Clickeando en bot�n Minijuegos");
+					Gdx.app.log(fibooGame.LOG, "Clickeando en bot�n Creditos");
 					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
 							new Action() {
 								@Override
 								public boolean act(float delta) {
+									fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 									game.setScreen(new CreditosScreen(game));
 									return true;
 								}
@@ -138,6 +140,7 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
+									fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 									game.setScreen(new PersonalizacionScreen(game));
 									return true;
 								}

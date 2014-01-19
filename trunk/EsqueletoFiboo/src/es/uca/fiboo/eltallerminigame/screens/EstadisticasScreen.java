@@ -81,6 +81,7 @@ public class EstadisticasScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
+		fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
 		fibooGame.MANAGER.unloadSacoMiniGameSounds();
 		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
 		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();

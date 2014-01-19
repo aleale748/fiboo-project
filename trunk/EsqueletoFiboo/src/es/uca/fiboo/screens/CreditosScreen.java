@@ -41,13 +41,19 @@ public class CreditosScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-						game.setScreen(new MenuScreen(game));
+        			fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
+        			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+        			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+					game.setScreen(new MenuScreen(game));
 				}
 				return false;
 			}
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
+		
+		fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).play();
 		
 		Texture fondo = fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
 		Texture ayuda = fibooGame.MANAGER.get("portada/creditos.png", Texture.class);
@@ -73,7 +79,9 @@ public class CreditosScreen extends AbstractScreen {
                     new Action() {
                         @Override
                         public boolean act(float delta) {
-                			fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).stop();
+                			fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
+                			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+                			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
                             game.setScreen(new MenuScreen(game));
                             return true;
                         }

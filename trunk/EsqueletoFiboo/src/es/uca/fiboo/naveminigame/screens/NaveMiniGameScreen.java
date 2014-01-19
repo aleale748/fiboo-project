@@ -45,14 +45,15 @@ public class NaveMiniGameScreen extends AbstractScreen {
 					heightBasePunt = 90,widthBarra = 128, heightBarra = 16, 
 			widthPad = 119, heightPad = 57, velocidadAsteroide, velocidadBala, 
 			escala;
-	Sound musicaFondo, disparo, explosion, golpe;
+	Sound disparo, explosion, golpe;
+	Music musicaFondo;
 	
 	public NaveMiniGameScreen(fibooGame game) {
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		//Gdx.app.log(fibooGame.LOG, "Bien construido.");
-		//musicaFondo = fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class);
+		musicaFondo = fibooGame.MANAGER.get("sonidos/nave.ogg",Music.class);
 		//musicaFondo.loop(0.25f);
 		explosion = fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class);
 		disparo = fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class);
@@ -79,6 +80,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	public void show() {
 		w= Gdx.graphics.getWidth();
 		h= Gdx.graphics.getHeight(); 
+		musicaFondo.setLooping(true);
+		musicaFondo.play();
+		
 		velocidadAsteroide = 100 * Gdx.graphics.getDeltaTime();
 		velocidadBala = 500 * Gdx.graphics.getDeltaTime();
 		
@@ -90,7 +94,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					//musicaFondo.stop();
+					musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
@@ -308,6 +312,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 					golpe.play();
 				} else  {
 					//Gdx.app.log(fibooGame.LOG, "Escudo debilitado. Partida terminada.");
+					musicaFondo.stop();
 					dispose();
 					//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 					game.setScreen(new GameOverScreen(game));
@@ -379,6 +384,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 				golpe.play();
 				if (nave.getHealth() <= 0) {
 					//Gdx.app.log(fibooGame.LOG, "Nave debilitada. Partida terminada.");
+					musicaFondo.stop();
 					dispose();
 					//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 					game.setScreen(new GameOverScreen(game));
@@ -408,6 +414,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							}
 							asteroides.clear();
 							if (puntuacion.size() == 5) {
+								musicaFondo.stop();
 								dispose();
 								//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 								game.setScreen(new WinScreen(game));
@@ -423,6 +430,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 							explosionesMal.get(explosionesMal.size()-1).setHeight(heightExplosiones);
 							stage.addActor(explosionesMal.get(explosionesMal.size()-1));
 							if (nave.getHealth() <= 0) {
+								musicaFondo.stop();
 								dispose();
 								//fibooGame.MANAGER.get("sonidos/naves.mp3",Sound.class).stop();
 								game.setScreen(new GameOverScreen(game));

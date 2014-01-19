@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,6 +39,9 @@ public class PersonalizacionScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					fibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).stop();
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					dispose();
 					game.setScreen(new MenuScreen(game));
 				}
@@ -46,6 +50,9 @@ public class PersonalizacionScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
+		
+		fibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).play();
 	}
 
 	//Carga todos los complementos habidos y por haber
