@@ -9,8 +9,8 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Botones y pantallas de menús
 	public void loadMenuTextures() {
-		load("marcianosminigame/win.png", Texture.class);
-		load("marcianosminigame/gameover.png", Texture.class);
+		//load("marcianosminigame/win.png", Texture.class);
+		//load("marcianosminigame/gameover.png", Texture.class);
 		load("robotgame/numerosrojos.png", Texture.class);
 		load("robotgame/numerosverdes.png", Texture.class);
 		load("marcianosminigame/pantallaayudamarcianos.png", Texture.class);
@@ -38,6 +38,8 @@ public class FibooAssetManager extends AssetManager {
 		load("sonidos/fondo.ogg", Music.class);
 		load("sonidos/ayuda.ogg", Music.class);
 		load("sonidos/minijuego.ogg", Music.class);
+		load("portada/win.png", Texture.class);
+		load("portada/gameover.png", Texture.class);
 	}
 	
 	public void loadSonidos() {
@@ -106,7 +108,7 @@ public class FibooAssetManager extends AssetManager {
 	
 	//Texturas y Sonidos de Nave minijuego
 	public void loadNaveMiniGameTextures() {
-		load("naveminigame/win.png", Texture.class);
+		//load("naveminigame/win.png", Texture.class);
         load("naveminigame/disparar2.png", Texture.class);
         load("naveminigame/palitos0.png", Texture.class);
         load("naveminigame/palitos1.png", Texture.class);
@@ -135,7 +137,7 @@ public class FibooAssetManager extends AssetManager {
         load("naveminigame/vidaEscudo.png", Texture.class);
         load("naveminigame/vidaVacia.png", Texture.class);
         load("naveminigame/laserPeque.png", Texture.class);
-		load("naveminigame/gameover.png", Texture.class);
+		//load("naveminigame/gameover.png", Texture.class);
 		load("naveminigame/explosion0.png", Texture.class);
 		load("naveminigame/explosion1.png", Texture.class);
 		load("naveminigame/explosion2.png", Texture.class);
