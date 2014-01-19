@@ -230,7 +230,7 @@ public class TallerScreen extends AbstractScreen {
 			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
 		}
 		
-		else if(!tornillosUsados.containsAll(tornillosElegidos)) {
+		else if(tornillosUsados.size() == tornillosElegidos.size() && !tornillosUsados.containsAll(tornillosElegidos)) {
 			batch.draw(robot_triste, 0, 0, w, h);
 			mal.play();
 			

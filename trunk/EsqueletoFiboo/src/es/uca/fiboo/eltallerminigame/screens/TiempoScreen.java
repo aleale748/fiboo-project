@@ -58,6 +58,7 @@ public class TiempoScreen extends AbstractScreen {
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/circuitogris.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/circuitoazul.png", Texture.class));
 		tornillos.add(fibooGame.MANAGER.get("sacominigame/circuitorojo.png", Texture.class));
+		
 		//Cargamos los numeros
 		
 		numeros.add(fibooGame.MANAGER.get("sacominigame/0.png", Texture.class));
