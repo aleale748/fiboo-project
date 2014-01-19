@@ -117,10 +117,11 @@ public class LoadingScreen extends AbstractScreen {
 		stage.draw();
 		
 		if(fibooGame.MANAGER.update()) {
-			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
-			if(!playBoton.isVisible())
+			if(!playBoton.isVisible()) {
+				fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+				fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 				playBoton.setVisible(true);
+			}
 		}
 		else {
 			float progress = fibooGame.MANAGER.getProgress();
