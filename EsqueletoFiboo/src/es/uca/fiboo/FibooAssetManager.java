@@ -394,6 +394,9 @@ public class FibooAssetManager extends AssetManager {
 		load("sacominigame/tornillo6azul.png", Texture.class);
 		load("sacominigame/tornillo6rojo.png", Texture.class);
 		load("sacominigame/tallerboton.png", Texture.class);
+		load("sacominigame/circuitoazul.png", Texture.class);
+		load("sacominigame/circuitorojo.png", Texture.class);
+		load("sacominigame/circuitogris.png", Texture.class);
 		load("sacominigame/0.png", Texture.class);
 		load("sacominigame/1.png", Texture.class);
 		load("sacominigame/2.png", Texture.class);

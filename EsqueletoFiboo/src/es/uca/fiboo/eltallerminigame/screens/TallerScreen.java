@@ -122,12 +122,15 @@ public class TallerScreen extends AbstractScreen {
 			tornillosBotones.get(i).setWidth(w/6f);
 		}
 		
-		tornillosBotones.get(0).setPosition(w/11f, h/1.8f);
-		tornillosBotones.get(1).setPosition(w/4.9f, h/1.8f);
-		tornillosBotones.get(2).setPosition(w/3.2f, h/1.8f);
-		tornillosBotones.get(3).setPosition(w/11f, h/3.1f);
-		tornillosBotones.get(4).setPosition(w/4.9f, h/3.1f);
-		tornillosBotones.get(5).setPosition(w/3.2f, h/3.1f);
+		tornillosBotones.get(0).setPosition(w/11f, h/1.46f);
+		tornillosBotones.get(1).setPosition(w/4.9f, h/1.46f);
+		tornillosBotones.get(2).setPosition(w/3.2f, h/1.46f);
+		tornillosBotones.get(3).setPosition(w/11f, h/1.9f);
+		tornillosBotones.get(4).setPosition(w/4.9f, h/1.9f);
+		tornillosBotones.get(5).setPosition(w/3.2f, h/1.9f);
+		tornillosBotones.get(6).setPosition(w/11f, h/2.6f);
+		tornillosBotones.get(7).setPosition(w/4.9f, h/2.6f);
+		tornillosBotones.get(8).setPosition(w/3.2f, h/2.6f);
 		
 		
 		//Añadimos todos los botones al stage
