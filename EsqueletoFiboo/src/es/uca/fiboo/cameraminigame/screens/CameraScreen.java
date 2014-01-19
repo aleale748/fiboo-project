@@ -9,6 +9,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -57,20 +58,35 @@ public class CameraScreen extends AbstractScreen {
 	private int coordenadaPulsadaX;
 	private int coordenadaPulsadaY;
 
-	public void show() {	
+	public void show() {
 		
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter()
+		/*InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter()
 		{
-			/*public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				coordenadaPulsadaX = Gdx.input.getX();
 				coordenadaPulsadaY = Gdx.input.getY();
 				Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
 				return true;
-			}*/
+			}
 
-		}, stage);
+		}, stage);*/
 
 		Gdx.input.setInputProcessor(stage);
+		
+		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+			@Override
+			public boolean keyUp(int keycode) {
+				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+					game.setScreen(new MenuMiniJuegosScreen(game));
+					dispose();
+				}
+				return false;
+			}
+		}, stage);
+		
+		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		//inputMultiplexer.addProcessor(stage);
 		

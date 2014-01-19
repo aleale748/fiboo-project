@@ -226,7 +226,7 @@ public class TallerScreen extends AbstractScreen {
 			TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
 			stage.addActor(TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1));
 			
-			
+			dispose();
 			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
 		}
 		
@@ -235,6 +235,7 @@ public class TallerScreen extends AbstractScreen {
 			mal.play();
 			
 			TallerScreenPrincipal.fallos++; //Sumamos el fallo actual
+			dispose();
 			game.setScreen(new TiempoScreen(game,0)); //Lanzamos el siguiente intento
 		}
 		
@@ -286,9 +287,6 @@ public class TallerScreen extends AbstractScreen {
 
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 	
@@ -300,6 +298,9 @@ public class TallerScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+					fibooGame.MANAGER.unloadSacoMiniGameSounds();
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
 				}
