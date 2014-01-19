@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -76,8 +77,10 @@ public class EstadisticasScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		//fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		//super.dispose();
+		fibooGame.MANAGER.unloadSacoMiniGameSounds();
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+		super.dispose();
 	}
 
 }
