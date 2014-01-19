@@ -9,7 +9,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.utils.Json;
 
-import es.uca.fiboo.actores.Personaje;
+import es.uca.fiboo.actors.Personaje;
 import es.uca.fiboo.personalizar.actores.Complemento;
 import es.uca.fiboo.screens.MainScreen;
 

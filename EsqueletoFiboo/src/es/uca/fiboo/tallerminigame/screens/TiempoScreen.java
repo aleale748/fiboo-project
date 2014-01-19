@@ -1,4 +1,4 @@
-package es.uca.fiboo.eltallerminigame.screens;
+package es.uca.fiboo.tallerminigame.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;

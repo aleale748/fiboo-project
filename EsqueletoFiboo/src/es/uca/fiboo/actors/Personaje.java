@@ -1,4 +1,4 @@
-package es.uca.fiboo.actores;
+package es.uca.fiboo.actors;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

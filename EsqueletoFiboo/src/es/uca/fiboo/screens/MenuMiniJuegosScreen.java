@@ -17,7 +17,9 @@ import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.cameraminigame.screens.CameraScreen;
 import es.uca.fiboo.marcianosminigame.screens.InicioMarcianosGameScreen;
 import es.uca.fiboo.naveminigame.screens.AyudaNaveScreen;
-import es.uca.fiboo.pianocreen.screens.InicioPianoGameScreen;
+import es.uca.fiboo.piano.screens.InicioPianoGameScreen;
+import es.uca.fiboo.robotgame.screens.InicioRobotGameScreen;
+import es.uca.fiboo.tallerminigame.screens.InicioTallerGameScreen;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 
@@ -113,7 +115,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				Gdx.app.log(FibooGame.LOG, "Touching up on " + bolsaBoton.getClass().getSimpleName());
-				game.setScreen(new InicioSacoGameScreen(game));
+				game.setScreen(new InicioTallerGameScreen(game));
 			}
 		});
 		stage.addActor(bolsaBoton);

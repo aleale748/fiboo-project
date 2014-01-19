@@ -1,4 +1,4 @@
-package es.uca.fiboo.eltallerminigame.screens;
+package es.uca.fiboo.tallerminigame.screens;
 
 import java.util.ArrayList;
 import java.util.List;
