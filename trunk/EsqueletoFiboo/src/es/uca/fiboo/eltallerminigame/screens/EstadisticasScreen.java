@@ -7,16 +7,16 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.GameOverScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import es.uca.fiboo.screens.WinScreen;
 
 public class EstadisticasScreen extends AbstractScreen {
-	protected fibooGame game;
+	protected FibooGame game;
 	
-	public EstadisticasScreen(fibooGame game) {
+	public EstadisticasScreen(FibooGame game) {
 		super(game);
 		
 		this.game = game;
@@ -81,10 +81,10 @@ public class EstadisticasScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
-		fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
+		FibooGame.MANAGER.unloadSacoMiniGameSounds();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 

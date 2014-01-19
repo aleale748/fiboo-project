@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
@@ -21,13 +21,13 @@ public class TallerScreenPrincipal extends AbstractScreen {
 	protected static final int NUMERO_REPETICIONES = 4;
 	protected static List<StarActor> puntos;
 	protected static List<EmptyStarActor> sin_puntos;
-	fibooGame game;
+	FibooGame game;
 
-	public TallerScreenPrincipal(fibooGame game) {
+	public TallerScreenPrincipal(FibooGame game) {
 		super(game);
 		this.game = game;
-		fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).play();
 		repeticiones = 0; //Variable para repetir la ejecución del juego 4 veces, por ejemplo
 		aciertos = 0; //Al inicio los aciertos son 0
 		fallos = 0; //Al inicio los fallos son 0

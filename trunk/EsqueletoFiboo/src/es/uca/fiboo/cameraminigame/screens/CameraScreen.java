@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.cameraminigame.actors.*;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
@@ -35,7 +35,7 @@ import es.uca.fiboo.screens.WinScreen;
 
 public class CameraScreen extends AbstractScreen {
 	
-	public CameraScreen(fibooGame game) {
+	public CameraScreen(FibooGame game) {
 		super(game);
 	}
 		
@@ -77,8 +77,8 @@ public class CameraScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
 				}
@@ -151,13 +151,13 @@ public class CameraScreen extends AbstractScreen {
 		while (ind < N) {//for(int ind=0;ind<N;++ind) {
 			float randomX = MathUtils.random(objetoMenuActors.get(ind).getWidth(), tamanoMundo.x * 2 -objetoActors.get(ind).getWidth());//1280
 			float randomY = MathUtils.random(objetoActors.get(ind).getHeight(), tamanoMundo.y * 1.8f - objetoActors.get(ind).getHeight());//450
-			Gdx.app.log(fibooGame.LOG, "xMAX=" + tamanoMundo.x*2 + " yMAX=" + tamanoMundo.y*2);
+			Gdx.app.log(FibooGame.LOG, "xMAX=" + tamanoMundo.x*2 + " yMAX=" + tamanoMundo.y*2);
 			float objetoActorWidth = objetoActors.get(ind).getWidth();
 			float objetoActorHeight = objetoActors.get(ind).getHeight();
 			
 			rectangles.add(new Rectangle(randomX, randomY, objetoActorWidth, objetoActorHeight));
 			if (noHayOverlaps(rectangles)) {
-				Gdx.app.log(fibooGame.LOG, "dentro if ind:" + ind);
+				Gdx.app.log(FibooGame.LOG, "dentro if ind:" + ind);
 				objetoActors.get(ind).setPosition(randomX, randomY);
 				objetoMenuActors.get(ind).setPosition(tamanoMundo.x * 0.015f,espaciado);
 				espaciado += tamanoMundo.y * 0.1f;
@@ -177,12 +177,12 @@ public class CameraScreen extends AbstractScreen {
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				coordenadaPulsadaX = Gdx.input.getX();
 				coordenadaPulsadaY = Gdx.input.getY();
-				Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+				Gdx.app.log(FibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
 				int numBoton = esDentroBoton(x, y, rectangles, objetoActors);
 				if (numBoton != N)//Si esta dentro de algún botón,
 				{
-					Gdx.app.log(fibooGame.LOG, "conseguido");
-					Gdx.app.log(fibooGame.LOG, "pulsado en " + numBoton);
+					Gdx.app.log(FibooGame.LOG, "conseguido");
+					Gdx.app.log(FibooGame.LOG, "pulsado en " + numBoton);
 					objetoActors.get(numBoton).remove();
 					objetoMenuActors.get(numBoton).remove();
 					eliminada[numBoton] = true;
@@ -193,7 +193,7 @@ public class CameraScreen extends AbstractScreen {
 				}
 				else
 				{
-					Gdx.app.log(fibooGame.LOG, "NO entra con (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+					Gdx.app.log(FibooGame.LOG, "NO entra con (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
 				};
 				return true;
 			}
@@ -211,12 +211,12 @@ public class CameraScreen extends AbstractScreen {
 				float coordenadaPulsadaXLocal = Gdx.input.getX() - coordenadaPulsadaX;
 				float coordenadaPulsadaYLocal = Gdx.input.getY() - coordenadaPulsadaY;
 
-				Gdx.app.log(fibooGame.LOG, "x=" + x);
-				Gdx.app.log(fibooGame.LOG, "getX()=" + Gdx.input.getX());
-				Gdx.app.log(fibooGame.LOG, "coordenadaPulsadaX=" + coordenadaPulsadaX);
-				Gdx.app.log(fibooGame.LOG, "coordenadaPulsadaXLocal=" + coordenadaPulsadaXLocal);
-				Gdx.app.log(fibooGame.LOG, "camera.position.x=" + camera.position.x);
-				Gdx.app.log(fibooGame.LOG, "w/2=" + w/2);
+				Gdx.app.log(FibooGame.LOG, "x=" + x);
+				Gdx.app.log(FibooGame.LOG, "getX()=" + Gdx.input.getX());
+				Gdx.app.log(FibooGame.LOG, "coordenadaPulsadaX=" + coordenadaPulsadaX);
+				Gdx.app.log(FibooGame.LOG, "coordenadaPulsadaXLocal=" + coordenadaPulsadaXLocal);
+				Gdx.app.log(FibooGame.LOG, "camera.position.x=" + camera.position.x);
+				Gdx.app.log(FibooGame.LOG, "w/2=" + w/2);
 
 				if ((camera.position.x + coordenadaPulsadaXLocal > w/2) && 
 						(camera.position.x + coordenadaPulsadaXLocal + camera.viewportWidth <= (4096 - w/2)) && 
@@ -292,12 +292,12 @@ public class CameraScreen extends AbstractScreen {
 				camera.zoom -= 0.02;
 		}*/
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			Gdx.app.log(fibooGame.LOG, "pulsado left");
+			Gdx.app.log(FibooGame.LOG, "pulsado left");
 			
 			if (camera.position.x > w/2)
 			{
-				Gdx.app.log(fibooGame.LOG, "x=" + camera.position.x);
-				Gdx.app.log(fibooGame.LOG, "y=" + camera.position.y);
+				Gdx.app.log(FibooGame.LOG, "x=" + camera.position.x);
+				Gdx.app.log(FibooGame.LOG, "y=" + camera.position.y);
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(-3,0);
 				}
@@ -305,7 +305,7 @@ public class CameraScreen extends AbstractScreen {
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			Gdx.app.log(fibooGame.LOG, "pulsado right");
+			Gdx.app.log(FibooGame.LOG, "pulsado right");
 			if (camera.position.x + camera.viewportWidth <= (4096 - w/2))
 			{
 				for(int i=0;i<N;++i) {
@@ -315,7 +315,7 @@ public class CameraScreen extends AbstractScreen {
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			Gdx.app.log(fibooGame.LOG, "pulsado down con y:" + camera.position.y);
+			Gdx.app.log(FibooGame.LOG, "pulsado down con y:" + camera.position.y);
 			if (camera.position.y > h/2) {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(0,-3);
@@ -324,7 +324,7 @@ public class CameraScreen extends AbstractScreen {
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			Gdx.app.log(fibooGame.LOG, "pulsado up con y:" + camera.position.y);
+			Gdx.app.log(FibooGame.LOG, "pulsado up con y:" + camera.position.y);
 			if (camera.position.y + camera.viewportHeight <= (2048 - h/2)) {
 				for(int i=0;i<N;++i) {
 					objetoMenuActors.get(i).translate(0,3);
@@ -344,9 +344,9 @@ public class CameraScreen extends AbstractScreen {
 	
 	private boolean noHayOverlaps (List<Rectangle> rectangles) {
 		int indice = 0;
-		Gdx.app.log(fibooGame.LOG, "dentro fun ind:" + indice + "size:" + rectangles.size());
+		Gdx.app.log(FibooGame.LOG, "dentro fun ind:" + indice + "size:" + rectangles.size());
 		while (indice < rectangles.size()-1) {
-			Gdx.app.log(fibooGame.LOG, "dentro fun bucle ind:" + indice + "size:" + rectangles.size());
+			Gdx.app.log(FibooGame.LOG, "dentro fun bucle ind:" + indice + "size:" + rectangles.size());
 			if (rectangles.get(indice).overlaps(rectangles.get(indice+1))) {
 				return false;
 			}
@@ -356,7 +356,7 @@ public class CameraScreen extends AbstractScreen {
 	}
 	private int esDentroBoton (float x, float y, List<Rectangle> rectangles, List<ObjetoActor> objetoActors) {
 		//Gdx.app.log(fibooGame.LOG, "dentro fun ind:" + indice + "size:" + rectangles.size());
-		Gdx.app.log(fibooGame.LOG, "bucle en (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+		Gdx.app.log(FibooGame.LOG, "bucle en (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
 		
 		float fallo = 65;
 		int i=0;
@@ -369,7 +369,7 @@ public class CameraScreen extends AbstractScreen {
 				float anchoAdi = rectangles.get(i).getX() + objetoActors.get(i).getAncho();
 				float altoAdi = rectangles.get(i).getY() + objetoActors.get(i).getAlto();
 				//Gdx.app.log(fibooGame.LOG, "vect2: (" + vector2.x+ " , " + "vect2+w: " + temp2 + ")");
-				Gdx.app.log(fibooGame.LOG, "rect" + i + " es: [x(" + rectangles.get(i).getX() + "," + anchoAdi + ") y(" +
+				Gdx.app.log(FibooGame.LOG, "rect" + i + " es: [x(" + rectangles.get(i).getX() + "," + anchoAdi + ") y(" +
 					rectangles.get(i).getY() + "," + altoAdi + ")]");
 				if (x >= rectangles.get(i).getX() - fallo && x <= anchoAdi + fallo &&
 					y >= rectangles.get(i).getY() - fallo && y <= altoAdi + fallo)
@@ -416,7 +416,7 @@ public class CameraScreen extends AbstractScreen {
 		@Override
 		public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 			//boton
-			Gdx.app.log(fibooGame.LOG, "pulsado en " + indiceAux);
+			Gdx.app.log(FibooGame.LOG, "pulsado en " + indiceAux);
 			objetoActors.get(indiceAux).remove();
 			objetoMenuActors.get(indiceAux).remove();
 			--numerosRestantes;
@@ -426,7 +426,7 @@ public class CameraScreen extends AbstractScreen {
 
 			coordenadaPulsadaX = Gdx.input.getX();
 			coordenadaPulsadaY = Gdx.input.getY();
-			Gdx.app.log(fibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
+			Gdx.app.log(FibooGame.LOG, "Touching down on (" + coordenadaPulsadaX + "," + coordenadaPulsadaY + ")");
 						
 			return true;
 			//return false;

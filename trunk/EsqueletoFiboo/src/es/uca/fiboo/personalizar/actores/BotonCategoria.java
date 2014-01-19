@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 import es.uca.fiboo.personalizar.screens.PersonalizacionScreen;
 
@@ -35,10 +35,10 @@ public class BotonCategoria {
 		this.tipo = tipo;
 		
 		String iconPath = "complementos/iconos/" + tipo.toString().toLowerCase() + ".png";
-		Texture imagenIcono = fibooGame.MANAGER.get(iconPath, Texture.class);
+		Texture imagenIcono = FibooGame.MANAGER.get(iconPath, Texture.class);
 		imagenIcono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icono = new Image(imagenIcono); 
-		Gdx.app.log(fibooGame.LOG, "Creando imagen de icono " + tipo.toString());
+		Gdx.app.log(FibooGame.LOG, "Creando imagen de icono " + tipo.toString());
 		
 		setAcciones();
 	}
@@ -82,7 +82,7 @@ public class BotonCategoria {
 		icono.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(fibooGame.LOG, "Pulsando icono...");
+				Gdx.app.log(FibooGame.LOG, "Pulsando icono...");
 				//Si habia una ventana antes la quitamos
 				for(Actor c : parent.getStage().getActors()) {
 					if(c instanceof Window) {

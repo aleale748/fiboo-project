@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.cameraminigame.screens.CameraScreen;
 
 public class ObjetoActor extends Actor {
@@ -17,7 +17,7 @@ public class ObjetoActor extends Actor {
 	
 	public ObjetoActor(int tipoInt) {
 		String nombreFichero = Integer.toString(tipoInt) + ".png";
-		texture = fibooGame.MANAGER.get("cameraminigame/" + nombreFichero, Texture.class);
+		texture = FibooGame.MANAGER.get("cameraminigame/" + nombreFichero, Texture.class);
 		//rectangle = new Rectangle(x, y, width, height)
 		this.tipoInt = tipoInt;
 	}

@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
@@ -26,7 +26,7 @@ public class CreditosScreen extends AbstractScreen {
 	private Image imgFondo;
 	private Image playBoton;
 	
-	public CreditosScreen(fibooGame game) {
+	public CreditosScreen(FibooGame game) {
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
 		//fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
@@ -41,9 +41,9 @@ public class CreditosScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-        			fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
-        			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-        			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+        			FibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
+        			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+        			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					game.setScreen(new MenuScreen(game));
 				}
 				return false;
@@ -52,11 +52,11 @@ public class CreditosScreen extends AbstractScreen {
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
-		fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).play();
 		
-		Texture fondo = fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
-		Texture ayuda = fibooGame.MANAGER.get("portada/creditos.png", Texture.class);
+		Texture fondo = FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
+		Texture ayuda = FibooGame.MANAGER.get("portada/creditos.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		ayuda.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -79,9 +79,9 @@ public class CreditosScreen extends AbstractScreen {
                     new Action() {
                         @Override
                         public boolean act(float delta) {
-                			fibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
-                			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-                			fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+                			FibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
+                			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+                			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
                             game.setScreen(new MenuScreen(game));
                             return true;
                         }

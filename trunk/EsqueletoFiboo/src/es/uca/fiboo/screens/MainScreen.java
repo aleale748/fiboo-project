@@ -13,13 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class MainScreen extends AbstractScreen {
 
 	private Image fondoImage;
 	
-	public MainScreen(fibooGame game) {
+	public MainScreen(FibooGame game) {
 		super(game);
 	}
 	

@@ -8,11 +8,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class GameOverScreen extends AbstractScreen {
 
-	public GameOverScreen(fibooGame game) {
+	public GameOverScreen(FibooGame game) {
 		super(game);
 	}
 	
@@ -52,12 +52,12 @@ public class GameOverScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		time = 0;
-		Texture fondo = fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
+		Texture fondo = FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		back = new Image(fondo);
 		back.setFillParent(true);
 		stage.addActor(back);
-		Texture imagen = fibooGame.MANAGER.get("portada/gameover.png", Texture.class);
+		Texture imagen = FibooGame.MANAGER.get("portada/gameover.png", Texture.class);
 		imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		gameover = new Image(imagen);
 		gameover.setFillParent(true);

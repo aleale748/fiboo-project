@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 
 /**
@@ -31,7 +31,7 @@ public class BotonComplemento extends Image {
 	private float escala;
 	
 	public BotonComplemento(Tipo tipo) {
-		super(fibooGame.MANAGER.get("complementos/vacio.png", Texture.class));
+		super(FibooGame.MANAGER.get("complementos/vacio.png", Texture.class));
 		addQuitarComplementoListener(tipo);
 	}
 	
@@ -56,7 +56,7 @@ public class BotonComplemento extends Image {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				fibooGame.getPersonaje().removeComplemento(tipo);
+				FibooGame.getPersonaje().removeComplemento(tipo);
 				return super.touchDown(event, x, y, pointer, button);
 			}
 		});		
@@ -68,7 +68,7 @@ public class BotonComplemento extends Image {
 
 		public DragComplemento() {
 			imagen = new Image(complemento.getImagen());
-			Gdx.app.log(fibooGame.LOG, "Creando imagen de complemento " + complemento.getImagePath());
+			Gdx.app.log(FibooGame.LOG, "Creando imagen de complemento " + complemento.getImagePath());
 			imagen.setSize(escala, escala);
 			
 			float posAvatarX = 0 + escala / 4f;
@@ -167,7 +167,7 @@ public class BotonComplemento extends Image {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
-									fibooGame.getPersonaje().addComplemento(complemento);
+									FibooGame.getPersonaje().addComplemento(complemento);
 									imagen.remove();
 									return true;
 								}

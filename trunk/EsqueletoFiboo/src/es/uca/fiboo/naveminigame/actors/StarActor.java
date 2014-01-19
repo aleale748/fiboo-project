@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class StarActor extends Actor {
 	
 	private TextureRegion star;
 	
 	public StarActor() {
-		star = new TextureRegion(fibooGame.MANAGER.get("naveminigame/star.png", Texture.class), 42, 40);
+		star = new TextureRegion(FibooGame.MANAGER.get("naveminigame/star.png", Texture.class), 42, 40);
 		setSize(star.getRegionWidth(), star.getRegionHeight());
 	}
 	

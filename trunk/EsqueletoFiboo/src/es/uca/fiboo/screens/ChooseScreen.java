@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class ChooseScreen extends AbstractScreen {
 
@@ -21,11 +21,11 @@ public class ChooseScreen extends AbstractScreen {
 	private Image imgFondo;
 	private float w,h;
 	
-	public ChooseScreen(fibooGame game) {
+	public ChooseScreen(FibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
 		
-		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
+		imgFondo = new Image(FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		w = Gdx.graphics.getWidth();
@@ -36,8 +36,8 @@ public class ChooseScreen extends AbstractScreen {
 	public void show() {
 		super.show();
 		
-		Texture nino = fibooGame.MANAGER.get("portada/polaroidnino2.png", Texture.class);
-		Texture nina = fibooGame.MANAGER.get("portada/polaroidnina2.png", Texture.class);
+		Texture nino = FibooGame.MANAGER.get("portada/polaroidnino2.png", Texture.class);
+		Texture nina = FibooGame.MANAGER.get("portada/polaroidnina2.png", Texture.class);
 		nino.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		nina.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		ninoBoton = new Image(nino);
@@ -63,8 +63,8 @@ public class ChooseScreen extends AbstractScreen {
 	@Override
 	public void hide() {
 		super.hide();
-		fibooGame.MANAGER.unload("portada/polaroidnino2.png");
-		fibooGame.MANAGER.unload("portada/polaroidnina2.png");
+		FibooGame.MANAGER.unload("portada/polaroidnino2.png");
+		FibooGame.MANAGER.unload("portada/polaroidnina2.png");
 		super.dispose();
 	}
 
@@ -79,7 +79,7 @@ public class ChooseScreen extends AbstractScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			Gdx.app.log("ChooseScreen", "Clickeando en " + base);
-			fibooGame.getPersonaje().getAvatar().setBase(base);
+			FibooGame.getPersonaje().getAvatar().setBase(base);
 			stage.addAction(sequence(delay(1.0f), fadeOut(0.75f),
 			new Action() {
 				@Override

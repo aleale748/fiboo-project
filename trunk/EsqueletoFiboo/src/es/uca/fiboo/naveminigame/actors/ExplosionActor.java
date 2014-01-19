@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class ExplosionActor extends Actor {
 	
@@ -20,7 +20,7 @@ public class ExplosionActor extends Actor {
 		explosiones = new TextureRegion[24];
 		for (int i = 0; i < 24; ++i) {
 			Gdx.app.log("ExplosionMalActor", "Asignando findRegion - explosion" + i);
-			explosiones[i] = new TextureRegion(fibooGame.MANAGER.get("naveminigame/explosion" + Integer.toString(i) + ".png", Texture.class));
+			explosiones[i] = new TextureRegion(FibooGame.MANAGER.get("naveminigame/explosion" + Integer.toString(i) + ".png", Texture.class));
 		}
 		stateTime = 0f;
 		

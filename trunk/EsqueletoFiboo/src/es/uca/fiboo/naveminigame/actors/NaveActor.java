@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class NaveActor extends Actor implements HealthActor {
 
@@ -17,7 +17,7 @@ public class NaveActor extends Actor implements HealthActor {
 	public Vector2 velocidad = new Vector2(0, 0);
 	
 	public NaveActor() {
-		nave = new TextureRegion(fibooGame.MANAGER.get("naveminigame/nave.png", Texture.class), 256, 135);
+		nave = new TextureRegion(FibooGame.MANAGER.get("naveminigame/nave.png", Texture.class), 256, 135);
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		health = 1;

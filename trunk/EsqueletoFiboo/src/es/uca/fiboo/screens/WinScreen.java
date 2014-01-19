@@ -8,11 +8,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class WinScreen extends AbstractScreen {
 
-	public WinScreen(fibooGame game) {
+	public WinScreen(FibooGame game) {
 		super(game);
 	}
 
@@ -54,8 +54,8 @@ public class WinScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		time = 0;
-		Texture fondo = fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
-		Texture imagen = fibooGame.MANAGER.get("portada/win.png", Texture.class);
+		Texture fondo = FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
+		Texture imagen = FibooGame.MANAGER.get("portada/win.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		back = new Image(fondo);

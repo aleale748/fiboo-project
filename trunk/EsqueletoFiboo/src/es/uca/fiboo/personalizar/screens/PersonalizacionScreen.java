@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.personalizar.actores.BotonCategoria;
 import es.uca.fiboo.personalizar.actores.BotonComplemento;
 import es.uca.fiboo.personalizar.actores.Complemento;
@@ -32,16 +32,16 @@ public class PersonalizacionScreen extends AbstractScreen {
 	private Texture fondo;
 	private float escalaAvatar;
 	
-	public PersonalizacionScreen(final fibooGame game) {
+	public PersonalizacionScreen(final FibooGame game) {
 		super(game);
 		
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					fibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).stop();
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+					FibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).stop();
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					dispose();
 					game.setScreen(new MenuScreen(game));
 				}
@@ -51,8 +51,8 @@ public class PersonalizacionScreen extends AbstractScreen {
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
-		fibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).play();
 	}
 
 	//Carga todos los complementos habidos y por haber
@@ -72,7 +72,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		complementosPorTipo.put(Tipo.PANTALON, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<BotonComplemento>());
 		
-		for(Complemento c : fibooGame.getComplementos()) {
+		for(Complemento c : FibooGame.getComplementos()) {
 			if(c.isDisponible()) {
 				complementosPorTipo.get(c.getTipo()).add(new BotonComplemento(c));
 			}
@@ -127,11 +127,11 @@ public class PersonalizacionScreen extends AbstractScreen {
 	private void setFondoAleatorio() {
 		int fondoRand = (int)(Math.random()*10) % 5;
 		switch(fondoRand) {
-			case 0: fondo = fibooGame.MANAGER.get("ascensor/habitacionverde.png", Texture.class); break;
-			case 1: fondo = fibooGame.MANAGER.get("ascensor/habitacionrosa.png", Texture.class); break;
-			case 2: fondo = fibooGame.MANAGER.get("ascensor/habitacionceleste.png", Texture.class); break;
-			case 3: fondo = fibooGame.MANAGER.get("ascensor/habitacionmorada.png", Texture.class); break;
-			case 4: fondo = fibooGame.MANAGER.get("ascensor/habitacionnaranja.png", Texture.class); break;
+			case 0: fondo = FibooGame.MANAGER.get("ascensor/habitacionverde.png", Texture.class); break;
+			case 1: fondo = FibooGame.MANAGER.get("ascensor/habitacionrosa.png", Texture.class); break;
+			case 2: fondo = FibooGame.MANAGER.get("ascensor/habitacionceleste.png", Texture.class); break;
+			case 3: fondo = FibooGame.MANAGER.get("ascensor/habitacionmorada.png", Texture.class); break;
+			case 4: fondo = FibooGame.MANAGER.get("ascensor/habitacionnaranja.png", Texture.class); break;
 		}
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
@@ -148,7 +148,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		//Pintar avatar y fondo
 		batch.begin();
 			batch.draw(fondo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			fibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
+			FibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
 		batch.end();
 
 		//Pintar el resto de actores

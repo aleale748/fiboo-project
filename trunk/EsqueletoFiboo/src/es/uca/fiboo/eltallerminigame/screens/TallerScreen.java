@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
@@ -39,10 +39,10 @@ public class TallerScreen extends AbstractScreen {
 	private int numTornillosUsados;
 	private Sound bien;
 	private Sound mal;
-	private fibooGame game;
+	private FibooGame game;
 	
 	
-	public TallerScreen(final fibooGame game, final ArrayList<Texture> tornillos, final ArrayList<Texture> tornillosUsados) {	
+	public TallerScreen(final FibooGame game, final ArrayList<Texture> tornillos, final ArrayList<Texture> tornillosUsados) {	
 		super(game);
 		this.game = game;
 		this.tornillosUsados = tornillosUsados;
@@ -51,7 +51,7 @@ public class TallerScreen extends AbstractScreen {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 		tornillosTocados = new ArrayList<Boolean>();
-		robot = fibooGame.MANAGER.get("sacominigame/robot.ogg", Sound.class);
+		robot = FibooGame.MANAGER.get("sacominigame/robot.ogg", Sound.class);
 		posicionesTornillos = new ArrayList<Rectangle>();
 		barrigaRobot = new Rectangle();
 		tornillosBotones = new ArrayList<ImageButton>();
@@ -68,12 +68,12 @@ public class TallerScreen extends AbstractScreen {
 		}
 
 		//Se cargan las imagenes necesarias
-		robot_triste = fibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
-		robot_alegre = fibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
-		robot_normal = fibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
+		robot_triste = FibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
+		robot_alegre = FibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
+		robot_normal = FibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		//boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
-		bien = fibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
-		mal = fibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
+		bien = FibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
+		mal = FibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
 		
 		//Situamos la barriga del robot
 		
@@ -303,10 +303,10 @@ public class TallerScreen extends AbstractScreen {
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-        			fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
-					fibooGame.MANAGER.unloadSacoMiniGameSounds();
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+        			FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();
+					FibooGame.MANAGER.unloadSacoMiniGameSounds();
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
 				}

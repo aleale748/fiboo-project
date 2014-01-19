@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import es.uca.fiboo.screens.WinScreen;
@@ -61,24 +61,24 @@ public class RobotGameScreen extends AbstractScreen{
 	private int numobjetos;
 	private Numeros numeros;
 	float h, w;
-	public RobotGameScreen(fibooGame game){
+	public RobotGameScreen(FibooGame game){
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		// load the images for the droplet and the bucket, 64x64 pixels each
 		h= Gdx.graphics.getHeight();
 		w= Gdx.graphics.getWidth();
-		planetaImage = fibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
-		lunaImage = fibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
-		estrellaImage = fibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
-		marcianoImage = fibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
+		planetaImage = FibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
+		lunaImage = FibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
+		estrellaImage = FibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
+		marcianoImage = FibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
 		
-		basecontroles = fibooGame.MANAGER.get("portada/base.png", Texture.class);
+		basecontroles = FibooGame.MANAGER.get("portada/base.png", Texture.class);
 		// load the drop sound effect and the rain background "music"
-		musicaFondo = fibooGame.MANAGER.get("sonidos/robot.ogg", Music.class);
-		bienSound = fibooGame.MANAGER.get("robotgame/bien.ogg", Sound.class);
-		malSound = fibooGame.MANAGER.get("robotgame/mal.ogg", Sound.class);
-		reguSound = fibooGame.MANAGER.get("robotgame/regu.ogg", Sound.class);
+		musicaFondo = FibooGame.MANAGER.get("sonidos/robot.ogg", Music.class);
+		bienSound = FibooGame.MANAGER.get("robotgame/bien.ogg", Sound.class);
+		malSound = FibooGame.MANAGER.get("robotgame/mal.ogg", Sound.class);
+		reguSound = FibooGame.MANAGER.get("robotgame/regu.ogg", Sound.class);
 		// create the camera and the SpriteBatch
 		camera = new OrthographicCamera();
 		
@@ -135,7 +135,7 @@ public class RobotGameScreen extends AbstractScreen{
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
+		Image imgFondo = new Image(FibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 
@@ -159,7 +159,7 @@ public class RobotGameScreen extends AbstractScreen{
 			 }
 		});
 		timer = 2 + (float) Math.random();
-		Gdx.app.log(fibooGame.LOG, "Show terminado");
+		Gdx.app.log(FibooGame.LOG, "Show terminado");
 	}
 	
 	@Override
@@ -233,7 +233,7 @@ public class RobotGameScreen extends AbstractScreen{
 				iter.remove();
 				}
 				catch(NullPointerException e){
-					Gdx.app.log(fibooGame.LOG, "iter null");
+					Gdx.app.log(FibooGame.LOG, "iter null");
 				}
 			}
 		}
@@ -249,10 +249,10 @@ public class RobotGameScreen extends AbstractScreen{
 		malSound.dispose();
 		reguSound.dispose();
 		*/
-		fibooGame.MANAGER.unloadRobotMiniGameTextures();
+		FibooGame.MANAGER.unloadRobotMiniGameTextures();
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
  
@@ -264,8 +264,8 @@ public class RobotGameScreen extends AbstractScreen{
 		TextureRegion[] numerosverdes;
 
 		public Numeros(){
-			numrojos= fibooGame.MANAGER.get("robotgame/numerosrojos.png", Texture.class);  
-			numverdes= fibooGame.MANAGER.get("robotgame/numerosverdes.png", Texture.class);  
+			numrojos= FibooGame.MANAGER.get("robotgame/numerosrojos.png", Texture.class);  
+			numverdes= FibooGame.MANAGER.get("robotgame/numerosverdes.png", Texture.class);  
 			TextureRegion[][] tmp1 = TextureRegion.split(numrojos, numrojos.getWidth() / FRAME_COLS, numrojos.getHeight());                                // #10
 			TextureRegion[][] tmp2 = TextureRegion.split(numverdes, numverdes.getWidth() / FRAME_COLS, numverdes.getHeight()); 
 			numerosrojos = new TextureRegion[FRAME_COLS];

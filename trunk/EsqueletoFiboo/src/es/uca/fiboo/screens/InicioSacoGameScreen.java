@@ -1,16 +1,16 @@
 package es.uca.fiboo.screens;
 import com.badlogic.gdx.audio.Music;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.eltallerminigame.screens.TallerScreenPrincipal;
 
 public class InicioSacoGameScreen extends AbstractLoadingScreen {
 	
-	public InicioSacoGameScreen(fibooGame game) {
+	public InicioSacoGameScreen(FibooGame game) {
 		super(game);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
-		fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
+		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).play();
 	}
 	
 	@Override
@@ -20,7 +20,7 @@ public class InicioSacoGameScreen extends AbstractLoadingScreen {
 	
 	@Override
 	public void loadAssets() {
-		fibooGame.MANAGER.loadSacoMiniGameSounds();	
+		FibooGame.MANAGER.loadSacoMiniGameSounds();	
 	}
 	
 	@Override

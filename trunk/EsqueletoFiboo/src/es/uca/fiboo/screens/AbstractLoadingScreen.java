@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 /**
  * @author Sergio
@@ -30,7 +30,7 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 	private NinePatch loaderFull;
 	private float w, h;
 	
-	public AbstractLoadingScreen(fibooGame game) {
+	public AbstractLoadingScreen(FibooGame game) {
 		super(game);
 		
 		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
@@ -39,12 +39,12 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 		
-		Texture vacioT = fibooGame.MANAGER.get("loading/vacio.png", Texture.class);
-		Texture fullT = fibooGame.MANAGER.get("loading/full.png", Texture.class);
+		Texture vacioT = FibooGame.MANAGER.get("loading/vacio.png", Texture.class);
+		Texture fullT = FibooGame.MANAGER.get("loading/full.png", Texture.class);
 		loaderVacio = new NinePatch(new TextureRegion(vacioT, 24, 24), 8, 8, 8, 8);
 		loaderFull = new NinePatch(new TextureRegion(fullT, 24, 24), 8, 8, 8, 8);
 		
-		Texture boton = fibooGame.MANAGER.get("portada/playportada.png", Texture.class); 
+		Texture boton = FibooGame.MANAGER.get("portada/playportada.png", Texture.class); 
         boton.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         playBoton = new Image(boton);
 	}
@@ -52,8 +52,8 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		super.show();
-		Texture fondo = fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
-		Texture ayuda = fibooGame.MANAGER.get(getImagenFondo(), Texture.class);
+		Texture fondo = FibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
+		Texture ayuda = FibooGame.MANAGER.get(getImagenFondo(), Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		ayuda.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -81,7 +81,7 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
                         @Override
                         public boolean act(float delta) {
                         	dispose();
-                			fibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).stop();
+                			FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).stop();
                         	setGameScreen();
                             return true;
                         }
@@ -104,13 +104,13 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 		
 		stage.draw();
 	
-		if(fibooGame.MANAGER.update()) {
+		if(FibooGame.MANAGER.update()) {
 			if(!playBoton.isVisible()) {
 				playBoton.setVisible(true);
 			}
 		}
 		else {
-			float progress = fibooGame.MANAGER.getProgress();
+			float progress = FibooGame.MANAGER.getProgress();
 			
 			batch.begin();
 			loaderVacio.draw(batch, w*0.375f, h/8 - h*0.025f, w/4, h*0.05f);

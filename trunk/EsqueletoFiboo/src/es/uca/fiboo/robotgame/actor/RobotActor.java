@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class RobotActor extends Actor {
 
@@ -25,9 +25,9 @@ public class RobotActor extends Actor {
 	private int cont;
 	public RobotActor() {
 		robot= new TextureRegion[3];
-		robot[0] = new TextureRegion(fibooGame.MANAGER.get("robotgame/robotfrente.png", Texture.class));
-		robot[1] = new TextureRegion(fibooGame.MANAGER.get("robotgame/robotderecha.png", Texture.class));
-		robot[2] = new TextureRegion(fibooGame.MANAGER.get("robotgame/robotizquierda.png", Texture.class));
+		robot[0] = new TextureRegion(FibooGame.MANAGER.get("robotgame/robotfrente.png", Texture.class));
+		robot[1] = new TextureRegion(FibooGame.MANAGER.get("robotgame/robotderecha.png", Texture.class));
+		robot[2] = new TextureRegion(FibooGame.MANAGER.get("robotgame/robotizquierda.png", Texture.class));
 		direccion= 0;
 		cont= 0;
 		setSize(Gdx.graphics.getWidth()*0.2f, Gdx.graphics.getWidth()*0.25f);

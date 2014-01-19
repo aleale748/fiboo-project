@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class BienActor extends Actor {
 	
 	private TextureRegion bien;
 	
 	public BienActor() {
-		bien = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/bien.png", Texture.class));
+		bien = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/bien.png", Texture.class));
 		setSize(bien.getRegionWidth(), bien.getRegionHeight());
 		setWidth(getWidth()*0.5f);
 		setHeight(getHeight()*0.5f);

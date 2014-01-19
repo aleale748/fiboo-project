@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class NumeroActor extends Actor {
 	
@@ -14,7 +14,7 @@ public class NumeroActor extends Actor {
 	public int a;
 	
 	public NumeroActor(int a) {
-		numero = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/" + Integer.toString(a) + ".png", Texture.class), 60, 100);
+		numero = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/" + Integer.toString(a) + ".png", Texture.class), 60, 100);
 		setSize(numero.getRegionWidth(), numero.getRegionHeight());
 		this.a = a;
 	}

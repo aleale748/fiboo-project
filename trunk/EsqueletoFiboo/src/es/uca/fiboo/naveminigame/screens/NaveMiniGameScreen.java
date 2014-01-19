@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.naveminigame.actors.AsteroideActor;
 import es.uca.fiboo.naveminigame.actors.BarraActor;
 import es.uca.fiboo.naveminigame.actors.BarraVaciaActor;
@@ -48,16 +48,16 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	Sound disparo, explosion, golpe;
 	Music musicaFondo;
 	
-	public NaveMiniGameScreen(fibooGame game) {
+	public NaveMiniGameScreen(FibooGame game) {
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		//Gdx.app.log(fibooGame.LOG, "Bien construido.");
-		musicaFondo = fibooGame.MANAGER.get("sonidos/nave.ogg",Music.class);
+		musicaFondo = FibooGame.MANAGER.get("sonidos/nave.ogg",Music.class);
 		//musicaFondo.loop(0.25f);
-		explosion = fibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class);
-		disparo = fibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class);
-		golpe = fibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class);
+		explosion = FibooGame.MANAGER.get("naveminigame/older/explosion.ogg", Sound.class);
+		disparo = FibooGame.MANAGER.get("naveminigame/older/shoot.ogg", Sound.class);
+		golpe = FibooGame.MANAGER.get("naveminigame/older/hit.ogg", Sound.class);
 	}
 
 	private NaveActor nave;
@@ -106,10 +106,10 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		//Gdx.app.log(fibooGame.LOG, "Cargando imagen de fondo y añadiendola al escenario");
-		Image imgFondo = new Image(fibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
+		Image imgFondo = new Image(FibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
-		baseestrellas = new Image(fibooGame.MANAGER.get("portada/base.png", Texture.class));
+		baseestrellas = new Image(FibooGame.MANAGER.get("portada/base.png", Texture.class));
 		baseestrellas.setPosition(w*0.12f - widthBasePunt/2f, h-heightBasePunt/2f);
 		baseestrellas.setWidth(widthBasePunt);
 		baseestrellas.setHeight(heightBasePunt);
@@ -566,10 +566,10 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		explosion.dispose();
 		golpe.dispose();
 		disparo.dispose();*/
-		fibooGame.MANAGER.unloadNaveMiniGameSounds();
+		FibooGame.MANAGER.unloadNaveMiniGameSounds();
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 

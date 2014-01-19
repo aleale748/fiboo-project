@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
-import es.uca.fiboo.fibooGame;
+import es.uca.fiboo.FibooGame;
 
 public class MarcianoActor extends Actor {
 
@@ -23,7 +23,7 @@ public class MarcianoActor extends Actor {
 	private NaveActor nave;
 	
 	public MarcianoActor() {
-		marciano = new TextureRegion(fibooGame.MANAGER.get("marcianosminigame/marciano.png", Texture.class));
+		marciano = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/marciano.png", Texture.class));
 		setSize(128, 128);
 		bb = new Rectangle(getX(), getY() + getHeight()/3f, getWidth(),getHeight()/1.8f);
 		colocado = false;
@@ -69,7 +69,7 @@ public class MarcianoActor extends Actor {
 		
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			if (!colocado) {
-				fibooGame.MANAGER.get("sonidos/guala.ogg", Sound.class).play();
+				FibooGame.MANAGER.get("sonidos/guala.ogg", Sound.class).play();
 				posicionX = getX();
 				posicionY = getY();
 				float dx = Gdx.input.getX() - getWidth() * 0.5f;
@@ -93,13 +93,13 @@ public class MarcianoActor extends Actor {
 		public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
 			if (nave!=null && !nave.colocado() && marciano.bb.overlaps(nave.bb)) {
-				Gdx.app.log(fibooGame.LOG, "Else de touchup empezado.");
+				Gdx.app.log(FibooGame.LOG, "Else de touchup empezado.");
 				marciano.addAction(Actions.moveTo(nave.getX(), nave.getY(), 0.5f));
 				posicionX = getX();
 				posicionY = getY();
 				marciano.colocar();
 				nave.colocar();
-				Gdx.app.log(fibooGame.LOG, "Else terminado.");
+				Gdx.app.log(FibooGame.LOG, "Else terminado.");
 			}
 			super.touchUp(event, x, y, pointer, button);
 		}
