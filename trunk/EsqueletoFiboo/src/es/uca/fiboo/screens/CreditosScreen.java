@@ -41,7 +41,7 @@ public class CreditosScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-						game.setScreen(new MenuMiniJuegosScreen(game));
+						game.setScreen(new MenuScreen(game));
 				}
 				return false;
 			}
