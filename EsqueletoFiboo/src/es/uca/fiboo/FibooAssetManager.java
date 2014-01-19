@@ -42,6 +42,7 @@ public class FibooAssetManager extends AssetManager {
 		load("portada/gameover.png", Texture.class);
 		load("portada/info.png", Texture.class);
 		load("portada/creditos.png", Texture.class);
+		load("portada/base.png", Texture.class);
 	}
 	
 	public void loadSonidos() {
@@ -328,7 +329,7 @@ public class FibooAssetManager extends AssetManager {
 		load("pianogame/logotrompeta.png", Texture.class);
 		load("pianogame/logopiano.png", Texture.class);
 		load("pianogame/piano.png", Texture.class);
-		load("pianogame/base.png", Texture.class);
+		//load("pianogame/base.png", Texture.class);
 		load("pianogame/play.png", Texture.class);
 		load("pianogame/stop.png", Texture.class);
 		load("pianogame/pause.png", Texture.class);
