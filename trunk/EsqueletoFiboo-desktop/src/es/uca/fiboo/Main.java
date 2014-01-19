@@ -11,6 +11,6 @@ public class Main {
 		cfg.width = 480; //480
 		cfg.height = 320; //320
 		
-		new LwjglApplication(new fibooGame(), cfg);
+		new LwjglApplication(new FibooGame(), cfg);
 	}
 }
