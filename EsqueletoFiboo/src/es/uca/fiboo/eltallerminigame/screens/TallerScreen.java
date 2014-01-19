@@ -30,7 +30,7 @@ public class TallerScreen extends AbstractScreen {
 	private ArrayList<Texture> tornillos;
 	private Texture robot_triste;
 	private Texture robot_alegre;
-	private Texture boton_taller;
+	//private Texture boton_taller;
 	private Texture robot_normal;
 	private Sound robot;
 	private int tornilloActual;
@@ -69,7 +69,7 @@ public class TallerScreen extends AbstractScreen {
 		robot_triste = fibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
 		robot_alegre = fibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
 		robot_normal = fibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
-		boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
+		//boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
 		bien = fibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
 		mal = fibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
 		

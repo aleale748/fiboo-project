@@ -6,8 +6,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
@@ -57,8 +55,6 @@ public class EstadisticasScreen extends AbstractScreen {
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-		float h = Gdx.graphics.getHeight();
-		float w = Gdx.graphics.getWidth();
 		batch.begin();
 		
 		if(TallerScreenPrincipal.NUMERO_REPETICIONES == TallerScreenPrincipal.aciertos) {
