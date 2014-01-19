@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import es.uca.fiboo.fibooGame;
@@ -25,6 +26,8 @@ public class TallerScreenPrincipal extends AbstractScreen {
 	public TallerScreenPrincipal(fibooGame game) {
 		super(game);
 		this.game = game;
+		fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).setLooping(true);
+		fibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).play();
 		repeticiones = 0; //Variable para repetir la ejecución del juego 4 veces, por ejemplo
 		aciertos = 0; //Al inicio los aciertos son 0
 		fallos = 0; //Al inicio los fallos son 0

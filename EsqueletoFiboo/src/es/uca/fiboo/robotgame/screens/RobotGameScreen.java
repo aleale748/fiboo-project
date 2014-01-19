@@ -44,7 +44,7 @@ public class RobotGameScreen extends AbstractScreen{
 	Sound bienSound;
 	Sound malSound;
 	Sound reguSound;
-	//Sound musicaFondo;
+	Music musicaFondo;
 	//Music rainMusic;
 	OrthographicCamera camera;
 	Rectangle hucha;
@@ -75,7 +75,7 @@ public class RobotGameScreen extends AbstractScreen{
 		
 		basecontroles = fibooGame.MANAGER.get("portada/base.png", Texture.class);
 		// load the drop sound effect and the rain background "music"
-		//musicaFondo = fibooGame.MANAGER.get("sonidos/robot.mp3", Sound.class);
+		musicaFondo = fibooGame.MANAGER.get("sonidos/robot.ogg", Music.class);
 		bienSound = fibooGame.MANAGER.get("robotgame/bien.ogg", Sound.class);
 		malSound = fibooGame.MANAGER.get("robotgame/mal.ogg", Sound.class);
 		reguSound = fibooGame.MANAGER.get("robotgame/regu.ogg", Sound.class);
@@ -93,7 +93,8 @@ public class RobotGameScreen extends AbstractScreen{
 		// Use LibGDX's default Arial font.
 		
 		numeros= new Numeros();
-		//musicaFondo.loop();
+		musicaFondo.setLooping(true);
+		musicaFondo.play();
 		spawnRaindrop();
 	}
 	
@@ -124,7 +125,7 @@ public class RobotGameScreen extends AbstractScreen{
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					//musicaFondo.stop();
+					musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
@@ -223,7 +224,7 @@ public class RobotGameScreen extends AbstractScreen{
 					break;
 				}
 				if(numobjetos==0){
-					//musicaFondo.stop();
+					musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					dispose();
 					game.setScreen(new WinScreen(game));
