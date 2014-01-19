@@ -51,7 +51,7 @@ public class MenuScreen extends AbstractScreen {
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
-		float imgWidth = w * 0.25f;
+		float imgWidth = w * 0.35f;
 		float imgHeight = imgWidth;
 		
 		// Cargamos imagenes de botones
@@ -64,13 +64,13 @@ public class MenuScreen extends AbstractScreen {
 		entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
 		entrenarBoton.setX(w/(4f/3f) - entrenarBoton.getWidth()/2);
-		entrenarBoton.setY(h/(4f/2.7f) - entrenarBoton.getHeight()/2);
+		entrenarBoton.setY(h*0.72f - entrenarBoton.getHeight()/2);
 		entrenarBoton.addListener(new MyClickListener(1)); 
 		
 		personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
 		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
-		personalizarBoton.setY(h/3.3f - personalizarBoton.getHeight()/2);
+		personalizarBoton.setY(h*0.28f - personalizarBoton.getHeight()/2);
 		personalizarBoton.addListener(new MyClickListener(2));
 		
 		stage.addActor(entrenarBoton);
