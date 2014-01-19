@@ -155,10 +155,10 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			boton2.setWidth(widthBoton);
 			boton2.setHeight(heightBoton);
 			if (Math.random() > 0.5f) {
-				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
-				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2.5f);
-				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/2.03f);
-				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2.5f);
+				numeroMal.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/1.53f);
+				boton2.setPosition(Gdx.graphics.getWidth()/2 - widthBoton*1.3f, Gdx.graphics.getHeight()/2f);
+				numeroSol.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/1.28f, Gdx.graphics.getHeight()/1.53f);
+				boton1.setPosition(Gdx.graphics.getWidth()/2 + widthBoton/2, Gdx.graphics.getHeight()/2f);
 			}
 			else {
 				numeroSol.setPosition(Gdx.graphics.getWidth()/2  - widthBoton*1.03f, Gdx.graphics.getHeight()/2.03f);
