@@ -5,9 +5,9 @@ import com.badlogic.gdx.audio.Music;
 import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractLoadingScreen;
 
-public class AyudaNaveScreen extends AbstractLoadingScreen {
+public class InicioNaveScreen extends AbstractLoadingScreen {
 
-	public AyudaNaveScreen(FibooGame game) {
+	public InicioNaveScreen(FibooGame game) {
 		super(game);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
