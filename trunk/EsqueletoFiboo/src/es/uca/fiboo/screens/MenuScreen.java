@@ -24,6 +24,7 @@ public class MenuScreen extends AbstractScreen {
 
 	private Image entrenarBoton, personalizarBoton, infoBoton;
 	private Image imgFondo;
+	private boolean cambiandoPantalla;
 	private float w, h, escalaAvatar;
 	
 	public MenuScreen(fibooGame game) {
@@ -31,6 +32,7 @@ public class MenuScreen extends AbstractScreen {
 		imgFondo = new Image(fibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
+		cambiandoPantalla = false;
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 	}
@@ -56,7 +58,7 @@ public class MenuScreen extends AbstractScreen {
 		float imgWidth = w * 0.35f;
 		float imgHeight = imgWidth;
 		
-		escalaAvatar = h * 0.7f;
+		escalaAvatar = h * 0.95f;
 		
 		// Cargamos imagenes de botones
 		Texture entrenar = fibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class);
@@ -95,9 +97,12 @@ public class MenuScreen extends AbstractScreen {
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		stage.act(delta);
 		stage.draw();
-		batch.begin();
-		fibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
-		batch.end();
+		
+		if(!cambiandoPantalla) {
+			batch.begin();
+			fibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
+			batch.end();
+		}
 	}
 	
 	private class MyClickListener extends ClickListener {
@@ -110,6 +115,7 @@ public class MenuScreen extends AbstractScreen {
 		
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
+			cambiandoPantalla = true;
 			switch(screen) {
 				case 1:
 					Gdx.app.log(fibooGame.LOG, "Clickeando en bot�n Creditos");

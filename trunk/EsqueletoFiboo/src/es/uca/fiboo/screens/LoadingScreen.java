@@ -6,6 +6,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -76,7 +77,12 @@ public class LoadingScreen extends AbstractScreen {
                     new Action() {
                         @Override
                         public boolean act(float delta) {
-                            game.setScreen(new ChooseScreen(game));
+                        	if(isFisrtGame()) {
+                        		game.setScreen(new ChooseScreen(game));
+                        	}
+                        	else {
+                        		game.setScreen(new MenuScreen(game));
+                        	}
                             return true;
                         }
                     }));
@@ -138,6 +144,15 @@ public class LoadingScreen extends AbstractScreen {
 		super.hide();
 		font.dispose();
 		super.dispose();
+	}
+	
+
+	private boolean isFisrtGame() {
+		FileHandle savedData = Gdx.files.local("saveData.json");
+		if(savedData.exists())
+			return false;
+		
+		return true;
 	}
 
 }

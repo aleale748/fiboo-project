@@ -81,9 +81,7 @@ public class fibooGame extends Game {
             comps.writeString(json.prettyPrint(complementos), false);
             
 			MANAGER.dispose();
-			//if (atlasComplementos!=null) atlasComplementos.dispose();
-			//atlasMarcianosMiniGame.dispose();
-			//atlasNaveMiniGame.dispose();
+	
 			super.dispose();
 			System.exit(0);
             Gdx.app.log(fibooGame.LOG, "'Disposing' game");
