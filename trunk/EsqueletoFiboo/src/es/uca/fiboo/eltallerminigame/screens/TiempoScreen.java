@@ -163,12 +163,14 @@ public class TiempoScreen extends AbstractScreen {
 		
 			else {	
 				TallerScreenPrincipal.repeticiones++;
+				dispose();
 				game.setScreen(new TallerScreen(game,tornillos,tornillosUsados));
 			}
 			
 		}
 		
 		else {
+			dispose();
 			game.setScreen(new EstadisticasScreen(game)); //Como ya ha realizado todas las repeticiones, mostramos las estadísticas
 		}
 		
@@ -183,6 +185,9 @@ public class TiempoScreen extends AbstractScreen {
 			@Override
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
+					fibooGame.MANAGER.unloadSacoMiniGameSounds();
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
+					fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
 				}
@@ -195,9 +200,6 @@ public class TiempoScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		fibooGame.MANAGER.unloadSacoMiniGameSounds();
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
-		fibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
 	}
 

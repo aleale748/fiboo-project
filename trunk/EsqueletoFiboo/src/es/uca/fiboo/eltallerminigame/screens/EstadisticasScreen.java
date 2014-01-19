@@ -63,14 +63,17 @@ public class EstadisticasScreen extends AbstractScreen {
 		
 		if(TallerScreenPrincipal.NUMERO_REPETICIONES == TallerScreenPrincipal.aciertos) {
 			//TallerScreenPrincipal.font.draw(batch, "�Muy bien! Has respondido todas bien", w/10, h/2);
+			dispose();
 			game.setScreen(new WinScreen(game));
 		}
 		else if(TallerScreenPrincipal.aciertos == 0) {
 			//TallerScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue dif�cil �Sigue intentandolo!", w/10, h/2);
+			dispose();
 			game.setScreen(new GameOverScreen(game));
 		}
 		else {
 			//TallerScreenPrincipal.font.draw(batch, "Esta bien, pero a�n puedes mejorar �Sigue intentandolo!", w/10, h/2);
+			dispose();
 			game.setScreen(new GameOverScreen(game));
 		}
 		
