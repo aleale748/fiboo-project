@@ -47,7 +47,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		float imgWidth = w * 0.2f;
+		float imgWidth = w * 0.3f;
 		float imgHeight = imgWidth;
 	
 		// Cargamos imagenes de botones
@@ -78,8 +78,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		// Creamos botones, los posicionamos y los a??adimos al stage
 		naveBoton = new ImageButton(naveBotonDrawable);
 		naveBoton.setSize(imgWidth, imgHeight);
-		naveBoton.setPosition(w*0.25f - naveBoton.getWidth()/2, 
-				h/4 - naveBoton.getHeight()/2);
+		naveBoton.setPosition(w*0.2f - naveBoton.getWidth()/2, 
+				h*0.35f - naveBoton.getHeight()/2);
 		naveBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -102,7 +102,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		bolsaBoton = new ImageButton(bolsaBotonDrawable);
 		bolsaBoton.setSize(imgWidth, imgHeight);
 		bolsaBoton.setPosition(w*0.5f - bolsaBoton.getWidth()/2, 
-				h/4 - bolsaBoton.getHeight()/2);
+				h*0.35f - bolsaBoton.getHeight()/2);
 		bolsaBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -120,8 +120,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		mapaBoton = new ImageButton(mapaBotonDrawable);
 		mapaBoton.setSize(imgWidth, imgHeight);
-		mapaBoton.setPosition(w*0.75f - mapaBoton.getWidth()/2, 
-				h/(4f/3f) - mapaBoton.getHeight()/2);
+		mapaBoton.setPosition(w*0.8f - mapaBoton.getWidth()/2, 
+				h*0.65f - mapaBoton.getHeight()/2);
 		mapaBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -139,8 +139,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		robotBoton = new ImageButton(robotBotonDrawable);
 		robotBoton.setSize(imgWidth, imgHeight);
-		robotBoton.setPosition(w*0.25f - robotBoton.getWidth()/2, 
-				h/(4f/3f) - robotBoton.getHeight()/2);
+		robotBoton.setPosition(w*0.2f - robotBoton.getWidth()/2, 
+				h*0.65f - robotBoton.getHeight()/2);
 		robotBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -159,7 +159,7 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		pianoBoton = new ImageButton(pianoBotonDrawable);
 		pianoBoton.setSize(imgWidth, imgHeight);
 		pianoBoton.setPosition(w*0.5f - pianoBoton.getWidth()/2, 
-				h/(4f/3f) - pianoBoton.getHeight()/2);
+				h*0.65f - pianoBoton.getHeight()/2);
 		pianoBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -177,8 +177,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		marcianoBoton = new ImageButton(marcianoBotonDrawable);
 		marcianoBoton.setSize(imgWidth, imgHeight);
-		marcianoBoton.setPosition(w*0.75f - marcianoBoton.getWidth()/2, 
-				h/4 - marcianoBoton.getHeight()/2);
+		marcianoBoton.setPosition(w*0.8f - marcianoBoton.getWidth()/2, 
+				h*0.35f - marcianoBoton.getHeight()/2);
 		marcianoBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -196,8 +196,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		
 		atrasBoton = new ImageButton(atrasBotonDrawable);
 		atrasBoton.setSize(imgWidth/2, imgHeight/2);
-		atrasBoton.setPosition(w/(4f/0.3f) - atrasBoton.getWidth()/2, 
-				h/(4f/0.5f) - atrasBoton.getHeight()/2);
+		atrasBoton.setPosition(w/(4f/0.3f) - atrasBoton.getWidth()/2f, 
+				h*0.1f - atrasBoton.getHeight()/2);
 		atrasBoton.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
