@@ -68,7 +68,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		complementosPorTipo.put(Tipo.BOCA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.BIGOTE, new ArrayList<BotonComplemento>());
 		//complementosPorTipo.put(Tipo.MASCARA, new ArrayList<BotonComplemento>());
-		complementosPorTipo.put(Tipo.CAMISA, new ArrayList<BotonComplemento>());
+		complementosPorTipo.put(Tipo.CAMISETA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.PANTALON, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<BotonComplemento>());
 		

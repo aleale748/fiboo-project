@@ -82,7 +82,7 @@ public class BotonComplemento extends Image {
 			//Si son complementos de la cara/cabeza el Rect de avatar ser� la mitad.
 			switch(complemento.getTipo()) {
 			case DISFRAZ:
-			case CAMISA:
+			case CAMISETA:
 			case PANTALON:
 				posAvatarY = (Gdx.graphics.getHeight() - escala) / 2f;
 				heightRectAvatar = escala;
@@ -130,7 +130,7 @@ public class BotonComplemento extends Image {
 			float dy;
 			switch(complemento.getTipo()) {
 			case DISFRAZ:
-			case CAMISA:
+			case CAMISETA:
 			case PANTALON:
 				dy = Gdx.input.getY() + imagen.getHeight() * 0.5f; break;
 			case BIGOTE:
@@ -155,7 +155,7 @@ public class BotonComplemento extends Image {
 					
 					switch(complemento.getTipo()) {
 					case DISFRAZ:
-					case CAMISA:
+					case CAMISETA:
 					case PANTALON:
 						toY = avatar.y; break;
 					default:

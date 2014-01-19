@@ -16,7 +16,7 @@ import es.uca.fiboo.fibooGame;
 public class Complemento {
 	
 	public static enum Tipo {
-		PELO, ACCPELO, OJOS, BIGOTE, BOCA, GAFAS, DISFRAZ, CAMISA, PANTALON, MASCARA;
+		PELO, ACCPELO, OJOS, BIGOTE, BOCA, GAFAS, DISFRAZ, CAMISETA, PANTALON, MASCARA;
 	}
 	
 	private Tipo tipo;

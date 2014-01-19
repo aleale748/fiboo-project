@@ -60,30 +60,42 @@ public class FibooAssetManager extends AssetManager {
 		load("complementos/adpelo1Icon.png", Texture.class);
 		load("complementos/adpelo2.png", Texture.class);
 		load("complementos/adpelo2Icon.png", Texture.class);
+		load("complementos/adpelo3.png", Texture.class);
+		load("complementos/adpelo3Icon.png", Texture.class);
+		
 		load("complementos/bigote1.png", Texture.class);
 		load("complementos/bigote1Icon.png", Texture.class);
 		load("complementos/bigote2.png", Texture.class);
 		load("complementos/bigote2Icon.png", Texture.class);
+		load("complementos/bigote3.png", Texture.class);
+		load("complementos/bigote3Icon.png", Texture.class);
+		
 		load("complementos/boca1.png", Texture.class);
 		load("complementos/boca1Icon.png", Texture.class);
 		load("complementos/boca2.png", Texture.class);
 		load("complementos/boca2Icon.png", Texture.class);
 		load("complementos/boca3.png", Texture.class);
 		load("complementos/boca3Icon.png", Texture.class);
+		
 		load("complementos/disfraz1.png", Texture.class);
 		load("complementos/disfraz1Icon.png", Texture.class);
 		load("complementos/disfraz2.png", Texture.class);
 		load("complementos/disfraz2Icon.png", Texture.class);
+		
 		load("complementos/gafas1.png", Texture.class);
 		load("complementos/gafas1Icon.png", Texture.class);
 		load("complementos/gafas2.png", Texture.class);
 		load("complementos/gafas2Icon.png", Texture.class);
+		load("complementos/gafas3.png", Texture.class);
+		load("complementos/gafas3Icon.png", Texture.class);
+		
 		load("complementos/ojos1.png", Texture.class);
 		load("complementos/ojos1Icon.png", Texture.class);
 		load("complementos/ojos2.png", Texture.class);
 		load("complementos/ojos2Icon.png", Texture.class);
 		load("complementos/ojos3.png", Texture.class);
 		load("complementos/ojos3Icon.png", Texture.class);
+		
 		load("complementos/pelonina1.png", Texture.class);
 		load("complementos/pelonina1Icon.png", Texture.class);
 		load("complementos/pelonina2.png", Texture.class);
@@ -96,13 +108,34 @@ public class FibooAssetManager extends AssetManager {
 		load("complementos/pelonino2Icon.png", Texture.class);
 		load("complementos/pelonino3.png", Texture.class);
 		load("complementos/pelonino3Icon.png", Texture.class);
+		
+		load("complementos/pantalon1.png", Texture.class);
+		load("complementos/pantalon1Icon.png", Texture.class);
+		load("complementos/pantalon2.png", Texture.class);
+		load("complementos/pantalon2Icon.png", Texture.class);
+		load("complementos/pantalon3.png", Texture.class);
+		load("complementos/pantalon3Icon.png", Texture.class);
+		load("complementos/pantalon4.png", Texture.class);
+		load("complementos/pantalon4Icon.png", Texture.class);
+		
+		load("complementos/camiseta1.png", Texture.class);
+		load("complementos/camiseta1Icon.png", Texture.class);
+		load("complementos/camiseta2.png", Texture.class);
+		load("complementos/camiseta2Icon.png", Texture.class);
+		load("complementos/camiseta3.png", Texture.class);
+		load("complementos/camiseta3Icon.png", Texture.class);
+		load("complementos/camiseta4.png", Texture.class);
+		load("complementos/camiseta4Icon.png", Texture.class);
+		load("complementos/camiseta5.png", Texture.class);
+		load("complementos/camiseta5Icon.png", Texture.class);
+		
 		load("complementos/vacio.png", Texture.class);
 
 		//Iconos
 		load("complementos/iconos/accpelo.png", Texture.class);
 		load("complementos/iconos/bigote.png", Texture.class);
 		load("complementos/iconos/boca.png", Texture.class);
-		load("complementos/iconos/camisa.png", Texture.class);
+		load("complementos/iconos/camiseta.png", Texture.class);
 		load("complementos/iconos/disfraz.png", Texture.class);
 		load("complementos/iconos/gafas.png", Texture.class);
 		load("complementos/iconos/ojos.png", Texture.class);

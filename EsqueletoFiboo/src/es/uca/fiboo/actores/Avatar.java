@@ -43,7 +43,7 @@ public class Avatar {
 		complementos.put(Tipo.BOCA, null);
 		complementos.put(Tipo.BIGOTE, null);
 		complementos.put(Tipo.MASCARA, null);
-		complementos.put(Tipo.CAMISA, null);
+		complementos.put(Tipo.CAMISETA, null);
 		complementos.put(Tipo.PANTALON, null);
 		complementos.put(Tipo.DISFRAZ, null);
 	}
@@ -51,6 +51,9 @@ public class Avatar {
 	//Faltan algunas comprobaciones
 	public void addComplemento(Complemento c) {
 		complementos.put(c.getTipo(), c);
+		if(c.getTipo() == Tipo.CAMISETA || c.getTipo() == Tipo.PANTALON) {
+			complementos.put(Tipo.DISFRAZ, null);
+		}
 	}
 	
 	public void removeComplemento(Tipo tipo) {
