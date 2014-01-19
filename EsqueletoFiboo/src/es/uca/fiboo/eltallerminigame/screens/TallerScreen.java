@@ -32,7 +32,7 @@ public class TallerScreen extends AbstractScreen {
 	private Texture robot_alegre;
 	private Texture boton_taller;
 	private Texture robot_normal;
-	private Sound objetosSound;
+	private Sound robot;
 	private int tornilloActual;
 	private Rectangle barrigaRobot;
 	private ArrayList<Texture> tornillosElegidos;
@@ -50,7 +50,7 @@ public class TallerScreen extends AbstractScreen {
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
 		tornillosTocados = new ArrayList<Boolean>();
-		objetosSound = fibooGame.MANAGER.get("sacominigame/clic.wav", Sound.class);
+		robot = fibooGame.MANAGER.get("sacominigame/robot.mp3", Sound.class);
 		posicionesTornillos = new ArrayList<Rectangle>();
 		barrigaRobot = new Rectangle();
 		tornillosBotones = new ArrayList<ImageButton>();
@@ -99,7 +99,7 @@ public class TallerScreen extends AbstractScreen {
 					Gdx.app.log(TallerScreenPrincipal.LOG, "Touching up on TornilloButton");
 					
 					if(posicionesTornillos.get(tornilloActual).overlaps(barrigaRobot)) {
-						objetosSound.play();
+						robot.play();
 						Gdx.app.log(TallerScreenPrincipal.LOG, "Overlaping with barrigaRobot"+tornilloActual);
 						tornillosTocados.set(tornilloActual, false);
 						if(tornillosElegidos.size() < 4) {

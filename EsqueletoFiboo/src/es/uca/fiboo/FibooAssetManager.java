@@ -401,6 +401,7 @@ public class FibooAssetManager extends AssetManager {
 		load("sacominigame/clic.wav", Sound.class);
 		load("sacominigame/bien.ogg", Sound.class);
 		load("sacominigame/mal.ogg", Sound.class);
+		load("sacominigame/robot.mp3", Sound.class);
 		
 	}
 	
