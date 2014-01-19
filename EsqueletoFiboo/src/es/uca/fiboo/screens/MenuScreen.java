@@ -20,7 +20,7 @@ import es.uca.fiboo.personalizar.screens.PersonalizacionScreen;
 
 public class MenuScreen extends AbstractScreen {
 
-	private Image entrenarBoton, personalizarBoton;
+	private Image entrenarBoton, personalizarBoton, infoBoton;
 	private Image imgFondo;
 	private float w, h;
 	
@@ -57,22 +57,31 @@ public class MenuScreen extends AbstractScreen {
 		// Cargamos imagenes de botones
 		Texture entrenar = fibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class);
 		Texture personalizar = fibooGame.MANAGER.get("portada/botonpersonalizar.png", Texture.class);
+		Texture info = fibooGame.MANAGER.get("portada/info.png", Texture.class);
+
+		info.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		entrenar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		personalizar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		// Creamos botones, los posicionamos y los a�adimos al stage
+		infoBoton = new Image(info);
+		infoBoton.setSize(imgWidth*0.2f, imgHeight*0.2f);
+		infoBoton.setX(w*0.05f - infoBoton.getWidth()/2);
+		infoBoton.setY(h*0.08f - infoBoton.getHeight()/2);
+		infoBoton.addListener(new MyClickListener(1)); 
+		
 		entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
 		entrenarBoton.setX(w/(4f/3f) - entrenarBoton.getWidth()/2);
 		entrenarBoton.setY(h*0.72f - entrenarBoton.getHeight()/2);
-		entrenarBoton.addListener(new MyClickListener(1)); 
+		entrenarBoton.addListener(new MyClickListener(2)); 
 		
 		personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
 		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
 		personalizarBoton.setY(h*0.28f - personalizarBoton.getHeight()/2);
-		personalizarBoton.addListener(new MyClickListener(2));
-		
+		personalizarBoton.addListener(new MyClickListener(3));
+		stage.addActor(infoBoton);
 		stage.addActor(entrenarBoton);
 		stage.addActor(personalizarBoton);
 	}
@@ -94,12 +103,23 @@ public class MenuScreen extends AbstractScreen {
 							new Action() {
 								@Override
 								public boolean act(float delta) {
-									game.setScreen(new MenuMiniJuegosScreen(game));
+									game.setScreen(new CreditosScreen(game));
 									return true;
 								}
 							}));
 					break;
 				case 2:
+					Gdx.app.log(fibooGame.LOG, "Clickeando en bot�n Minijuegos");
+					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
+							new Action() {
+								@Override
+								public boolean act(float delta) {
+									game.setScreen(new MenuMiniJuegosScreen(game));
+									return true;
+								}
+							}));
+					break;
+				case 3:
 					Gdx.app.log(fibooGame.LOG, "Clickeando en bot�n Personalizaci�n");
 					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
 							new Action() {
@@ -109,7 +129,8 @@ public class MenuScreen extends AbstractScreen {
 									return true;
 								}
 							}));
-					break;					
+					break;	
+				
 			}
 		}
 	}
