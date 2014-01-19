@@ -27,7 +27,9 @@ import es.uca.fiboo.marcianosminigame.actors.PreguntaActor;
 import es.uca.fiboo.naveminigame.actors.EmptyStarActor;
 import es.uca.fiboo.naveminigame.actors.StarActor;
 import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.screens.GameOverScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
+import es.uca.fiboo.screens.WinScreen;
 
 public class MarcianosMiniGameScreen extends AbstractScreen {
 
