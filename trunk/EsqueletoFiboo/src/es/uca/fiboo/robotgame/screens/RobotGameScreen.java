@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import es.uca.fiboo.fibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
-import es.uca.fiboo.naveminigame.screens.WinScreen;
+import es.uca.fiboo.screens.WinScreen;
 import es.uca.fiboo.robotgame.actor.DropObject;
 import es.uca.fiboo.robotgame.actor.RobotActor;
  
