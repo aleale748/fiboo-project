@@ -9,6 +9,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -38,13 +39,11 @@ public class TallerScreen extends AbstractScreen {
 	private ArrayList<Texture> tornillosElegidos;
 	private int numTornillosUsados;
 	private Sound bien;
-	private Sound mal;
-	private FibooGame game;
-	
+	private Sound mal;	
 	
 	public TallerScreen(final FibooGame game, final ArrayList<Texture> tornillos, final ArrayList<Texture> tornillosUsados) {	
 		super(game);
-		this.game = game;
+
 		this.tornillosUsados = tornillosUsados;
 		this.tornillos = tornillos;
 		Gdx.input.setInputProcessor(stage);
@@ -58,7 +57,6 @@ public class TallerScreen extends AbstractScreen {
 		barrigaRobot = new Rectangle();
 		tornillosElegidos = new ArrayList<Texture>();
 		numTornillosUsados = tornillosUsados.size();
-
 		
 		//Inicializamos los objetos de los ArrayList
 		
@@ -69,20 +67,21 @@ public class TallerScreen extends AbstractScreen {
 
 		//Se cargan las imagenes necesarias
 		robot_triste = FibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
+		robot_triste.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		robot_alegre = FibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
+		robot_alegre.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		robot_normal = FibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
+		robot_normal.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		//boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
 		bien = FibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
 		mal = FibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
 		
-		//Situamos la barriga del robot
-		
+		//Situamos la barriga del robot	
 		barrigaRobot.height = h/3.3f;
 		barrigaRobot.width = w/5;
 		barrigaRobot.x = w/1.9f;
 		barrigaRobot.y = h/5.3f;
-		
-		
+			
 		//Creamos los botones de todos los tornillos y les asignamos su correspondiente listener
 		
 		for(int i=0; i<tornillos.size(); i++) {
@@ -110,8 +109,7 @@ public class TallerScreen extends AbstractScreen {
 								tornillosUsados.remove(tornillos.get(tornilloActual));
 							}
 						}
-					}
-					
+					}				
 					else {
 						tornillosTocados.set(tornilloActual, false);
 					}
@@ -139,13 +137,11 @@ public class TallerScreen extends AbstractScreen {
 		tornillosBotones.get(8).setPosition(w/3.2f, h/2.6f);
 		
 		
-		//Añadimos todos los botones al stage
-		
+		//Añadimos todos los botones al stage		
 		for(int i=0; i<tornillos.size(); i++) {
 			stage.addActor(tornillosBotones.get(i));
 		}
-		
-		
+			
 		//Botón para comprobar el resultado
 		
 		/*ImageButton tallerButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(boton_taller)));
@@ -202,9 +198,7 @@ public class TallerScreen extends AbstractScreen {
 			for (int i = 0; i < TallerScreenPrincipal.puntos.size(); ++i) {
 				stage.addActor(TallerScreenPrincipal.puntos.get(i));
 			}
-		}
-		
-		
+		}		
 	}
 
 	@Override
@@ -218,8 +212,7 @@ public class TallerScreen extends AbstractScreen {
 		if(tornillosElegidos.size() == numTornillosUsados && tornillosUsados.isEmpty()) { //Ha acertado
 			batch.draw(robot_alegre, 0, 0, w, h);
 			bien.play();
-			
-			
+					
 			TallerScreenPrincipal.aciertos++; //Sumamos el acierto actual
 			
 			float widthPuntuacion = 42;
@@ -233,8 +226,7 @@ public class TallerScreen extends AbstractScreen {
 			
 			dispose();
 			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
-		}
-		
+		}		
 		else if(tornillosElegidos.size() == numTornillosUsados && !tornillosUsados.isEmpty()) {
 			batch.draw(robot_triste, 0, 0, w, h);
 			mal.play();
@@ -242,8 +234,7 @@ public class TallerScreen extends AbstractScreen {
 			TallerScreenPrincipal.fallos++; //Sumamos el fallo actual
 			dispose();
 			game.setScreen(new TiempoScreen(game,0)); //Lanzamos el siguiente intento
-		}
-		
+		}		
 		else {
 			batch.draw(robot_normal, 0, 0, w, h);
 		
@@ -287,12 +278,6 @@ public class TallerScreen extends AbstractScreen {
 		
 		stage.act(delta);
 		stage.draw();
-	}
-	
-
-	@Override
-	public void dispose() {
-		super.dispose();
 	}
 	
 	@Override 

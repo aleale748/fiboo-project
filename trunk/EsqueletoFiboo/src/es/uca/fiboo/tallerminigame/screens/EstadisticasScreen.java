@@ -14,13 +14,9 @@ import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 import es.uca.fiboo.screens.WinScreen;
 
 public class EstadisticasScreen extends AbstractScreen {
-	protected FibooGame game;
 	
 	public EstadisticasScreen(FibooGame game) {
 		super(game);
-		
-		this.game = game;
-		
 		
 		for (int i = 0; i < 4; ++i) {
 			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
