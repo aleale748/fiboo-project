@@ -12,17 +12,17 @@ import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
  */
 public class Personaje {
 	
-	private Avatar avatar;
+	private final Avatar avatar;
 	
 	public Personaje() {
 		avatar = new Avatar();
 	}
 	
-	public void addComplemento(Complemento complemento) {
+	public void addComplemento(final Complemento complemento) {
 		avatar.addComplemento(complemento);
 	}
 
-	public void drawAvatar(SpriteBatch batch, float escala) {
+	public void drawAvatar(final SpriteBatch batch, final float escala) {
 		avatar.draw(batch, escala);
 	}
 	
@@ -30,7 +30,7 @@ public class Personaje {
 		return avatar;
 	}
 
-	public void removeComplemento(Tipo tipo) {
+	public void removeComplemento(final Tipo tipo) {
 		avatar.removeComplemento(tipo);		
 	}
 }
