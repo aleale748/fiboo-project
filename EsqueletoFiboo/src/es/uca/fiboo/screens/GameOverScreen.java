@@ -12,11 +12,12 @@ import es.uca.fiboo.FibooGame;
 
 public class GameOverScreen extends AbstractScreen {
 
+	private Image gameover, back;
+	private float time;
+	
 	public GameOverScreen(FibooGame game) {
 		super(game);
 	}
-	
-	private float time;
 
 	@Override
 	public void render(float delta) {
@@ -31,8 +32,6 @@ public class GameOverScreen extends AbstractScreen {
 			}
 		}
 	}
-	
-	private Image gameover, back;
 
 	@Override
 	public void show() {
@@ -61,8 +60,6 @@ public class GameOverScreen extends AbstractScreen {
 		imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		gameover = new Image(imagen);
 		gameover.setFillParent(true);
-		stage.addActor(gameover);
-		
-		
+		stage.addActor(gameover);	
 	}
 }

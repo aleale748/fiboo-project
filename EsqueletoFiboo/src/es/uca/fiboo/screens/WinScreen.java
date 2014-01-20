@@ -12,11 +12,12 @@ import es.uca.fiboo.FibooGame;
 
 public class WinScreen extends AbstractScreen {
 
+	private Image win, back;
+	private float time;	
+	
 	public WinScreen(FibooGame game) {
 		super(game);
 	}
-
-	private float time;
 	
 	@Override
 	public void render(float delta) {
@@ -31,10 +32,6 @@ public class WinScreen extends AbstractScreen {
 			}
 		}
 	}
-	
-	private Image win;
-	private Image back;
-
 
 	@Override
 	public void show() {
