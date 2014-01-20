@@ -8,15 +8,12 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
-//import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
@@ -50,17 +47,14 @@ public class RobotGameScreen extends AbstractScreen{
 	private Array<DropObject> raindrops;
 	private long lastDropTime;
 	private int objetosGathered;
-	private float timer;
-	private int rand;
+	
 	private int objeto;
+
 	private int numobjetos;
 	private Numeros numeros;
 	private float h, w;
-	
 	public RobotGameScreen(FibooGame game){
 		super(game);
-		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
-		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
 		h = Gdx.graphics.getHeight();
 		w = Gdx.graphics.getWidth();
 		planetaImage = FibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
@@ -81,7 +75,6 @@ public class RobotGameScreen extends AbstractScreen{
 		objeto = MathUtils.random(0, 2);
 
 		raindrops = new Array<DropObject>();
-		
 		numeros = new Numeros();
 		musicaFondo.setLooping(true);
 		musicaFondo.play();
@@ -117,7 +110,6 @@ public class RobotGameScreen extends AbstractScreen{
 			public boolean keyUp(int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					musicaFondo.stop();
-					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
 				}
@@ -140,16 +132,13 @@ public class RobotGameScreen extends AbstractScreen{
 		robot.addListener(new DragListener() {
 			 public void touchDragged(InputEvent event, float x, float y, int pointer) {
 				 float dx = x - robot.getWidth()*0.5f;
-				// float dy = y - robot.getHeight()*0.5f; Para mover por toda la pantalla
 				 robot.setPosition(robot.getX() + dx, robot.getY());
-				 //robot.setPosition(robot.getX() + dx, robot.getY() + dy);
 			 }
 			 
 			 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 				 super.touchUp(event, x, y, pointer, button);
 			 }
 		});
-		timer = 2 + (float) Math.random();
 		Gdx.app.log(FibooGame.LOG, "Show terminado");
 	}
 	
@@ -172,7 +161,7 @@ public class RobotGameScreen extends AbstractScreen{
 			batch.draw(lunaImage, w*0.03f + w*0.1f, h*0.93f - w*0.08f/2, w*0.08f, w*0.08f);
 		
 		batch.draw(numeros.verdes(objetosGathered), w*0.03f + w*0.1f+w*0.08f, h*0.92f - w*0.08f/2, w*0.1f, w*0.1f);
-		rand = MathUtils.random(0, 1);
+		//rand = MathUtils.random(0, 1);
 		
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
@@ -191,7 +180,7 @@ public class RobotGameScreen extends AbstractScreen{
 		
 		batch.end();
 		
-		timer -= delta;
+		
 		if (TimeUtils.nanoTime() - lastDropTime > 1500000000)
 			spawnRaindrop();
  
@@ -218,7 +207,6 @@ public class RobotGameScreen extends AbstractScreen{
 				}
 				if(numobjetos == 0){
 					musicaFondo.stop();
-					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					dispose();
 					game.setScreen(new WinScreen(game));
 				}
@@ -235,7 +223,6 @@ public class RobotGameScreen extends AbstractScreen{
 	@Override
 	public void dispose() {
 		FibooGame.MANAGER.unloadRobotMiniGameTextures();
-		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
 		super.dispose();
