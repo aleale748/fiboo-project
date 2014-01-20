@@ -12,35 +12,30 @@ import es.uca.fiboo.FibooGame;
 
 public class WinScreen extends AbstractScreen {
 
-	private Image win, back;
-	private float time;	
+	private transient float time;	
 	
-	public WinScreen(FibooGame game) {
+	public WinScreen(final FibooGame game) {
 		super(game);
 	}
 	
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		time += 0.05f;
 		stage.act();
 		stage.draw();
-		if (time > 2f) {
-			if(Gdx.input.isTouched()) {
-				//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-				dispose();
-				game.setScreen(new MenuMiniJuegosScreen(game));
-			}
+		if (time > 2f || Gdx.input.isTouched()) {
+			//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+			dispose();
+			game.setScreen(new MenuMiniJuegosScreen(game));
 		}
 	}
 
 	@Override
 	public void show() {
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-					//musicaFondo.stop();
-					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					dispose();
 					game.setScreen(new MenuMiniJuegosScreen(game));
 				}
@@ -55,10 +50,12 @@ public class WinScreen extends AbstractScreen {
 		Texture imagen = FibooGame.MANAGER.get("portada/win.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		back = new Image(fondo);
+		
+		Image back = new Image(fondo);
 		back.setFillParent(true);
 		stage.addActor(back);
-		win = new Image(imagen);
+		
+		Image win = new Image(imagen);
 		win.setFillParent(true);
 		stage.addActor(win);
 	}

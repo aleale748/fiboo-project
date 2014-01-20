@@ -17,9 +17,7 @@ import es.uca.fiboo.FibooGame;
 
 public class MainScreen extends AbstractScreen {
 
-	private Image fondoImage;
-	
-	public MainScreen(FibooGame game) {
+	public MainScreen(final FibooGame game) {
 		super(game);
 	}
 	
@@ -29,7 +27,7 @@ public class MainScreen extends AbstractScreen {
 		TextureRegion fondoRegion = new TextureRegion(new Texture("portada/logoasteroid.png"));
 		Drawable fondoDrawable = new TextureRegionDrawable(fondoRegion);
 		// Se crea el actor fondoImage y su tamaño se fija al llamar resize()
-		fondoImage = new Image(fondoDrawable, Scaling.fit);
+		Image fondoImage = new Image(fondoDrawable, Scaling.fit);
 		fondoImage.setFillParent(true);
 		
 		// Esto es necesario para el efecto fade-in. Esto la hace transparente
@@ -39,7 +37,7 @@ public class MainScreen extends AbstractScreen {
 		fondoImage.addAction( sequence(fadeIn(0.75f), delay(2.75f), fadeOut(0.75f),
 				new Action() {
 					@Override
-					public boolean act(float delta) {
+					public boolean act(final float delta) {
 						// La última acción moverá hacia pantalla de inicio
 						game.setScreen(new LoadingScreen(game));
 						return true;
@@ -52,7 +50,6 @@ public class MainScreen extends AbstractScreen {
 
 	@Override
 	public void hide() {
-		fondoImage.clear();
 		super.hide();
 		super.dispose();
 	}

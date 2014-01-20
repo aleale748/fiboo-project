@@ -25,19 +25,17 @@ import es.uca.fiboo.FibooGame;
 
 public abstract class AbstractLoadingScreen extends AbstractScreen {
 
-	private Image playBoton;
-	private NinePatch loaderVacio;
-	private NinePatch loaderFull;
-	private float w, h;
+	private transient final Image playBoton;
+	private transient final NinePatch loaderVacio;
+	private transient final NinePatch loaderFull;
+	private transient final float width, height;
 	
-	public AbstractLoadingScreen(FibooGame game) {
+	public AbstractLoadingScreen(final FibooGame game) {
 		super(game);
 		
-		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
-		//fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
 		Gdx.input.setInputProcessor(stage);
-		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 		
 		Texture vacioT = FibooGame.MANAGER.get("loading/vacio.png", Texture.class);
 		Texture fullT = FibooGame.MANAGER.get("loading/full.png", Texture.class);
@@ -65,21 +63,21 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 		pantallaAyuda.setX(Gdx.graphics.getWidth()/2 - pantallaAyuda.getWidth()/2); 
         pantallaAyuda.setY(Gdx.graphics.getHeight()/2 - pantallaAyuda.getHeight()/2);
 		
-        float botonWidth = w * 0.3f;
+        float botonWidth = width * 0.3f;
 		float botonHeight = botonWidth;
-		
+
 		playBoton.setSize(botonWidth, botonHeight);
-        playBoton.setX(w/1.1f - playBoton.getWidth()/2);
-        playBoton.setY(h/6 - playBoton.getHeight()/2);
+        playBoton.setX(width/1.1f - playBoton.getWidth()/2);
+        playBoton.setY(height/6 - playBoton.getHeight()/2);
         playBoton.setVisible(false);
         
         playBoton.addListener(new ClickListener() {
             @Override
-			public void clicked(InputEvent event, float x, float y) {
+			public void clicked(final InputEvent event, final float x, final float y) {
 				stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
                     new Action() {
                         @Override
-                        public boolean act(float delta) {
+                        public boolean act(final float delta) {
                         	dispose();
                 			FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).stop();
                         	setGameScreen();
@@ -98,7 +96,7 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 	}
 
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		
@@ -113,12 +111,12 @@ public abstract class AbstractLoadingScreen extends AbstractScreen {
 			float progress = FibooGame.MANAGER.getProgress();
 			
 			batch.begin();
-			loaderVacio.draw(batch, w*0.375f, h/8 - h*0.025f, w/4, h*0.05f);
+			loaderVacio.draw(batch, width*0.375f, height/8 - height*0.025f, width/4, height*0.05f);
 			if(progress > 0.05f) {
-				loaderFull.draw(batch, w*0.375f, h/8 - h*0.025f, progress*(w/4), h*0.05f);
+				loaderFull.draw(batch, width*0.375f, height/8 - height*0.025f, progress*(width/4), height*0.05f);
 			}
 			batch.end();
-			Gdx.app.log(getName(), "Cargado al: " + progress + "%");
+			//Gdx.app.log(getName(), "Cargado al: " + progress + "%");
 		}
 						
 		stage.act(delta);

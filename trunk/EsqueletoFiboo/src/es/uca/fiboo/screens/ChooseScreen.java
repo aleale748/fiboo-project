@@ -16,20 +16,14 @@ import es.uca.fiboo.FibooGame;
 
 public class ChooseScreen extends AbstractScreen {
 
-	private Image ninoBoton;
-	private Image ninaBoton;
-	private Image imgFondo;
-	private float w,h;
+	private transient final float width, height;
 	
-	public ChooseScreen(FibooGame game) {
+	public ChooseScreen(final FibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
 		
-		imgFondo = new Image(FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
-		imgFondo.setFillParent(true);
-		stage.addActor(imgFondo);
-		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 	}
 
 	@Override
@@ -40,20 +34,24 @@ public class ChooseScreen extends AbstractScreen {
 		Texture nina = FibooGame.MANAGER.get("portada/polaroidnina2.png", Texture.class);
 		nino.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		nina.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		ninoBoton = new Image(nino);
-		ninaBoton = new Image(nina);
+		Image ninoBoton = new Image(nino);
+		Image ninaBoton = new Image(nina);
 		
-		float imgWidth = w * 0.3f;
+		Image imgFondo = new Image(FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
+		imgFondo.setFillParent(true);
+		stage.addActor(imgFondo);
+		
+		float imgWidth = width * 0.3f;
 		float imgHeight = imgWidth;
 		ninoBoton.setSize(imgWidth, imgHeight);
 		ninaBoton.setSize(imgWidth, imgHeight);		
 		
-		ninoBoton.setX(w / 4f - ninoBoton.getWidth() / 2f);
-		ninoBoton.setY(h / 2f - ninoBoton.getHeight() / 2f);		
+		ninoBoton.setX(width / 4f - ninoBoton.getWidth() / 2f);
+		ninoBoton.setY(height / 2f - ninoBoton.getHeight() / 2f);		
 		ninoBoton.addListener(new MyClickListener("pelonino3"));
 		
-		ninaBoton.setX(w / (4f/3f) - ninaBoton.getWidth() / 2f);
-		ninaBoton.setY(h / 2 - ninaBoton.getHeight() / 2f);
+		ninaBoton.setX(width / (4f/3f) - ninaBoton.getWidth() / 2f);
+		ninaBoton.setY(height / 2 - ninaBoton.getHeight() / 2f);
 		ninaBoton.addListener(new MyClickListener("pelonina3"));
 		
 		stage.addActor(ninoBoton);
@@ -70,20 +68,21 @@ public class ChooseScreen extends AbstractScreen {
 
 	private class MyClickListener extends ClickListener {
 		
-		private String base;
+		private transient final String base;
 
-		public MyClickListener(String base) {
+		public MyClickListener(final String base) {
+			super();
 			this.base = base;
 		}
 		
 		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			Gdx.app.log("ChooseScreen", "Clickeando en " + base);
+		public void clicked(final InputEvent event, final float x, final float y) {
+			//Gdx.app.log("ChooseScreen", "Clickeando en " + base);
 			FibooGame.getPersonaje().getAvatar().setBase(base);
 			stage.addAction(sequence(delay(1.0f), fadeOut(0.75f),
 			new Action() {
 				@Override
-				public boolean act(float delta) {
+				public boolean act(final float delta) {
 					game.setScreen(new MenuScreen(game));
 					return true;
 				}

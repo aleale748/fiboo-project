@@ -12,32 +12,30 @@ import es.uca.fiboo.FibooGame;
 
 public class GameOverScreen extends AbstractScreen {
 
-	private Image gameover, back;
-	private float time;
+	private transient float time;
 	
-	public GameOverScreen(FibooGame game) {
+	public GameOverScreen(final FibooGame game) {
 		super(game);
 	}
 
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		time += 0.05f;
 		stage.act();
 		stage.draw();
-		if (time > 2f) {
-			if(Gdx.input.isTouched()) {
-				//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
-				dispose();
-				game.setScreen(new MenuMiniJuegosScreen(game));
-			}
+		if (time > 2f || Gdx.input.isTouched()) {
+			//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
+			dispose();
+			game.setScreen(new MenuMiniJuegosScreen(game));
 		}
+
 	}
 
 	@Override
 	public void show() {
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
@@ -53,12 +51,15 @@ public class GameOverScreen extends AbstractScreen {
 		time = 0;
 		Texture fondo = FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		back = new Image(fondo);
+		
+		Image back = new Image(fondo);
 		back.setFillParent(true);
 		stage.addActor(back);
+		
 		Texture imagen = FibooGame.MANAGER.get("portada/gameover.png", Texture.class);
 		imagen.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		gameover = new Image(imagen);
+		
+		Image gameover = new Image(imagen);
 		gameover.setFillParent(true);
 		stage.addActor(gameover);	
 	}

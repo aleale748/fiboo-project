@@ -13,11 +13,11 @@ import es.uca.fiboo.FibooGame;
  */
 public abstract class AbstractScreen implements Screen {
 
-	protected final Stage stage;
-	protected final SpriteBatch batch;
-	protected final FibooGame game;
+	protected transient final Stage stage;
+	protected transient final SpriteBatch batch;
+	protected transient final FibooGame game;
 	
-	public AbstractScreen(FibooGame game) {
+	public AbstractScreen(final FibooGame game) {
 		this.game = game;
 		this.batch = new SpriteBatch();
 		this.stage = new Stage(0, 0, true);
@@ -28,7 +28,7 @@ public abstract class AbstractScreen implements Screen {
 	}
 	
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		// Limpia la pantalla rellenándola con el color RGB dado (blanco)
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -39,7 +39,7 @@ public abstract class AbstractScreen implements Screen {
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize(final int width, final int height) {
 		Gdx.app.log(FibooGame.LOG, "'Resizing' screen: " + getName() + " to: " + width + " x " + height);
 		
 		// Redimensiona el stage

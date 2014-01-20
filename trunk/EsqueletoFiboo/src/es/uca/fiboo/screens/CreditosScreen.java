@@ -17,17 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import es.uca.fiboo.FibooGame;
-import es.uca.fiboo.screens.AbstractScreen;
 
 public class CreditosScreen extends AbstractScreen {
 
-	private Image pantallaAyuda;
-	private Image imgFondo;
-	
-	public CreditosScreen(FibooGame game) {
+	public CreditosScreen(final FibooGame game) {
 		super(game);
-		//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).stop();
-		//fibooGame.MANAGER.get("sonidos/ayuda.mp3",Sound.class).loop();
+
 		Gdx.input.setInputProcessor(stage);
 	}
 	
@@ -35,9 +30,9 @@ public class CreditosScreen extends AbstractScreen {
 	public void show() {
 		super.show();
 		
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
         			FibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
         			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
@@ -58,25 +53,24 @@ public class CreditosScreen extends AbstractScreen {
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		ayuda.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		imgFondo = new Image(fondo);
+		Image imgFondo = new Image(fondo);
 		imgFondo.setFillParent(true);
 		
-		pantallaAyuda = new Image(ayuda);
+		Image pantallaAyuda = new Image(ayuda);
 		pantallaAyuda.setSize(Gdx.graphics.getWidth()*0.85f, Gdx.graphics.getWidth()*0.85f);
 		pantallaAyuda.setX(Gdx.graphics.getWidth()/2 - pantallaAyuda.getWidth()/2); 
         pantallaAyuda.setY(Gdx.graphics.getHeight()/2 - pantallaAyuda.getHeight()/2);
 		
         stage.addActor(imgFondo);
 		stage.addActor(pantallaAyuda);
-		
-        
+		   
         pantallaAyuda.addListener(new ClickListener() {
             @Override
-			public void clicked(InputEvent event, float x, float y) {
+			public void clicked(final InputEvent event, final float x, final float y) {
 				stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
                     new Action() {
                         @Override
-                        public boolean act(float delta) {
+                        public boolean act(final float delta) {
                 			FibooGame.MANAGER.get("sonidos/creditos.ogg", Music.class).stop();
                 			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
                 			FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).play();
@@ -85,8 +79,7 @@ public class CreditosScreen extends AbstractScreen {
                         }
                     }));
 			}
-        });
-        
+        });  
 	}
 
 }
