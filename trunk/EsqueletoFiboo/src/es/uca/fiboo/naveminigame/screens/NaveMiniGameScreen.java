@@ -84,7 +84,7 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		musicaFondo.play();
 		
 		velocidadAsteroide = 100 * Gdx.graphics.getDeltaTime();
-		velocidadBala = 500 * Gdx.graphics.getDeltaTime();
+		velocidadBala = 650 * Gdx.graphics.getDeltaTime();
 		
 		//Gdx.app.log(fibooGame.LOG, "Comienza Minijuego de destruir asteroides");
 		asteroides = new ArrayList<AsteroideActor>();
