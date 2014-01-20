@@ -9,24 +9,28 @@ import es.uca.fiboo.FibooGame;
 
 public class BarraActor extends Actor {
 	
-	private TextureRegion barra;
+	private transient TextureRegion barra;
 	
-	private HealthActor h;
+	private transient final HealthActor varHealth;
 	
-	public BarraActor(HealthActor h) {
-		if (h.getClass().getSimpleName().equals("NaveActor")) 
+	public BarraActor(final HealthActor varHealth) {
+		super();
+		if (varHealth.getClass().getSimpleName().equals("NaveActor")) {
 				barra = new TextureRegion(FibooGame.MANAGER.get("naveminigame/vida.png", Texture.class));
-		else
-			if (h.getClass().getSimpleName().equals("EscudoActor"))
+		}
+		else {
+			if (varHealth.getClass().getSimpleName().equals("EscudoActor")) {
 				barra = new TextureRegion(FibooGame.MANAGER.get("naveminigame/vidaEscudo.png", Texture.class));
+			}
+		}
 		setSize(barra.getRegionWidth(), barra.getRegionHeight());
-		this.h = h;
+		this.varHealth = varHealth;
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(barra, getX(), getY(), getOriginX(), getOriginY(), 
-				(getWidth() * h.getHealth()), getHeight(), getScaleX(), getScaleY(), 
+				getWidth() * varHealth.getHealth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
 	}
 

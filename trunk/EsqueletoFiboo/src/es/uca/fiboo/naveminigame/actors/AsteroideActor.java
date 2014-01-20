@@ -10,31 +10,32 @@ import es.uca.fiboo.FibooGame;
 
 public class AsteroideActor extends Actor {
 
-	private TextureRegion asteroide;
-	private int numero;
-	public float velocidad;
+	private transient final TextureRegion asteroide;
+	private transient final int numero;
+	public transient float velocidad;
 	
-	public Rectangle bb;
+	public transient Rectangle rectangleAst;
 	
-	public AsteroideActor(int numero, float aumentoVelocidad) {
+	public AsteroideActor(final int numero, final float aumentoVelocidad) {
+		super();
 		this.numero = numero;
 		asteroide = new TextureRegion(FibooGame.MANAGER.get("naveminigame/asteroide" + Integer.toString(numero) + ".png", Texture.class));
 		setSize(asteroide.getRegionWidth(), asteroide.getRegionHeight());
-		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
+		rectangleAst = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		this.velocidad = aumentoVelocidad;
 	}
 	
 	@Override
-	public void act(float delta) {
+	public void act(final float delta) {
 		translate(-velocidad, 0);
-		bb.x = getX();
-		bb.y = getY();
-		bb.width = getWidth();
-		bb.height = getHeight();
+		rectangleAst.x = getX();
+		rectangleAst.y = getY();
+		rectangleAst.width = getWidth();
+		rectangleAst.height = getHeight();
 	}
 
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(asteroide, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());

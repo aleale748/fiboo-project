@@ -9,15 +9,16 @@ import es.uca.fiboo.FibooGame;
 
 public class BarraVaciaActor extends Actor {
 	
-	private TextureRegion barra;
+	private transient final TextureRegion barra;
 	
 	public BarraVaciaActor() {
+		super();
 		barra = new TextureRegion(FibooGame.MANAGER.get("naveminigame/vidaVacia.png", Texture.class));
 		setSize(barra.getRegionWidth(), barra.getRegionHeight());
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(barra, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());

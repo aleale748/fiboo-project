@@ -11,27 +11,28 @@ import es.uca.fiboo.FibooGame;
 
 public class NaveActor extends Actor implements HealthActor {
 
-	private TextureRegion nave;
+	private transient final TextureRegion nave;
 	private float health;
-	public Rectangle bb;
-	public Vector2 velocidad = new Vector2(0, 0);
+	public transient Rectangle rectangleNave;
+	public transient Vector2 velocidad = new Vector2(0, 0);
+	private transient float timer;
 	
 	public NaveActor() {
+		super();
 		nave = new TextureRegion(FibooGame.MANAGER.get("naveminigame/nave.png", Texture.class), 256, 135);
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
-		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());
+		rectangleNave = new Rectangle(getX(), getY(), getWidth(),getHeight());
 		health = 1;
+		timer = 0;
 	}
 	
-	private float timer = 0;
-	
 	@Override
-	public void act(float delta) {
+	public void act(final float delta) {
 		translate(velocidad.x * delta, velocidad.y * delta);
-		bb.x = getX();
-		bb.y = getY();
-		bb.width = getWidth();
-		bb.height = getHeight();
+		rectangleNave.x = getX();
+		rectangleNave.y = getY();
+		rectangleNave.width = getWidth();
+		rectangleNave.height = getHeight();
 		if(getX() < 0) {
 			setX(0);
 			velocidad.x = 0;
@@ -56,7 +57,7 @@ public class NaveActor extends Actor implements HealthActor {
 	}
 
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(nave, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
@@ -68,18 +69,21 @@ public class NaveActor extends Actor implements HealthActor {
 	}
 
 	@Override
-	public void setHealth(float health) {
+	public void setHealth(final float health) {
 		this.health = health;
 	}
 
 	@Override
-	public void sumHealth(float sum) {
+	public void sumHealth(final float sum) {
 		this.health += sum;
-		if (health > 1)
+		if (health > 1) {
 			health = 1;
-		else
-			if (health < 0)
+		}
+		else {
+			if (health < 0) {
 				health = 0;
+			}
+		}
 	}
 	
 }

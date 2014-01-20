@@ -10,30 +10,31 @@ import es.uca.fiboo.FibooGame;
 
 public class BulletActor extends Actor {
 
-	private TextureRegion bullet;
-	public Rectangle bb;
-	float velocidad;
+	private transient final TextureRegion bullet;
+	public transient Rectangle rectangleBul;
+	private transient final float velocidad;
 	
-	public BulletActor(float velocidad) {
+	public BulletActor(final float velocidad) {
+		super();
 		bullet = new TextureRegion(FibooGame.MANAGER.get("naveminigame/laserPeque.png", Texture.class));
 		bullet.setRegionWidth(38);
 		bullet.setRegionHeight(19);
 		setSize(bullet.getRegionWidth(), bullet.getRegionHeight());
-		bb = new Rectangle(getX(), getY(), getWidth(),getHeight());	
+		rectangleBul = new Rectangle(getX(), getY(), getWidth(),getHeight());	
 		this.velocidad = velocidad;
 	}
 	
 	@Override
-	public void act(float delta) {
+	public void act(final float delta) {
 		translate(velocidad, 0);
-		bb.x = getX();
-		bb.y = getY();
-		bb.width = getWidth();
-		bb.height = getHeight();
+		rectangleBul.x = getX();
+		rectangleBul.y = getY();
+		rectangleBul.width = getWidth();
+		rectangleBul.height = getHeight();
 	}
 
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(bullet, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
