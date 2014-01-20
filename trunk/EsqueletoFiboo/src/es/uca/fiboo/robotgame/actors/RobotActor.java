@@ -12,16 +12,17 @@ import es.uca.fiboo.FibooGame;
 
 public class RobotActor extends Actor {
 
-	public Rectangle robotRect;
+	public transient Rectangle robotRect;
 	
-	public Vector2 velocidad = new Vector2(0, 0);
-	private TextureRegion[] robot;
+	public transient Vector2 velocidad = new Vector2(0, 0);
+	private transient final TextureRegion[] robot;
 	public int puntos;
-	private float positionX;
-	private int direccion;
-	private int cont;
+	private transient float positionX;
+	private transient int direccion;
+	private transient int cont;
 	
 	public RobotActor() {
+		super();
 		robot = new TextureRegion[3];
 		robot[0] = new TextureRegion(FibooGame.MANAGER.get("robotgame/robotfrente.png", Texture.class));
 		robot[1] = new TextureRegion(FibooGame.MANAGER.get("robotgame/robotderecha.png", Texture.class));
@@ -34,7 +35,7 @@ public class RobotActor extends Actor {
 	}
 	
 	@Override
-	public void act(float delta) {
+	public void act(final float delta) {
 		translate(velocidad.x * delta, velocidad.y * delta);
 		robotRect.x = getX();
 		robotRect.y = getY();
@@ -58,18 +59,23 @@ public class RobotActor extends Actor {
 	}
 
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		int i = direccion();
 		
 		batch.draw(robot[i], getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
 	}
+	
 	private int direccion(){
-		if(getX() > positionX) direccion= 1; 
-		else if(getX() < positionX) direccion = 2;
+		if(getX() > positionX) {
+			direccion = 1; 
+		}
+		else if(getX() < positionX) {
+			direccion = 2;
+		}
 		else {
-			if (cont>20){
+			if (cont > 20) {
 				direccion = 0;
 				cont = 0;
 			}
