@@ -68,10 +68,16 @@ public class Complemento {
 	}
 
 	@Override
+	public int hashCode() {
+		return 1; //No se utlilizará HashMap ni HashTable
+	}
+	
+	@Override
 	public boolean equals(Object object) {
 		if(object instanceof Complemento) {
 			if( ((Complemento)object).getImagePath().equals(imagePath) ) {
-			return true;
+				Gdx.app.log("equals", "hashCode this: " + this.hashCode() + "\nhashCode otro: " + object.hashCode());
+				return true;
 			}
 		}
 		return false;
