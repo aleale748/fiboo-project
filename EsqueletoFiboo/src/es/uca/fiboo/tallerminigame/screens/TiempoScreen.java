@@ -7,6 +7,8 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+
 import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
@@ -25,12 +27,9 @@ public class TiempoScreen extends AbstractScreen {
 	private ArrayList<Texture> numeros;
 	private int numeroTornillos;
 	private int estado;
-	FibooGame game;
 	
 	public TiempoScreen(FibooGame game, int estado) {
 		super(game);
-		
-		this.game = game;
 		
 		this.estado = estado;
 		
@@ -38,11 +37,13 @@ public class TiempoScreen extends AbstractScreen {
 		h = Gdx.graphics.getHeight();
 		w = Gdx.graphics.getWidth();
 
-		
 		//Cargamos el fondo del screen
 		robot_triste = FibooGame.MANAGER.get("sacominigame/robottriste.png", Texture.class);
+		robot_triste.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		robot_alegre = FibooGame.MANAGER.get("sacominigame/robotalegre.png", Texture.class);
+		robot_alegre.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		robot_normal = FibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
+		robot_normal.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		//Cargamos el vector de tornillos
 		tornillos = new ArrayList<Texture>();
@@ -60,17 +61,11 @@ public class TiempoScreen extends AbstractScreen {
 		tornillos.add(FibooGame.MANAGER.get("sacominigame/circuitorojo.png", Texture.class));
 		
 		//Cargamos los numeros
-		
-		numeros.add(FibooGame.MANAGER.get("sacominigame/0.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/1.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/2.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/3.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/4.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/5.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/6.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/7.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/8.png", Texture.class));
-		numeros.add(FibooGame.MANAGER.get("sacominigame/9.png", Texture.class));
+		for(int i=0; i < 10; ++i) {
+			Texture numero = FibooGame.MANAGER.get("sacominigame/"+i+".png", Texture.class);
+			numero.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			numeros.add(numero);
+		}
 		
 		//Sacamos el numero de objetos (aleatorio) pueden salir de 1 hasta 4 objetos
 		
@@ -114,12 +109,10 @@ public class TiempoScreen extends AbstractScreen {
 				
 				if(estado == 0) {
 					batch.draw(robot_triste, 0, 0, w, h); 
-				}
-				
+				}				
 				else if(estado == 1) {
 					batch.draw(robot_alegre, 0, 0, w, h); 
 				}
-				
 				else {
 					batch.draw(robot_normal, 0, 0, w, h); 
 				}
@@ -151,8 +144,7 @@ public class TiempoScreen extends AbstractScreen {
 				if((10 - (int)tiempo) == 10) { //Si es 10 dibujamos el 1 y el 0
 					batch.draw(numeros.get(1), w/4.5f, h/2.2f, w/9, h/7.5f);
 					batch.draw(numeros.get(0), w/3.6f, h/2.2f, w/9, h/7.5f);
-				}
-				
+				}			
 				else {
 					batch.draw(numeros.get((10 - (int)tiempo)), w/4.5f, h/2.2f, w/9, h/7.5f);
 				}
@@ -161,15 +153,12 @@ public class TiempoScreen extends AbstractScreen {
 			
 				tiempo = tiempo + delta;
 			}
-		
 			else {	
 				TallerScreenPrincipal.repeticiones++;
 				dispose();
 				game.setScreen(new TallerScreen(game,tornillos,tornillosUsados));
-			}
-			
-		}
-		
+			}		
+		}	
 		else {
 			dispose();
 			game.setScreen(new EstadisticasScreen(game)); //Como ya ha realizado todas las repeticiones, mostramos las estadísticas
@@ -198,11 +187,6 @@ public class TiempoScreen extends AbstractScreen {
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-	}
-	
-	@Override
-	public void dispose() {
-		super.dispose();
 	}
 
 }
