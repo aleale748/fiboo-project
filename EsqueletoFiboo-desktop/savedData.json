@@ -2,9 +2,19 @@
 avatar: {
 	data: [
 		{
-			imagePath: pelonina3,
+			imagePath: pelonina1,
 			disponible: true,
 			tipo: PELO
+		},
+		{
+			imagePath: adpelo2,
+			disponible: true,
+			tipo: ACCPELO
+		},
+		{
+			imagePath: gafas2,
+			disponible: true,
+			tipo: GAFAS
 		}
 	]
 }
