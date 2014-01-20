@@ -17,11 +17,11 @@ public class TallerScreenPrincipal extends AbstractScreen {
 	protected static int repeticiones; //Variable para contar las repeticiones del juego
 	protected static int aciertos; //Variable para contar los aciertos que ha tenido
 	protected static int fallos; //Variable para contar los fallos que ha tenido
-	protected static final int NUMERO_REPETICIONES = 4;
+	protected static final int NUM_REPETICIONES = 4;
 	protected static List<StarActor> puntos;
 	protected static final List<EmptyStarActor> SINPUNTOS = new ArrayList<EmptyStarActor>();
 
-	public TallerScreenPrincipal(FibooGame game) {
+	public TallerScreenPrincipal(final FibooGame game) {
 		super(game);
 
 		FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).setLooping(true);
@@ -30,8 +30,8 @@ public class TallerScreenPrincipal extends AbstractScreen {
 		aciertos = 0; //Al inicio los aciertos son 0
 		fallos = 0; //Al inicio los fallos son 0
 		//Añadiendo puntuaciones
-		float widthPuntuacion = 42;
-		float heightPuntuacion = 42;
+		final float widthPuntuacion = 42;
+		final float heightPuntuacion = 42;
 		
 		for (int i = 0; i < 4; ++i) {
 			SINPUNTOS.add(new EmptyStarActor());

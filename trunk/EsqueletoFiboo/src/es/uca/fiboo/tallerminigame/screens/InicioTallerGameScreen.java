@@ -6,7 +6,7 @@ import es.uca.fiboo.screens.AbstractLoadingScreen;
 
 public class InicioTallerGameScreen extends AbstractLoadingScreen {
 	
-	public InicioTallerGameScreen(FibooGame game) {
+	public InicioTallerGameScreen(final FibooGame game) {
 		super(game);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
 		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
@@ -25,8 +25,7 @@ public class InicioTallerGameScreen extends AbstractLoadingScreen {
 	
 	@Override
 	public String getImagenFondo() {
-		String path = "sacominigame/pantallainiciobolsa.png";
-		return path;
+		return "sacominigame/pantallainiciobolsa.png";
 	}
 
 }

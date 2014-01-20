@@ -1,6 +1,7 @@
 package es.uca.fiboo.tallerminigame.screens;
 
 import java.util.ArrayList;
+import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
@@ -22,46 +23,43 @@ import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 
 public class TallerScreen extends AbstractScreen {
-	private float w;
-	private float h;
-	private ArrayList<Texture> tornillosUsados;
-	private ArrayList<Boolean> tornillosTocados;
-	private ArrayList<Rectangle> posicionesTornillos;
-	private ArrayList<ImageButton> tornillosBotones;
-	private ArrayList<Texture> tornillos;
-	private final Texture robot_triste;
-	private final Texture robot_alegre;
-	//private Texture boton_taller;
-	private final Texture robot_normal;
-	private Sound robot;
-	private int tornilloActual;
-	private Rectangle barrigaRobot;
-	private ArrayList<Texture> tornillosElegidos;
-	private int numTornillosUsados;
-	private Sound bien;
-	private Sound mal;	
+	private transient final List<Texture> tornillosUsados;
+	private transient final List<Boolean> tornillosTocados;
+	private transient final List<Rectangle> posTornillos;
+	private transient final List<ImageButton> tornillosBotones;
+	private transient final List<Texture> tornillos;
+	private transient final Texture robot_triste;
+	private transient final Texture robot_alegre;
+	private transient final Texture robot_normal;
+	private transient final Sound robot;
+	private transient int tornilloActual;
+	private transient final Rectangle barrigaRobot;
+	private transient final List<Texture> tornillosElegidos;
+	private transient final int numTornillos;
+	private transient final Sound bien;
+	private transient final Sound mal;	
 	
-	public TallerScreen(final FibooGame game, final ArrayList<Texture> tornillos, final ArrayList<Texture> tornillosUsados) {	
+	public TallerScreen(final FibooGame game, final List<Texture> tornillos, final List<Texture> tornillosUsados) {	
 		super(game);
 
 		this.tornillosUsados = tornillosUsados;
 		this.tornillos = tornillos;
 		Gdx.input.setInputProcessor(stage);
-		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		final float width = Gdx.graphics.getWidth();
+		final float hight = Gdx.graphics.getHeight();
 		tornillosTocados = new ArrayList<Boolean>();
 		robot = FibooGame.MANAGER.get("sacominigame/robot.ogg", Sound.class);
-		posicionesTornillos = new ArrayList<Rectangle>();
+		posTornillos = new ArrayList<Rectangle>();
 		barrigaRobot = new Rectangle();
 		tornillosBotones = new ArrayList<ImageButton>();
-		barrigaRobot = new Rectangle();
 		tornillosElegidos = new ArrayList<Texture>();
-		numTornillosUsados = tornillosUsados.size();
+		numTornillos = tornillosUsados.size();
+		tornilloActual = 0;
 		
 		//Inicializamos los objetos de los ArrayList
 		
 		for(int i=0; i<tornillos.size(); i++) {
-			posicionesTornillos.add(i, new Rectangle());
+			posTornillos.add(i, new Rectangle());
 			tornillosTocados.add(i, false);
 		}
 
@@ -72,36 +70,29 @@ public class TallerScreen extends AbstractScreen {
 		robot_alegre.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		robot_normal = FibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		robot_normal.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		//boton_taller = fibooGame.MANAGER.get("sacominigame/tallerboton.png", Texture.class);
 		bien = FibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
 		mal = FibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
 		
 		//Situamos la barriga del robot	
-		barrigaRobot.height = h/3.3f;
-		barrigaRobot.width = w/5;
-		barrigaRobot.x = w/1.9f;
-		barrigaRobot.y = h/5.3f;
+		barrigaRobot.height = hight/3.3f;
+		barrigaRobot.width = width/5;
+		barrigaRobot.x = width/1.9f;
+		barrigaRobot.y = hight/5.3f;
 			
-		//Creamos los botones de todos los tornillos y les asignamos su correspondiente listener
+		//Crear botones y asignar su valor
 		
 		for(int i=0; i<tornillos.size(); i++) {
 			tornillosBotones.add(i, new ImageButton(new TextureRegionDrawable(new TextureRegion(tornillos.get(i)))));
 			tornilloActual = i;
 			tornillosBotones.get(i).addListener(new InputListener() {
-				
 				@Override
-				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-					Gdx.app.log(TallerScreenPrincipal.LOG, "Touching down on TornilloButton"+tornilloActual);
+				public boolean touchDown(final InputEvent event,final float posX, final float posY, final int pointer, final int button) {
 					return true;
 				}
-				
 				@Override
-				public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-					Gdx.app.log(TallerScreenPrincipal.LOG, "Touching up on TornilloButton");
-					
-					if(posicionesTornillos.get(tornilloActual).overlaps(barrigaRobot)) {
+				public void touchUp(final InputEvent event, final float posX, final float posY, final int pointer,final int button) {
+					if(posTornillos.get(tornilloActual).overlaps(barrigaRobot)) {
 						robot.play();
-						Gdx.app.log(TallerScreenPrincipal.LOG, "Overlaping with barrigaRobot"+tornilloActual);
 						tornillosTocados.set(tornilloActual, false);
 						if(tornillosElegidos.size() < 4) {
 							tornillosElegidos.add(tornillos.get(tornilloActual));
@@ -122,19 +113,19 @@ public class TallerScreen extends AbstractScreen {
 		//Posicionamos todos los tornillos y les asignamos su tamaño
 		
 		for(int i=0; i<tornillos.size(); i++) {
-			tornillosBotones.get(i).setHeight(h/6f);
-			tornillosBotones.get(i).setWidth(w/6f);
+			tornillosBotones.get(i).setHeight(hight/6f);
+			tornillosBotones.get(i).setWidth(width/6f);
 		}
 		
-		tornillosBotones.get(0).setPosition(w/11f, h/1.46f);
-		tornillosBotones.get(1).setPosition(w/4.9f, h/1.46f);
-		tornillosBotones.get(2).setPosition(w/3.2f, h/1.46f);
-		tornillosBotones.get(3).setPosition(w/11f, h/1.9f);
-		tornillosBotones.get(4).setPosition(w/4.9f, h/1.9f);
-		tornillosBotones.get(5).setPosition(w/3.2f, h/1.9f);
-		tornillosBotones.get(6).setPosition(w/11f, h/2.6f);
-		tornillosBotones.get(7).setPosition(w/4.9f, h/2.6f);
-		tornillosBotones.get(8).setPosition(w/3.2f, h/2.6f);
+		tornillosBotones.get(0).setPosition(width/11f, hight/1.46f);
+		tornillosBotones.get(1).setPosition(width/4.9f, hight/1.46f);
+		tornillosBotones.get(2).setPosition(width/3.2f, hight/1.46f);
+		tornillosBotones.get(3).setPosition(width/11f, hight/1.9f);
+		tornillosBotones.get(4).setPosition(width/4.9f, hight/1.9f);
+		tornillosBotones.get(5).setPosition(width/3.2f, hight/1.9f);
+		tornillosBotones.get(6).setPosition(width/11f, hight/2.6f);
+		tornillosBotones.get(7).setPosition(width/4.9f, hight/2.6f);
+		tornillosBotones.get(8).setPosition(width/3.2f, hight/2.6f);
 		
 		
 		//Añadimos todos los botones al stage		
@@ -142,53 +133,6 @@ public class TallerScreen extends AbstractScreen {
 			stage.addActor(tornillosBotones.get(i));
 		}
 			
-		//Botón para comprobar el resultado
-		
-		/*ImageButton tallerButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(boton_taller)));
-		tallerButton.setHeight(h/4);
-		tallerButton.setWidth(w/4);
-		tallerButton.setPosition(w/800,h/800);
-		
-		tallerButton.addListener(new InputListener() {
-			
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching down on tallerButton");
-				
-				return true;
-			}
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(TallerScreenPrincipal.LOG, "Touching up on tallerButton");
-				
-				if((tornillosUsados.size() == tornillosElegidos.size()) && tornillosElegidos.containsAll(tornillosUsados)) {
-					TallerScreenPrincipal.aciertos++; //Sumamos el acierto actual
-					
-					float widthPuntuacion = 42;
-					float heightPuntuacion = 42;
-					
-					TallerScreenPrincipal.puntos.add(new StarActor());
-					TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setPosition(widthPuntuacion*0.2f + (TallerScreenPrincipal.puntos.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
-					TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setWidth(widthPuntuacion);
-					TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
-					stage.addActor(TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1));
-					
-					game.setScreen(new TiempoScreen(game)); //Lanzamos el siguiente intento
-					
-				}
-				
-				else {
-					System.out.println("Sigue intentandolo!");
-					TallerScreenPrincipal.fallos++; //Sumamos el fallo actual
-					//game.setScreen(new EstadisticasScreen(game,1)); Estadisticas ahora no sirve para esto
-					game.setScreen(new TiempoScreen(game)); //Lanzamos el siguiente intento
-				}
-				
-			}
-		});
-		
-		stage.addActor(tallerButton);
-		*/
 		
 		for (int i = 0; i < 4; ++i) {
 			stage.addActor(TallerScreenPrincipal.SINPUNTOS.get(i));
@@ -202,21 +146,24 @@ public class TallerScreen extends AbstractScreen {
 	}
 
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		final float width = Gdx.graphics.getWidth();
+		final float hight = Gdx.graphics.getHeight();
+		
 		batch.begin();
 		
-		if(tornillosElegidos.size() == numTornillosUsados && tornillosUsados.isEmpty()) { //Ha acertado
-			batch.draw(robot_alegre, 0, 0, w, h);
+		if(tornillosElegidos.size() == numTornillos && tornillosUsados.isEmpty()) { //Ha acertado
+			batch.draw(robot_alegre, 0, 0, width, hight);
 			bien.play();
 					
 			TallerScreenPrincipal.aciertos++; //Sumamos el acierto actual
 			
-			float widthPuntuacion = 42;
-			float heightPuntuacion = 42;
+			final float widthPuntuacion = 42;
+			final float heightPuntuacion = 42;
 			
 			TallerScreenPrincipal.puntos.add(new StarActor());
 			TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setPosition(widthPuntuacion*0.2f + (TallerScreenPrincipal.puntos.size() - 1) * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
@@ -227,8 +174,8 @@ public class TallerScreen extends AbstractScreen {
 			dispose();
 			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
 		}		
-		else if(tornillosElegidos.size() == numTornillosUsados && !tornillosUsados.isEmpty()) {
-			batch.draw(robot_triste, 0, 0, w, h);
+		else if(tornillosElegidos.size() == numTornillos && !tornillosUsados.isEmpty()) {
+			batch.draw(robot_triste, 0, 0, width, hight);
 			mal.play();
 			
 			TallerScreenPrincipal.fallos++; //Sumamos el fallo actual
@@ -236,7 +183,7 @@ public class TallerScreen extends AbstractScreen {
 			game.setScreen(new TiempoScreen(game,0)); //Lanzamos el siguiente intento
 		}		
 		else {
-			batch.draw(robot_normal, 0, 0, w, h);
+			batch.draw(robot_normal, 0, 0, width, hight);
 		
 		//Comprobamos si alguno de los botones ha sido presionado
 		
@@ -244,9 +191,9 @@ public class TallerScreen extends AbstractScreen {
 			if(tornillosBotones.get(i).isPressed() || tornillosTocados.get(i)) {
 				tornilloActual = i;
 				tornillosTocados.set(i, true);
-				posicionesTornillos.get(i).x = Gdx.input.getX();
-				posicionesTornillos.get(i).y = h - Gdx.input.getY();
-				batch.draw(tornillos.get(i), posicionesTornillos.get(i).x, posicionesTornillos.get(i).y, w/9, h/9);
+				posTornillos.get(i).x = Gdx.input.getX();
+				posTornillos.get(i).y = hight - Gdx.input.getY();
+				batch.draw(tornillos.get(i), posTornillos.get(i).x, posTornillos.get(i).y, width/9, hight/9);
 			}
 		}
 			
@@ -254,22 +201,24 @@ public class TallerScreen extends AbstractScreen {
 			case 0:
 			break;
 			case 1:
-				batch.draw(tornillosElegidos.get(0), w/1.42f, h/2.7f, w/10, h/10);
+				batch.draw(tornillosElegidos.get(0), width/1.42f, hight/2.7f, width/10, hight/10);
 			break;
 			case 2:
-				batch.draw(tornillosElegidos.get(0), w/1.42f, h/2.7f, w/10, h/10);
-				batch.draw(tornillosElegidos.get(1), w/1.62f, h/2.7f, w/10, h/10);
+				batch.draw(tornillosElegidos.get(0), width/1.42f, hight/2.7f, width/10, hight/10);
+				batch.draw(tornillosElegidos.get(1), width/1.62f, hight/2.7f, width/10, hight/10);
 			break;
 			case 3:
-				batch.draw(tornillosElegidos.get(0), w/1.42f, h/2.7f, w/10, h/10);
-				batch.draw(tornillosElegidos.get(1), w/1.62f, h/2.7f, w/10, h/10);
-				batch.draw(tornillosElegidos.get(2), w/1.42f, h/4.5f, w/10, h/10);
+				batch.draw(tornillosElegidos.get(0), width/1.42f, hight/2.7f, width/10, hight/10);
+				batch.draw(tornillosElegidos.get(1), width/1.62f, hight/2.7f, width/10, hight/10);
+				batch.draw(tornillosElegidos.get(2), width/1.42f, hight/4.5f, width/10, hight/10);
 			break;
 			case 4:
-				batch.draw(tornillosElegidos.get(0), w/1.42f, h/2.7f, w/10, h/10);
-				batch.draw(tornillosElegidos.get(1), w/1.62f, h/2.7f, w/10, h/10);
-				batch.draw(tornillosElegidos.get(2), w/1.42f, h/4.5f, w/10, h/10);
-				batch.draw(tornillosElegidos.get(3), w/1.62f, h/4.5f, w/10, h/10);
+				batch.draw(tornillosElegidos.get(0), width/1.42f, hight/2.7f, width/10, hight/10);
+				batch.draw(tornillosElegidos.get(1), width/1.62f, hight/2.7f, width/10, hight/10);
+				batch.draw(tornillosElegidos.get(2), width/1.42f, hight/4.5f, width/10, hight/10);
+				batch.draw(tornillosElegidos.get(3), width/1.62f, hight/4.5f, width/10, hight/10);
+			break;
+			default:
 			break;
 		}
 		}
@@ -283,9 +232,9 @@ public class TallerScreen extends AbstractScreen {
 	@Override 
 	public void show() {
 		
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
         			FibooGame.MANAGER.get("sonidos/taller.ogg", Music.class).stop();

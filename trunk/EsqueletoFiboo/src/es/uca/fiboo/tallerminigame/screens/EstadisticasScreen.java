@@ -6,7 +6,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
-
 import es.uca.fiboo.FibooGame;
 import es.uca.fiboo.screens.AbstractScreen;
 import es.uca.fiboo.screens.GameOverScreen;
@@ -15,7 +14,7 @@ import es.uca.fiboo.screens.WinScreen;
 
 public class EstadisticasScreen extends AbstractScreen {
 	
-	public EstadisticasScreen(FibooGame game) {
+	public EstadisticasScreen(final FibooGame game) {
 		super(game);
 		
 		for (int i = 0; i < 4; ++i) {
@@ -32,9 +31,9 @@ public class EstadisticasScreen extends AbstractScreen {
 	@Override 
 	public void show() {
 		
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					game.setScreen(new MenuMiniJuegosScreen(game));
 					dispose();
@@ -47,24 +46,21 @@ public class EstadisticasScreen extends AbstractScreen {
 	}
 
 	@Override
-	public void render(float delta) {				
+	public void render(final float delta) {				
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
 		batch.begin();
 		
-		if(TallerScreenPrincipal.NUMERO_REPETICIONES == TallerScreenPrincipal.aciertos) {
-			//TallerScreenPrincipal.font.draw(batch, "�Muy bien! Has respondido todas bien", w/10, h/2);
+		if(TallerScreenPrincipal.NUM_REPETICIONES == TallerScreenPrincipal.aciertos) {
 			dispose();
 			game.setScreen(new WinScreen(game));
 		}
 		else if(TallerScreenPrincipal.aciertos == 0) {
-			//TallerScreenPrincipal.font.draw(batch, "Ohhh.. esta vez fue dif�cil �Sigue intentandolo!", w/10, h/2);
 			dispose();
 			game.setScreen(new GameOverScreen(game));
 		}
 		else {
-			//TallerScreenPrincipal.font.draw(batch, "Esta bien, pero a�n puedes mejorar �Sigue intentandolo!", w/10, h/2);
 			dispose();
 			game.setScreen(new GameOverScreen(game));
 		}
