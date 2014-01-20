@@ -27,15 +27,15 @@ public class BotonComplemento extends Image {
 	//Necesario para añadir las imagenes y sus acciones
 	private static Stage stage;
 	
-	private Complemento complemento;
-	private float escala;
+	private transient Complemento complemento;
+	private transient float escala;
 	
-	public BotonComplemento(Tipo tipo) {
+	public BotonComplemento(final Tipo tipo) {
 		super(FibooGame.MANAGER.get("complementos/vacio.png", Texture.class));
 		addQuitarComplementoListener(tipo);
 	}
 	
-	public BotonComplemento(Complemento complemento) {
+	public BotonComplemento(final Complemento complemento) {
 		super(complemento.getIcon());
 		this.complemento = complemento;
 		this.escala = Gdx.graphics.getHeight() * 0.7f;
@@ -46,7 +46,7 @@ public class BotonComplemento extends Image {
 		return complemento;
 	}
 
-	public static void setBotonComplementoStage(Stage stage) {
+	public static void setBotonComplementoStage(final Stage stage) {
 		BotonComplemento.stage = stage;
 	}
 
@@ -54,8 +54,7 @@ public class BotonComplemento extends Image {
 		this.addListener(new InputListener() {
 			
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer, final int button) {
 				FibooGame.getPersonaje().removeComplemento(tipo);
 				return super.touchDown(event, x, y, pointer, button);
 			}
@@ -63,10 +62,11 @@ public class BotonComplemento extends Image {
 	}
 	
 	private class DragComplemento extends DragListener {
-		private Image imagen;
-		private Rectangle avatar, rImagen;
+		private transient final Image imagen;
+		private transient final Rectangle avatar, rImagen;
 
 		public DragComplemento() {
+			super();
 			imagen = new Image(complemento.getImagen());
 			Gdx.app.log(FibooGame.LOG, "Creando imagen de complemento " + complemento.getImagePath());
 			imagen.setSize(escala, escala);
@@ -98,7 +98,7 @@ public class BotonComplemento extends Image {
 		}
 				
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+		public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer, final int button) {
 			if(complemento.isDisponible()) {
 				
 				float dxImagen = Gdx.input.getX() - imagen.getWidth() * 0.5f;
@@ -114,7 +114,7 @@ public class BotonComplemento extends Image {
 		}
 
 		@Override
-		public void touchDragged(InputEvent event, float x, float y, int pointer) {
+		public void touchDragged(final InputEvent event, final float x, final float y, final int pointer) {
 			if(complemento.isDisponible()) {
 				float dxImagen = Gdx.input.getX() - imagen.getWidth() * 0.5f;
 				float dyImagen = getPosicionY();
@@ -129,24 +129,24 @@ public class BotonComplemento extends Image {
 		private float getPosicionY() {
 			float dy;
 			switch(complemento.getTipo()) {
-			case DISFRAZ:
-			case CAMISETA:
-			case PANTALON:
-				dy = Gdx.input.getY() + imagen.getHeight() * 0.5f; break;
-			case BIGOTE:
-			case BOCA:
-				dy = Gdx.input.getY() + imagen.getHeight() * 0.7f; break;
-			case ACCPELO:
-				dy = Gdx.input.getY() + imagen.getHeight() * 0.9f; break;
-			default:
-				dy = Gdx.input.getY() + imagen.getHeight() * 0.8f; break;
+				case DISFRAZ:
+				case CAMISETA:
+				case PANTALON:
+					dy = Gdx.input.getY() + imagen.getHeight() * 0.5f; break;
+				case BIGOTE:
+				case BOCA:
+					dy = Gdx.input.getY() + imagen.getHeight() * 0.7f; break;
+				case ACCPELO:
+					dy = Gdx.input.getY() + imagen.getHeight() * 0.9f; break;
+				default:
+					dy = Gdx.input.getY() + imagen.getHeight() * 0.8f; break;
 			}
 			
 			return dy;
 		}
 
 		@Override
-		public void touchUp(InputEvent event, float x, float y,	int pointer, int button) {
+		public void touchUp(final InputEvent event, final float x, final float y, final int pointer, final int button) {
 			if(complemento.isDisponible()) 
 			{
 				if (rImagen.overlaps(avatar)) {
@@ -163,15 +163,15 @@ public class BotonComplemento extends Image {
 					}
 					
 					imagen.addAction(Actions.sequence(
-							Actions.moveTo(toX, toY, 0.8f),
-							new Action() {
-								@Override
-								public boolean act(float delta) {
-									FibooGame.getPersonaje().addComplemento(complemento);
-									imagen.remove();
-									return true;
-								}
-							}));
+						Actions.moveTo(toX, toY, 0.8f),
+						new Action() {
+							@Override
+							public boolean act(float delta) {
+								FibooGame.getPersonaje().addComplemento(complemento);
+								imagen.remove();
+								return true;
+							}
+						}));
 				} else {
 					imagen.remove();
 				}

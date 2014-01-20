@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
@@ -23,38 +24,36 @@ import es.uca.fiboo.screens.MenuMiniJuegosScreen;
 public class PianoScreen extends AbstractScreen {
 
 	//Piano
-	Sound doSound, reSound, miSound, faSound, solSound, laSound, siSound, zdoSound;
+	private transient Sound doSound, reSound, miSound, faSound, solSound, laSound, siSound, zdoSound;
 	//Trompeta
-	Sound dotSound, retSound, mitSound, fatSound, soltSound, latSound, sitSound, zdotSound;
+	private transient Sound dotSound, retSound, mitSound, fatSound, soltSound, latSound, sitSound, zdotSound;
 	
-	private ImageButton logopiano, logotrompeta, play, stop, pause, silencio, sonido;
+	private transient ImageButton logopiano, logotrompeta;
 
-	int seleccion;
-	float anchopiano, proporcion, alturapiano, alturanotas;
-	private Image imagenPiano;
-	//private Texture fondo;
-	private Texture partitura;
-	TextureRegion logopianoBotonRegion;
-	TextureRegion logotrompetaBotonRegion;
+	private transient int seleccion;
+	private transient final float anchopiano, alturapiano;
+	private transient Texture partitura;
 	
-	private Teclas tecla;
-	float avance;
-	float imgWidth, imgHeight, numeroTam;
-	int notas[], tempo[], silen[];
-	float time;
-	float timesil;
-	float timetocada;
-	int nota;
-	boolean mute, isplay, isstop, ismute, ispause;
-	float h, w;
-	int tocada;
-	float posPartitura;
-	float posactual;
+	private transient final Teclas tecla;
+	private transient final float avance;
+	private transient float imgWidth, imgHeight;
+	private transient final int notas[] = new int[]{1,1,2,1,4,3,1,1,2,1,5,4,1,1,8,6,4,4,3,2,8,8,6,4,5,4};
+	private transient final int tempo[] = new int[]{3,3,4,4,4,6,3,3,4,4,4,6,3,3,4,4,3,3,4,6,2,2,4,4,4,4};
+	private transient final int silen[] = new int[]{10,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1};
+	private transient float time;
+	private transient float timesil;
+	private transient int nota;
+	private transient boolean mute, isplay, ismute;
+	private transient final float h, w;
+	private transient int tocada;
+	private transient final float posPartitura;
+	private transient float posactual;
+	
 	public PianoScreen(final FibooGame game) {
 		super(game);
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//FibooGame.MANAGER.get("sonidos/fondo.ogg", Sound.class).loop();
 					dispose();
@@ -67,48 +66,40 @@ public class PianoScreen extends AbstractScreen {
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
 		//FibooGame.MANAGER.get("sonidos/fondo.ogg", Sound.class).stop();
-		Gdx.app.log(FibooGame.LOG, "Constructor piano empieza;");
+		//Gdx.app.log(FibooGame.LOG, "Constructor piano empieza;");
 		seleccion = 0;
 		h = Gdx.graphics.getHeight();
 		w = Gdx.graphics.getWidth();
-		Gdx.app.log(FibooGame.LOG, "Constructor piano ok;");
+		//Gdx.app.log(FibooGame.LOG, "Constructor piano ok;");
 		
-		alturapiano= h - h*0.68359375f;
-		alturanotas= h * 0.7f;
+		alturapiano = h - h*0.68359375f;
+		anchopiano = w;
 		tecla = new Teclas();
 		imgWidth = w * 0.18f;
 		imgHeight = imgWidth;
-		numeroTam = imgWidth*10f;
-		tocada= -1;
-		notas = new int[]{1,1,2,1,4,3,1,1,2,1,5,4,1,1,8,6,4,4,3,2,8,8,6,4,5,4};
-		tempo = new int[]{3,3,4,4,4,6,3,3,4,4,4,6,3,3,4,4,3,3,4,6,2,2,4,4,4,4};
-		silen = new int[]{10,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1};
+		tocada = -1;
 		mute = true;
 		isplay = false;
-		isstop = true;
 		ismute = false;
-		ispause = false;
 		nota = 0;
-		posPartitura= 0.545f;
-		avance= w/8.66f;
-		posactual= (w*posPartitura)-avance;
+		posPartitura = 0.545f;
+		avance = w/8.66f;
+		posactual = w*posPartitura - avance;
 	}
 	
 	@Override
 	public void show() {
 		super.show();
-		Gdx.app.log(FibooGame.LOG, "super.show() ok;");
+		//Gdx.app.log(FibooGame.LOG, "super.show() ok;");
 		//fondo = FibooGame.MANAGER.get("robotgame/fondoestrellas.png", Texture.class);
 		partitura = FibooGame.MANAGER.get("pianogame/partitura.png", Texture.class);
 		//fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
-		anchopiano = w;
-
-		Gdx.app.log(FibooGame.LOG, "multiplexer ok;");
+		//Gdx.app.log(FibooGame.LOG, "multiplexer ok;");
 		imgWidth = (Gdx.graphics.getWidth() * 0.2f)/2f;
 		imgHeight = imgWidth;
-		TextureRegion pantallaBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/piano.png", Texture.class));
-		Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
+		final TextureRegion pantallaBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/piano.png", Texture.class));
+		final Drawable pantallaBotonDrawable = new TextureRegionDrawable(pantallaBotonRegion);
 		doSound = FibooGame.MANAGER.get("pianogame/do.ogg", Sound.class);
 		reSound = FibooGame.MANAGER.get("pianogame/re.ogg", Sound.class);
 		miSound = FibooGame.MANAGER.get("pianogame/mi.ogg", Sound.class);
@@ -126,82 +117,82 @@ public class PianoScreen extends AbstractScreen {
 		sitSound = FibooGame.MANAGER.get("pianogame/sitrom.ogg", Sound.class);
 		zdotSound = FibooGame.MANAGER.get("pianogame/zdotrom.ogg", Sound.class);
 		
-		// Creamos botones, los posicionamos y los aï¿½adimos al stage
-		imagenPiano = new Image(pantallaBotonDrawable);
+		// Creamos botones, los posicionamos y los añadimos al stage
+		final Image imagenPiano = new Image(pantallaBotonDrawable);
 		imagenPiano.setFillParent(true);
 		imagenPiano.addListener(new InputListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on " + imagenPiano.getClass().getSimpleName()+" Y: "+Gdx.input.getY()+"tres cuartos:"+alturapiano);
-				
-				float click = Gdx.input.getX();
+			public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer, final int button) {
+				//Gdx.app.log(FibooGame.LOG, "Touching down on " + imagenPiano.getClass().getSimpleName()+" Y: "+Gdx.input.getY()+"tres cuartos:"+alturapiano);
+				final int piano = 0;
+				final float click = Gdx.input.getX();
 				if(Gdx.input.getY() > alturapiano) {
-					if(seleccion == 0) {
+					if(seleccion == piano) {
 						if(click < anchopiano/8){
 							doSound.play();
-							tocada= 0;
+							tocada = 0;
 						}
 						else if(click < (anchopiano/8)*2){
 							reSound.play();
-							tocada= 1;
+							tocada = 1;
 						}
 						else if(click < (anchopiano/8)*3){
 							miSound.play();
-							tocada= 2;
+							tocada = 2;
 						}
 						else if(click < (anchopiano/8)*4){
 							faSound.play();
-							tocada= 3;
+							tocada = 3;
 						}
 						else if(click < (anchopiano/8)*5){
 							solSound.play();
-							tocada= 4;
+							tocada = 4;
 						}
 						else if(click < (anchopiano/8)*6){
 							laSound.play();
-							tocada= 5;
+							tocada = 5;
 						}
 						else if(click < (anchopiano/8)*7){
 							siSound.play();
-							tocada= 6;
+							tocada = 6;
 						}
 						else{
 							zdoSound.play();
-							tocada= 7;
+							tocada = 7;
 						}
-						}
+					}
 					else {
 						if(click < anchopiano/8){
 							dotSound.play();
-							tocada= 0;
+							tocada = 0;
 						}
 						else if(click < (anchopiano/8)*2){
 							retSound.play();
-							tocada= 1;
+							tocada = 1;
 						}
 						else if(click < (anchopiano/8)*3){
 							mitSound.play();
-							tocada= 2;
+							tocada = 2;
 						}
 						else if(click < (anchopiano/8)*4){
 							fatSound.play();
-							tocada= 3;
+							tocada = 3;
 						}
 						else if(click < (anchopiano/8)*5){
 							soltSound.play();
-							tocada= 4;
+							tocada = 4;
 						}
 						else if(click < (anchopiano/8)*6){
 							latSound.play();
-							tocada= 5;
+							tocada = 5;
 						}
 						else if(click < (anchopiano/8)*7){
 							sitSound.play();
-							tocada= 6;
+							tocada = 6;
 						}
 						else{
 							zdotSound.play();
-							tocada= 7;
+							tocada = 7;
 						}
 					}
 				}
@@ -209,157 +200,114 @@ public class PianoScreen extends AbstractScreen {
 			}
 			
 			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + imagenPiano.getClass().getSimpleName());
-				tocada=-1;
-				}
+			public void touchUp(final InputEvent event, final float x, final float y, final int pointer, final int button) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + imagenPiano.getClass().getSimpleName());
+				tocada = - 1;
+			}
 		});
 		stage.addActor(imagenPiano);
-		logopianoBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/logopiano.png", Texture.class));
-		Drawable logopianoBotonDrawable = new TextureRegionDrawable(logopianoBotonRegion);
-		logotrompetaBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/logotrompeta.png", Texture.class));
-		Drawable logotrompetaBotonDrawable = new TextureRegionDrawable(logotrompetaBotonRegion);
+		
+		final TextureRegion logopianoBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/logopiano.png", Texture.class));
+		final Drawable logopianoBotonDrawable = new TextureRegionDrawable(logopianoBotonRegion);
+		final TextureRegion logotrompetaBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/logotrompeta.png", Texture.class));
+		final Drawable logotrompetaBotonDrawable = new TextureRegionDrawable(logotrompetaBotonRegion);
 		logopiano = new ImageButton(logopianoBotonDrawable);
 		logopiano.setSize(imgWidth, imgHeight);
-		logopiano.setPosition(Gdx.graphics.getWidth()*0.02f, 
-				Gdx.graphics.getHeight()*0.98f- imgWidth);
-		logopiano.addListener(new InputListener() {
+		logopiano.setX(Gdx.graphics.getWidth()*0.02f); 
+		logopiano.setY(Gdx.graphics.getHeight()*0.98f - imgWidth);
+		logopiano.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on " + logopiano.getClass().getSimpleName());
-				return true;
+			public void clicked(final InputEvent event, final float x, final float y) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + logopiano.getClass().getSimpleName());
+				seleccion = 0;
 			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + logopiano.getClass().getSimpleName());
-						seleccion = 0;
-				}
 		});
 		stage.addActor(logopiano);
+		
 		logotrompeta = new ImageButton(logotrompetaBotonDrawable);
 		logotrompeta.setSize(imgWidth, imgHeight);
-		logotrompeta.setPosition(Gdx.graphics.getWidth()*0.02f, 
-				Gdx.graphics.getHeight()*0.83f- imgWidth);
-		logotrompeta.addListener(new InputListener() {
+		logotrompeta.setX(Gdx.graphics.getWidth()*0.02f);
+		logotrompeta.setY(Gdx.graphics.getHeight()*0.83f - imgWidth);
+		logotrompeta.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on " + logotrompeta.getClass().getSimpleName());
-				return true;
+			public void clicked(final InputEvent event, final float x, final float y) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + logotrompeta.getClass().getSimpleName());
+				seleccion = 1;
 			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + logotrompeta.getClass().getSimpleName());
-						seleccion= 1;
-				}
 		});
 		stage.addActor(logotrompeta);
-		TextureRegion playBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/play.png", Texture.class));
-		Drawable playBotonDrawable = new TextureRegionDrawable(playBotonRegion);
-		TextureRegion stopBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/stop.png", Texture.class));
-		Drawable stopBotonDrawable = new TextureRegionDrawable(stopBotonRegion);
-		TextureRegion pauseBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/pause.png", Texture.class));
-		Drawable pauseBotonDrawable = new TextureRegionDrawable(pauseBotonRegion);
-		TextureRegion sonidoBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/sonido.png", Texture.class));
-		Drawable sonidoBotonDrawable = new TextureRegionDrawable(sonidoBotonRegion);
-		TextureRegion silencioBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/mute.png", Texture.class));
-		Drawable silencioBotonDrawable = new TextureRegionDrawable(silencioBotonRegion);
 		
-		play = new ImageButton(playBotonDrawable);
+		final TextureRegion playBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/play.png", Texture.class));
+		final Drawable playBotonDrawable = new TextureRegionDrawable(playBotonRegion);
+		final TextureRegion stopBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/stop.png", Texture.class));
+		final Drawable stopBotonDrawable = new TextureRegionDrawable(stopBotonRegion);
+		final TextureRegion pauseBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/pause.png", Texture.class));
+		final Drawable pauseBotonDrawable = new TextureRegionDrawable(pauseBotonRegion);
+		final TextureRegion sonidoBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/sonido.png", Texture.class));
+		final Drawable sonidoBotonDrawable = new TextureRegionDrawable(sonidoBotonRegion);
+		final TextureRegion silencioBotonRegion = new TextureRegion(FibooGame.MANAGER.get("pianogame/mute.png", Texture.class));
+		final Drawable silencioBotonDrawable = new TextureRegionDrawable(silencioBotonRegion);
+		
+		final ImageButton play = new ImageButton(playBotonDrawable);
 		play.setSize(w*0.08f, w*0.08f);
 		play.setPosition(w*0.24f, h*0.7f);
-		play.addListener(new InputListener() {
+		play.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on play" + play.getClass().getSimpleName());
-				return true;
+			public void clicked(InputEvent event, final float x, final float y) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + play.getClass().getSimpleName());
+				isplay = true;
 			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + play.getClass().getSimpleName());
-						isplay= true;
-						ispause= false;
-				}
 		});
 		stage.addActor(play);
 		
-		stop = new ImageButton(stopBotonDrawable);
+		final ImageButton stop = new ImageButton(stopBotonDrawable);
 		stop.setSize(w*0.08f, w*0.08f);
 		stop.setPosition(w*0.34f,  h*0.7f);
-		stop.addListener(new InputListener() {
+		stop.addListener(new ClickListener() {			
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on stop" + stop.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+			public void clicked(final InputEvent event, final float x, final float y) {
 				Gdx.app.log(FibooGame.LOG, "Touching up on " + stop.getClass().getSimpleName());
 				isplay = false;
-				ispause = false;
 				nota = 0;
 				time = 0;
 				timesil = 0;
-				timetocada= 0;
 				mute = true;
-				posactual= (w*posPartitura)-avance;
-				}
+				posactual = w*posPartitura - avance;
+			}
 		});
 		stage.addActor(stop);
 		
-		pause = new ImageButton(pauseBotonDrawable);
+		final ImageButton pause = new ImageButton(pauseBotonDrawable);
 		pause.setSize(w*0.08f, w*0.08f);
 		pause.setPosition(w*0.44f, h*0.7f);
-		pause.addListener(new InputListener() {
+		pause.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on pause" + pause.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + pause.getClass().getSimpleName());
+			public void clicked(final InputEvent event, final float x, final float y) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + pause.getClass().getSimpleName());
 				isplay = false;
-				ispause = true;
-				}
+			}
 		});
 		stage.addActor(pause);
 		
-		sonido = new ImageButton(sonidoBotonDrawable);
+		final ImageButton sonido = new ImageButton(sonidoBotonDrawable);
 		sonido.setSize(w*0.08f, w*0.08f);
-		sonido.setPosition(w*0.54f,  h*0.7f);
-		sonido.addListener(new InputListener() {
+		sonido.setPosition(w*0.54f, h*0.7f);
+		sonido.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on pause" + sonido.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + sonido.getClass().getSimpleName());
+			public void clicked(final InputEvent event, final float x, final float y) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + sonido.getClass().getSimpleName());
 				ismute = false;
 			}
 		});
 		stage.addActor(sonido);
 		
-		silencio = new ImageButton(silencioBotonDrawable);
+		final ImageButton silencio = new ImageButton(silencioBotonDrawable);
 		silencio.setSize(w*0.08f, w*0.08f);
 		silencio.setPosition(w*0.64f,  h*0.7f);
-		silencio.addListener(new InputListener() {
+		silencio.addListener(new ClickListener() {			
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching down on silencio" + silencio.getClass().getSimpleName());
-				return true;
-			}
-			
-			@Override
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-				Gdx.app.log(FibooGame.LOG, "Touching up on " + silencio.getClass().getSimpleName());
+			public void clicked(final InputEvent event, final float x, final float y) {
+				//Gdx.app.log(FibooGame.LOG, "Touching up on " + silencio.getClass().getSimpleName());
 				ismute = true;
 			}
 		});
@@ -378,53 +326,60 @@ public class PianoScreen extends AbstractScreen {
 		batch.draw(partitura, posactual, h*0.77f, w*3f, h*0.26f);
 		
 		//posPartitura-= 0.0001f;
+		int piano = 0;
 		if(isplay) {
-			if(!mute) {
-				
-				time += 0.1;
-				if(time > tempo[nota]){
-					time = 0;
-					mute = true;
-					nota =(nota+1)%26;
-					if (nota== 0) posactual= (w*posPartitura)-avance;
-					else
-						posactual-= avance;
-				}
-			}
-			else {
+			if(mute) {			
 				timesil += 0.1;
-				if(timesil > silen[nota]){
+				if(timesil > silen[nota]) {
 					mute = false;
 					timesil = 0;
+					
 					if(!ismute){
-						if(seleccion == 0){
-							switch(notas[nota]){
-							case 1: doSound.play();break;
-							case 2: reSound.play();break;
-							case 3:	miSound.play();break;
-							case 4:	faSound.play();break;
-							case 5:	solSound.play();break;
-							case 6:	laSound.play();break;
-							case 7:	siSound.play();break;
-							case 8:	zdoSound.play();break;
+						if(seleccion == piano){
+							switch(notas[nota]) {
+								case 1: doSound.play();break;
+								case 2: reSound.play();break;
+								case 3:	miSound.play();break;
+								case 4:	faSound.play();break;
+								case 5:	solSound.play();break;
+								case 6:	laSound.play();break;
+								case 7:	siSound.play();break;
+								case 8:	zdoSound.play();break;
+								default: break;
 							}
 						}
-						else{
+						else {
 							switch(notas[nota]){
-							case 1: dotSound.play();break;
-							case 2: retSound.play();break;
-							case 3:	mitSound.play();break;
-							case 4:	fatSound.play();break;
-							case 5:	soltSound.play();break;
-							case 6:	latSound.play();break;
-							case 7:	sitSound.play();break;
-							case 8:	zdotSound.play();break;
+								case 1: dotSound.play();break;
+								case 2: retSound.play();break;
+								case 3:	mitSound.play();break;
+								case 4:	fatSound.play();break;
+								case 5:	soltSound.play();break;
+								case 6:	latSound.play();break;
+								case 7:	sitSound.play();break;
+								case 8:	zdotSound.play();break;
+								default: break;
 							}
 						}
 					}
 				}
 			}
+			else {
+				time += 0.1;
+				if(time > tempo[nota]) {
+					time = 0;
+					mute = true;
+					nota =(nota+1)%26;
+					if (nota == 0) {
+						posactual = w*posPartitura - avance;
+					}
+					else {
+						posactual -= avance;
+					}
+				}
+			}
 		}
+		
 		batch.end();
 		stage.act();
 		stage.draw();
@@ -434,14 +389,20 @@ public class PianoScreen extends AbstractScreen {
 			switch(tocada){ 
 				case 0: batch.draw(tecla.tecla(tocada), 0, 0, w/8,h);
 					break;
-				case 1: batch.draw(tecla.tecla(tocada), (anchopiano/8), 0, w/8,h);
+				case 1: batch.draw(tecla.tecla(tocada), anchopiano/8, 0, w/8, h);
 					break;
-				case 2: batch.draw(tecla.tecla(tocada), (anchopiano/8)*2, 0, w/8,h);break;
-				case 3: batch.draw(tecla.tecla(tocada), (anchopiano/8)*3, 0, w/8,h);break;
-				case 4: batch.draw(tecla.tecla(tocada), (anchopiano/8)*4, 0, w/8,h);break;
-				case 5: batch.draw(tecla.tecla(tocada), (anchopiano/8)*5, 0, w/8,h);break;
-				case 6: batch.draw(tecla.tecla(tocada), (anchopiano/8)*6, 0, w/8,h);break;
-				case 7: batch.draw(tecla.tecla(tocada), (anchopiano/8)*7, 0, w/8,h);break;
+				case 2: batch.draw(tecla.tecla(tocada), (anchopiano/8)*2, 0, w/8,h);
+					break;
+				case 3: batch.draw(tecla.tecla(tocada), (anchopiano/8)*3, 0, w/8,h);
+					break;
+				case 4: batch.draw(tecla.tecla(tocada), (anchopiano/8)*4, 0, w/8,h);
+					break;
+				case 5: batch.draw(tecla.tecla(tocada), (anchopiano/8)*5, 0, w/8,h);
+					break;
+				case 6: batch.draw(tecla.tecla(tocada), (anchopiano/8)*6, 0, w/8,h);
+					break;
+				case 7: batch.draw(tecla.tecla(tocada), (anchopiano/8)*7, 0, w/8,h);
+					break;
 				default: break;
 			}
 		}
@@ -456,22 +417,20 @@ public class PianoScreen extends AbstractScreen {
 		logotrompeta.setPosition(Gdx.graphics.getWidth()*0.02f, 
 				Gdx.graphics.getHeight()*0.83f- imgWidth);
 		*/
-		if ((seleccion)== 0){
-				logopiano.setSize(imgWidth*1.3f, imgHeight*1.3f);
-				logopiano.setPosition(w*0.11f-imgWidth, h*0.93f-imgHeight);
-				logotrompeta.setSize(imgWidth, imgHeight);
-				logotrompeta.setPosition(w*0.24f-imgWidth, h*0.93f-imgHeight);
-				
+		if (seleccion == 0) {
+			logopiano.setSize(imgWidth*1.3f, imgHeight*1.3f);
+			logopiano.setPosition(w*0.11f - imgWidth, h*0.93f - imgHeight);
+			logotrompeta.setSize(imgWidth, imgHeight);
+			logotrompeta.setPosition(w*0.24f - imgWidth, h*0.93f - imgHeight);		
 		}
-		else{
+		else {
 			logopiano.setSize(imgWidth, imgHeight);
-			logopiano.setPosition(w*0.11f-imgWidth, h*0.93f-imgHeight);
+			logopiano.setPosition(w*0.11f - imgWidth, h*0.93f - imgHeight);
 			logotrompeta.setSize(imgWidth*1.3f, imgHeight*1.3f);
-			logotrompeta.setPosition(w*0.24f-imgWidth, h*0.93f-imgHeight);
+			logotrompeta.setPosition(w*0.24f - imgWidth, h*0.93f - imgHeight);
 		}
 		//stage.act();
 		//stage.draw();
-	
 	}
 	
 	@Override
@@ -484,12 +443,12 @@ public class PianoScreen extends AbstractScreen {
 
 	private class Teclas {
 		private static final int FRAME_COLS = 8;
-		Texture teclado;
-		TextureRegion[] teclas;
+		private transient final Texture teclado;
+		private transient final TextureRegion[] teclas;
 		
 		public Teclas(){
 			teclado = FibooGame.MANAGER.get("pianogame/teclas.png", Texture.class);   
-			TextureRegion[][] tmp = TextureRegion.split(teclado, teclado.getWidth() / FRAME_COLS, teclado.getHeight()); 
+			final TextureRegion[][] tmp = TextureRegion.split(teclado, teclado.getWidth() / FRAME_COLS, teclado.getHeight()); 
 			teclas = new TextureRegion[FRAME_COLS];
 			int index = 0;
 			for (int i = 0; i < FRAME_COLS; i++) {
@@ -497,7 +456,7 @@ public class PianoScreen extends AbstractScreen {
 			}
 		}
 		
-		public TextureRegion tecla(int n) {
+		public TextureRegion tecla(final int n) {
 			return teclas[n];
 		}
 	}
