@@ -5,10 +5,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class DropObject extends Rectangle{
 
 	private static final long serialVersionUID = 1L;
-	public static enum Drop {PLANETA, ESTRELLA, LUNA, MARCIANO};
 	private Drop tipo;
-	
-	public DropObject(int tipo){
+	public static enum Drop {PLANETA, ESTRELLA, LUNA, MARCIANO};
+
+	public DropObject(final int tipo){
+		super();
 		switch (tipo){
 			case 0: 
 				this.setTipo(Drop.PLANETA);
@@ -30,7 +31,7 @@ public class DropObject extends Rectangle{
 		return tipo;
 	}
 	
-	public void setTipo(Drop tipo) {
+	public void setTipo(final Drop tipo) {
 		this.tipo = tipo;
 	}
 	

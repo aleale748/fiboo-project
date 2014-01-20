@@ -7,7 +7,7 @@ import es.uca.fiboo.screens.AbstractLoadingScreen;
 
 public class InicioRobotGameScreen extends AbstractLoadingScreen {
 
-	public InicioRobotGameScreen(FibooGame game) {
+	public InicioRobotGameScreen(final FibooGame game) {
 		super(game);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
 		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
@@ -26,8 +26,7 @@ public class InicioRobotGameScreen extends AbstractLoadingScreen {
 	
 	@Override
 	public String getImagenFondo() {
-		String path = "robotgame/pantallainiciorobot.png";
-		return path;
+		return "robotgame/pantallainiciorobot.png";
 	}
 
 }
