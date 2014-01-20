@@ -1,6 +1,7 @@
 package es.uca.fiboo.personalizar.screens;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -27,17 +28,17 @@ import es.uca.fiboo.screens.MenuScreen;
 
 public class PersonalizacionScreen extends AbstractScreen {
 
-	private ArrayList<BotonCategoria> botonesCat;
+	private transient List<BotonCategoria> botonesCat;
 	private Skin skin;
-	private Texture fondo;
-	private float escalaAvatar;
+	private transient Texture fondo;
+	private transient float escalaAvatar;
 	
 	public PersonalizacionScreen(final FibooGame game) {
 		super(game);
 		
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					FibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).stop();
 					FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
@@ -68,19 +69,18 @@ public class PersonalizacionScreen extends AbstractScreen {
 		complementosPorTipo.put(Tipo.GAFAS, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.BOCA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.BIGOTE, new ArrayList<BotonComplemento>());
-		//complementosPorTipo.put(Tipo.MASCARA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.CAMISETA, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.PANTALON, new ArrayList<BotonComplemento>());
 		complementosPorTipo.put(Tipo.DISFRAZ, new ArrayList<BotonComplemento>());
 		
-		for(Complemento c : FibooGame.getComplementos()) {
+		for(final Complemento c : FibooGame.getComplementos()) {
 			if(c.isDisponible()) {
 				complementosPorTipo.get(c.getTipo()).add(new BotonComplemento(c));
 			}
 		}
 		
-		for(Entry<Tipo, ArrayList<BotonComplemento>> c : complementosPorTipo.entrySet()) {
-			botonesCat.add(new BotonCategoria(this, c.getValue(), c.getKey()));
+		for(final Entry<Tipo, ArrayList<BotonComplemento>> tb : complementosPorTipo.entrySet()) {
+			botonesCat.add(new BotonCategoria(this, tb.getValue(), tb.getKey()));
 		}
 	}
 	
@@ -88,37 +88,37 @@ public class PersonalizacionScreen extends AbstractScreen {
 	public void show() {
 
 		// Para probar que se carga bien el skin con todos los ficheros
-		FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
+		final FileHandle skinFile = Gdx.files.internal( "skin/uiskin.json" );
         skin = new Skin( skinFile );
 		
         botonesCat = new ArrayList<BotonCategoria>();
 		cargaComplementos();
-		//super.show();
 		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
+		final float width = Gdx.graphics.getWidth();
+		final float height = Gdx.graphics.getHeight();
 		
 		setFondoAleatorio();
 
-		escalaAvatar = h * 0.7f;
+		escalaAvatar = height * 0.7f;
         
         // Tabla para colocar los iconos
- 		Table table = new Table(skin);
+ 		final Table table = new Table(skin);
  		
- 		float cellHeight = h * 0.2f;
- 		float cellWidth = cellHeight;
- 		float posTableX = w / 2f + cellWidth * 1.5f;
- 		float posTableY = h / 2f;
+ 		final float cellHeight = height * 0.2f;
+ 		final float cellWidth = cellHeight;
+ 		final float posTableX = width / 2f + cellWidth * 1.5f;
+ 		final float posTableY = height / 2f;
  		
  		table.setPosition(posTableX, posTableY);
-         stage.addActor(table);
+        stage.addActor(table);
          
-         int newRow = 0;
-         for(BotonCategoria b : botonesCat) {
+        int newRow = 0;
+        final int maxRows = 2;
+        for(final BotonCategoria b : botonesCat) {
  			table.add(b.getIcono()).width(cellWidth).height(cellHeight);
  			newRow++;
  			// 3 complementos por cada fila
- 			if(newRow > 2) {
+ 			if(newRow > maxRows) {
  				newRow = 0;
  				table.row();
  			}
@@ -126,19 +126,20 @@ public class PersonalizacionScreen extends AbstractScreen {
 	}
 	
 	private void setFondoAleatorio() {
-		int fondoRand = (int)(Math.random()*10) % 5;
+		final int fondoRand = (int)(Math.random()*10) % 5;
 		switch(fondoRand) {
 			case 0: fondo = FibooGame.MANAGER.get("ascensor/habitacionverde.png", Texture.class); break;
 			case 1: fondo = FibooGame.MANAGER.get("ascensor/habitacionrosa.png", Texture.class); break;
 			case 2: fondo = FibooGame.MANAGER.get("ascensor/habitacionceleste.png", Texture.class); break;
 			case 3: fondo = FibooGame.MANAGER.get("ascensor/habitacionmorada.png", Texture.class); break;
 			case 4: fondo = FibooGame.MANAGER.get("ascensor/habitacionnaranja.png", Texture.class); break;
+			default: break;
 		}
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 
 	@Override
-	public void render(float delta) {		
+	public void render(final float delta) {		
 		
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
