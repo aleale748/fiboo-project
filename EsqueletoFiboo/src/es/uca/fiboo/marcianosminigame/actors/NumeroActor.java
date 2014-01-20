@@ -9,18 +9,19 @@ import es.uca.fiboo.FibooGame;
 
 public class NumeroActor extends Actor {
 	
-	private TextureRegion numero;
+	private transient final TextureRegion numero;
 	
-	public int a;
+	public transient int numeroAsignado;
 	
-	public NumeroActor(int a) {
-		numero = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/" + Integer.toString(a) + ".png", Texture.class), 60, 100);
+	public NumeroActor(final int numeroAsignado) {
+		super();
+		numero = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/" + Integer.toString(numeroAsignado) + ".png", Texture.class), 60, 100);
 		setSize(numero.getRegionWidth(), numero.getRegionHeight());
-		this.a = a;
+		this.numeroAsignado = numeroAsignado;
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(numero, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());

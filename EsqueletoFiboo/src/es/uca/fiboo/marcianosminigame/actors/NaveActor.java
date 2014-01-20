@@ -10,20 +10,21 @@ import es.uca.fiboo.FibooGame;
 
 public class NaveActor extends Actor {
 	
-	private TextureRegion nave;
-	public Rectangle bb;
-	private boolean colocado, verificado;
+	private transient final TextureRegion nave;
+	public transient Rectangle rectangleNave;
+	private transient boolean varColocado, verificado;
 	
 	public NaveActor() {
+		super();
 		nave = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/nave.png", Texture.class));
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
-		bb = new Rectangle(getX(), getY() + getHeight()/4f, getWidth(),getHeight()/2f);
-		colocado = false;
+		rectangleNave = new Rectangle(getX(), getY() + getHeight()/4f, getWidth(),getHeight()/2f);
+		varColocado = false;
 		verificado = false;
 	}
 	
 	public void colocar() {
-		colocado = true;
+		varColocado = true;
 	}
 	
 	public void verificar() {
@@ -31,7 +32,7 @@ public class NaveActor extends Actor {
 	}
 	
 	public boolean colocado() {
-		return colocado;
+		return varColocado;
 	}
 	
 	public boolean verificado() {
@@ -39,15 +40,15 @@ public class NaveActor extends Actor {
 	}
 	
 	@Override
-	public void act(float delta) {
-		bb.x = getX();
-		bb.y = getY() + getHeight()/4f;
-		bb.width = getWidth();
-		bb.height = getHeight()/2f;
+	public void act(final float delta) {
+		rectangleNave.x = getX();
+		rectangleNave.y = getY() + getHeight()/4f;
+		rectangleNave.width = getWidth();
+		rectangleNave.height = getHeight()/2f;
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(nave, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
