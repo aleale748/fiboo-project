@@ -32,81 +32,72 @@ import es.uca.fiboo.robotgame.actors.RobotActor;
  
 
 public class RobotGameScreen extends AbstractScreen{
-	RobotActor robot;
-	Image imagen2;
-	Image huchaImage;
-	Texture planetaImage;
-	Texture lunaImage;
-	Texture estrellaImage;
-	Texture marcianoImage;
+	
+	private RobotActor robot;
+
+	private Texture planetaImage;
+	private Texture lunaImage;
+	private Texture estrellaImage;
+	private Texture marcianoImage;
 	private Texture basecontroles;
 	
-	Sound bienSound;
-	Sound malSound;
-	Sound reguSound;
-	Music musicaFondo;
-	//Music rainMusic;
-	OrthographicCamera camera;
-	Rectangle hucha;
-	Array<DropObject> raindrops;
-	long lastDropTime;
-	int objetosGathered;
-	BitmapFont font;
-	BitmapFont font2;
-	float timer;
-	float aleatorio1, aleatorio2;
-	int rand;
-	int objeto;
-	int ultima_posicion;
+	private Sound bienSound;
+	private Sound malSound;
+	private Sound reguSound;
+	private Music musicaFondo;
+	private OrthographicCamera camera;
+
+	private Array<DropObject> raindrops;
+	private long lastDropTime;
+	private int objetosGathered;
+	private float timer;
+
+	private int rand;
+	private int objeto;
 	private int numobjetos;
 	private Numeros numeros;
 	float h, w;
+	
 	public RobotGameScreen(FibooGame game){
 		super(game);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).setLooping(true);
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).play();
-		// load the images for the droplet and the bucket, 64x64 pixels each
-		h= Gdx.graphics.getHeight();
-		w= Gdx.graphics.getWidth();
+		h = Gdx.graphics.getHeight();
+		w = Gdx.graphics.getWidth();
 		planetaImage = FibooGame.MANAGER.get("robotgame/planeta_.png", Texture.class);
 		lunaImage = FibooGame.MANAGER.get("robotgame/luna_.png", Texture.class);
 		estrellaImage = FibooGame.MANAGER.get("robotgame/estrella_.png",Texture.class);
 		marcianoImage = FibooGame.MANAGER.get("robotgame/marciano_.png", Texture.class);
 		
 		basecontroles = FibooGame.MANAGER.get("portada/base.png", Texture.class);
-		// load the drop sound effect and the rain background "music"
 		musicaFondo = FibooGame.MANAGER.get("sonidos/robot.ogg", Music.class);
 		bienSound = FibooGame.MANAGER.get("robotgame/bien.ogg", Sound.class);
 		malSound = FibooGame.MANAGER.get("robotgame/mal.ogg", Sound.class);
 		reguSound = FibooGame.MANAGER.get("robotgame/regu.ogg", Sound.class);
-		// create the camera and the SpriteBatch
+
 		camera = new OrthographicCamera();
-		
 		camera.setToOrtho(false, h, w);
- 
-		// create a Rectangle to logically represent the bucket
 		
 		numobjetos = 10;
 		objeto = MathUtils.random(0, 2);
-		// create the raindrops array and spawn the first raindrop
+
 		raindrops = new Array<DropObject>();
-		// Use LibGDX's default Arial font.
 		
-		numeros= new Numeros();
+		numeros = new Numeros();
 		musicaFondo.setLooping(true);
 		musicaFondo.play();
 		spawnRaindrop();
 	}
 	
 	private void spawnRaindrop() {
-		float rand= MathUtils.random();
-		int elec= 0;
-		if(rand<0.4f){
-			elec= objeto;
+		float rand = MathUtils.random();
+		int elec = 0;
+		if(rand < 0.4f) {
+			elec = objeto;
 		}
-		else{    
+		else {    
 			rand = MathUtils.random();
-			if (rand > 0.5f && objeto !=0) 
+			if(rand > 0.5f && objeto != 0) 
 				elec = MathUtils.ceil(MathUtils.random(0, objeto));
 			else
 				elec = MathUtils.random(objeto + 1, 3);
@@ -119,6 +110,7 @@ public class RobotGameScreen extends AbstractScreen{
 		raindrops.add(raindrop);
 		lastDropTime = TimeUtils.nanoTime();
 	}
+	
 	@Override
 	public void show() {
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
@@ -172,15 +164,17 @@ public class RobotGameScreen extends AbstractScreen{
 		batch.begin();
 
 		batch.draw(basecontroles, w*0.015f, h*0.8f, w*0.3f, h*0.2f);
-		batch.draw(numeros.rojos(numobjetos), w*0.03f,h*0.92f-w*0.08f/2, w*0.1f, w*0.1f);	
-		if(objeto==0)
-			batch.draw(planetaImage, w*0.03f+w*0.1f, h*0.93f-w*0.08f/2,  w*0.08f, w*0.08f);
-		if(objeto==1)
-			batch.draw(estrellaImage, w*0.03f+w*0.1f,h*0.93f-w*0.08f/2,  w*0.08f, w*0.08f);
-		if(objeto==2)
-			batch.draw(lunaImage, w*0.03f+w*0.1f,  h*0.93f-w*0.08f/2,  w*0.08f, w*0.08f);
-		batch.draw(numeros.verdes(objetosGathered), w*0.03f+w*0.1f+w*0.08f, h*0.92f-w*0.08f/2, w*0.1f, w*0.1f);
+		batch.draw(numeros.rojos(numobjetos), w*0.03f, h*0.92f-w*0.08f/2, w*0.1f, w*0.1f);	
+		if(objeto == 0)
+			batch.draw(planetaImage, w*0.03f +w *0.1f, h*0.93f - w*0.08f/2, w*0.08f, w*0.08f);
+		if(objeto == 1)
+			batch.draw(estrellaImage, w*0.03f + w*0.1f, h*0.93f - w*0.08f/2, w*0.08f, w*0.08f);
+		if(objeto == 2)
+			batch.draw(lunaImage, w*0.03f + w*0.1f, h*0.93f - w*0.08f/2, w*0.08f, w*0.08f);
+		
+		batch.draw(numeros.verdes(objetosGathered), w*0.03f + w*0.1f+w*0.08f, h*0.92f - w*0.08f/2, w*0.1f, w*0.1f);
 		rand = MathUtils.random(0, 1);
+		
 		for (DropObject raindrop : raindrops) {
 			switch(raindrop.getTipo()){
 			case PLANETA:
@@ -209,28 +203,28 @@ public class RobotGameScreen extends AbstractScreen{
 			if (raindrop.y + raindrop.getHeight() < 0)
 				iter.remove();
 			if (raindrop.overlaps(robot.robotRect)) {
-				switch(raindrop.getTipo()){
-				case PLANETA: if(objeto == 0){objetosGathered++;numobjetos--;bienSound.play();break;}
-				else {reguSound.play();break;}
-				case ESTRELLA: if(objeto == 1){objetosGathered++;numobjetos--;bienSound.play();break;}
-					else {reguSound.play();break;}
-				case LUNA: if(objeto == 2){objetosGathered++;numobjetos--;bienSound.play();break;}
-					else {reguSound.play();break;}
-				case MARCIANO:
-					if(numobjetos<10){objetosGathered--;numobjetos++;}
-					malSound.play();
-					break;
-				default:
-					break;
+				switch(raindrop.getTipo()) {
+					case PLANETA: if(objeto == 0) { objetosGathered++; numobjetos--; bienSound.play(); break; }
+						else {reguSound.play();break;}
+					case ESTRELLA: if(objeto == 1){objetosGathered++; numobjetos--; bienSound.play(); break; }
+						else {reguSound.play();break;}
+					case LUNA: if(objeto == 2) { objetosGathered++; numobjetos--; bienSound.play(); break; }
+						else { reguSound.play(); break; }
+					case MARCIANO:
+						if(numobjetos < 10) { objetosGathered--; numobjetos++; }
+						malSound.play();
+						break;
+					default:
+						break;
 				}
-				if(numobjetos==0){
+				if(numobjetos == 0){
 					musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
 					dispose();
 					game.setScreen(new WinScreen(game));
 				}
 				try{
-				iter.remove();
+					iter.remove();
 				}
 				catch(NullPointerException e){
 					Gdx.app.log(FibooGame.LOG, "iter null");
@@ -241,14 +235,6 @@ public class RobotGameScreen extends AbstractScreen{
 
 	@Override
 	public void dispose() {
-		/*lunaImage.dispose();
-		estrellaImage.dispose();
-		planetaImage.dispose();
-		marcianoImage.dispose();
-		bienSound.dispose();
-		malSound.dispose();
-		reguSound.dispose();
-		*/
 		FibooGame.MANAGER.unloadRobotMiniGameTextures();
 		//fibooGame.MANAGER.get("sonidos/minijuego.ogg", Music.class).stop();
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).setLooping(true);
@@ -266,7 +252,7 @@ public class RobotGameScreen extends AbstractScreen{
 		public Numeros(){
 			numrojos= FibooGame.MANAGER.get("robotgame/numerosrojos.png", Texture.class);  
 			numverdes= FibooGame.MANAGER.get("robotgame/numerosverdes.png", Texture.class);  
-			TextureRegion[][] tmp1 = TextureRegion.split(numrojos, numrojos.getWidth() / FRAME_COLS, numrojos.getHeight());                                // #10
+			TextureRegion[][] tmp1 = TextureRegion.split(numrojos, numrojos.getWidth() / FRAME_COLS, numrojos.getHeight());  // #10
 			TextureRegion[][] tmp2 = TextureRegion.split(numverdes, numverdes.getWidth() / FRAME_COLS, numverdes.getHeight()); 
 			numerosrojos = new TextureRegion[FRAME_COLS];
 			numerosverdes = new TextureRegion[FRAME_COLS];
