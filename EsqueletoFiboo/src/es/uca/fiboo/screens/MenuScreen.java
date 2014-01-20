@@ -21,18 +21,16 @@ import es.uca.fiboo.personalizar.screens.PersonalizacionScreen;
 
 public class MenuScreen extends AbstractScreen {
 
-	private Image imgFondo;
-	private boolean cambiandoPantalla;
-	private float w, h, escalaAvatar;
+	private transient boolean cambiandoPantalla;
+	private transient final float width, height, escalaAvatar;
 	
-	public MenuScreen(FibooGame game) {
+	public MenuScreen(final FibooGame game) {
 		super(game);
-		imgFondo = new Image(FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
-		imgFondo.setFillParent(true);
-		stage.addActor(imgFondo);
+
 		cambiandoPantalla = false;
-		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
+		escalaAvatar = height * 0.95f;
 	}
 	
 	@Override
@@ -41,7 +39,7 @@ public class MenuScreen extends AbstractScreen {
 
 		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
 					//musicaFondo.stop();
 					//fibooGame.MANAGER.get("sonidos/fondo.mp3", Sound.class).loop();
@@ -53,10 +51,8 @@ public class MenuScreen extends AbstractScreen {
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
-		float imgWidth = h * 0.5f;
+		float imgWidth = height * 0.5f;
 		float imgHeight = imgWidth;
-		
-		escalaAvatar = h * 0.95f;
 		
 		// Cargamos imagenes de botones
 		Texture entrenar = FibooGame.MANAGER.get("portada/botonentrenamiento.png", Texture.class);
@@ -67,23 +63,27 @@ public class MenuScreen extends AbstractScreen {
 		entrenar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		personalizar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		Image imgFondo = new Image(FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class));
+		imgFondo.setFillParent(true);
+		stage.addActor(imgFondo);
+		
 		// Creamos botones, los posicionamos y los aï¿½adimos al stage
 		Image infoBoton = new Image(info);
 		infoBoton.setSize(imgWidth*0.2f, imgHeight*0.2f);
-		infoBoton.setX(w*0.05f - infoBoton.getWidth()/2);
-		infoBoton.setY(h*0.08f - infoBoton.getHeight()/2);
+		infoBoton.setX(width*0.05f - infoBoton.getWidth()/2);
+		infoBoton.setY(height*0.08f - infoBoton.getHeight()/2);
 		infoBoton.addListener(new MyClickListener(1)); 
 		
 		Image entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
-		entrenarBoton.setX(w/(4f/3f) - entrenarBoton.getWidth()/2);
-		entrenarBoton.setY(h*0.5f);
+		entrenarBoton.setX(width/(4f/3f) - entrenarBoton.getWidth()/2);
+		entrenarBoton.setY(height*0.5f);
 		entrenarBoton.addListener(new MyClickListener(2)); 
 		
 		Image personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
-		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
-		personalizarBoton.setY(h*0.05f);
+		personalizarBoton.setX(width/(4f/3f) - personalizarBoton.getWidth()/2);
+		personalizarBoton.setY(height*0.05f);
 		personalizarBoton.addListener(new MyClickListener(3));
 		stage.addActor(infoBoton);
 		stage.addActor(entrenarBoton);
@@ -91,7 +91,7 @@ public class MenuScreen extends AbstractScreen {
 	}
 	
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 		
@@ -106,19 +106,20 @@ public class MenuScreen extends AbstractScreen {
 	
 	private class MyClickListener extends ClickListener {
 		
-		private int screen;
+		private transient final int screen;
 
-		public MyClickListener(int screen) {
+		public MyClickListener(final int screen) {
+			super();
 			this.screen = screen;
 		}
 		
 		@Override
-		public void clicked(InputEvent event, float x, float y) {
+		public void clicked(final InputEvent event, final float x, final float y) {
 			cambiandoPantalla = true;
 			stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
 				new Action() {
 					@Override
-					public boolean act(float delta) {
+					public boolean act(final float delta) {
 						setNextScreen();
 						return true;
 					}
@@ -138,7 +139,9 @@ public class MenuScreen extends AbstractScreen {
 			case 3:
 				Gdx.app.log(FibooGame.LOG, "Clickeando en botón Personalización");
 				game.setScreen(new PersonalizacionScreen(game));
-				break;	
+				break;
+			default:
+				break;
 			}
 		}
 	}

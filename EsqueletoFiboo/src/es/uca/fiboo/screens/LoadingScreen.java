@@ -22,17 +22,17 @@ import es.uca.fiboo.FibooGame;
 
 public class LoadingScreen extends AbstractScreen {
 
-	private Image playBoton;
-	private BitmapFont font;
-	private NinePatch loaderVacio;
-	private NinePatch loaderFull;
-	private float w, h;
+	private transient Image playBoton;
+	private transient BitmapFont font;
+	private transient NinePatch loaderVacio;
+	private transient NinePatch loaderFull;
+	private transient final float width, height;
 	
-	public LoadingScreen(FibooGame game) {
+	public LoadingScreen(final FibooGame game) {
 		super(game);
 		Gdx.input.setInputProcessor(stage);
-		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 	}
 	
 	@Override
@@ -63,26 +63,26 @@ public class LoadingScreen extends AbstractScreen {
         boton.setFilter(TextureFilter.Linear, TextureFilter.Linear);
         playBoton = new Image(boton);
         playBoton.setVisible(false);
-        float botonWidth = w * 0.3f;
+        float botonWidth = width * 0.3f;
 		float botonHeight = botonWidth;
 		
 		playBoton.setSize(botonWidth, botonHeight);
-        playBoton.setX(w/2 - playBoton.getWidth()/2);
-        playBoton.setY(h/4 - playBoton.getHeight()/2);
+        playBoton.setX(width/2 - playBoton.getWidth()/2);
+        playBoton.setY(height/4 - playBoton.getHeight()/2);
         
         playBoton.addListener(new ClickListener() {
             @Override
-			public void clicked(InputEvent event, float x, float y) {
+			public void clicked(final InputEvent event, final float x, final float y) {
 				stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
                     new Action() {
                         @Override
-                        public boolean act(float delta) {
+                        public boolean act(final float delta) {
                         	if(isFisrtGame()) {
-                        		Gdx.app.log(getName(), "cargando choose screen");
+                        		//Gdx.app.log(getName(), "cargando choose screen");
                         		game.setScreen(new ChooseScreen(game));
                         	}
                         	else {
-                        		Gdx.app.log(getName(), "cargando menu screen");
+                        		//Gdx.app.log(getName(), "cargando menu screen");
                         		game.setScreen(new MenuScreen(game));
                         	}
                             return true;
@@ -95,11 +95,7 @@ public class LoadingScreen extends AbstractScreen {
 		stage.addActor(playBoton);
 		
 		// Carga de Assets
-		//fibooGame.MANAGER.loadMusicaFondo();
-		//fibooGame.MANAGER.finishLoading();
-		//fibooGame.MANAGER.loadSonidos();
 		FibooGame.MANAGER.loadCameraMiniGameTextures();
-		//fibooGame.MANAGER.loadRobotMiniGameTextures();
 		FibooGame.MANAGER.loadPianoMiniGameTextures();
 		FibooGame.MANAGER.loadNaveMiniGameTextures();
 		FibooGame.MANAGER.loadMenuTextures();
@@ -108,11 +104,10 @@ public class LoadingScreen extends AbstractScreen {
 		FibooGame.MANAGER.loadMarcianosMiniGameSounds();
 		FibooGame.MANAGER.loadPersonalizacionTextures();
 		FibooGame.MANAGER.loadAscensorGameTextures();
-		//fibooGame.MANAGER.get("sonidos/fondo.mp3",Sound.class).loop();
 	}
 
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1f);
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		
@@ -129,12 +124,12 @@ public class LoadingScreen extends AbstractScreen {
 			float progress = FibooGame.MANAGER.getProgress();
 			batch.begin();
 			
-			loaderVacio.draw(batch, w/4, h/4 - h/20, w/2, h/10);
+			loaderVacio.draw(batch, width/4, height/4 - height/20, width/2, height/10);
 			if(progress > 0.05f) {
-				loaderFull.draw(batch, w/4, h/4 - h/20, progress*(w/2), h/10);
+				loaderFull.draw(batch, width/4, height/4 - height/20, progress*(width/2), height/10);
 			}
 			
-			font.drawMultiLine(batch, "Cargando", w/2, h/4 + h/10, 0, BitmapFont.HAlignment.CENTER);
+			font.drawMultiLine(batch, "Cargando", width/2, height/4 + height/10, 0, BitmapFont.HAlignment.CENTER);
 			batch.end();
 			//Gdx.app.log(getName(), "Cargado al: " + progress + "%");
 		}
@@ -153,7 +148,7 @@ public class LoadingScreen extends AbstractScreen {
 	private boolean isFisrtGame() {
 		FileHandle savedData = Gdx.files.local("savedData.json");
 		if(savedData.exists()) {
-			Gdx.app.log(getName(), "Save data Existe");
+			//Gdx.app.log(getName(), "Save data Existe");
 			return false;
 		}
 		return true;

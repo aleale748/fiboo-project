@@ -24,35 +24,35 @@ import es.uca.fiboo.tallerminigame.screens.InicioTallerGameScreen;
 
 public class MenuMiniJuegosScreen extends AbstractScreen {
 
-	private Image imgFondo;
-	float w,h;
+	private transient final float width, height;
 	
-	public MenuMiniJuegosScreen(FibooGame game) {
+	public MenuMiniJuegosScreen(final FibooGame game) {
 		super(game);
 		Texture fondo = FibooGame.MANAGER.get("portada/pantallamenuentrenamiento.png", Texture.class);
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		imgFondo = new Image(fondo);
+		
+		Image imgFondo = new Image(fondo);
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
-		w = Gdx.graphics.getWidth();
-		h = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 	}
 
 	@Override
 	public void show() {
 		super.show();
-		InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
+		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
-			public boolean keyUp(int keycode) {
+			public boolean keyUp(final int keycode) {
 				if (keycode == Keys.BACK || keycode == Keys.ESCAPE){
-						game.setScreen(new MenuScreen(game));
+					game.setScreen(new MenuScreen(game));
 				}
 				return false;
 			}
 		}, stage);
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
-		float imgWidth = w * 0.3f;
+		float imgWidth = width * 0.3f;
 		float imgHeight = imgWidth;
 	
 
@@ -61,8 +61,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		nave.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image naveBoton = new Image(nave);
 		naveBoton.setSize(imgWidth, imgHeight);
-		naveBoton.setX(w*0.2f - naveBoton.getWidth()/2); 
-		naveBoton.setY(h*0.35f - naveBoton.getHeight()/2);
+		naveBoton.setX(width*0.2f - naveBoton.getWidth()/2); 
+		naveBoton.setY(height*0.35f - naveBoton.getHeight()/2);
 		naveBoton.addListener(new MenuClickListener(1));
 		stage.addActor(naveBoton);
 		
@@ -70,8 +70,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		bolsa.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image bolsaBoton = new Image(bolsa);
 		bolsaBoton.setSize(imgWidth, imgHeight);
-		bolsaBoton.setX(w*0.5f - bolsaBoton.getWidth()/2); 
-		bolsaBoton.setY(h*0.35f - bolsaBoton.getHeight()/2);
+		bolsaBoton.setX(width*0.5f - bolsaBoton.getWidth()/2); 
+		bolsaBoton.setY(height*0.35f - bolsaBoton.getHeight()/2);
 		bolsaBoton.addListener(new MenuClickListener(2));
 		stage.addActor(bolsaBoton);
 		
@@ -79,8 +79,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		robot.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image robotBoton = new Image(robot);
 		robotBoton.setSize(imgWidth, imgHeight);
-		robotBoton.setX(w*0.8f - robotBoton.getWidth()/2); 
-		robotBoton.setY(h*0.35f - robotBoton.getHeight()/2);
+		robotBoton.setX(width*0.8f - robotBoton.getWidth()/2); 
+		robotBoton.setY(height*0.35f - robotBoton.getHeight()/2);
 		robotBoton.addListener(new MenuClickListener(3));
 		stage.addActor(robotBoton);
 		
@@ -88,8 +88,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		piano.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image pianoBoton = new Image(piano);
 		pianoBoton.setSize(imgWidth, imgHeight);
-		pianoBoton.setX(w*0.35f - pianoBoton.getWidth()/2); 
-		pianoBoton.setY(h*0.7f - pianoBoton.getHeight()/2);
+		pianoBoton.setX(width*0.35f - pianoBoton.getWidth()/2); 
+		pianoBoton.setY(height*0.7f - pianoBoton.getHeight()/2);
 		pianoBoton.addListener(new MenuClickListener(4));
 		stage.addActor(pianoBoton);
 		
@@ -97,8 +97,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		marciano.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image marcianoBoton = new Image(marciano);
 		marcianoBoton.setSize(imgWidth, imgHeight);
-		marcianoBoton.setX(w*0.65f - marcianoBoton.getWidth()/2); 
-		marcianoBoton.setY(h*0.7f - marcianoBoton.getHeight()/2);
+		marcianoBoton.setX(width*0.65f - marcianoBoton.getWidth()/2); 
+		marcianoBoton.setY(height*0.7f - marcianoBoton.getHeight()/2);
 		marcianoBoton.addListener(new MenuClickListener(5));
 		stage.addActor(marcianoBoton);
 		
@@ -106,26 +106,27 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 		atras.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		Image atrasBoton = new Image(atras);
 		atrasBoton.setSize(imgWidth/2, imgHeight/2);
-		atrasBoton.setX(w/(4f/0.3f) - atrasBoton.getWidth()/2f); 
-		atrasBoton.setY(h*0.1f - atrasBoton.getHeight()/2);
+		atrasBoton.setX(width/(4f/0.3f) - atrasBoton.getWidth()/2f); 
+		atrasBoton.setY(height*0.1f - atrasBoton.getHeight()/2);
 		atrasBoton.addListener(new MenuClickListener(6));
 		stage.addActor(atrasBoton);
 	}
 	
 	private class MenuClickListener extends ClickListener {
 
-		private int pantalla;
+		private transient final int pantalla;
 
-		public MenuClickListener(int pantalla) {
+		public MenuClickListener(final int pantalla) {
+			super();
 			this.pantalla = pantalla;
 		}
 			
 		@Override
-		public void clicked(InputEvent event, float x, float y) {
+		public void clicked(final InputEvent event, final float x, final float y) {
 			stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
                 new Action() {
                     @Override
-                    public boolean act(float delta) {
+                    public boolean act(final float delta) {
                     	setGame();
                         return true;
                     }
@@ -151,6 +152,8 @@ public class MenuMiniJuegosScreen extends AbstractScreen {
 				break;
 			case 6:
 				game.setScreen(new MenuScreen(game));
+				break;
+			default:
 				break;
 			}
 		}
