@@ -51,12 +51,11 @@ public class RobotGameScreen extends AbstractScreen{
 	private long lastDropTime;
 	private int objetosGathered;
 	private float timer;
-
 	private int rand;
 	private int objeto;
 	private int numobjetos;
 	private Numeros numeros;
-	float h, w;
+	private float h, w;
 	
 	public RobotGameScreen(FibooGame game){
 		super(game);
