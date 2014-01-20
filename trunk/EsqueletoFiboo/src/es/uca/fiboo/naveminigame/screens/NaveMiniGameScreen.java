@@ -66,7 +66,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 	private List<StarActor> puntuacion;
 	private List<EmptyStarActor> puntuacionVacia;
 	private boolean resuelto;
-	private int respawnSol;
 	private List<AsteroideActor> asteroides;
 	private List<BulletActor> bullets;
 	private List<ExplosionActor> explosiones;
@@ -176,7 +175,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		//Gdx.app.log(fibooGame.LOG, "Sistema de puntuación por estrellas añadido");
 		
 		resuelto = true;
-		respawnSol = 0;
 
 		
 		timer = 2 + (float) Math.random();
@@ -239,25 +237,22 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			asteroide.bb.y = asteroide.getY();
 			stage.addActor(asteroide);
 			asteroides.add(asteroide);
-			
-			if (respawnSol % 1 == 0) {
 				
-				Gdx.app.log("NaveMiniGame", "NEW - AsteroideActor");
-				AsteroideActor asteroidesol = new AsteroideActor(palitos.getNum(), (float) (puntuacion.size()/5f)*velocidadAsteroide + velocidadAsteroide);
-				asteroidesol.setWidth(widthAsteroides);
-				asteroidesol.setHeight(heightAsteroides);
+			Gdx.app.log("NaveMiniGame", "NEW - AsteroideActor");
+			AsteroideActor asteroidesol = new AsteroideActor(palitos.getNum(), (float) (puntuacion.size()/5f)*velocidadAsteroide + velocidadAsteroide);
+			asteroidesol.setWidth(widthAsteroides);
+			asteroidesol.setHeight(heightAsteroides);
 				
-				if (random > 0.5)
-					asteroidesol.setPosition(w, h * (aleatorio2 * 0.6f + 0.1f));
-				else 
-					asteroidesol.setPosition(w + w*0.25f, h * (aleatorio2 * 0.6f + 0.1f));
+			if (random > 0.5)
+				asteroidesol.setPosition(w, h * (aleatorio2 * 0.6f + 0.1f));
+			else 
+				asteroidesol.setPosition(w + w*0.25f, h * (aleatorio2 * 0.6f + 0.1f));
 				
-				asteroidesol.velocidad *= escala*1.001f;
-				asteroidesol.bb.x = asteroidesol.getX();
-				asteroidesol.bb.y = asteroidesol.getY();
-				stage.addActor(asteroidesol);
-				asteroides.add(asteroidesol);
-			}
+			asteroidesol.velocidad *= escala*1.001f;
+			asteroidesol.bb.x = asteroidesol.getX();
+			asteroidesol.bb.y = asteroidesol.getY();
+			stage.addActor(asteroidesol);
+			asteroides.add(asteroidesol);
 			
 			timer = 6f + (float) Math.random();
 			
@@ -273,8 +268,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		//Gdx.app.log(fibooGame.LOG, "Comprobando colisiones");
 		comprobarColisiones();
 		//Gdx.app.log(fibooGame.LOG, "Comprobación de colisiones terminada");
-
-		respawnSol += 1;
 		
 		padShoot.toFront();
 		nave.toFront();
