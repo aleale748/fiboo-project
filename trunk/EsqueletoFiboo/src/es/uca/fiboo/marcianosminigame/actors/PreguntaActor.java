@@ -9,15 +9,16 @@ import es.uca.fiboo.FibooGame;
 
 public class PreguntaActor extends Actor {
 	
-	private TextureRegion pregunta;
+	private transient final TextureRegion pregunta;
 	
 	public PreguntaActor() {
+		super();
 		pregunta = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/pregunta.png", Texture.class));
 		setSize(pregunta.getRegionWidth(), pregunta.getRegionHeight());
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(pregunta, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());

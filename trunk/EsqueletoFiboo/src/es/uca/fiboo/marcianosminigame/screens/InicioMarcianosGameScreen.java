@@ -7,7 +7,7 @@ import es.uca.fiboo.screens.AbstractLoadingScreen;
 
 public class InicioMarcianosGameScreen extends AbstractLoadingScreen {
 	
-	public InicioMarcianosGameScreen(FibooGame game) {
+	public InicioMarcianosGameScreen(final FibooGame game) {
 		super(game);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();	
 		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
@@ -26,8 +26,7 @@ public class InicioMarcianosGameScreen extends AbstractLoadingScreen {
 	
 	@Override
 	public String getImagenFondo() {
-		String path = "marcianosminigame/pantallaayudamarcianos.png";
-		return path;
+		return "marcianosminigame/pantallaayudamarcianos.png";
 	}
 
 }

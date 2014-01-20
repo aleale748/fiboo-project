@@ -10,20 +10,21 @@ import es.uca.fiboo.FibooGame;
 
 public class NaveMarcianoActor extends Actor {
 	
-	private TextureRegion nave;
+	private transient final TextureRegion nave;
 	
 	public NaveMarcianoActor() {
+		super();
 		nave = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/naveMarciano.png", Texture.class));
 		setSize(nave.getRegionWidth(), nave.getRegionHeight());
 	}
 	
 	@Override
-	public void act(float delta) {
+	public void act(final float delta) {
 		translate(Gdx.graphics.getWidth()/500f, 0);
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(nave, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());

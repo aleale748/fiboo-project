@@ -16,43 +16,44 @@ import es.uca.fiboo.FibooGame;
 
 public class MarcianoActor extends Actor {
 
-	private TextureRegion marciano;
-	public Rectangle bb;
-	private boolean colocado;
-	private NaveActor nave;
+	private transient final TextureRegion marciano;
+	public transient Rectangle rectangleMarciano;
+	private transient boolean varColocado;
+	private transient NaveActor nave;
 	
 	public MarcianoActor() {
+		super();
 		marciano = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/marciano.png", Texture.class));
 		setSize(128, 128);
-		bb = new Rectangle(getX(), getY() + getHeight()/3f, getWidth(),getHeight()/1.8f);
-		colocado = false;
+		rectangleMarciano = new Rectangle(getX(), getY() + getHeight()/3f, getWidth(),getHeight()/1.8f);
+		varColocado = false;
 		this.addListener(new DragListenerPropio(this));
 	}
 	
 	@Override
-	public void act(float delta) {
-		bb.x = getX();
-		bb.y = getY() + getHeight()/3f;
-		bb.width = getWidth();
-		bb.height = getHeight()/1.8f;
-		for (Action a : this.getActions()) 
-			a.act(delta);
+	public void act(final float delta) {
+		rectangleMarciano.x = getX();
+		rectangleMarciano.y = getY() + getHeight()/3f;
+		rectangleMarciano.width = getWidth();
+		rectangleMarciano.height = getHeight()/1.8f;
+		for (final Action accion : this.getActions()) 
+			accion.act(delta);
 	}
 	
 	public void colocar() {
-		colocado = true;
+		varColocado = true;
 	}
 	
 	public boolean colocado() {
-		return colocado;
+		return varColocado;
 	}
 	
-	public void donde(NaveActor nave) {
+	public void donde(final NaveActor nave) {
 		this.nave = nave;
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(marciano, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
@@ -60,41 +61,43 @@ public class MarcianoActor extends Actor {
 	
 	class DragListenerPropio extends DragListener {
 		
-		private MarcianoActor marciano;
+		private transient final MarcianoActor marciano;
+		private transient float distanciaX, distanciaY;
 		
-		public DragListenerPropio(MarcianoActor marciano) {
+		public DragListenerPropio(final MarcianoActor marciano) {
+			super();
 			this.marciano = marciano;
 		}
 		
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			if (!colocado) {
+		public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer, final int button) {
+			if (!varColocado) {
 				FibooGame.MANAGER.get("sonidos/guala.ogg", Sound.class).play();
-				float dx = Gdx.input.getX() - getWidth() * 0.5f;
-				float dy = Gdx.input.getY() + getHeight() * 0.5f;
+				distanciaX = Gdx.input.getX() - getWidth() * 0.5f;
+				distanciaY = Gdx.input.getY() + getHeight() * 0.5f;
 
-				setPosition(dx, Gdx.graphics.getHeight() - dy);
+				setPosition(distanciaX, Gdx.graphics.getHeight() - distanciaY); // NOPMD by Ismael on 20/01/14 20:37
 			}
 			
 			return super.touchDown(event, x, y, pointer, button);
 		}
 		
-		public void touchDragged(InputEvent event, float x, float y, int pointer) {
-			if (!colocado) {
-				float dx = x - getWidth()*0.5f;
-				float dy = y - getHeight()*0.5f;
-				setPosition(getX() + dx, getY() + dy);
-				bb.setPosition(getX() + dx, getY() + dy);
+		public void touchDragged(final InputEvent event, final float x, final float y, final int pointer) {
+			if (!varColocado) {
+				distanciaX = x - getWidth()*0.5f;
+				distanciaY = y - getHeight()*0.5f;
+				setPosition(getX() + distanciaX, getY() + distanciaY);
+				rectangleMarciano.setPosition(getX() + distanciaX, getY() + distanciaY);
 			}
 		}
 			 
-		public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+		public void touchUp(final InputEvent event, final float x, final float y, final int pointer, final int button) {
 
-			if (nave!=null && !nave.colocado() && marciano.bb.overlaps(nave.bb)) {
-				Gdx.app.log(FibooGame.LOG, "Else de touchup empezado.");
+			if (nave!=null && !nave.colocado() && marciano.rectangleMarciano.overlaps(nave.rectangleNave)) {
+				//Gdx.app.log(FibooGame.LOG, "Else de touchup empezado.");
 				marciano.addAction(Actions.moveTo(nave.getX(), nave.getY(), 0.5f));
 				marciano.colocar();
 				nave.colocar();
-				Gdx.app.log(FibooGame.LOG, "Else terminado.");
+				//Gdx.app.log(FibooGame.LOG, "Else terminado.");
 			}
 			super.touchUp(event, x, y, pointer, button);
 		}

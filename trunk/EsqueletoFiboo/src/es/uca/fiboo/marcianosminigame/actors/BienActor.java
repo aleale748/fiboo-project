@@ -9,9 +9,10 @@ import es.uca.fiboo.FibooGame;
 
 public class BienActor extends Actor {
 	
-	private TextureRegion bien;
+	private transient final TextureRegion bien;
 	
 	public BienActor() {
+		super();
 		bien = new TextureRegion(FibooGame.MANAGER.get("marcianosminigame/bien.png", Texture.class));
 		setSize(bien.getRegionWidth(), bien.getRegionHeight());
 		setWidth(getWidth()*0.5f);
@@ -19,7 +20,7 @@ public class BienActor extends Actor {
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(bien, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
