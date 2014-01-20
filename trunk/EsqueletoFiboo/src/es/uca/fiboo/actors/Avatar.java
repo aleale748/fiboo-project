@@ -1,6 +1,8 @@
 package es.uca.fiboo.actors;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -24,10 +26,10 @@ import es.uca.fiboo.personalizar.actores.Complemento.Tipo;
 public class Avatar {
 
 	//Con transient se consigue que no se guarde ni lea en Json
-	private transient TreeMap<Tipo, Complemento> complementos;
+	private transient final Map<Tipo, Complemento> complementos;
 	private transient Texture base;
 	
-	private ArrayList<Complemento> data;
+	private List<Complemento> data;
 	
 	public Avatar() {
 		complementos = new TreeMap<Tipo, Complemento>();
@@ -49,27 +51,27 @@ public class Avatar {
 	}
 	
 	//Faltan algunas comprobaciones
-	public void addComplemento(Complemento c) {
-		complementos.put(c.getTipo(), c);
-		if(c.getTipo() == Tipo.CAMISETA || c.getTipo() == Tipo.PANTALON) {
+	public void addComplemento(final Complemento complemento) {
+		complementos.put(complemento.getTipo(), complemento);
+		if(complemento.getTipo() == Tipo.CAMISETA || complemento.getTipo() == Tipo.PANTALON) {
 			complementos.put(Tipo.DISFRAZ, null);
 		}
-		else if(c.getTipo() == Tipo.DISFRAZ) {
+		else if(complemento.getTipo() == Tipo.DISFRAZ) {
 			complementos.put(Tipo.CAMISETA, null);
 			complementos.put(Tipo.PANTALON, null);
 		}
 	}
 	
-	public void removeComplemento(Tipo tipo) {
+	public void removeComplemento(final Tipo tipo) {
 		complementos.put(tipo, null);
 	}
 	
-	public void setBase(String imagePath) {
-		int index = FibooGame.getComplementos().indexOf(new Complemento(imagePath, Tipo.PELO));
+	public void setBase(final String imagePath) {
+		final int index = FibooGame.getComplementos().indexOf(new Complemento(imagePath, Tipo.PELO));
 		addComplemento(FibooGame.getComplementos().get(index));
 	}
 	
-	public void draw(SpriteBatch batch, float escala) {
+	public void draw(final SpriteBatch batch, final float escala) {
 		if(base == null) {
 			base = FibooGame.MANAGER.get("complementos/base.png");
 			base.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -77,9 +79,9 @@ public class Avatar {
 		float posY = (Gdx.graphics.getHeight() - escala) / 2f;
 		batch.draw(base, 0, posY, escala, escala);
 		
-		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
-			if(c.getValue() != null) {
-				batch.draw(c.getValue().getImagen(), 0, posY, escala, escala);
+		for(final Entry<Tipo, Complemento> entry : complementos.entrySet()) {
+			if(entry.getValue() != null) {
+				batch.draw(entry.getValue().getImagen(), 0, posY, escala, escala);
 			}
 		}
 	}
@@ -87,16 +89,17 @@ public class Avatar {
 	//Guardamos el TreeMap en el array para pasarlo al Json
 	public void formatToSave() {
 		data = new ArrayList<Complemento>(complementos.size());
-		for(Entry<Tipo, Complemento> c : complementos.entrySet()) {
-			if(c.getValue() != null)
-				data.add(c.getValue());
+		for(final Entry<Tipo, Complemento> entry : complementos.entrySet()) {
+			if(entry.getValue() != null) {
+				data.add(entry.getValue());
+			}
 		}
 	}
 	
 	//Cargamos el TreeMap del array obtenido del Json
 	public void loadData() {
-		for(Complemento c : data) {
-			complementos.put(c.getTipo(), c);
+		for(final Complemento complemento : data) {
+			complementos.put(complemento.getTipo(), complemento);
 		}
 		data.clear();
 	}

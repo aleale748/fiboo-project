@@ -1,6 +1,7 @@
 package es.uca.fiboo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -23,11 +24,11 @@ public class FibooGame extends Game {
         // public static TextureAtlas atlasComplementos, atlasNaveMiniGame, atlasMarcianosMiniGame;
 
         private static Personaje personaje;
-        private static ArrayList<Complemento> complementos;
-        private FileHandle savedData, comps;
+        private static List<Complemento> complementos;
+        private transient FileHandle savedData, comps;
 
         // Clase de ayuda de libgdx que logea los FPS cada segundo
-        private FPSLogger fpsLogger;
+        private transient FPSLogger fpsLogger;
 
         @SuppressWarnings("unchecked")
         @Override
@@ -91,11 +92,11 @@ public class FibooGame extends Game {
         public void render() {
             super.render();
             
-            if( DEV_MODE ) fpsLogger.log();
+            if( DEV_MODE ) { fpsLogger.log(); }
         }
 
         @Override
-        public void resize(int width, int height) {
+        public void resize(final int width, final int height) {
             super.resize(width, height);
             Gdx.app.log(FibooGame.LOG, "'Resizing' to: " + width + " x " + height);
 
@@ -122,7 +123,7 @@ public class FibooGame extends Game {
             return personaje;
         }
 
-        public static ArrayList<Complemento> getComplementos() {
+        public static List<Complemento> getComplementos() {
         	return complementos;
         }
 }
