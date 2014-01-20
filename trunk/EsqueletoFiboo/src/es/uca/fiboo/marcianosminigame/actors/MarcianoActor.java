@@ -75,7 +75,7 @@ public class MarcianoActor extends Actor {
 				distanciaX = Gdx.input.getX() - getWidth() * 0.5f;
 				distanciaY = Gdx.input.getY() + getHeight() * 0.5f;
 
-				setPosition(distanciaX, Gdx.graphics.getHeight() - distanciaY); // NOPMD by Ismael on 20/01/14 20:37
+				setPosition(distanciaX, Gdx.graphics.getHeight() - distanciaY); 
 			}
 			
 			return super.touchDown(event, x, y, pointer, button);
