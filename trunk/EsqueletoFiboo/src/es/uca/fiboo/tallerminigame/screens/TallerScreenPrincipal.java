@@ -19,7 +19,7 @@ public class TallerScreenPrincipal extends AbstractScreen {
 	protected static int fallos; //Variable para contar los fallos que ha tenido
 	protected static final int NUMERO_REPETICIONES = 4;
 	protected static List<StarActor> puntos;
-	protected static List<EmptyStarActor> sin_puntos;
+	protected static final List<EmptyStarActor> SINPUNTOS = new ArrayList<EmptyStarActor>();
 
 	public TallerScreenPrincipal(FibooGame game) {
 		super(game);
@@ -33,11 +33,10 @@ public class TallerScreenPrincipal extends AbstractScreen {
 		float widthPuntuacion = 42;
 		float heightPuntuacion = 42;
 		
-		sin_puntos = new ArrayList<EmptyStarActor>();
 		for (int i = 0; i < 4; ++i) {
-			sin_puntos.add(new EmptyStarActor());
-			sin_puntos.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
-			stage.addActor(sin_puntos.get(i));
+			SINPUNTOS.add(new EmptyStarActor());
+			SINPUNTOS.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, Gdx.graphics.getHeight() - heightPuntuacion*1.1f);
+			stage.addActor(SINPUNTOS.get(i));
 		}
 		
 		puntos = new ArrayList<StarActor>();

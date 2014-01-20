@@ -21,9 +21,9 @@ public class TiempoScreen extends AbstractScreen {
 	private float tiempo;
 	private ArrayList<Texture> tornillos;
 	private ArrayList<Texture> tornillosUsados;
-	private Texture robot_triste;
-	private Texture robot_alegre;
-	private Texture robot_normal;
+	private final Texture robot_triste;
+	private final Texture robot_alegre;
+	private final Texture robot_normal;
 	private ArrayList<Texture> numeros;
 	private int numeroTornillos;
 	private int estado;
@@ -83,7 +83,7 @@ public class TiempoScreen extends AbstractScreen {
 		//Añadir las estrellitas de la puntuación al stage
 		
 		for (int i = 0; i < 4; ++i) {
-			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
+			stage.addActor(TallerScreenPrincipal.SINPUNTOS.get(i));
 		}
 		
 		if(!TallerScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
