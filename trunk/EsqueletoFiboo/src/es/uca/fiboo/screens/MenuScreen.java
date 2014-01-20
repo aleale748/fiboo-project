@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -120,7 +119,6 @@ public class MenuScreen extends AbstractScreen {
 				new Action() {
 					@Override
 					public boolean act(float delta) {
-						FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 						setNextScreen();
 						return true;
 					}
