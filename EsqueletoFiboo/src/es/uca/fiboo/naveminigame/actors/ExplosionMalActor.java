@@ -11,12 +11,13 @@ import es.uca.fiboo.FibooGame;
 
 public class ExplosionMalActor extends Actor {
 	
-	private TextureRegion[] explosiones;
-	public Animation explosionAnimation;
-	private TextureRegion currentFrame;
-	public float stateTime;
+	public transient Animation explosionAnim;
+	private transient TextureRegion currentFrame;
+	public transient float stateTime;
 	
 	public ExplosionMalActor() {
+		super();
+		TextureRegion[] explosiones;
 		explosiones = new TextureRegion[24];
 		for (int i = 0; i < 24; ++i) {
 			Gdx.app.log("ExplosionMalActor", "Asignando findRegion - explosionMal" + i);
@@ -24,15 +25,15 @@ public class ExplosionMalActor extends Actor {
 		}
 		stateTime = 0f;
 		
-		explosionAnimation = new Animation(0.025f, explosiones);
+		explosionAnim = new Animation(0.025f, explosiones);
 	}
 
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 
 		stateTime += Gdx.graphics.getDeltaTime();
-		if (!explosionAnimation.isAnimationFinished(stateTime)) {
-			currentFrame = explosionAnimation.getKeyFrame(stateTime, true);
+		if (!explosionAnim.isAnimationFinished(stateTime)) {
+			currentFrame = explosionAnim.getKeyFrame(stateTime, true);
 			batch.draw(currentFrame, getX(), getY(), getOriginX(), getOriginY(), 
 					getWidth(), getHeight(), getScaleX(), getScaleY(), 
 					getRotation());

@@ -9,15 +9,16 @@ import es.uca.fiboo.FibooGame;
 
 public class StarActor extends Actor {
 	
-	private TextureRegion star;
+	private final transient TextureRegion star;
 	
 	public StarActor() {
+		super();
 		star = new TextureRegion(FibooGame.MANAGER.get("naveminigame/star.png", Texture.class), 42, 40);
 		setSize(star.getRegionWidth(), star.getRegionHeight());
 	}
 	
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(star, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());

@@ -9,10 +9,11 @@ import es.uca.fiboo.FibooGame;
 
 public class PalitosActor extends Actor {
 
-	private TextureRegion palitos;
-	private int num;
+	private transient final TextureRegion palitos;
+	private transient final int num;
 	
-	public PalitosActor(int num) {
+	public PalitosActor(final int num) {
+		super();
 		palitos = new TextureRegion(FibooGame.MANAGER.get("naveminigame/palitos" + Integer.toString(num) + ".png", Texture.class));
 		setSize(palitos.getRegionWidth()/2f, palitos.getRegionHeight()/2f);
 		this.num = num;
@@ -23,7 +24,7 @@ public class PalitosActor extends Actor {
 	}
 
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(final Batch batch, final float parentAlpha) {
 		batch.draw(palitos, getX(), getY(), getOriginX(), getOriginY(), 
 				getWidth(), getHeight(), getScaleX(), getScaleY(), 
 				getRotation());
