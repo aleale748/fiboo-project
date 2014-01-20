@@ -22,7 +22,6 @@ import es.uca.fiboo.personalizar.screens.PersonalizacionScreen;
 
 public class MenuScreen extends AbstractScreen {
 
-	private Image entrenarBoton, personalizarBoton, infoBoton;
 	private Image imgFondo;
 	private boolean cambiandoPantalla;
 	private float w, h, escalaAvatar;
@@ -70,19 +69,19 @@ public class MenuScreen extends AbstractScreen {
 		personalizar.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		// Creamos botones, los posicionamos y los aï¿½adimos al stage
-		infoBoton = new Image(info);
+		Image infoBoton = new Image(info);
 		infoBoton.setSize(imgWidth*0.2f, imgHeight*0.2f);
 		infoBoton.setX(w*0.05f - infoBoton.getWidth()/2);
 		infoBoton.setY(h*0.08f - infoBoton.getHeight()/2);
 		infoBoton.addListener(new MyClickListener(1)); 
 		
-		entrenarBoton = new Image(entrenar);
+		Image entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
 		entrenarBoton.setX(w/(4f/3f) - entrenarBoton.getWidth()/2);
 		entrenarBoton.setY(h*0.5f);
 		entrenarBoton.addListener(new MyClickListener(2)); 
 		
-		personalizarBoton = new Image(personalizar);
+		Image personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
 		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
 		personalizarBoton.setY(h*0.05f);
@@ -117,43 +116,31 @@ public class MenuScreen extends AbstractScreen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			cambiandoPantalla = true;
+			stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
+				new Action() {
+					@Override
+					public boolean act(float delta) {
+						FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
+						setNextScreen();
+						return true;
+					}
+			}));
+		}
+		
+		private void setNextScreen() {
 			switch(screen) {
-				case 1:
-					Gdx.app.log(FibooGame.LOG, "Clickeando en botï¿½n Creditos");
-					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
-							new Action() {
-								@Override
-								public boolean act(float delta) {
-									FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
-									game.setScreen(new CreditosScreen(game));
-									return true;
-								}
-							}));
-					break;
-				case 2:
-					Gdx.app.log(FibooGame.LOG, "Clickeando en botï¿½n Minijuegos");
-					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
-							new Action() {
-								@Override
-								public boolean act(float delta) {
-									game.setScreen(new MenuMiniJuegosScreen(game));
-									return true;
-								}
-							}));
-					break;
-				case 3:
-					Gdx.app.log(FibooGame.LOG, "Clickeando en botï¿½n Personalizaciï¿½n");
-					stage.addAction(sequence(delay(0.5f), fadeOut(0.75f),
-							new Action() {
-								@Override
-								public boolean act(float delta) {
-									FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
-									game.setScreen(new PersonalizacionScreen(game));
-									return true;
-								}
-							}));
-					break;	
-				
+			case 1:
+				Gdx.app.log(FibooGame.LOG, "Clickeando en botón Creditos");
+				game.setScreen(new CreditosScreen(game));
+				break;
+			case 2:
+				Gdx.app.log(FibooGame.LOG, "Clickeando en botón Minijuegos");
+				game.setScreen(new MenuMiniJuegosScreen(game));
+				break;
+			case 3:
+				Gdx.app.log(FibooGame.LOG, "Clickeando en botón Personalización");
+				game.setScreen(new PersonalizacionScreen(game));
+				break;	
 			}
 		}
 	}
