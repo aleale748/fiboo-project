@@ -35,6 +35,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 	
 	public PersonalizacionScreen(final FibooGame game) {
 		super(game);
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 		
 		final InputMultiplexer inputMultiplexer = new InputMultiplexer(new InputAdapter() {
 			@Override
