@@ -7,7 +7,7 @@ import es.uca.fiboo.screens.AbstractLoadingScreen;
 
 public class InicioNaveScreen extends AbstractLoadingScreen {
 
-	public InicioNaveScreen(FibooGame game) {
+	public InicioNaveScreen(final FibooGame game) {
 		super(game);
 		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 		FibooGame.MANAGER.get("sonidos/ayuda.ogg", Music.class).setLooping(true);
@@ -26,8 +26,7 @@ public class InicioNaveScreen extends AbstractLoadingScreen {
 	
 	@Override
 	public String getImagenFondo() {
-		String path = "naveminigame/ayuda.png";
-		return path;
+		return "naveminigame/ayuda.png";
 	}
 
 }
