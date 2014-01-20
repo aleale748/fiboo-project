@@ -29,10 +29,10 @@ public class TallerScreen extends AbstractScreen {
 	private ArrayList<Rectangle> posicionesTornillos;
 	private ArrayList<ImageButton> tornillosBotones;
 	private ArrayList<Texture> tornillos;
-	private Texture robot_triste;
-	private Texture robot_alegre;
+	private final Texture robot_triste;
+	private final Texture robot_alegre;
 	//private Texture boton_taller;
-	private Texture robot_normal;
+	private final Texture robot_normal;
 	private Sound robot;
 	private int tornilloActual;
 	private Rectangle barrigaRobot;
@@ -191,7 +191,7 @@ public class TallerScreen extends AbstractScreen {
 		*/
 		
 		for (int i = 0; i < 4; ++i) {
-			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
+			stage.addActor(TallerScreenPrincipal.SINPUNTOS.get(i));
 		}
 		
 		if(!TallerScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre

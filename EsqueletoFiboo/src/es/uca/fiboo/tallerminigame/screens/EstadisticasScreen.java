@@ -19,7 +19,7 @@ public class EstadisticasScreen extends AbstractScreen {
 		super(game);
 		
 		for (int i = 0; i < 4; ++i) {
-			stage.addActor(TallerScreenPrincipal.sin_puntos.get(i));
+			stage.addActor(TallerScreenPrincipal.SINPUNTOS.get(i));
 		}
 		
 		if(!TallerScreenPrincipal.puntos.isEmpty()) { //Si hay algun punto que lo muestre
