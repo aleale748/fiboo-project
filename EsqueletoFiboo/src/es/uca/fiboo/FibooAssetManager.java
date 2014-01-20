@@ -366,6 +366,7 @@ public class FibooAssetManager extends AssetManager {
 
 	//Texturas y Sonidos de Piano minijuego
 	public void loadPianoMiniGameTextures() {
+		load("pianogame/partitura.png", Texture.class);
 		load("pianogame/logotrompeta.png", Texture.class);
 		load("pianogame/logopiano.png", Texture.class);
 		load("pianogame/piano.png", Texture.class);
@@ -375,6 +376,7 @@ public class FibooAssetManager extends AssetManager {
 		load("pianogame/pause.png", Texture.class);
 		load("pianogame/mute.png", Texture.class);
 		load("pianogame/sonido.png", Texture.class);
+		load("pianogame/teclas.png", Texture.class);
 	}
 	
 	public void loadPianoMiniGameSounds() {
