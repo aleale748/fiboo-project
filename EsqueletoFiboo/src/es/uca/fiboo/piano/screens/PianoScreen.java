@@ -89,8 +89,8 @@ public class PianoScreen extends AbstractScreen {
 		ismute = false;
 		ispause = false;
 		nota = 0;
-		posPartitura= 0.55f;
-		avance= 55.4f;
+		posPartitura= 0.545f;
+		avance= w/8.66f;
 		posactual= (w*posPartitura)-avance;
 	}
 	
