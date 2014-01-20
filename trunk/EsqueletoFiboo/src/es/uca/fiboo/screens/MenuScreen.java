@@ -55,7 +55,7 @@ public class MenuScreen extends AbstractScreen {
 		
 		Gdx.input.setInputProcessor(inputMultiplexer);
 		
-		float imgWidth = w * 0.35f;
+		float imgWidth = h * 0.5f;
 		float imgHeight = imgWidth;
 		
 		escalaAvatar = h * 0.95f;
@@ -79,13 +79,13 @@ public class MenuScreen extends AbstractScreen {
 		entrenarBoton = new Image(entrenar);
 		entrenarBoton.setSize(imgWidth, imgHeight);
 		entrenarBoton.setX(w/(4f/3f) - entrenarBoton.getWidth()/2);
-		entrenarBoton.setY(h*0.72f - entrenarBoton.getHeight()/2);
+		entrenarBoton.setY(h*0.5f);
 		entrenarBoton.addListener(new MyClickListener(2)); 
 		
 		personalizarBoton = new Image(personalizar);
 		personalizarBoton.setSize(imgWidth, imgHeight);
 		personalizarBoton.setX(w/(4f/3f) - personalizarBoton.getWidth()/2);
-		personalizarBoton.setY(h*0.28f - personalizarBoton.getHeight()/2);
+		personalizarBoton.setY(h*0.05f);
 		personalizarBoton.addListener(new MyClickListener(3));
 		stage.addActor(infoBoton);
 		stage.addActor(entrenarBoton);
@@ -95,7 +95,6 @@ public class MenuScreen extends AbstractScreen {
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
-		stage.act(delta);
 		stage.draw();
 		
 		if(!cambiandoPantalla) {
@@ -103,6 +102,8 @@ public class MenuScreen extends AbstractScreen {
 			FibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
 			batch.end();
 		}
+		
+		stage.act(delta);
 	}
 	
 	private class MyClickListener extends ClickListener {
