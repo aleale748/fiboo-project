@@ -43,7 +43,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 	}
 	private float escala, widthPuntuacion = 42, heightPuntuacion = 40, widthBasePunt= 120, heightBasePunt= 90, tamNaves = 128, tamMarcianos = 128, 
 			widthPregunta = 1024, heightPregunta = 128, widthBien = 512, heightBien = 128, widthNumero = 60, heightNumero = 100,
-			widthBoton = 202, heightBoton = 205;
+			widthBoton = 202, heightBoton = 205, escala2;
 	private List<MarcianoActor> marcianos;
 	private List<NaveActor> naves;
 	private List<NaveMarcianoActor> navesMarcianos;
@@ -73,9 +73,6 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		baseestrellas = new Image(FibooGame.MANAGER.get("portada/base.png", Texture.class));
-		baseestrellas.setPosition(w*0.11f - widthBasePunt/2f, h-heightBasePunt/2f);
-		baseestrellas.setWidth(widthBasePunt);
-		baseestrellas.setHeight(heightBasePunt);
 		stage.addActor(baseestrellas);
 		cont = 0;
 		mostrarBien = false;
@@ -226,7 +223,7 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 			if (respuesta == 2) {
 				respuesta = 1;
 				puntuacion.add(new StarActor());
-				puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.3f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, h - heightPuntuacion*1.2f);
+				puntuacion.get(puntuacion.size() - 1).setPosition(widthPuntuacion*0.2f + (puntuacion.size() - 1) * widthPuntuacion*1.1f, h - heightPuntuacion*1.1f);
 				puntuacion.get(puntuacion.size() - 1).setWidth(widthPuntuacion);
 				puntuacion.get(puntuacion.size() - 1).setHeight(heightPuntuacion);
 				stage.addActor(puntuacion.get(puntuacion.size() - 1));
@@ -478,12 +475,12 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 
 	@Override
 	public void resize(int width, int height) {
-
+		escala2 = ((float) (w / 4f) / 256);
 		escala = ((float) ((h / 6f) / tamNaves));
-		widthPuntuacion *= escala;
-		heightPuntuacion *= escala;
-		widthBasePunt *= escala;
-		heightBasePunt *= escala;
+		widthPuntuacion *= escala2;
+		heightPuntuacion *= escala2;
+		widthBasePunt = w*0.27f;
+		heightBasePunt = h*0.32f;
 		tamNaves *= escala;
 		tamMarcianos *= escala;
 		widthPregunta *= escala;
@@ -497,10 +494,13 @@ public class MarcianosMiniGameScreen extends AbstractScreen {
 		for (int i = 0; i < 5; ++i) {
 			puntuacionVacia.get(i).setWidth(widthPuntuacion);
 			puntuacionVacia.get(i).setHeight(heightPuntuacion);
-			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.3f + i * widthPuntuacion*1.1f, h - heightPuntuacion*1.2f);
+			puntuacionVacia.get(i).setPosition(widthPuntuacion*0.2f + i * widthPuntuacion*1.1f, h - heightPuntuacion*1.1f);
 		}
 		bien.setWidth(widthBien);
 		bien.setHeight(heightBien);
+		baseestrellas.setPosition(w*0.12f - widthBasePunt/2f, h-heightBasePunt/2f);
+		baseestrellas.setWidth(widthBasePunt);
+		baseestrellas.setHeight(heightBasePunt);
 		stage.setViewport(width, height, true);
 	}
 
