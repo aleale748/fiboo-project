@@ -110,9 +110,6 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		imgFondo.setFillParent(true);
 		stage.addActor(imgFondo);
 		baseestrellas = new Image(FibooGame.MANAGER.get("portada/base.png", Texture.class));
-		baseestrellas.setPosition(w*0.12f - widthBasePunt/2f, h-heightBasePunt/2f);
-		baseestrellas.setWidth(widthBasePunt);
-		baseestrellas.setHeight(heightBasePunt);
 		stage.addActor(baseestrellas);
 		
 		//Gdx.app.log(fibooGame.LOG, "Imagen de fondo añadida");
@@ -463,8 +460,8 @@ public class NaveMiniGameScreen extends AbstractScreen {
 		widthPuntuacion *= escala;
 		heightPuntuacion *= escala;
 		widthBarra *= escala;
-		heightBasePunt *= escala;
-		widthBasePunt *= escala;
+		widthBasePunt = w*0.27f;
+		heightBasePunt = h*0.32f;
 		heightBarra *= escala;
 		widthPalitos *= escala;
 		heightPalitos *= escala;
@@ -496,6 +493,9 @@ public class NaveMiniGameScreen extends AbstractScreen {
 			puntuacionVacia.get(i).setWidth(widthPuntuacion);
 			puntuacionVacia.get(i).setHeight(heightPuntuacion);
 		}
+		baseestrellas.setPosition(w*0.12f - widthBasePunt/2f, h-heightBasePunt/2f);
+		baseestrellas.setWidth(widthBasePunt);
+		baseestrellas.setHeight(heightBasePunt);
 	}
 	
 	private final class InputAndroidShootListener extends InputListener {
