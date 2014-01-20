@@ -53,6 +53,7 @@ public class PersonalizacionScreen extends AbstractScreen {
 		
 		FibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).setLooping(true);
 		FibooGame.MANAGER.get("sonidos/personalizacion.ogg", Music.class).play();
+		BotonComplemento.setBotonComplementoStage(stage);
 	}
 
 	//Carga todos los complementos habidos y por haber

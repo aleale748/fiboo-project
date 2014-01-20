@@ -29,9 +29,6 @@ public class BotonCategoria {
 	public BotonCategoria(PersonalizacionScreen parent, ArrayList<BotonComplemento> complementos, Tipo tipo) {
 		this.parent = parent;
 		this.complementos = complementos;
-		if(!complementos.isEmpty()) {
-			this.complementos.get(0).setStage(parent.getStage());
-		}
 		this.tipo = tipo;
 		
 		String iconPath = "complementos/iconos/" + tipo.toString().toLowerCase() + ".png";

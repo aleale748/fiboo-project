@@ -46,7 +46,7 @@ public class BotonComplemento extends Image {
 		return complemento;
 	}
 
-	public void setStage(Stage stage) {
+	public static void setBotonComplementoStage(Stage stage) {
 		BotonComplemento.stage = stage;
 	}
 
