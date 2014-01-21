@@ -35,7 +35,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.TimeUtils;
 
 
-public class AScreen2 implements AbstractScreen{
+public class AScreen2 extends AbstractScreen{
 	
 	public final FibooGame game;
 	private static final Tipo MINUS = null;

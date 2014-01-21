@@ -14,7 +14,7 @@ import com.badlogic.gdx.Screen;
 
 
 
-public class AScreenWin implements AbstractScreen {
+public class AScreenWin extends AbstractScreen {
 
 	private static final Tipo GO = null;
 

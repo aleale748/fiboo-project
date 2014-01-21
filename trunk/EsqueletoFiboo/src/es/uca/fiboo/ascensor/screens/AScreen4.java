@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.TimeUtils;
 
 
-public class AScreen4 implements AbstractScreen{
+public class AScreen4 extends AbstractScreen{
 	
 	public final FibooGame game;
 	private static final Tipo MINUS = null;

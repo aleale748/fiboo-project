@@ -37,7 +37,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 
 
-public class AScreen1 implements AbstractScreen{
+public class AScreen1 extends AbstractScreen{
 	
 	public final FibooGame game;
 	

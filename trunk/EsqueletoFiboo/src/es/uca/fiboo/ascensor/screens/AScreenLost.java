@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class AScreenLost implements AbstractScreen{
+public class AScreenLost extends AbstractScreen{
 	
 private static final Tipo GO = null;
 
