@@ -38,6 +38,7 @@ public class TallerScreen extends AbstractScreen {
 	private transient final int numTornillos;
 	private transient final Sound bien;
 	private transient final Sound mal;	
+	private transient boolean overlaps;
 	
 	public TallerScreen(final FibooGame game, final List<Texture> tornillos, final List<Texture> tornillosUsados) {	
 		super(game);
@@ -55,6 +56,7 @@ public class TallerScreen extends AbstractScreen {
 		tornillosElegidos = new ArrayList<Texture>();
 		numTornillos = tornillosUsados.size();
 		tornilloActual = 0;
+		overlaps = false;
 		
 		//Inicializamos los objetos de los ArrayList
 		
@@ -92,16 +94,10 @@ public class TallerScreen extends AbstractScreen {
 				@Override
 				public void touchUp(final InputEvent event, final float posX, final float posY, final int pointer,final int button) {
 					if(posTornillos.get(tornilloActual).overlaps(barrigaRobot)) {
-						robot.play();
-						tornillosTocados.set(tornilloActual, false);
-						if(tornillosElegidos.size() < 4) {
-							tornillosElegidos.add(tornillos.get(tornilloActual));
-							if(tornillosUsados.contains(tornillos.get(tornilloActual))) { //Si lo ha puesto lo borra ya
-								tornillosUsados.remove(tornillos.get(tornilloActual));
-							}
-						}
+						overlaps = true;
 					}				
 					else {
+						overlaps = false;
 						tornillosTocados.set(tornilloActual, false);
 					}
 					
@@ -195,6 +191,19 @@ public class TallerScreen extends AbstractScreen {
 				posTornillos.get(i).y = hight - Gdx.input.getY();
 				batch.draw(tornillos.get(i), posTornillos.get(i).x, posTornillos.get(i).y, width/9, hight/9);
 			}
+		}
+		
+		if(overlaps) {
+		
+			robot.play();
+			tornillosTocados.set(tornilloActual, false);
+			if(tornillosElegidos.size() < 4) {
+				tornillosElegidos.add(tornillos.get(tornilloActual));
+				if(tornillosUsados.contains(tornillos.get(tornilloActual))) { //Si lo ha puesto lo borra ya
+					tornillosUsados.remove(tornillos.get(tornilloActual));
+				}
+			}
+			overlaps = false;
 		}
 			
 		switch(tornillosElegidos.size()) {
