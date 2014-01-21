@@ -1,6 +1,6 @@
 package es.uca.fiboo.ascensor.screens;
 
-import com.badlogic.drop.Herramienta.Tipo;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -12,6 +12,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import es.uca.fiboo.FibooGame;
+import es.uca.fiboo.ascensor.screens.Herramienta.Tipo;
+import es.uca.fiboo.screens.AbstractScreen;
 public class AScreenLost extends AbstractScreen{
 	
 private static final Tipo GO = null;
@@ -93,15 +96,15 @@ public final FibooGame game;
 		        // tell the camera to update its matrices.
 		        camera.update();
 		      
-		        game.batch.setProjectionMatrix(camera.combined);
+		        batch.setProjectionMatrix(camera.combined);
 		       
-		        game.batch.begin();
-		        game.batch.draw(ascensor, 0, 0);
-		        game.batch.draw(mono.textureTarea, mono.rectangleTarea.x, mono.rectangleTarea.y);
-		        game.batch.draw(leftDoor.textureTarea, leftDoor.rectangleTarea.x, leftDoor.rectangleTarea.y);
-		        game.batch.draw(rightDoor.textureTarea, rightDoor.rectangleTarea.x, rightDoor.rectangleTarea.y);
-		        game.batch.draw(marco.textureTarea, marco.rectangleTarea.x, marco.rectangleTarea.y);
-		        game.batch.end();
+		       batch.begin();
+		       batch.draw(ascensor, 0, 0);
+		        batch.draw(mono.textureTarea, mono.rectangleTarea.x, mono.rectangleTarea.y);
+		        batch.draw(leftDoor.textureTarea, leftDoor.rectangleTarea.x, leftDoor.rectangleTarea.y);
+		        batch.draw(rightDoor.textureTarea, rightDoor.rectangleTarea.x, rightDoor.rectangleTarea.y);
+		       batch.draw(marco.textureTarea, marco.rectangleTarea.x, marco.rectangleTarea.y);
+		        batch.end();
 		        lastMoveTime = (long) (TimeUtils.nanoTime() + Gdx.graphics.getRawDeltaTime());
 		      
 		        tmpDoor += delta;
