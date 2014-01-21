@@ -70,8 +70,8 @@ public class TallerScreen extends AbstractScreen {
 		robot_alegre.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		robot_normal = FibooGame.MANAGER.get("sacominigame/robottallerneutro.png", Texture.class);
 		robot_normal.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		bien = FibooGame.MANAGER.get("sacominigame/bien.ogg", Sound.class);
-		mal = FibooGame.MANAGER.get("sacominigame/nono.ogg", Sound.class);
+		bien = FibooGame.MANAGER.get("sonidos/bien.ogg", Sound.class);
+		mal = FibooGame.MANAGER.get("sonidos/nono.ogg", Sound.class);
 		
 		//Situamos la barriga del robot	
 		barrigaRobot.height = hight/3.3f;
