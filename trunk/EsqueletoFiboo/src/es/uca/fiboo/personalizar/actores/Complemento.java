@@ -20,7 +20,7 @@ public class Complemento {
 	private transient Texture imagen, icono;
 	
 	public static enum Tipo {
-		PELO, ACCPELO, OJOS, BIGOTE, BOCA, GAFAS, DISFRAZ, CAMISETA, PANTALON, MASCARA;
+		PELO, ACCPELO, OJOS, GAFAS, BOCA, BIGOTE, PANTALON, CAMISETA, DISFRAZ;
 	}
 	
 	//Necesario para Json
