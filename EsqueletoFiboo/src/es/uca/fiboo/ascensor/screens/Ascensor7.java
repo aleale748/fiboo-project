@@ -75,7 +75,7 @@ public class Ascensor7 implements AbstractScreen{
 	public Ascensor7(final FibooGame game){
 		
 		super(game);
-		
+		this.game = game;
 		camara = new OrthographicCamera();
 		camara.setToOrtho(false, 800, 480);
 		stage = new Stage();

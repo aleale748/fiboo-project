@@ -45,6 +45,7 @@ public final FibooGame game;
  		
 	 public AScreenLost(final FibooGame game){
 		 super(game);
+		 this.game = game;
 		 ascreen1 = new AScreen1(game);
          camera = new OrthographicCamera();
          camera.setToOrtho(false, 800, 480);
