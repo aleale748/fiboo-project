@@ -152,6 +152,19 @@ public class TallerScreen extends AbstractScreen {
 		
 		batch.begin();
 		
+		if(overlaps) {
+		
+			robot.play();
+			tornillosTocados.set(tornilloActual, false);
+			if(tornillosElegidos.size() < 4) {
+				tornillosElegidos.add(tornillos.get(tornilloActual));
+				if(tornillosUsados.contains(tornillos.get(tornilloActual))) { //Si lo ha puesto lo borra ya
+					tornillosUsados.remove(tornillos.get(tornilloActual));
+				}
+			}
+			overlaps = false;
+		}
+		
 		if(tornillosElegidos.size() == numTornillos && tornillosUsados.isEmpty()) { //Ha acertado
 			batch.draw(robot_alegre, 0, 0, width, hight);
 			bien.play();
@@ -191,19 +204,6 @@ public class TallerScreen extends AbstractScreen {
 				posTornillos.get(i).y = hight - Gdx.input.getY();
 				batch.draw(tornillos.get(i), posTornillos.get(i).x, posTornillos.get(i).y, width/9, hight/9);
 			}
-		}
-		
-		if(overlaps) {
-		
-			robot.play();
-			tornillosTocados.set(tornilloActual, false);
-			if(tornillosElegidos.size() < 4) {
-				tornillosElegidos.add(tornillos.get(tornilloActual));
-				if(tornillosUsados.contains(tornillos.get(tornilloActual))) { //Si lo ha puesto lo borra ya
-					tornillosUsados.remove(tornillos.get(tornilloActual));
-				}
-			}
-			overlaps = false;
 		}
 			
 		switch(tornillosElegidos.size()) {
