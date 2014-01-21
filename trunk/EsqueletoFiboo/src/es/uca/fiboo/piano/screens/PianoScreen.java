@@ -44,7 +44,7 @@ public class PianoScreen extends AbstractScreen {
 	private transient float timesil;
 	private transient int nota;
 	private transient boolean mute, isplay, ismute;
-	private transient final float h, w;
+	private transient final float height, width;
 	private transient int tocada;
 	private transient final float posPartitura;
 	private transient float posactual;
@@ -68,14 +68,14 @@ public class PianoScreen extends AbstractScreen {
 		//FibooGame.MANAGER.get("sonidos/fondo.ogg", Sound.class).stop();
 		//Gdx.app.log(FibooGame.LOG, "Constructor piano empieza;");
 		seleccion = 0;
-		h = Gdx.graphics.getHeight();
-		w = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
 		//Gdx.app.log(FibooGame.LOG, "Constructor piano ok;");
 		
-		alturapiano = h - h*0.68359375f;
-		anchopiano = w;
+		alturapiano = height - height*0.68359375f;
+		anchopiano = width;
 		tecla = new Teclas();
-		imgWidth = w * 0.18f;
+		imgWidth = width * 0.18f;
 		imgHeight = imgWidth;
 		tocada = -1;
 		mute = true;
@@ -83,8 +83,8 @@ public class PianoScreen extends AbstractScreen {
 		ismute = false;
 		nota = 0;
 		posPartitura = 0.545f;
-		avance = w/8.66f;
-		posactual = w*posPartitura - avance;
+		avance = width/8.66f;
+		posactual = width*posPartitura - avance;
 	}
 	
 	@Override
@@ -249,8 +249,8 @@ public class PianoScreen extends AbstractScreen {
 		final Drawable silencioBotonDrawable = new TextureRegionDrawable(silencioBotonRegion);
 		
 		final ImageButton play = new ImageButton(playBotonDrawable);
-		play.setSize(w*0.08f, w*0.08f);
-		play.setPosition(w*0.24f, h*0.7f);
+		play.setSize(width*0.08f, width*0.08f);
+		play.setPosition(width*0.24f, height*0.7f);
 		play.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, final float x, final float y) {
@@ -261,8 +261,8 @@ public class PianoScreen extends AbstractScreen {
 		stage.addActor(play);
 		
 		final ImageButton stop = new ImageButton(stopBotonDrawable);
-		stop.setSize(w*0.08f, w*0.08f);
-		stop.setPosition(w*0.34f,  h*0.7f);
+		stop.setSize(width*0.08f, width*0.08f);
+		stop.setPosition(width*0.34f,  height*0.7f);
 		stop.addListener(new ClickListener() {			
 			@Override
 			public void clicked(final InputEvent event, final float x, final float y) {
@@ -272,14 +272,14 @@ public class PianoScreen extends AbstractScreen {
 				time = 0;
 				timesil = 0;
 				mute = true;
-				posactual = w*posPartitura - avance;
+				posactual = width*posPartitura - avance;
 			}
 		});
 		stage.addActor(stop);
 		
 		final ImageButton pause = new ImageButton(pauseBotonDrawable);
-		pause.setSize(w*0.08f, w*0.08f);
-		pause.setPosition(w*0.44f, h*0.7f);
+		pause.setSize(width*0.08f, width*0.08f);
+		pause.setPosition(width*0.44f, height*0.7f);
 		pause.addListener(new ClickListener() {
 			@Override
 			public void clicked(final InputEvent event, final float x, final float y) {
@@ -290,8 +290,8 @@ public class PianoScreen extends AbstractScreen {
 		stage.addActor(pause);
 		
 		final ImageButton sonido = new ImageButton(sonidoBotonDrawable);
-		sonido.setSize(w*0.08f, w*0.08f);
-		sonido.setPosition(w*0.54f, h*0.7f);
+		sonido.setSize(width*0.08f, width*0.08f);
+		sonido.setPosition(width*0.54f, height*0.7f);
 		sonido.addListener(new ClickListener() {
 			@Override
 			public void clicked(final InputEvent event, final float x, final float y) {
@@ -302,8 +302,8 @@ public class PianoScreen extends AbstractScreen {
 		stage.addActor(sonido);
 		
 		final ImageButton silencio = new ImageButton(silencioBotonDrawable);
-		silencio.setSize(w*0.08f, w*0.08f);
-		silencio.setPosition(w*0.64f,  h*0.7f);
+		silencio.setSize(width*0.08f, width*0.08f);
+		silencio.setPosition(width*0.64f,  height*0.7f);
 		silencio.addListener(new ClickListener() {			
 			@Override
 			public void clicked(final InputEvent event, final float x, final float y) {
@@ -323,7 +323,7 @@ public class PianoScreen extends AbstractScreen {
 		batch.begin();
 		//batch.draw(fondo, 0, 0, w,h);
 		
-		batch.draw(partitura, posactual, h*0.77f, w*3f, h*0.26f);
+		batch.draw(partitura, posactual, height*0.77f, width*3f, height*0.26f);
 		
 		//posPartitura-= 0.0001f;
 		int piano = 0;
@@ -371,7 +371,7 @@ public class PianoScreen extends AbstractScreen {
 					mute = true;
 					nota =(nota+1)%26;
 					if (nota == 0) {
-						posactual = w*posPartitura - avance;
+						posactual = width*posPartitura - avance;
 					}
 					else {
 						posactual -= avance;
@@ -387,21 +387,21 @@ public class PianoScreen extends AbstractScreen {
 		if(tocada >= 0){
 			//timetocada+= 0.1; 
 			switch(tocada){ 
-				case 0: batch.draw(tecla.tecla(tocada), 0, 0, w/8,h);
+				case 0: batch.draw(tecla.tecla(tocada), 0, 0, width/8,height);
 					break;
-				case 1: batch.draw(tecla.tecla(tocada), anchopiano/8, 0, w/8, h);
+				case 1: batch.draw(tecla.tecla(tocada), anchopiano/8, 0, width/8, height);
 					break;
-				case 2: batch.draw(tecla.tecla(tocada), (anchopiano/8)*2, 0, w/8,h);
+				case 2: batch.draw(tecla.tecla(tocada), (anchopiano/8)*2, 0, width/8,height);
 					break;
-				case 3: batch.draw(tecla.tecla(tocada), (anchopiano/8)*3, 0, w/8,h);
+				case 3: batch.draw(tecla.tecla(tocada), (anchopiano/8)*3, 0, width/8,height);
 					break;
-				case 4: batch.draw(tecla.tecla(tocada), (anchopiano/8)*4, 0, w/8,h);
+				case 4: batch.draw(tecla.tecla(tocada), (anchopiano/8)*4, 0, width/8,height);
 					break;
-				case 5: batch.draw(tecla.tecla(tocada), (anchopiano/8)*5, 0, w/8,h);
+				case 5: batch.draw(tecla.tecla(tocada), (anchopiano/8)*5, 0, width/8,height);
 					break;
-				case 6: batch.draw(tecla.tecla(tocada), (anchopiano/8)*6, 0, w/8,h);
+				case 6: batch.draw(tecla.tecla(tocada), (anchopiano/8)*6, 0, width/8,height);
 					break;
-				case 7: batch.draw(tecla.tecla(tocada), (anchopiano/8)*7, 0, w/8,h);
+				case 7: batch.draw(tecla.tecla(tocada), (anchopiano/8)*7, 0, width/8,height);
 					break;
 				default: break;
 			}
@@ -419,15 +419,15 @@ public class PianoScreen extends AbstractScreen {
 		*/
 		if (seleccion == 0) {
 			logopiano.setSize(imgWidth*1.3f, imgHeight*1.3f);
-			logopiano.setPosition(w*0.11f - imgWidth, h*0.93f - imgHeight);
+			logopiano.setPosition(width*0.11f - imgWidth, height*0.93f - imgHeight);
 			logotrompeta.setSize(imgWidth, imgHeight);
-			logotrompeta.setPosition(w*0.24f - imgWidth, h*0.93f - imgHeight);		
+			logotrompeta.setPosition(width*0.24f - imgWidth, height*0.93f - imgHeight);		
 		}
 		else {
 			logopiano.setSize(imgWidth, imgHeight);
-			logopiano.setPosition(w*0.11f - imgWidth, h*0.93f - imgHeight);
+			logopiano.setPosition(width*0.11f - imgWidth, height*0.93f - imgHeight);
 			logotrompeta.setSize(imgWidth*1.3f, imgHeight*1.3f);
-			logotrompeta.setPosition(w*0.24f - imgWidth, h*0.93f - imgHeight);
+			logotrompeta.setPosition(width*0.24f - imgWidth, height*0.93f - imgHeight);
 		}
 		//stage.act();
 		//stage.draw();
