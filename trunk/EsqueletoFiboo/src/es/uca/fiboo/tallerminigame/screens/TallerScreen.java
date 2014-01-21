@@ -106,7 +106,7 @@ public class TallerScreen extends AbstractScreen {
 			});
 		}
 		
-		//Posicionamos todos los tornillos y les asignamos su tamaño
+		//Posicionamos todos los tornillos y les asignamos su tamaï¿½o
 		
 		for(int i=0; i<tornillos.size(); i++) {
 			tornillosBotones.get(i).setHeight(hight/6f);
@@ -124,7 +124,7 @@ public class TallerScreen extends AbstractScreen {
 		tornillosBotones.get(8).setPosition(width/3.2f, hight/2.6f);
 		
 		
-		//Añadimos todos los botones al stage		
+		//Aï¿½adimos todos los botones al stage		
 		for(int i=0; i<tornillos.size(); i++) {
 			stage.addActor(tornillosBotones.get(i));
 		}
@@ -180,7 +180,7 @@ public class TallerScreen extends AbstractScreen {
 			TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1).setHeight(heightPuntuacion);
 			stage.addActor(TallerScreenPrincipal.puntos.get(TallerScreenPrincipal.puntos.size() - 1));
 			
-			dispose();
+			//dispose();
 			game.setScreen(new TiempoScreen(game,1)); //Lanzamos el siguiente intento
 		}		
 		else if(tornillosElegidos.size() == numTornillos && !tornillosUsados.isEmpty()) {
@@ -188,7 +188,7 @@ public class TallerScreen extends AbstractScreen {
 			mal.play();
 			
 			TallerScreenPrincipal.fallos++; //Sumamos el fallo actual
-			dispose();
+			//dispose();
 			game.setScreen(new TiempoScreen(game,0)); //Lanzamos el siguiente intento
 		}		
 		else {
