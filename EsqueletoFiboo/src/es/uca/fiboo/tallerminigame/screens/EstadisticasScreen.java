@@ -56,10 +56,6 @@ public class EstadisticasScreen extends AbstractScreen {
 			dispose();
 			game.setScreen(new WinScreen(game));
 		}
-		else if(TallerScreenPrincipal.aciertos == 0) {
-			dispose();
-			game.setScreen(new GameOverScreen(game));
-		}
 		else {
 			dispose();
 			game.setScreen(new GameOverScreen(game));
