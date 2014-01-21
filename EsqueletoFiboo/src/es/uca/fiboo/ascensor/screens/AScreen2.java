@@ -9,8 +9,6 @@ import java.util.Iterator;
 import java.util.Random;
 
 import sun.net.idn.Punycode;
-
-import com.badlogic.drop.Herramienta.Tipo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -34,6 +32,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import es.uca.fiboo.FibooGame;
+import es.uca.fiboo.screens.AbstractScreen;
+import es.uca.fiboo.ascensor.screens.Herramienta.Tipo;
 
 public class AScreen2 extends AbstractScreen{
 	
@@ -271,19 +272,19 @@ public class AScreen2 extends AbstractScreen{
         // tell the camera to update its matrices.
         camera.update();
       
-        game.batch.setProjectionMatrix(camera.combined);
+       batch.setProjectionMatrix(camera.combined);
        
-        game.batch.begin();
-        game.batch.draw(ascensor, 0, 0);  
-        game.batch.draw(silla.textureTarea, silla.rectangleTarea.x, silla.rectangleTarea.y);
-        game.batch.draw(sofa.textureTarea, sofa.rectangleTarea.x, sofa.rectangleTarea.y);
-        game.batch.draw(broom.textureTarea, broom.rectangleTarea.x, broom.rectangleTarea.y);
-        game.batch.draw(hammer.textureTarea, hammer.rectangleTarea.x, hammer.rectangleTarea.y);
-        game.batch.draw(leftDoor.textureTarea, leftDoor.rectangleTarea.x, leftDoor.rectangleTarea.y);
-        game.batch.draw(rightDoor.textureTarea, rightDoor.rectangleTarea.x, rightDoor.rectangleTarea.y);
-        game.batch.draw(marco.textureTarea, marco.rectangleTarea.x, marco.rectangleTarea.y);
+        batch.begin();
+        batch.draw(ascensor, 0, 0);  
+        batch.draw(silla.textureTarea, silla.rectangleTarea.x, silla.rectangleTarea.y);
+        batch.draw(sofa.textureTarea, sofa.rectangleTarea.x, sofa.rectangleTarea.y);
+        batch.draw(broom.textureTarea, broom.rectangleTarea.x, broom.rectangleTarea.y);
+       batch.draw(hammer.textureTarea, hammer.rectangleTarea.x, hammer.rectangleTarea.y);
+        batch.draw(leftDoor.textureTarea, leftDoor.rectangleTarea.x, leftDoor.rectangleTarea.y);
+       batch.draw(rightDoor.textureTarea, rightDoor.rectangleTarea.x, rightDoor.rectangleTarea.y);
+        batch.draw(marco.textureTarea, marco.rectangleTarea.x, marco.rectangleTarea.y);
         
-        game.batch.end();
+        batch.end();
       
       //Abrrir la puerta del ascensor
         tmpDoor += delta;
@@ -304,17 +305,17 @@ public class AScreen2 extends AbstractScreen{
 			for(int g=0; g<5; g++)
 	        {
 	        	contador.add(new FiguraAscen("ascensor/starVacia.png", cleaner, 64, 64, k, 400));
-	        	game.batch.begin();
-	        	game.batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
-	        	game.batch.end();
+	        	batch.begin();
+	        	batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
+	        	batch.end();
 	        	k+=64;
 	        }
         
-        game.batch.begin();
+        batch.begin();
         	for (FiguraAscen alienP : alienParasites) {
-                game.batch.draw(alienP.textureTarea, alienP.rectangleTarea.x, alienP.rectangleTarea.y);
+                batch.draw(alienP.textureTarea, alienP.rectangleTarea.x, alienP.rectangleTarea.y);
         	}
-        game.batch.end();
+        batch.end();
             
        
        
@@ -387,9 +388,9 @@ public class AScreen2 extends AbstractScreen{
         	 for(int g=0; g<pointsGathered; g++){
         	 
         		contadorPlus.add(new FiguraAscen("ascensor/star.png", cleaner, 64, 64, q, 400));
-	        	game.batch.begin();
-	        	game.batch.draw(contadorPlus.get(g).textureTarea, contadorPlus.get(g).rectangleTarea.x, contadorPlus.get(g).rectangleTarea.y);
-	        	game.batch.end();
+	        	batch.begin();
+	        	batch.draw(contadorPlus.get(g).textureTarea, contadorPlus.get(g).rectangleTarea.x, contadorPlus.get(g).rectangleTarea.y);
+	        	batch.end();
 	        	q+=64;
 //	        	game.batch.begin();
 //				game.font.draw(game.batch, "PLUS Gathered"+con, 250, 250);
@@ -432,9 +433,9 @@ public class AScreen2 extends AbstractScreen{
 			for(int g=0; g<5; g++)
 	        {
 	        	contador.add(new FiguraAscen("ascensor/starVacia.png", cleaner, 64, 64, 20+t, 400));
-	        	game.batch.begin();
-	        	game.batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
-	        	game.batch.end();
+	        	batch.begin();
+	        	batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
+	        	batch.end();
 	        	t+=64;
 	        }
 			

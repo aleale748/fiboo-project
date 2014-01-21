@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.badlogic.drop.Herramienta.Tipo;
+import es.uca.fiboo.FibooGame;
+import es.uca.fiboo.ascensor.screens.Herramienta.Tipo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -34,6 +35,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.TimeUtils;
+
+import es.uca.fiboo.screens.AbstractScreen;
 
 
 
@@ -136,7 +139,7 @@ public class AScreen1 extends AbstractScreen{
 
      public AScreen1(final FibooGame game) {
 		
-         suoer(game);
+         super(game);
          this.game = game;
          random = new Random(9);
          camera = new OrthographicCamera();
@@ -200,29 +203,29 @@ public class AScreen1 extends AbstractScreen{
  		
  		while(g<3){
  		if(TimeUtils.nanoTime() - lastBellTime > 9000000 + Gdx.graphics.getRawDeltaTime()){
- 			game.batch.begin();
- 				game.batch.draw(bellL.textureTarea, bellL.rectangleTarea.x - 2, bellL.rectangleTarea.y);
+ 			batch.begin();
+ 				batch.draw(bellL.textureTarea, bellL.rectangleTarea.x - 2, bellL.rectangleTarea.y);
  				bellSound.play();
- 				game.batch.end();
+ 				batch.end();
  				lastBellTime = TimeUtils.nanoTime();
  				g++;
  				
  		}else{
  			if(TimeUtils.nanoTime() - lastBellTime > 9000000 + Gdx.graphics.getRawDeltaTime()){
- 				game.batch.begin();
- 				game.batch.draw(bell.textureTarea, bell.rectangleTarea.x, bell.rectangleTarea.y);
+ 				batch.begin();
+ 				batch.draw(bell.textureTarea, bell.rectangleTarea.x, bell.rectangleTarea.y);
  				bellSound.play();
- 				game.batch.end();
+ 				batch.end();
  				lastBellTime = TimeUtils.nanoTime();
  				
  				g++;
  			}else{
  				if(TimeUtils.nanoTime() - lastBellTime > 9000000 + Gdx.graphics.getRawDeltaTime()){
- 					game.batch.begin();
- 					game.batch.draw(bellR.textureTarea, bellR.rectangleTarea.x + 2, bellR.rectangleTarea.y);
+ 					batch.begin();
+ 					batch.draw(bellR.textureTarea, bellR.rectangleTarea.x + 2, bellR.rectangleTarea.y);
  					
  					bellSound.play();
- 					game.batch.end();
+ 					batch.end();
  					lastBellTime = TimeUtils.nanoTime(); 
  					g++;
  				}
@@ -234,17 +237,17 @@ public class AScreen1 extends AbstractScreen{
  	}
      
      public void getPiso(int pisoo){
-    	 game.batch.begin();
+    	 batch.begin();
     	 switch(pisoo){
-    	 case 0 :  game.batch.draw(number0.textureTarea, number0.rectangleTarea.x, number0.rectangleTarea.y);break;
-    	 case 1 :  game.batch.draw(number1.textureTarea, number1.rectangleTarea.x, number1.rectangleTarea.y);break;
-    	 case 2 :  game.batch.draw(number2.textureTarea, number2.rectangleTarea.x, number2.rectangleTarea.y);break;
-    	 case 3 :  game.batch.draw(number3.textureTarea, number3.rectangleTarea.x, number3.rectangleTarea.y);break;
-    	 case 4 :  game.batch.draw(number4.textureTarea, number4.rectangleTarea.x, number4.rectangleTarea.y);break;
-    	 case 5 :  game.batch.draw(number5.textureTarea, number5.rectangleTarea.x, number5.rectangleTarea.y);break;
-    	 default: game.batch.draw(number0.textureTarea, number0.rectangleTarea.x, number0.rectangleTarea.y);break;
+    	 case 0 :  batch.draw(number0.textureTarea, number0.rectangleTarea.x, number0.rectangleTarea.y);break;
+    	 case 1 : batch.draw(number1.textureTarea, number1.rectangleTarea.x, number1.rectangleTarea.y);break;
+    	 case 2 :  batch.draw(number2.textureTarea, number2.rectangleTarea.x, number2.rectangleTarea.y);break;
+    	 case 3 :  batch.draw(number3.textureTarea, number3.rectangleTarea.x, number3.rectangleTarea.y);break;
+    	 case 4 :  batch.draw(number4.textureTarea, number4.rectangleTarea.x, number4.rectangleTarea.y);break;
+    	 case 5 :  batch.draw(number5.textureTarea, number5.rectangleTarea.x, number5.rectangleTarea.y);break;
+    	 default: batch.draw(number0.textureTarea, number0.rectangleTarea.x, number0.rectangleTarea.y);break;
     	 }
-    	 game.batch.end();
+    	batch.end();
      }
     
      
@@ -284,22 +287,22 @@ public class AScreen1 extends AbstractScreen{
         // tell the camera to update its matrices.
         camera.update();
       
-        game.batch.setProjectionMatrix(camera.combined);
+       batch.setProjectionMatrix(camera.combined);
        
         ringBell(bell);
-        game.batch.begin();
-        game.batch.draw(ascensor, 0, 0); 
-        game.batch.draw(u0.textureTarea, u0.rectangleTarea.x, u0.rectangleTarea.y);
-        game.batch.draw(u1.textureTarea, u1.rectangleTarea.x, u1.rectangleTarea.y);
-        game.batch.draw(u2.textureTarea, u2.rectangleTarea.x, u2.rectangleTarea.y);
-        game.batch.draw(u3.textureTarea, u3.rectangleTarea.x, u3.rectangleTarea.y);
-        game.batch.draw(u4.textureTarea, u4.rectangleTarea.x, u4.rectangleTarea.y);
-        game.batch.draw(u5.textureTarea, u5.rectangleTarea.x, u5.rectangleTarea.y);
+       batch.begin();
+        batch.draw(ascensor, 0, 0); 
+       batch.draw(u0.textureTarea, u0.rectangleTarea.x, u0.rectangleTarea.y);
+       batch.draw(u1.textureTarea, u1.rectangleTarea.x, u1.rectangleTarea.y);
+       batch.draw(u2.textureTarea, u2.rectangleTarea.x, u2.rectangleTarea.y);
+       batch.draw(u3.textureTarea, u3.rectangleTarea.x, u3.rectangleTarea.y);
+        batch.draw(u4.textureTarea, u4.rectangleTarea.x, u4.rectangleTarea.y);
+       batch.draw(u5.textureTarea, u5.rectangleTarea.x, u5.rectangleTarea.y);
         
-        game.batch.draw(spot.textureTarea, spot.rectangleTarea.x, spot.rectangleTarea.y);
-        game.batch.draw(circuloImg.textureTarea, circuloImg.rectangleTarea.x, circuloImg.rectangleTarea.y);
+        batch.draw(spot.textureTarea, spot.rectangleTarea.x, spot.rectangleTarea.y);
+       batch.draw(circuloImg.textureTarea, circuloImg.rectangleTarea.x, circuloImg.rectangleTarea.y);
         
-         game.batch.end();
+         batch.end();
        
         setAscenMarker();
         fondoWow.play();
@@ -453,9 +456,9 @@ public class AScreen1 extends AbstractScreen{
 	                                			while(sw1){
 	                                				if( r <= posAscen && TimeUtils.nanoTime() > lastMoveTimeDoor + tim){	
 	                                					  spot.rectangleTarea.y += espacio;
-	                                					  game.batch.begin();
-		                                  				  game.batch.draw(spot.textureTarea, spot.rectangleTarea.x, spot.rectangleTarea.y);
-		                                  				  game.batch.end();
+	                                					  batch.begin();
+		                                  				 batch.draw(spot.textureTarea, spot.rectangleTarea.x, spot.rectangleTarea.y);
+		                                  				 batch.end();
 	                                					 //spotTime=0;
 	                                					 
 	                                					// posSpot += espacio;
@@ -477,9 +480,9 @@ public class AScreen1 extends AbstractScreen{
 	                                				if( r >= posAscen && TimeUtils.nanoTime() > lastMoveTimeDoor + tim){	
 	                                					dropSound.play();
 	                                					 spot.rectangleTarea.y -= espacio;
-	                                					  game.batch.begin();
-		                                  				  game.batch.draw(spot.textureTarea, spot.rectangleTarea.x, spot.rectangleTarea.y);
-		                                  				  game.batch.end();
+	                                					 batch.begin();
+		                                  				 batch.draw(spot.textureTarea, spot.rectangleTarea.x, spot.rectangleTarea.y);
+		                                  				  batch.end();
 		                                  				  r--;	                                					
 	                                					  lastMoveTimeDoor = TimeUtils.nanoTime();
 	                                				}

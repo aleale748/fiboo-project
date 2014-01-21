@@ -7,8 +7,6 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
-import com.badlogic.drop.Herramienta.Tipo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -35,6 +33,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import es.uca.fiboo.FibooGame;
+import es.uca.fiboo.ascensor.screens.Herramienta.Tipo;
+import es.uca.fiboo.screens.AbstractScreen;
 
 public class AScreen8 extends AbstractScreen{
 	
@@ -295,28 +296,28 @@ public class AScreen8 extends AbstractScreen{
         // tell the camera to update its matrices.
         camera.update();
       
-        game.batch.setProjectionMatrix(camera.combined);
+       batch.setProjectionMatrix(camera.combined);
        
-        game.batch.begin();
-        	game.batch.draw(ascensor, 0, 0);  
-        	game.batch.draw(broom.textureTarea, broom.rectangleTarea.x, broom.rectangleTarea.y);
+       batch.begin();
+        	batch.draw(ascensor, 0, 0);  
+        	batch.draw(broom.textureTarea, broom.rectangleTarea.x, broom.rectangleTarea.y);
        
         	for(int j=0; j<nBicho; j++){
         	
-        		game.batch.draw(bichoses.get(j).textureTarea, bichoses.get(j).rectangleTarea.x, bichoses.get(j).rectangleTarea.y);
-        		game.batch.draw(aliens.get(j).textureTarea, aliens.get(j).rectangleTarea.x, aliens.get(j).rectangleTarea.y);
+        		batch.draw(bichoses.get(j).textureTarea, bichoses.get(j).rectangleTarea.x, bichoses.get(j).rectangleTarea.y);
+        		batch.draw(aliens.get(j).textureTarea, aliens.get(j).rectangleTarea.x, aliens.get(j).rectangleTarea.y);
         	}
          
-        game.batch.end();
+        batch.end();
         
         stage.act(delta);
         stage.draw(); 		
       
-        game.batch.begin();
-        	game.batch.draw(leftDoor.textureTarea, leftDoor.rectangleTarea.x, leftDoor.rectangleTarea.y);
-        	game.batch.draw(rightDoor.textureTarea, rightDoor.rectangleTarea.x, rightDoor.rectangleTarea.y);
-        	game.batch.draw(marco.textureTarea, marco.rectangleTarea.x, marco.rectangleTarea.y);
-        game.batch.end();
+        batch.begin();
+        	batch.draw(leftDoor.textureTarea, leftDoor.rectangleTarea.x, leftDoor.rectangleTarea.y);
+        	batch.draw(rightDoor.textureTarea, rightDoor.rectangleTarea.x, rightDoor.rectangleTarea.y);
+        	batch.draw(marco.textureTarea, marco.rectangleTarea.x, marco.rectangleTarea.y);
+       batch.end();
     
       //Abrrir la puerta del ascensor
         tmpDoor += delta;
@@ -334,9 +335,9 @@ public class AScreen8 extends AbstractScreen{
 			for(int g=0; g<5; g++)
 	        {
 	        	contador.add(new FiguraAscen("ascensor/starVacia.png", cleaner, 64, 64, k, 400));
-	        	game.batch.begin();
-	        	game.batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
-	        	game.batch.end();
+	        	batch.begin();
+	        	batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
+	        	batch.end();
 	        	k+=64;
 	        }
  
@@ -404,9 +405,9 @@ public class AScreen8 extends AbstractScreen{
         	 for(int g=0; g<pointsGathered; g++){
         	 
         		contadorPlus.add(new FiguraAscen("ascensor/star.png", cleaner, 64, 64, q, 400));
-	        	game.batch.begin();
-	        	game.batch.draw(contadorPlus.get(g).textureTarea, contadorPlus.get(g).rectangleTarea.x, contadorPlus.get(g).rectangleTarea.y);
-	        	game.batch.end();
+	        	batch.begin();
+	        	batch.draw(contadorPlus.get(g).textureTarea, contadorPlus.get(g).rectangleTarea.x, contadorPlus.get(g).rectangleTarea.y);
+	        	batch.end();
 	        	q+=64;
 
         	 }	
@@ -450,9 +451,9 @@ public class AScreen8 extends AbstractScreen{
 			for(int g=0; g<5; g++)
 	        {
 	        	contador.add(new FiguraAscen("ascensor/starVacia.png", cleaner, 64, 64, 20+t, 400));
-	        	game.batch.begin();
-	        	game.batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
-	        	game.batch.end();
+	        	batch.begin();
+	        	batch.draw(contador.get(g).textureTarea, contador.get(g).rectangleTarea.x, contador.get(g).rectangleTarea.y);
+	        	batch.end();
 	        	t+=64;
 	        }
 	        

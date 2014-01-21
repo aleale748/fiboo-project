@@ -1,8 +1,9 @@
 package es.uca.fiboo.ascensor.screens;
 
 import java.util.ArrayList;
+import es.uca.fiboo.ascensor.screens.Herramienta;
+import es.uca.fiboo.ascensor.screens.Herramienta.Tipo;
 
-import com.badlogic.drop.Herramienta.Tipo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
