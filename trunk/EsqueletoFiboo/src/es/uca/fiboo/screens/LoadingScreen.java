@@ -95,7 +95,6 @@ public class LoadingScreen extends AbstractScreen {
 		stage.addActor(playBoton);
 		
 		// Carga de Assets
-		FibooGame.MANAGER.loadCameraMiniGameTextures();
 		FibooGame.MANAGER.loadPianoMiniGameTextures();
 		FibooGame.MANAGER.loadNaveMiniGameTextures();
 		FibooGame.MANAGER.loadMenuTextures();
@@ -103,7 +102,6 @@ public class LoadingScreen extends AbstractScreen {
 		FibooGame.MANAGER.loadSacoMiniGameTextures();
 		FibooGame.MANAGER.loadMarcianosMiniGameSounds();
 		FibooGame.MANAGER.loadPersonalizacionTextures();
-		FibooGame.MANAGER.loadAscensorGameTextures();
 	}
 
 	@Override

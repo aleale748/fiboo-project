@@ -68,7 +68,7 @@ public class BotonComplemento extends Image {
 		public DragComplemento() {
 			super();
 			imagen = new Image(complemento.getImagen());
-			Gdx.app.log(FibooGame.LOG, "Creando imagen de complemento " + complemento.getImagePath());
+			//Gdx.app.log(FibooGame.LOG, "Creando imagen de complemento " + complemento.getImagePath());
 			imagen.setSize(escala, escala);
 			
 			float posAvatarX = 0 + escala / 4f;
@@ -78,8 +78,8 @@ public class BotonComplemento extends Image {
 			float widthRectImg = widthRectAvatar;
 			float heightRectImg;
 			
-			//Si son complementos grandes el Rect de avatar serï¿½ completo.
-			//Si son complementos de la cara/cabeza el Rect de avatar serï¿½ la mitad.
+			//Si son complementos grandes el Rect de avatar será completo.
+			//Si son complementos de la cara/cabeza el Rect de avatar será la mitad.
 			switch(complemento.getTipo()) {
 			case DISFRAZ:
 			case CAMISETA:

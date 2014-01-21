@@ -35,7 +35,7 @@ public class BotonCategoria {
 		final Texture imagenIcono = FibooGame.MANAGER.get(iconPath, Texture.class);
 		imagenIcono.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icono = new Image(imagenIcono); 
-		Gdx.app.log(FibooGame.LOG, "Creando imagen de icono " + tipo.toString());
+		//Gdx.app.log(FibooGame.LOG, "Creando imagen de icono " + tipo.toString());
 		
 		setAcciones();
 	}
@@ -82,7 +82,7 @@ public class BotonCategoria {
 		icono.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer, final int button) {
-				Gdx.app.log(FibooGame.LOG, "Pulsando icono...");
+				//Gdx.app.log(FibooGame.LOG, "Pulsando icono...");
 				//Si habia una ventana antes la quitamos
 				for(final Actor c : parent.getStage().getActors()) {
 					if(c instanceof Window) {
