@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-public class MainMenuScreen implements AbstractLoadingScreen{
+public class MainMenuScreen extends AbstractLoadingScreen{
 	final FibooGame game;
 	 OrthographicCamera camera;
 	 

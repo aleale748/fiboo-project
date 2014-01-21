@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-public class Ascensor7 implements AbstractScreen{
+public class Ascensor7 extends AbstractScreen{
 
 	
 	final FibooGame game;
