@@ -22,7 +22,7 @@ public class CreditosScreen extends AbstractScreen {
 
 	public CreditosScreen(final FibooGame game) {
 		super(game);
-
+		FibooGame.MANAGER.get("sonidos/fondo.ogg", Music.class).stop();
 		Gdx.input.setInputProcessor(stage);
 	}
 	
