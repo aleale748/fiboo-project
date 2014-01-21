@@ -8,7 +8,7 @@ import es.uca.fiboo.FibooGame;
 /**
  * El complemento guarda la imagen de este y su disponibilidad, 
  * 
- * @version 0.3
+ * @version 0.4
  * @author Sergio
  *
  */

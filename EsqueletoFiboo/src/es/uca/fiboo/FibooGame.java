@@ -16,12 +16,11 @@ import es.uca.fiboo.screens.MainScreen;
 
 public class FibooGame extends Game {
 
-        public static final String VERSION = "0.0.0.01 Pre-Alpha";
-        public static final String LOG = "fibooGame";
+        public static final String VERSION = "0.9 Beta";
+        public static final String LOG = "FibooGame";
         public static final boolean DEV_MODE = false;
         
         public static final FibooAssetManager MANAGER = new FibooAssetManager();
-        // public static TextureAtlas atlasComplementos, atlasNaveMiniGame, atlasMarcianosMiniGame;
 
         private static Personaje personaje;
         private static List<Complemento> complementos;
@@ -43,18 +42,18 @@ public class FibooGame extends Game {
             Json json = new Json(); 
             
             if(savedData.exists()) {
-                    personaje = json.fromJson(Personaje.class, savedData);
-                    //Cargamos el TreeMap de Avatar
-                    personaje.getAvatar().loadData();
+                personaje = json.fromJson(Personaje.class, savedData);
+                //Cargamos el TreeMap de Avatar
+                personaje.getAvatar().loadData();
             }
             else {
-                    //Partida nueva
-                    personaje = new Personaje();
+                //Partida nueva
+                personaje = new Personaje();
             }
             
             if(comps.exists()) {
-                    //Todos los complementos habidos y por haber
-                    complementos = json.fromJson(ArrayList.class, comps);
+                //Todos los complementos habidos y por haber
+                complementos = json.fromJson(ArrayList.class, comps);
             }
             else {
             	//La primera vez lee de internal y lo guarda en local

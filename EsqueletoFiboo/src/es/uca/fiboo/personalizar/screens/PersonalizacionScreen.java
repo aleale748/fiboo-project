@@ -114,11 +114,10 @@ public class PersonalizacionScreen extends AbstractScreen {
         stage.addActor(table);
          
         int newRow = 0;
-        final int maxRows = 2;
+        final int maxRows = 2; // 3 complementos por cada fila
         for(final BotonCategoria b : botonesCat) {
  			table.add(b.getIcono()).width(cellWidth).height(cellHeight);
  			newRow++;
- 			// 3 complementos por cada fila
  			if(newRow > maxRows) {
  				newRow = 0;
  				table.row();
@@ -129,11 +128,11 @@ public class PersonalizacionScreen extends AbstractScreen {
 	private void setFondoAleatorio() {
 		final int fondoRand = (int)(Math.random()*10) % 5;
 		switch(fondoRand) {
-			case 0: fondo = FibooGame.MANAGER.get("ascensor/habitacionverde.png", Texture.class); break;
-			case 1: fondo = FibooGame.MANAGER.get("ascensor/habitacionrosa.png", Texture.class); break;
-			case 2: fondo = FibooGame.MANAGER.get("ascensor/habitacionceleste.png", Texture.class); break;
-			case 3: fondo = FibooGame.MANAGER.get("ascensor/habitacionmorada.png", Texture.class); break;
-			case 4: fondo = FibooGame.MANAGER.get("ascensor/habitacionnaranja.png", Texture.class); break;
+			case 0: fondo = FibooGame.MANAGER.get("complementos/habitacionverde.png", Texture.class); break;
+			case 1: fondo = FibooGame.MANAGER.get("complementos/habitacionrosa.png", Texture.class); break;
+			case 2: fondo = FibooGame.MANAGER.get("complementos/habitacionceleste.png", Texture.class); break;
+			case 3: fondo = FibooGame.MANAGER.get("complementos/habitacionmorada.png", Texture.class); break;
+			case 4: fondo = FibooGame.MANAGER.get("complementos/habitacionnaranja.png", Texture.class); break;
 			default: break;
 		}
 		fondo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -145,7 +144,6 @@ public class PersonalizacionScreen extends AbstractScreen {
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-		//Acciones de los actores
 		stage.act(delta);
 
 		//Pintar avatar y fondo
@@ -154,7 +152,6 @@ public class PersonalizacionScreen extends AbstractScreen {
 			FibooGame.getPersonaje().drawAvatar(batch, escalaAvatar);
 		batch.end();
 
-		//Pintar el resto de actores
 		stage.draw();
 	}
 	
