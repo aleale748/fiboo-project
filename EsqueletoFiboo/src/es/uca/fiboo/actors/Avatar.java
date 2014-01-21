@@ -1,10 +1,10 @@
 package es.uca.fiboo.actors;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,7 +32,7 @@ public class Avatar {
 	private List<Complemento> data;
 	
 	public Avatar() {
-		complementos = new TreeMap<Tipo, Complemento>();
+		complementos = new EnumMap<Tipo, Complemento>(Tipo.class);
 		initializeComplementos();
 	}
 	
@@ -44,9 +44,8 @@ public class Avatar {
 		complementos.put(Tipo.GAFAS, null);
 		complementos.put(Tipo.BOCA, null);
 		complementos.put(Tipo.BIGOTE, null);
-		complementos.put(Tipo.MASCARA, null);
-		complementos.put(Tipo.CAMISETA, null);
 		complementos.put(Tipo.PANTALON, null);
+		complementos.put(Tipo.CAMISETA, null);
 		complementos.put(Tipo.DISFRAZ, null);
 	}
 	
