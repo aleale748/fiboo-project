@@ -137,6 +137,7 @@ public class AScreen1 implements AbstractScreen{
      public AScreen1(final FibooGame game) {
 		
          suoer(game);
+         this.game = game;
          random = new Random(9);
          camera = new OrthographicCamera();
          camera.setToOrtho(false, 800, 480);

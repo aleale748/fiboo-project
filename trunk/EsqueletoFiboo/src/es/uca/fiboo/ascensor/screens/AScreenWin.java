@@ -48,6 +48,7 @@ public class AScreenWin implements AbstractScreen {
 		
 	public AScreenWin(final FibooGame game) {
 		super(game);
+		this.game = game;
 		 ascreen1 = new AScreen1(game);
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);

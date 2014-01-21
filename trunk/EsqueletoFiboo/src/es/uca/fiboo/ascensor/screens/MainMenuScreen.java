@@ -11,7 +11,7 @@ public class MainMenuScreen implements AbstractLoadingScreen{
 	 
 	 public MainMenuScreen(final FibooGame game) {
          super(game);
-
+         this.game = game;
          camera = new OrthographicCamera();
          camera.setToOrtho(false, 800, 480);
 
